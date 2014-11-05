@@ -2268,7 +2268,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 155
+                    DefaultWidth = 154
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2286,7 +2286,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 154
+                    Width = 153
                     FieldName = 'Dokumentid'
                     AutoExecute = True
                   end
@@ -2443,7 +2443,7 @@
                   end
                   object zwivollbild: TNxDBImageColumn
                     DefaultValue = '1'
-                    DefaultWidth = 230
+                    DefaultWidth = 231
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2461,7 +2461,7 @@
                     ParentCellColor = True
                     Position = 9
                     SortType = stNumeric
-                    Width = 231
+                    Width = 232
                     OnSetCell = zwivollbildSetCell
                     Images = ImageList1
                     Transparent = True
@@ -2633,7 +2633,7 @@
                   DataSource = formdb.dsmon
                   object mondokid: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 154
+                    DefaultWidth = 153
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2653,7 +2653,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 153
+                    Width = 152
                     FieldName = 'Dokumentid'
                   end
                   object monliegenschaft: TNxDBTextColumn
@@ -2831,7 +2831,7 @@
                   end
                   object NxDBImageColumn3: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 219
+                    DefaultWidth = 220
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2847,7 +2847,7 @@
                     ParentFont = False
                     Position = 9
                     SortType = stNumeric
-                    Width = 220
+                    Width = 221
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3301,7 +3301,7 @@
                     FieldName = 'Dokumentid'
                   end
                   object NxDBTextColumn2: TNxDBTextColumn
-                    DefaultWidth = 275
+                    DefaultWidth = 274
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3319,7 +3319,7 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 274
+                    Width = 273
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn1: TNxDBMemoColumn
@@ -3514,7 +3514,7 @@
                   end
                   object NxDBImageColumn5: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 286
+                    DefaultWidth = 287
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3530,7 +3530,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 287
+                    Width = 288
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3636,7 +3636,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsrekl
                   object NxDBTextColumn3: TNxDBTextColumn
-                    DefaultWidth = 154
+                    DefaultWidth = 153
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3656,7 +3656,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 153
+                    Width = 152
                     FieldName = 'Dokumentid'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
@@ -3862,7 +3862,7 @@
                   end
                   object NxDBImageColumn4: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 178
+                    DefaultWidth = 179
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3879,7 +3879,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 179
+                    Width = 180
                     Images = ImageList1
                     Transparent = True
                   end
@@ -5729,7 +5729,7 @@
     Left = 728
     Top = 688
     Bitmap = {
-      494C010103007400DC0010001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
+      494C010103007400E00010001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
