@@ -36,10 +36,18 @@ uses umain;
 
 procedure Tformsachkunde.Button1Click(Sender: TObject);
 begin
-  formmain.saveSettings(formmain.getpasswort, formmain.getkundennummer,
-    eedit.Text, formmain.getscanverzeichnis,
-    formmain.getpostausgangsverzeichnis, formmain.showingid,
-    formmain.splitnumber);
+  if Sender = formmain.lsachbearbeiter then begin
+
+    formmain.saveSettings(formmain.getpasswort, formmain.getkundennummer,
+      eedit.Text, formmain.getscanverzeichnis,
+      formmain.getpostausgangsverzeichnis, formmain.showingid,
+      formmain.splitnumber);
+  end else begin
+    formmain.saveSettings(formmain.getpasswort,eedit.Text,
+      formmain.getsachbearbeiter, formmain.getscanverzeichnis,
+      formmain.getpostausgangsverzeichnis, formmain.showingid,
+      formmain.splitnumber);
+  end;
   self.Hide;
 end;
 

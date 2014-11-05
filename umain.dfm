@@ -701,7 +701,7 @@
       ParentShowHint = False
       ShowHint = True
       Transparent = True
-      OnDblClick = lkundennummerDblClick
+      OnDblClick = lkundennummerChange
     end
     object pmiddle: TPanel
       AlignWithMargins = True
@@ -747,10 +747,6 @@
           TabFont.Style = []
           TabWidth = 455
           OnHide = tabspeichernHide
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 1688
-          ExplicitHeight = 721
           object Panel4: TPanel
             Left = 0
             Top = 0
@@ -801,6 +797,8 @@
                 TabWidth = 130
                 OnHide = hidecontrol
                 OnShow = TMontageShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline framemontage: Tframereklmont
                   Left = 0
                   Top = 0
@@ -830,6 +828,9 @@
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -923,6 +924,8 @@
                 OnHide = hidecontrol
                 OnPaint = TZwischenablesungPaint
                 OnShow = TZwischenablesungShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline framezwi: Tframezwischen
                   Left = 0
                   Top = 0
@@ -962,6 +965,9 @@
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1053,6 +1059,8 @@
                 TabFont.Style = []
                 TabWidth = 130
                 OnShow = TangebotsanfragenShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline frameangebot: Tframebasenutzer
                   Left = 0
                   Top = 0
@@ -1081,6 +1089,9 @@
                     inherited Panel5: TPanel
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1159,6 +1170,8 @@
                 TabFont.Style = []
                 TabWidth = 130
                 OnShow = tauftragShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline frameauftrag: Tframeauftrag
                   Left = 0
                   Top = 0
@@ -1185,10 +1198,11 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 219
-                      Height = 296
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1284,9 +1298,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 229
-                      Width = 220
-                      Height = 296
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1307,6 +1318,8 @@
                 TabFont.Style = []
                 TabWidth = 130
                 OnShow = TenergieausweisShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline framen: Tframeenergie
                   Left = 0
                   Top = 0
@@ -1337,6 +1350,9 @@
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1427,6 +1443,8 @@
                 TabWidth = 130
                 OnHide = hidecontrol
                 OnShow = TKostenermittlungShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline framekosten: Tframebase
                   Left = 0
                   Top = 0
@@ -1456,6 +1474,9 @@
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1514,6 +1535,8 @@
                 TabFont.Style = []
                 TabWidth = 130
                 OnShow = tNutzerlisteShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline framenutzer: Tframebase
                   Left = 0
                   Top = 0
@@ -1543,6 +1566,9 @@
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1605,6 +1631,8 @@
                 TabFont.Style = []
                 TabWidth = 130
                 OnShow = treklamaionShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline framereklamation: Tframereklmont
                   Left = 0
                   Top = 0
@@ -1634,6 +1662,9 @@
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1859,6 +1890,8 @@
                 TabFont.Style = []
                 TabWidth = 130
                 OnShow = tsonstigesShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline framesonstiges: Tframebasenutzer
                   Left = 0
                   Top = 0
@@ -1887,6 +1920,9 @@
                     inherited Panel5: TPanel
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1966,6 +2002,8 @@
                 TabFont.Style = []
                 TabWidth = 130
                 OnShow = TVerträgeShow
+                ExplicitTop = 0
+                ExplicitHeight = 662
                 inline framevertrag: Tframebasenutzer
                   Left = 0
                   Top = 0
@@ -1994,6 +2032,9 @@
                     inherited Panel5: TPanel
                       ExplicitWidth = 837
                       ExplicitHeight = 653
+                      inherited lfiletype: TLabel
+                        Height = 612
+                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -2072,6 +2113,8 @@
                 TabFont.Name = 'Tahoma'
                 TabFont.Style = []
                 TabWidth = 15
+                ExplicitTop = 0
+                ExplicitHeight = 662
               end
             end
             object pspeicherheader: TPanel
@@ -2197,10 +2240,6 @@
           TabFont.Name = 'Tahoma'
           TabFont.Style = []
           TabWidth = 455
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 1688
-          ExplicitHeight = 721
           object ptabellen: TNxPageControl
             Left = 0
             Top = 0
@@ -2224,8 +2263,6 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabzwischenShow
-              ExplicitTop = 0
-              ExplicitHeight = 700
               object NxPanel1: TNxPanel
                 Left = 0
                 Top = 0
@@ -2600,8 +2637,6 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabmontagenShow
-              ExplicitTop = 0
-              ExplicitHeight = 700
               object NxPanel2: TNxPanel
                 Left = 0
                 Top = 0
@@ -2959,8 +2994,6 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabnutzerlistenShow
-              ExplicitTop = 0
-              ExplicitHeight = 700
               object NxPanel3: TNxPanel
                 Left = 0
                 Top = 0
@@ -3245,8 +3278,6 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabenergieausweisShow
-              ExplicitTop = 0
-              ExplicitHeight = 700
               object NxPanel4: TNxPanel
                 Left = 0
                 Top = 0
@@ -3605,8 +3636,6 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabreklamationShow
-              ExplicitTop = 0
-              ExplicitHeight = 700
               object NxPanel5: TNxPanel
                 Left = 0
                 Top = 0
@@ -3957,6 +3986,8 @@
               TabFont.Height = -13
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
+              ExplicitTop = 0
+              ExplicitHeight = 700
             end
           end
         end
@@ -3969,10 +4000,6 @@
           TabFont.Height = -13
           TabFont.Name = 'Tahoma'
           TabFont.Style = []
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 1688
-          ExplicitHeight = 721
           object Panel9: TPanel
             Left = 0
             Top = 0
@@ -4029,6 +4056,7 @@
               TabFont.Height = -13
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
+              ExplicitTop = 0
               inline vollzwischen: Tframezwischen
                 Left = 0
                 Top = 0
@@ -4064,6 +4092,9 @@
                   inherited Panel5: TPanel
                     ExplicitWidth = 836
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -4143,6 +4174,7 @@
               TabFont.Height = -13
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
+              ExplicitTop = 0
               inline vollmont: Tframereklmont
                 Left = 0
                 Top = 0
@@ -4171,6 +4203,9 @@
                   inherited Panel5: TPanel
                     ExplicitWidth = 837
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -4250,6 +4285,7 @@
               TabFont.Height = -13
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
+              ExplicitTop = 0
               inline vollenergie: Tframeenergie
                 Left = 0
                 Top = 0
@@ -4285,6 +4321,9 @@
                   inherited Panel5: TPanel
                     ExplicitWidth = 836
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -4362,6 +4401,7 @@
               TabFont.Height = -13
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
+              ExplicitTop = 0
               inline vollrekl: Tframereklmont
                 Left = 0
                 Top = 0
@@ -4390,6 +4430,9 @@
                   inherited Panel5: TPanel
                     ExplicitWidth = 837
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -4469,6 +4512,7 @@
               TabFont.Height = -13
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
+              ExplicitTop = 0
               inline vollnutzer: Tframebase
                 Left = 0
                 Top = 0
@@ -4497,6 +4541,9 @@
                   inherited Panel5: TPanel
                     ExplicitWidth = 837
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -4562,7 +4609,7 @@
         AlignWithMargins = True
         Left = 5
         Top = 623
-        Width = 55
+        Width = 289
         Height = 16
         Margins.Left = 5
         Margins.Top = 2
@@ -4570,6 +4617,7 @@
         Margins.Bottom = 2
         Align = alBottom
         Caption = 'Sonstiges'
+        ExplicitWidth = 55
       end
       object pfilebox: TFlowPanel
         AlignWithMargins = True
@@ -4629,7 +4677,7 @@
           object Label8: TLabel
             Left = 3
             Top = 3
-            Width = 121
+            Width = 255
             Height = 13
             Margins.Left = 2
             Margins.Top = 2
@@ -4646,6 +4694,7 @@
             ParentColor = False
             ParentFont = False
             Transparent = True
+            ExplicitWidth = 121
           end
           object bentfernen: TNxButton
             Left = 3
@@ -5075,18 +5124,20 @@
         object lpverarbeitungsart: TLabel
           Left = 10
           Top = 5
-          Width = 46
+          Width = 266
           Height = 16
           Align = alTop
           Caption = 'Datei zu'
+          ExplicitWidth = 46
         end
         object lhochruntergeladen: TLabel
           Left = 10
           Top = 50
-          Width = 72
+          Width = 266
           Height = 16
           Align = alBottom
           Caption = 'hochgeladen'
+          ExplicitWidth = 72
         end
       end
       object piupdate: TPanel
