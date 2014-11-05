@@ -8,7 +8,7 @@ uses
   Vcl.StdCtrls, fEdit, Vcl.ExtCtrls, fComboBox;
 
 type
-  TForm1 = class(TForm)
+  Tformkunde = class(TForm)
     Panel1: TPanel;
     lname: TLabel;
     Button1: TButton;
@@ -22,14 +22,14 @@ type
   end;
 
 var
-  Form1: TForm1;
+  formkunde: Tformkunde;
 
 implementation
 
 uses umain;
 {$R *.dfm}
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure Tformkunde.Button1Click(Sender: TObject);
 begin
   formmain.saveSettings(formmain.getpasswort, fkundennrn.Text,
     formmain.getsachbearbeiter, formmain.getscanverzeichnis,

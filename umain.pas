@@ -398,6 +398,7 @@ type
     procedure banzeigeverlassen(Sender: TObject);
     procedure gridnutzerlisteApplyCell(Sender: TObject; ACol, ARow: Integer;
       var Value: WideString);
+    procedure lkundennummerDblClick(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -561,7 +562,7 @@ implementation
 
 {$R *.dfm}
 
-uses uftpconnector;
+uses uftpconnector, uformkunde;
 
 function Tformmain.autosizememoy(memo: TMemo): Word;
 begin
@@ -2612,7 +2613,13 @@ begin
     end;
   end;
 
-  procedure Tformmain.lookforfile;
+  procedure Tformmain.lkundennummerDblClick(Sender: TObject);
+begin
+  formkunde.show;
+
+end;
+
+procedure Tformmain.lookforfile;
   var
     prefix: string;
     // lfiletype: TLabel;

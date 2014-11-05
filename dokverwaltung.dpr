@@ -26,9 +26,9 @@ uses
   uframezwischen in 'uframezwischen.pas' {framezwischen: TFrame},
   uframeauftrag in 'uframeauftrag.pas' {frameauftrag: TFrame},
   uframefilter in 'uframefilter.pas' {framebasefilter: TFrame},
-  uframeauftragsverwaltung in '..\sources2208\uframeauftragsverwaltung.pas' {frameauftragsdaten: TFrame},
+  uframeauftragsverwaltung in '..\sources\uframeauftragsverwaltung.pas' {frameauftragsdaten: TFrame},
   usettings in 'usettings.pas',
-  uformkunde in 'uformkunde.pas' {Form1};
+  uformkunde in 'uformkunde.pas' {formkunde:TFrame};
 
 {$R *.res}
 
@@ -44,7 +44,7 @@ begin
   Application.CreateForm(Tformsachkunde, formsachkunde);
   Application.CreateForm(Tformftp, formftp);
   Application.CreateForm(Tformftp, formftp);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tformkunde, formkunde);
   //  Application.CreateForm(Tformmain1, formmain1);
   //  Application.CreateForm(TEinstellungen, Einstellungen);
   Application.Run;

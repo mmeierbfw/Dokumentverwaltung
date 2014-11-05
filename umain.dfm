@@ -701,7 +701,7 @@
       ParentShowHint = False
       ShowHint = True
       Transparent = True
-      OnDblClick = lkundennummerChange
+      OnDblClick = lkundennummerDblClick
     end
     object pmiddle: TPanel
       AlignWithMargins = True
@@ -825,7 +825,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -903,8 +902,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -1090,8 +1087,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
-                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -1157,9 +1152,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
-                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1206,8 +1198,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
-                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -1308,9 +1298,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
-                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1672,7 +1659,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1745,8 +1731,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -1934,8 +1918,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
-                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -2001,9 +1983,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
-                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -2051,8 +2030,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
-                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -2117,9 +2094,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
-                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -2331,7 +2305,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 157
+                    DefaultWidth = 156
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2349,7 +2323,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 156
+                    Width = 155
                     FieldName = 'Dokumentid'
                     AutoExecute = True
                   end
@@ -2506,7 +2480,7 @@
                   end
                   object zwivollbild: TNxDBImageColumn
                     DefaultValue = '1'
-                    DefaultWidth = 228
+                    DefaultWidth = 229
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2524,7 +2498,7 @@
                     ParentCellColor = True
                     Position = 9
                     SortType = stNumeric
-                    Width = 229
+                    Width = 230
                     OnSetCell = zwivollbildSetCell
                     Images = ImageList1
                     Transparent = True
@@ -2694,7 +2668,7 @@
                   DataSource = formdb.dsmon
                   object mondokid: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 156
+                    DefaultWidth = 155
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2714,7 +2688,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 155
+                    Width = 154
                     FieldName = 'Dokumentid'
                   end
                   object monliegenschaft: TNxDBTextColumn
@@ -2892,7 +2866,7 @@
                   end
                   object NxDBImageColumn3: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 217
+                    DefaultWidth = 218
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2908,7 +2882,7 @@
                     ParentFont = False
                     Position = 9
                     SortType = stNumeric
-                    Width = 218
+                    Width = 219
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3358,7 +3332,7 @@
                     FieldName = 'Dokumentid'
                   end
                   object NxDBTextColumn2: TNxDBTextColumn
-                    DefaultWidth = 277
+                    DefaultWidth = 276
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3376,7 +3350,7 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 276
+                    Width = 275
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn1: TNxDBMemoColumn
@@ -3571,7 +3545,7 @@
                   end
                   object NxDBImageColumn5: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 284
+                    DefaultWidth = 285
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3587,7 +3561,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 285
+                    Width = 286
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3691,7 +3665,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsrekl
                   object NxDBTextColumn3: TNxDBTextColumn
-                    DefaultWidth = 156
+                    DefaultWidth = 155
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3711,7 +3685,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 155
+                    Width = 154
                     FieldName = 'Dokumentid'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
@@ -3917,7 +3891,7 @@
                   end
                   object NxDBImageColumn4: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 176
+                    DefaultWidth = 177
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3934,7 +3908,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 177
+                    Width = 178
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4116,8 +4090,6 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 836
-                    Height = 650
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4183,9 +4155,6 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 846
-                    Width = 838
-                    Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -4232,8 +4201,6 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 837
-                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4299,9 +4266,6 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 847
-                    Width = 837
-                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -4355,8 +4319,6 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 836
-                    Height = 650
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4420,9 +4382,6 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 846
-                    Width = 838
-                    Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -4469,8 +4428,6 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 837
-                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4536,9 +4493,6 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 847
-                    Width = 837
-                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -5826,7 +5780,7 @@
     Left = 728
     Top = 688
     Bitmap = {
-      494C010103007400D40010001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
+      494C010103007400D80010001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

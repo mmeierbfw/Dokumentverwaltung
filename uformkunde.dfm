@@ -1,8 +1,8 @@
-object Form1: TForm1
+object formkunde: Tformkunde
   Left = 0
   Top = 0
   AutoSize = True
-  Caption = 'Form1'
+  Caption = 'formkunde'
   ClientHeight = 77
   ClientWidth = 196
   Color = clBtnFace
