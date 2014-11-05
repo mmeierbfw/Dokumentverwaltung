@@ -2,21 +2,35 @@ object formkunde: Tformkunde
   Left = 0
   Top = 0
   AutoSize = True
+  BorderStyle = bsNone
   Caption = 'formkunde'
-  ClientHeight = 77
-  ClientWidth = 196
+  ClientHeight = 98
+  ClientWidth = 218
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  Padding.Left = 10
+  Padding.Top = 10
+  Padding.Right = 10
+  Padding.Bottom = 10
   OldCreateOrder = False
+  Position = poMainFormCenter
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object Shape1: TShape
+    Left = 143
+    Top = 23
+    Width = 65
+    Height = 65
+    Brush.Color = 3618615
+  end
   object Panel1: TPanel
-    Left = 0
-    Top = 0
+    Left = 10
+    Top = 10
     Width = 196
     Height = 77
     AutoSize = True
@@ -30,9 +44,9 @@ object formkunde: Tformkunde
     object lname: TLabel
       Left = 11
       Top = 15
-      Width = 28
+      Width = 74
       Height = 13
-      Caption = 'lname'
+      Caption = 'Kundennummer'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -57,6 +71,7 @@ object formkunde: Tformkunde
       Height = 25
       Caption = 'abbrechen'
       TabOrder = 1
+      OnClick = Button2Click
     end
     object fkundennrn: TfComboBox
       Left = 123
@@ -73,7 +88,6 @@ object formkunde: Tformkunde
       Font.Style = []
       ParentFont = False
       TabOrder = 2
-      Text = 'fkundennrn'
       TabOnEnter = False
       FontColorOnEnter = 36607
       ColorFocused = 36607

@@ -433,7 +433,7 @@ type
     listpostausgang                            : TStringList;
     naid                                       : Integer;
     filetypecaption                            : string;
-    procidplink                                : Integer;
+    procidplinkmysql                           : Integer;
     sei                                        : TShellExecuteInfo;
     appname                                    : string;
     cmd                                        : string;
@@ -452,11 +452,12 @@ type
     minimized                                  : Boolean;
     selectedRow                                : Integer;
     // frame: Tframebase;
-    laufendeid: string;
-    passwort  : string;
-    Fintern   : Boolean;
-    FisTernes : Boolean;
-    idnotset  : Boolean;
+    laufendeid   : string;
+    passwort     : string;
+    Fintern      : Boolean;
+    FisTernes    : Boolean;
+    idnotset     : Boolean;
+    prociplinkftp: Integer;
     procedure resetdate(tem: TMaskEdit); overload;
     procedure resetdate(tem: tfedit); overload;
     function connectToPipe: Boolean;
@@ -1075,10 +1076,16 @@ end;
 function Tformmain.connectwithplink: Boolean;
 begin
   try
-    procidplink :=
+
+    procidplinkmysql :=
       Shellmyex(pchar(IncludeTrailingPathDelimiter(ExtractFilePath
       (Application.ExeName)) +
       'plink.exe -ssh 148.251.138.2 -l tiffy  -L 7777:127.0.0.1:3306 -pw maunze01'),
+      sw_hide);
+    prociplinkftp :=
+      Shellmyex(pchar(IncludeTrailingPathDelimiter(ExtractFilePath
+      (Application.ExeName)) +
+      'plink.exe -ssh 148.251.138.2 -l tiffy  -L 3131:127.0.0.1:21 -pw maunze01'),
       sw_hide);
     Result := true;
   except
@@ -1126,3038 +1133,3035 @@ function Tformmain.filldb(ds: TDataSource; dbgrid: TNextDBGrid): Boolean;
 begin
   Result := false;
   try
-      dbgrid.BeginUpdate;
-      dbgrid.DataSource := ds;
-      Result            := true;
-      dbgrid.EndUpdate();
-    except Result       := false;
-    end;
+    dbgrid.BeginUpdate;
+    dbgrid.DataSource := ds;
+    Result            := true;
+    dbgrid.EndUpdate();
+  except Result := false;
   end;
+end;
 
-  // ------------------------------------
+// ------------------------------------
 
-  procedure Tformmain.fillvollbild(dbgrid: TNextDBGrid; row: Integer);
-  var
-    lg, nn : string;
-    voll   : Tframebase;
-    Checked: Integer;
-    date   : string;
-  begin
-    selectedRow          := row;
-    pagermain.ActivePage := tabvollbild;
-    lg := dbgrid.GetColumnByFieldName(liegenschaft).field.asstring;
+procedure Tformmain.fillvollbild(dbgrid: TNextDBGrid; row: Integer);
+var
+  lg, nn : string;
+  voll   : Tframebase;
+  Checked: Integer;
+  date   : string;
+begin
+  selectedRow          := row;
+  pagermain.ActivePage := tabvollbild;
+  lg := dbgrid.GetColumnByFieldName(liegenschaft).field.asstring;
 
-    case ptabellen.activepageindex of
-      0: begin
-          dbgrid                      := gridzwi;
-          pvollbilder.activepageindex := 0;
-          voll                        := vollzwischen;
-          with vollzwischen do begin
-            enutzernummer.Text := dbgrid.GetColumnByFieldName(Nutzernummer)
-              .field.asstring;
-            enutzername.Text := dbgrid.GetColumnByFieldName(Nutzername)
-              .field.asstring;
-
-            date := dbgrid.GetColumnByFieldName(vertragsbeginn).field.asstring;
-
-            date                           := formatedatefrom4jto2j(date);
-            if date = '00.00.00' then date := '';
-
-            dtauszug.Text := date;
-            date          := formatedatefrom4jto2j
-              (dbgrid.GetColumnByFieldName(vertragsbeginn).field.asstring);
-            if date = '00.00.00' then date := '';
-
-            eauszug.Text := date;
-            date         := formatedatefrom4jto2j
-              (dbgrid.GetColumnByFieldName(Ablesedatum).field.asstring);
-            if date = '00.00.00' then date := '';
-            dtablesedatum.Text             := date;
-            date                           := formatedatefrom4jto2j
-              (dbgrid.GetColumnByFieldName(Ablesedatum).field.asstring);
-            if date = '00.00.00' then date := '';
-
-            eablesedatum.Text := date;
-          end;
-        end;
-      // 2: voll := voll
-      1: begin
-          dbgrid                      := gridmon;
-          pvollbilder.activepageindex := 1;
-          voll                        := vollmont;
-          with vollmont do begin
-            eauftragsnummer.Text := dbgrid.GetColumnByFieldName(Auftragsnummer)
-              .field.asstring;
-            date := dbgrid.GetColumnByFieldName(Montagedatum).field.asstring;
-            if date = '00.00.00' then date := '';
-            dtmontage.Text       := date;
-            emontage.Text        := date;
-            rgerledigt.ItemIndex := dbgrid.GetColumnByFieldName(erledigt)
-              .field.AsInteger;
-          end;
-        end;
-      2: begin
-          dbgrid                      := gridnutzerliste;
-          pvollbilder.activepageindex := 4;
-          voll                        := vollnutzer;
-        end;
-      4: begin
-          dbgrid := gridrek;
-
-          pvollbilder.activepageindex := 3;
-          voll                        := vollrekl;
-          with vollrekl do begin
-            date := dbgrid.GetColumnByFieldName(Auftragsnummer).field.asstring;
-            eauftragsnummer.Text := date;
-
-            date := dbgrid.GetColumnByFieldName(Montagedatum).field.asstring;
-            if date = '00.00.00' then date := '';
-
-            dtmontage.Text       := date;
-            emontage.Text        := date;
-            rgerledigt.ItemIndex := dbgrid.GetColumnByFieldName(erledigt)
-              .field.AsInteger;
-          end;
-        end;
-      3: begin
-          dbgrid                 := gridenergie;
-          pvollbilder.ActivePage := tabvollenergie;
-          voll                   := vollenergie;
-        end
-    else begin
+  case ptabellen.activepageindex of
+    0: begin
         dbgrid                      := gridzwi;
         pvollbilder.activepageindex := 0;
-      end;
-
-    end;
-
-    // Daten Links
-    with voll do begin
-      eid.Text := dbgrid.GetColumnByFieldName('Dokumentid').field.asstring;
-      eliegenschaft.Text := dbgrid.GetColumnByFieldName(liegenschaft)
-        .field.asstring;
-
-      date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(Posteingang)
-        .field.asstring);
-      if date = '00.00.00' then date := '';
-
-      eposteingang.Text := date;
-      date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(abrechnungsende)
-        .field.asstring);
-      if date = '00.00.00' then date := '';
-      dtabrechnungsende.Text         := date;
-      eabrechnungsende.Text          := date;
-
-      menotizen.Text := dbgrid.GetColumnByFieldName(notizen).field.asstring;
-    end;
-
-    disablecontrols(voll.Panel5);
-    voll.bsave.Enabled := true;
-    setliegenschaftsdaten(lg, '');
-
-  end;
-
-  procedure Tformmain.flipspaltenClick(Sender: TObject);
-  begin
-
-  end;
-
-  // ---------------------------------------------
-  procedure Tformmain.FormClose(Sender: TObject; var Action: TCloseAction);
-  begin
-    // minimizeme;
-    // Action := caNone;
-
-    Killprocess(procidbfw);
-    Killprocess(procidplink);
-    // KillTask('plink.exe');
-    if isexerunning('plink.exe') then KillTask('plink.exe');
-    // try
-    // if DirectoryExists(getlocaltmpfolder) then DeleteFiles(getlocaltmpfolder);
-    // except outputdebugstring('Verzeichnis nicht vorhanden');
-    // end;
-    try
-      if (ftpcollectorlist.Count > 0) then begin
-        ftpcollectorlist.SaveToFile(getnotsentlist);
-      end;
-    except outputdebugstring('Verzeichnis nicht gefunden');
-    end;
-
-  end;
-
-  procedure Tformmain.FormCreate(Sender: TObject);
-  var
-    list: TStringList;
-  begin
-    connectwithplink;
-    connectToPipe;
-    list := TStringList.Create;
-    try ListFileDir(getCollectorfolder, list);
-    except
-      showmessage('collectorfolder');
-      ;
-
-    end;
-    worker           := TWorker.Create;
-    ftpcollectorlist := TStringList.Create;
-    // piupdate.Visible := worker.checkUpdate;
-    if not FileExists(getnotsentlist) then exit;
-    try ftpcollectorlist.LoadFromFile(getnotsentlist);
-    except showmessage('not sent list error');
-    end;
-
-  end;
-
-  procedure Tformmain.FormDestroy(Sender: TObject);
-  begin
-    try
-      if (ftpcollectorlist.Count > 0) then
-          ftpcollectorlist.SaveToFile(getnotsentlist);
-    except outputdebugstring('Verzeichnis kann nicht gelöscht werden');
-
-    end;
-  end;
-
-  procedure Tformmain.FormKeyDown(Sender: TObject; var Key: Word;
-    Shift: TShiftState);
-
-  var
-    prefix: string;
-    Button: TNxButton;
-  begin
-
-    prefix := getprefix(pagerspeicher.activepageindex);
-    if Key = vk_down then begin
-      Key := ord(#0);
-      Perform(WM_NextDlgCtl, ord(Shift = [ssShift]), 0);
-    end;
-
-    if Key = vk_up then begin
-      Key := ord(#0);
-      Perform(WM_NextDlgCtl, 1, 0);
-    end;
-  end;
-
-  procedure Tformmain.FormKeyPress(Sender: TObject; var Key: Char);
-  var
-    prefix: string;
-    memo  : TfMemo;
-    Button: TNxButton;
-    frame : Tframebase;
-  begin
-
-    prefix := getprefix(pagerspeicher.activepageindex);
-    frame  := getframe;
-    memo   := frame.FindComponent('menotizen') as TfMemo;
-    if memo.Focused then exit;
-    Button := frame.FindComponent('bsave') as TNxButton;
-    if Button.Focused then begin
-      if Key = #13 then
-
-        // button.Click;
-
-          exit;
-    end;
-
-    if true then
-
-      if Key = #13 then begin
-        Perform(WM_NextDlgCtl, 0, 0);
-        Key := #0;
-      end;
-  end;
-
-  procedure Tformmain.FormShow(Sender: TObject);
-  var
-    path: string;
-    anz : string;
-  begin
-    listposteingang        := TStringList.Create;
-    listpostausgang        := TStringList.Create;
-    selectedlb             := TListBox.Create(nil);
-    selectedlb.MultiSelect := true;
-    formmain.Width         := 1500;
-    iueber.Left            := 1500 - 40;
-    ieinstellungen.Left    := 1500 - 80;
-    path                   := getLocalFolder;
-    procidbfw              := -1;
-    // piupdate.Visible := worker.checkUpdate;
-    try
-      if not FileExists(getinifile(inidatei)) then begin
-        if not assigned(Einstellungen) then
-            Einstellungen := TEinstellungen.Create(self);
-        showeinstellungen;
-
-        bfwpfad := getbfwpfad;
-        exit;
-      end;
-    except
-      showmessage('Einstellungen können nicht gestartet werden');
-      exit;
-    end;
-    setzwitab;
-    scanvz := readfromini(getinifile(inidatei), 'Section', 'Verzeichnis',
-      default_value);
-    kn := readfromini(getinifile(inidatei), 'Section', 'Kundennummer',
-      default_value);
-    sb := readfromini(getinifile(inidatei), 'Section', 'Sachbearbeiter',
-      default_value);
-    passwort := readfromini(getinifile(inidatei), 'Section', 'Passwort',
-      default_value);
-    // digverz := readfromini(getinifile(inidatei), 'Section', 'Digverzeichnis',
-    // default_value);
-    bfwpfad := readfromini(getinifile(inidatei), 'Section', 'bfwpfad',
-      default_value);
-    postausgverz := readfromini(getinifile(inidatei), 'Section', 'Postausgang',
-      default_value);
-    anz := readfromini(getinifile(inidatei), 'Section', 'Idanzeigen', '0');
-    if anz = '0' then idanzeigen := false
-    else idanzeigen      := true;
-    cbid.Checked         := idanzeigen;
-    lausgangsordner.Hint := postausgverz;
-    leingangsordner.Hint := scanvz;
-    if bfwpfad = 'kein wert' then begin
-      bfwpfad := getbfwpfad;
-      writeToIni(bfwpfad);
-    end;
-    anz := readfromini(getinifile(inidatei), 'Section', 'Splitnumber', '0');
-    if anz = '0' then dosplitnumber := false
-    else dosplitnumber                                := true;
-    if (scanvz = 'kein wert') then scanvz             := getcommonDocFolder;
-    if (postausgverz = 'kein wert') then postausgverz := getcommonDocFolder;
-    if kn = 'kein wert' then kn                       := '';
-    if sb = 'kein wert' then sb                       := '';
-
-    // Kundennummer (inkl "Ordnernummern") erstellen.
-    // Zugangsberechtigungen anlegen
-    getsettings;
-
-    if not FileExists(getauftragsdaten) then begin
-      worker.setauftragsdaten;
-    end;
-
-    pagerspeicher.ActivePage := LEER;
-    lkundennummer.Caption    := 'Kundennummer: ' + kn;
-    lsachbearbeiter.Caption  := 'Sachbearbeiter: ' + sb;
-    allowthread              := true;
-
-    getallids;
-
-    pagermain.ActivePage := tabspeichern;
-
-    pagermain.ShowTabs     := false;
-    ptabellen.ShowTabs     := false;
-    pagerspeicher.ShowTabs := false;
-    // pvollbilder.ShowTabs := false;
-    pagerspeicher.ActivePage := LEER;
-    pvollbilder.ActivePage   := leer2;
-    pvollbilder.ShowTabs     := false;
-  end;
-
-  procedure Tformmain.Neexit(Sender: TObject);
-  begin
-    frameauftrag.enutzerexit(Sender);
-
-  end;
-
-  procedure Tformmain.frameenergiecbpseudoChange(Sender: TObject);
-  begin
-    framen.cbpseudoChange(Sender);
-
-  end;
-
-  procedure Tformmain.frameenergiecbpseudoClick(Sender: TObject);
-  begin
-    framen.cbpseudoClick(Sender);
-  end;
-
-  procedure Tformmain.frameenergieeliegenschaftExit(Sender: TObject);
-  begin
-    framen.eliegenschaftExit(Sender);
-
-  end;
-
-  procedure Tformmain.frameenergieeposteingangExit(Sender: TObject);
-  begin
-    framen.dateexit(Sender);
-
-  end;
-
-  procedure Tformmain.frameenfilterbanwendenClick(Sender: TObject);
-  begin
-    frameenfilter.banwendenClick(Sender);
-  end;
-
-  procedure Tformmain.frameenfilterblöschenClick(Sender: TObject);
-  begin
-    frameenfilter.blöschenClick(Sender);
-    formdb.queryen.Filtered := false;
-  end;
-
-  procedure Tformmain.frameenfiltereselaeExit(Sender: TObject);
-  begin
-    frameenfilter.eselaeExit(Sender);
-    setfilter(formdb.queryen, frameenfilter.getfilter);
-  end;
-
-  procedure Tformmain.frameenfiltereseldiExit(Sender: TObject);
-  begin
-    frameenfilter.eseldiExit(Sender);
-    setfilter(formdb.queryen, frameenfilter.getfilter);
-
-  end;
-
-  procedure Tformmain.frameenfilteresellgExit(Sender: TObject);
-  begin
-    frameenfilter.esellgExit(Sender);
-    setfilter(formdb.queryen, frameenfilter.getfilter);
-  end;
-
-  procedure Tformmain.frameenfiltereselpeExit(Sender: TObject);
-  begin
-    frameenfilter.eselpeExit(Sender);
-    setfilter(formdb.queryen, frameenfilter.getfilter);
-  end;
-
-  procedure Tformmain.frameenfiltereselsbExit(Sender: TObject);
-  begin
-    frameenfilter.eselsbExit(Sender);
-    setfilter(formdb.queryen, frameenfilter.getfilter);
-  end;
-
-  procedure Tformmain.framefilterreklamationbanwendenClick(Sender: TObject);
-  begin
-    framefilterreklamation.banwendenClick(Sender);
-
-  end;
-
-  procedure Tformmain.framefilterreklamationblöschenClick(Sender: TObject);
-  begin
-    framefilterreklamation.blöschenClick(Sender);
-    formdb.queryrekl.Filtered := false;
-  end;
-
-  procedure Tformmain.framefilterreklamationeselaeExit(Sender: TObject);
-  begin
-    framefilterreklamation.eselaeExit(Sender);
-    setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
-  end;
-
-  procedure Tformmain.framefilterreklamationeseldiExit(Sender: TObject);
-  begin
-    framefilterreklamation.eseldiExit(Sender);
-
-  end;
-
-  procedure Tformmain.framefilterreklamationesellgExit(Sender: TObject);
-  begin
-    framefilterreklamation.esellgExit(Sender);
-    setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
-  end;
-
-  procedure Tformmain.framefilterreklamationeselpeExit(Sender: TObject);
-  begin
-    framefilterreklamation.eselpeExit(Sender);
-    setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
-  end;
-
-  procedure Tformmain.framefilterreklamationeselsbExit(Sender: TObject);
-  begin
-    framefilterreklamation.eselsbExit(Sender);
-    setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
-  end;
-
-  procedure Tformmain.framemonfilterbanwendenClick(Sender: TObject);
-  begin
-    framemonfilter.banwendenClick(Sender);
-  end;
-
-  procedure Tformmain.framemonfilterblöschenClick(Sender: TObject);
-  begin
-    framemonfilter.blöschenClick(Sender);
-    formdb.querymon.Filtered := false;
-  end;
-
-  procedure Tformmain.framemonfiltereselaeExit(Sender: TObject);
-  begin
-    try
-      framemonfilter.eselaeExit(Sender);
-      setfilter(formdb.querymon, framemonfilter.getfilter);
-    except
-
-    end;
-  end;
-
-  procedure Tformmain.framemonfiltereseldiExit(Sender: TObject);
-  begin
-    try
-      framemonfilter.eseldiExit(Sender);
-      setfilter(formdb.querymon, framemonfilter.getfilter);
-    except
-    end;
-  end;
-
-  procedure Tformmain.framemonfilteresellgExit(Sender: TObject);
-  var
-    filter: string;
-  begin
-    try
-      framemonfilter.esellgExit(Sender);
-      filter := framemonfilter.getfilter;
-      setfilter(formdb.querymon, filter);
-    except
-      ;
-    end;
-  end;
-
-  procedure Tformmain.framemonfiltereselpeExit(Sender: TObject);
-  begin
-    try
-      framemonfilter.eselpeExit(Sender);
-      setfilter(formdb.querymon, framemonfilter.getfilter);
-
-    except
-      ;
-    end;
-  end;
-
-  procedure Tformmain.framemonfiltereselsbExit(Sender: TObject);
-  begin
-    try
-      framemonfilter.eselsbExit(Sender);
-      setfilter(formdb.querymon, framemonfilter.getfilter);
-
-    except
-      ;
-    end;
-  end;
-
-  procedure Tformmain.framemonnutbanwendenClick(Sender: TObject);
-  begin
-    framemonnut.banwendenClick(Sender);
-
-  end;
-
-  procedure Tformmain.framemonnutblöschenClick(Sender: TObject);
-  begin
-    framemonnut.blöschenClick(Sender);
-    formdb.querynuliste.Filtered := false;
-  end;
-
-  procedure Tformmain.framemonnuteselaeExit(Sender: TObject);
-  begin
-    framemonnut.eselaeExit(Sender);
-
-  end;
-
-  procedure Tformmain.framemonnuteseldiExit(Sender: TObject);
-  begin
-    framemonnut.eseldiExit(Sender);
-
-  end;
-
-  procedure Tformmain.framemonnutesellgExit(Sender: TObject);
-  begin
-    framemonnut.esellgExit(Sender);
-
-  end;
-
-  procedure Tformmain.framemonnuteselpeExit(Sender: TObject);
-  begin
-    framemonnut.eselpeExit(Sender);
-
-  end;
-
-  procedure Tformmain.framemonnuteselsbExit(Sender: TObject);
-  begin
-    framemonnut.eselsbExit(Sender);
-
-  end;
-
-  procedure Tformmain.framemontageeauftragsnummerExit(Sender: TObject);
-  var
-    auftragsnr: string;
-    tmp       : string;
-    dict      : TStringList;
-
-    frame: Tframebase;
-  begin
-    frame      := getframe as Tframereklmont;
-    auftragsnr := (frame as Tframereklmont).eauftragsnummer.Text;
-    showmessage(auftragsnr);
-    dict := TStringList.Create;
-    dict.add('*');
-    with formdb do begin
-      formdb.doquery(queryaufträge, 'aufträge', ' WHERE ' + Auftragsnummer + '='
-        + quotedstr(auftragsnr), dict);
-      tmp := queryaufträge.FieldByName(liegenschaft).asstring;
-      if not(tmp = '') then frame.eliegenschaft.Text := tmp;
-      tmp := queryaufträge.FieldByName(Nutzernummer).asstring;
-      if not(tmp = '') then
-        (frame as Tframereklmont).enutzernummer.Text := tmp;
-
-      tmp := queryaufträge.FieldByName(abrechnungsende).asstring;
-      if not(tmp = '') then begin
-        frame.dtabrechnungsende.Text := tmp;
-        frame.eabrechnungsende.Text  := tmp;
-      end;
-    end;
-
-  end;
-
-  procedure Tformmain.framemontageemontageExit(Sender: TObject);
-  begin
-    framemontage.dateexit(Sender);
-
-  end;
-
-  procedure Tformmain.framemontageExit(Sender: TObject);
-  begin
-    framemontage.eliegenschaftExit(Sender);
-  end;
-
-  procedure Tformmain.framesonstigeseliegenschaftExit(Sender: TObject);
-  begin
-    framesonstiges.eliegenschaftExit(Sender);
-
-  end;
-
-  procedure Tformmain.framevertragenutzernummerExit(Sender: TObject);
-  begin
-    framevertrag.enutzerexit(Sender);
-
-  end;
-
-  procedure Tformmain.framezwidtauszugExit(Sender: TObject);
-  begin
-    if (Sender as tfmaskedit).Text = '' then exit;
-
-  end;
-
-  procedure Tformmain.framezwidtposteingangExit(Sender: TObject);
-  begin
-    framezwi.dtposteingangExit(Sender);
-    // framezwi.eposteingange
-
-  end;
-
-  procedure Tformmain.framezwieliegenschaftExit(Sender: TObject);
-  begin
-    framezwi.eliegenschaftExit(Sender);
-
-  end;
-
-  procedure Tformmain.framezwienutzernameKeyPress(Sender: TObject;
-    var Key: Char);
-  begin
-    framezwi.enutzernameKeyPress(Sender, Key);
-
-  end;
-
-  procedure Tformmain.framezwieposteingangExit(Sender: TObject);
-  begin
-    framezwi.dateexit(Sender);
-
-  end;
-
-  procedure Tformmain.framezwifEdit1Exit(Sender: TObject);
-  begin
-    framezwi.fEdit1Exit(Sender);
-
-  end;
-
-  procedure Tformmain.framezwifilterbanwendenClick(Sender: TObject);
-  begin
-    framezwifilter.banwendenClick(Sender);
-  end;
-
-  procedure Tformmain.framezwifilterblöschenClick(Sender: TObject);
-  begin
-    framezwifilter.blöschenClick(Sender);
-    formdb.queryzwi.Filtered := false;
-  end;
-
-  procedure Tformmain.framezwifiltereselaeExit(Sender: TObject);
-  var
-    filter: string;
-  begin
-    try
-      framezwifilter.eselaeExit(Sender);
-      filter := framezwifilter.getfilter;
-      setfilter(formdb.queryzwi, filter);
-    except
-
-    end;
-
-  end;
-
-  procedure Tformmain.framezwifiltereseldiExit(Sender: TObject);
-  var
-    filter: string;
-  begin
-    try
-      framezwifilter.eseldiExit(Sender);
-      filter := framezwifilter.getfilter;
-      setfilter(formdb.queryzwi, filter);
-    except
-
-    end;
-
-  end;
-
-  procedure Tformmain.framezwifilteresellgExit(Sender: TObject);
-  var
-    filter: string;
-  begin
-    try
-      framezwifilter.esellgExit(Sender);
-
-      filter := framezwifilter.getfilter;
-      setfilter(formdb.queryzwi, filter);
-
-    except
-      ;
-
-    end;
-
-  end;
-
-  procedure Tformmain.framezwifiltereselpeExit(Sender: TObject);
-  var
-    filter: string;
-  begin
-    try
-      framezwifilter.eselpeExit(Sender);
-      filter := framezwifilter.getfilter;
-      setfilter(formdb.queryzwi, filter);
-    except
-      on e: Exception do begin
-        showmessage(e.Message);
-      end;
-    end;
-  end;
-
-  procedure Tformmain.framezwifiltereselsbExit(Sender: TObject);
-  var
-    filter: string;
-  begin
-    try
-      framezwifilter.eselsbExit(Sender);
-      filter := framezwifilter.getfilter;
-      setfilter(formdb.queryzwi, filter);
-    except
-      on e: Exception do begin
-        showmessage(e.Message);
-      end;
-
-    end;
-  end;
-
-  procedure Tformmain.liegenschaftexit(Sender: TObject);
-  var
-    frame: Tframebase;
-    edit : tfedit;
-  begin
-
-    pimage.Visible := false;
-    // IStatusok.Visible := fa;
-    edit := Sender as tfedit;
-    if length(edit.Text) = 0 then exit;
-
-    frame := (edit.parent).parent.parent as Tframebase;
-    frame.eliegenschaftExit(Sender);
-    if (length(edit.Text) <> 7) then exit;
-
-    setliegenschaftsdaten;
-
-    try
-      if ((frame as Tframebasenutzer).enutzernummer.Text = '') then exit;
-      Nexit(((frame as Tframebasenutzer).enutzernummer) as tfedit);
-    except outputdebugstring('keine Nutzernummer');
-
-    end;
-
-  end;
-
-  procedure Tformmain.Nexit(Sender: TObject);
-  var
-    dict : TDictionary<string, string>;
-    frame: Tframebasenutzer;
-  begin { TODO : framemon!!! }
-    frame := getframe as Tframebasenutzer;
-    frame.enutzerexit(Sender);
-    try
-      dict := worker.getnutzerdaten((Sender as tfedit).Text, kn,
-        frame.eliegenschaft.Text);
-      setnutzerdaten(dict);
-    except
-      ;
-    end;
-
-  end;
-
-  function Tformmain.getAblesedatum: string;
-  var
-    prefix: string;
-    helper: string;
-
-    frame: Tframebase;
-  begin
-    frame := getframe;
-    // prefix := getprefix(pagerspeicher.activepageindex);
-    // helper := prefix + 'dtablesung';
-    // Result := getdate(frame.FindComponent('dtablesung') as tfmaskedit);
-    Result := getdate((frame as Tframezwischen).eablesedatum);
-  end;
-
-  function Tformmain.getabrechnungsende: string;
-  var
-    prefix : string;
-    abredit: TMaskEdit;
-
-    frame: Tframebase;
-  begin
-    frame   := getframe;
-    prefix  := getprefix(pagerspeicher.activepageindex);
-    abredit := frame.FindComponent('dtabrechnungsende') as TMaskEdit;
-    // Result := getdate(abredit as tfmaskedit);
-    Result := getdate(frame.eabrechnungsende);
-  end;
-
-  procedure Tformmain.getallids;
-  var
-    kn         : Integer;
-    index, size: Integer;
-    frame      : Tframebase;
-  begin
-    if not idanzeigen then laufendeid := ''
-    else begin
-      try
-        laufendeid       := (formdb.getmaxno(inttostr(kn), sb));
-        idnotset         := false;
-        Timer4.Enabled   := false;
-        size             := length(speicherframes);
-        for index        := 0 to size - 1 do begin
-          frame          := FindComponent(speicherframes[index]) as Tframebase;
-          frame.eid.Text := laufendeid;
-        end;
-      except
-        begin
-          // laufendeid := '-1';
-          idnotset       := true;
-          Timer4.Enabled := true;
+        voll                        := vollzwischen;
+        with vollzwischen do begin
+          enutzernummer.Text := dbgrid.GetColumnByFieldName(Nutzernummer)
+            .field.asstring;
+          enutzername.Text := dbgrid.GetColumnByFieldName(Nutzername)
+            .field.asstring;
+
+          date := dbgrid.GetColumnByFieldName(vertragsbeginn).field.asstring;
+
+          date                           := formatedatefrom4jto2j(date);
+          if date = '00.00.00' then date := '';
+
+          dtauszug.Text := date;
+          date          := formatedatefrom4jto2j
+            (dbgrid.GetColumnByFieldName(vertragsbeginn).field.asstring);
+          if date = '00.00.00' then date := '';
+
+          eauszug.Text := date;
+          date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(Ablesedatum)
+            .field.asstring);
+          if date = '00.00.00' then date := '';
+          dtablesedatum.Text             := date;
+          date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(Ablesedatum)
+            .field.asstring);
+          if date = '00.00.00' then date := '';
+
+          eablesedatum.Text := date;
         end;
       end;
-    end;
-
-  end;
-
-  function Tformmain.getanrufer: string;
-  var
-    prefix: string;
-
-    frame: Tframebase;
-    edit : tfedit;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    edit   := frame.FindComponent('eanrufer') as tfedit;
-    Result := edit.Text;
-  end;
-
-  function Tformmain.getauftragsnummer: string;
-  begin
-    if pagermain.ActivePage = TMontage then
-
-        Result := framemontage.eauftragsnummer.Text;
-    if pagermain.ActivePage = treklamaion then
-        Result := framereklamation.eauftragsnummer.Text;
-  end;
-
-  function Tformmain.getauftragstyp: string;
-  begin
-    Result := frameauftrag.cbselectauftrag.Text;
-  end;
-
-  function Tformmain.getAuszugsdatum: string;
-  var
-    prefix: string;
-    frame : Tframebase;
-  begin
-    frame := getframe;
-    // prefix := getprefix(pagerspeicher.activepageindex);
-    // Result := getdate(frame.FindComponent('dtauszug') as tfmaskedit);
-    Result := getdate((frame as Tframezwischen).eauszug);
-
-  end;
-
-  function Tformmain.getbfwpfad: string;
-  begin
-    with TRegistry.Create(KEY_READ or KEY_WOW64_64KEY) do begin
-      try
-        Rootkey := HKEY_LOCAL_MACHINE;
-        if OpenKey
-          ('SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{DF79F885-40E2-4ABE-8BEA-3CD1F42A90CE}_is1',
-          true) then begin
-          bfwpfad := Readstring('InstallLocation');
-          Result  := bfwpfad;
+    // 2: voll := voll
+    1: begin
+        dbgrid                      := gridmon;
+        pvollbilder.activepageindex := 1;
+        voll                        := vollmont;
+        with vollmont do begin
+          eauftragsnummer.Text := dbgrid.GetColumnByFieldName(Auftragsnummer)
+            .field.asstring;
+          date := dbgrid.GetColumnByFieldName(Montagedatum).field.asstring;
+          if date = '00.00.00' then date := '';
+          dtmontage.Text       := date;
+          emontage.Text        := date;
+          rgerledigt.ItemIndex := dbgrid.GetColumnByFieldName(erledigt)
+            .field.AsInteger;
         end;
-      finally Free;
       end;
-    end;
-  end;
-
-  function Tformmain.getcollectorlist: TStringList;
-  begin
-    Result := ftpcollectorlist;
-  end;
-
-  function Tformmain.getdate(em: tfedit): string;
-  var
-    dt: string;
-  begin
-    try
-      dt                                 := em.Text;
-      if AnsiStartsStr('  ', dt) then dt := '';
-      Result                             := formatDateOhneTrenner(dt);
-    except Result                        := '000000';
-
-    end;
-
-  end;
-
-  function Tformmain.getdatemitpunkt(Tag: Integer; datestring: string): string;
-  var
-    datemitpunkt: string;
-    abrdat      : tdatetime;
-  begin
-    case Tag of
-      ZwischenablsgINT, MontageINT, ReklamationINT: datemitpunkt := datestring;
-      KostenINT, SonstigesInt: begin
-          abrdat := StrToDateTime(datestring);
-          abrdat := abrdat + 365;
-          DateTimeToString(datemitpunkt, 'dd.mm.yy', abrdat);
-        end
-    else DateTimeToString(datemitpunkt, 'dd.mm.yy', now);
-    end;
-    Result := datemitpunkt;
-  end;
-
-  function Tformmain.getdatumchecked: string;
-  begin
-    Result := '0';
-    // das Datum muss nicht überprüft sein!
-
-  end;
-
-  function Tformmain.getdb: TNextDBGrid;
-  begin
-    case ptabellen.activepageindex of
-      0: Result := gridzwi;
-      1: Result := gridmon;
-      2: Result := gridnutzerliste;
-      3: Result := gridenergie;
-      4: Result := gridrek;
-    else Result := gridzwi;
-    end;
-  end;
-
-  function Tformmain.getdigverzeichnis: string;
-  begin
-    Result := digverz;
-  end;
-
-  function Tformmain.getDocumentid: string;
-  var
-    prefix: string;
-    editid: Tedit;
-    frame : Tframebase;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    editid := frame.FindComponent('eid') as Tedit;
-
-    Result := editid.Text;
-    // Result := fid.Text;
-  end;
-
-  function Tformmain.getdokumente(table_zwi, wherestring: string;
-    values: TStringList): string;
-  begin
-
-  end;
-
-  function Tformmain.getkundennrfordb: string;
-  begin
-    Result := Format('%.2d', [strtoint(copy(getLiegenschaft, 1, 2))]);
-  end;
-
-  function Tformmain.getkundennrnAsString: TStringList;
-  var
-    item: Integer;
-  begin
-    Result := TStringList.Create;
-    for item in kundennummern do begin
-      Result.add(Format('%.2d', [item]));
-    end;
-  end;
-
-  function Tformmain.getErledigt: string;
-  var
-    frame: Tframebase;
-  begin
-    frame         := getframe;
-    try Result    := inttostr((frame as Tframereklmont).rgerledigt.ItemIndex);
-    except Result := '0';
-    end;
-  end;
-
-  function Tformmain.getFilename: string;
-  begin
-    try Result    := selectedlist[selectedlb.ItemIndex];
-    except Result := '';
-    end;
-  end;
-
-  function Tformmain.getfilesizeex(const afilename: string): int64;
-  var
-    F: TSearchRec;
-  begin
-    Result := -1;
-    if FindFirst(afilename, faAnyFile, F) = 0 then begin
-      try Result := F.FindData.nFileSizeLow or
-          (F.FindData.nFileSizeHigh shl 32);
-      finally findClose(F);
+    2: begin
+        dbgrid                      := gridnutzerliste;
+        pvollbilder.activepageindex := 4;
+        voll                        := vollnutzer;
       end;
-    end;
-  end;
+    4: begin
+        dbgrid := gridrek;
 
-  function Tformmain.getFiletype(filename: string): Integer;
-  var
-    lfiletype: TLabel;
-    prefix   : string;
-    frame    : Tframebase;
-  begin
-    frame := getframe;
-    // prefix := getprefix(pagerspeicher.activepageindex);
-    // lfiletype := frame.FindComponent('lfiletype') as TLabel;
+        pvollbilder.activepageindex := 3;
+        voll                        := vollrekl;
+        with vollrekl do begin
+          date := dbgrid.GetColumnByFieldName(Auftragsnummer).field.asstring;
+          eauftragsnummer.Text := date;
 
-    fileext := ExtractFileExt(filename);
-    if fileext.Contains('eml') then begin
-      filetype          := emailverarbeitung;
-      lfiletype.Caption := eml;
-      exit;
-    end;
-    if length(filename) > 0 then begin
-      if AnsiStartsStr('scan', filename) then begin
-        lfiletype.Caption := bild;
-        filetype          := bildverarbeitung;
-      end else begin
-        lfiletype.Caption := digital;
-        filetype          := bildverarbeitung;
-      end;
-    end;
-  end;
+          date := dbgrid.GetColumnByFieldName(Montagedatum).field.asstring;
+          if date = '00.00.00' then date := '';
 
-  function Tformmain.getfittingabrechnungsende(abrdat: string): string;
-  var
-    aktabrende                        : tdatetime;
-    abryear, abrmonth, abrday         : Word;
-    nowyear, nowmonth, nowday         : Word;
-    resultdate                        : tdatetime;
-    today                             : tdatetime;
-    resultyear, resultmonth, resultday: Word;
-    res                               : string;
-  begin
-    today      := now;
-    aktabrende := StrToDate(abrdat);
-    DecodeDate(aktabrende, abryear, abrmonth, abrday);
-    DecodeDate(today, nowyear, nowmonth, nowday);
-
-    resultday   := abrday;
-    resultmonth := abrmonth;
-    resultyear  := nowyear;
-
-    case pagerspeicher.activepageindex of
-
-      KostenINT: begin // in nächster Abrechnungsperiode
-          if nowmonth > abrmonth then resultyear := resultyear + 2
-          else inc(resultyear);
+          dtmontage.Text       := date;
+          emontage.Text        := date;
+          rgerledigt.ItemIndex := dbgrid.GetColumnByFieldName(erledigt)
+            .field.AsInteger;
         end;
-    else // in aktuelle Abrechnungsperiode
-      begin
-        if nowmonth > abrmonth then inc(resultyear);
       end;
-    end;
-    resultdate := Encodedate(resultyear, resultmonth, resultday);
-    res        := formatdatetime('dd.mm.yy', resultdate);
-    Result     := res;
-  end;
-
-  function Tformmain.getframe: Tframebase;
-  begin
-    Result := FindComponent(speicherframes[pagerspeicher.activepageindex])
-      as Tframebase;
-    if Result = nil then Result := framezwi;
-
-  end;
-
-  function Tformmain.getkundennummer: string;
-  begin
-    try Result    := kn;
-    except Result := '';
-
-    end;
-  end;
-
-  function Tformmain.getLiegenschaft: string;
-  var
-    prefix: string;
-    frame : Tframebase;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    Result := (frame.FindComponent('eliegenschaft') as Tedit).Text;
-
-  end;
-
-  function Tformmain.getMontagedatum: string;
-  var
-    prefix: string;
-    frame : Tframebase;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    // Result := getdate(frame.FindComponent('dtmontage') as tfmaskedit);
-    Result := getdate(framemontage.emontage);
-  end;
-
-  function Tformmain.getNotizen: string;
-  var
-    prefix: String;
-    frame : Tframebase;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    Result := (frame.FindComponent('menotizen') as TMemo).Text;
-  end;
-
-  function Tformmain.getNutzername: string;
-  var
-    prefix, name: string;
-    frame       : Tframebase;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    name   := (frame.FindComponent('enutzername') as Tedit).Text;
-    if name = '' then name := 'LEERSTAND';
-    Result := name;
-
-  end;
-
-  function Tformmain.getNutzernummer: string;
-  var
-    prefix: string;
-    frame : Tframebase;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    Result := (frame.FindComponent('enutzernummer') as Tedit).Text;
-  end;
-
-  function Tformmain.getort: string;
-  begin
-    Result := framen.eeort.Text;
-  end;
-
-  function Tformmain.getpasswort: string;
-  begin
-    Result := passwort;
-  end;
-
-  function Tformmain.getplz: string;
-  begin
-    Result := framen.eeplz.Text;
-  end;
-
-  function Tformmain.getpostausgangsverzeichnis: string;
-  begin
-    try Result    := postausgverz;
-    except Result := '';
-
-    end;
-  end;
-
-  function Tformmain.getPosteingang: string;
-  var
-    prefix: string;
-    frame : Tframebase;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    // Result := getdate(frame.FindComponent('dtposteingang') as tfmaskedit);
-    Result := getdate(frame.eposteingang);
-  end;
-
-  function Tformmain.getprefix(active: Integer): string;
-  var
-    prefix: string;
-    sheet : TNxTabSheet;
-  begin
-    sheet                                    := pagerspeicher.ActivePage;
-    if sheet = TZwischenablesung then prefix := 'z';
-    if sheet = TMontage then prefix          := 'm';
-    if sheet = treklamaion then prefix       := 'r';
-    if sheet = Tenergieausweis then prefix   := 'e';
-    if sheet = TKostenermittlung then prefix := 'k';
-    if sheet = tNutzerliste then prefix      := 'n';
-    if sheet = tsonstiges then prefix        := 's';
-    if sheet = TVerträge then prefix         := 'v';
-    if sheet = tauftrag then prefix          := 'na';
-    if sheet = Tangebotsanfragen then prefix := 'a';
-
-    Result := prefix;
-  end;
-
-  function Tformmain.getpseudoliegenschaft: string;
-  begin
-    Result                                 := '0';
-    if framen.cbpseudo.Checked then Result := '1';
-
-  end;
-
-  function Tformmain.getsachbearbeiter: String;
-  begin
-    try Result    := sb;
-    except Result := '';
-
-    end;
-  end;
-
-  function Tformmain.getSammelordner: string;
-  begin
-    if lbeingang.SelCount > 0 then begin
-      Result := '0';
-      exit;
-    end;
-    if lbausgang.SelCount > 0 then begin
-      Result := '1';
-      exit;
+    3: begin
+        dbgrid                 := gridenergie;
+        pvollbilder.ActivePage := tabvollenergie;
+        voll                   := vollenergie;
+      end
+  else begin
+      dbgrid                      := gridzwi;
+      pvollbilder.activepageindex := 0;
     end;
 
-    Result := '2';
   end;
 
-  function Tformmain.gettag(sheet: TNxTabSheet): Integer;
-  begin
-    if sheet = Tangebotsanfragen then Result := Angebotsint;
-    if sheet = tauftrag then Result          := Auftragsint;
-    if sheet = Tenergieausweis then Result   := EnergieausweisINT;
-    if sheet = TKostenermittlung then Result := KostenINT;
-    if sheet = TMontage then Result          := MontageINT;
-    if sheet = tNutzerliste then Result      := Nutzerint;
-    if sheet = treklamaion then Result       := ReklamationINT;
-    if sheet = tsonstiges then Result        := SonstigesInt;
-    if sheet = TVerträge then Result         := Vertragsint;
-    if sheet = TZwischenablesung then Result := ZwischenablsgINT;
+  // Daten Links
+  with voll do begin
+    eid.Text := dbgrid.GetColumnByFieldName('Dokumentid').field.asstring;
+    eliegenschaft.Text := dbgrid.GetColumnByFieldName(liegenschaft)
+      .field.asstring;
+
+    date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(Posteingang)
+      .field.asstring);
+    if date = '00.00.00' then date := '';
+
+    eposteingang.Text := date;
+    date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(abrechnungsende)
+      .field.asstring);
+    if date = '00.00.00' then date := '';
+    dtabrechnungsende.Text         := date;
+    eabrechnungsende.Text          := date;
+
+    menotizen.Text := dbgrid.GetColumnByFieldName(notizen).field.asstring;
   end;
 
-  function Tformmain.gettelefonnummer: string;
-  var
-    prefix: string;
-    frame : Tframebase;
-    edit  : tfedit;
-  begin
-    frame  := getframe;
-    prefix := getprefix(pagerspeicher.activepageindex);
-    edit   := frame.FindComponent('etelefonnummer') as tfedit;
-    Result := edit.Text;
-  end;
-
-  function Tformmain.getzwivalues: TStringList;
-  begin
-    Result := TStringList.Create;
-    Result.add('*');
-    // Result.Add('Dokumentid');
-    // Result.Add(Nutzernummer);
-    // Result.Add(Nutzername);
-    // Result.Add(abrechnungsende);
-    // Result.Add(Posteingang);
-    // Result.Add(sammelordner);
-
-  end;
-
-  function Tformmain.getscanverzeichnis: string;
-  begin
-    try Result    := scanvz;
-    except Result := '';
-
-    end;
-  end;
-
-  function Tformmain.getstrasse: string;
-  begin
-    Result := framen.eestrasse.Text;
-  end;
-
-  procedure Tformmain.ibfwClick(Sender: TObject);
-  var
-    lieg, nn, prefix: string;
-    frame           : Tframebase;
-
-  begin
-    frame := getframe;
-    if not(procidbfw = -1) then Killprocess(procidbfw);
-    prefix    := getprefix(pagerspeicher.activepageindex);
-    lieg      := (frame.FindComponent('eliegenschaft') as Tedit).Text;
-    nn        := (frame.FindComponent('enutzernummer') as Tedit).Text;
-    procidbfw := Shellmyex(pchar(IncludeTrailingPathDelimiter(bfwpfad) +
-      'Bfwonline.exe ' + lieg + ' ' + nn), sw_normal);
-  end;
-
-  procedure Tformmain.ieinstellungenClick(Sender: TObject);
-  begin
-    if not assigned(Einstellungen) then
-        Einstellungen := TEinstellungen.Create(self);
-    try Einstellungen.Show;
-    except
-
-    end;
-  end;
-
-  procedure Tformmain.iueberClick(Sender: TObject);
-  var
-    helpr: Integer;
-  var
-    versionsnummer         : string;
-    aenderungen            : TStringList;
-    aenderungsmessage, line: string;
-  begin
-    versionsnummer := GetCurrentVersion;
-    aenderungen    := TStringList.Create;
-    aenderungen.LoadFromFile(getaenderungsfile);
-    for line in aenderungen do begin
-      aenderungsmessage := aenderungsmessage + #10#13 + line;
-    end;
-    helpr := MyMesssageDlg('Version ' + versionsnummer + #10#13 +
-      aenderungsmessage);
-
-  end;
-
-  function Tformmain.MyMesssageDlg(MyMessage: String): Integer;
-  var
-    AMsgDialog: TForm;
-    ACheckBox : TCheckBox;
-  begin
-    AMsgDialog := CreateMessageDialog(MyMessage, mtInformation, [mbOK]);
-
-    with AMsgDialog do
-      try
-        // Font.Name := 'Arial';
-        // Font.Size := 8;
-        // Font.Color := clNavy;
-        Font.Color := $00696969;
-        Caption    := 'Versionsinformation';
-        Height     := formmain.Height - 100;
-        top        := formmain.top + 100;
-        // left := Screen.';
-        Result := ShowModal;
-        // scroll
-
-        // with ACheckBox do
-        // begin
-        // Parent := AMsgDialog;
-        /// /      Caption := 'Don't show this message again.';
-        // Top := 121;
-        // Left := 8;
-        // end;
-        AMsgDialog.Show;
-      finally AMsgDialog.Free;
-      end;
-  end;
-
-  procedure Tformmain.iupdateClick(Sender: TObject);
-  begin
-    if not(MessageDlg('Möchten Sie die neue Version installieren?',
-      mtConfirmation, mbYesNo, 0) = mrYes) then exit;
-    downloadupdate;
-  end;
-
-  procedure Tformmain.lbausgangMouseDown(Sender: TObject; Button: TMouseButton;
-    Shift: TShiftState; X, Y: Integer);
-  var
-    listentry: string;
-    lb       : TListBox;
-    list     : TStringList;
-    dir      : string;
-    filename : string;
-    index    : Integer;
-  begin
-
-    lb := Sender as TListBox;
-    if not(Button = mbright) then exit;
-    // nur Rechtsklick
-    index := lb.ItemIndex; // ins Leere geklickt
-    if index < 0 then exit;
-    lb.Selected[index] := true;
-    if lb = lbausgang then begin
-      list := listpostausgang;
-      dir  := postausgverz;
-    end;
-    if Sender = lbeingang then begin
-      list := listposteingang;
-      dir  := scanvz;
-    end;
-    filename := list[lb.ItemIndex];
-    if not(MessageDlg('Datei löschen?' + #10#13 + filename, mtConfirmation,
-      [mbOK, mbCancel], 0) = mrOk) then exit;
-    DeleteFile(IncludeTrailingPathDelimiter(dir) + filename);
-  end;
-
-  procedure Tformmain.lbausgangMouseEnter(Sender: TObject);
-  var
-    lb: TListBox;
-  begin
-    lb := (Sender as TListBox);
-    if lb.SelCount = 0 then exit;
-
-    lb.Hint := lb.Items.Strings[lb.ItemIndex];
-  end;
-
-  procedure Tformmain.lbausgangMouseLeave(Sender: TObject);
-  begin
-    (Sender as TListBox).Hint := '';
-  end;
-
-  procedure Tformmain.lbeingangClick(Sender: TObject);
-  var
-    index        : Integer;
-    filename     : string;
-    prefix       : string;
-    filetypelabel: TLabel;
-    eid          : TLabel;
-    senderlb     : TListBox;
-    frame        : Tframebase;
-  begin
-    frame        := getframe;
-    telefonieren := false;
-    senderlb     := Sender as TListBox;
-    index        := senderlb.ItemIndex;
-    if index < 0 then exit;
-    prefix         := getprefix(pagerspeicher.activepageindex);
-    frame.eid.Text := laufendeid;
-    filetypelabel  := frame.lfiletype;
-    if Sender = lbeingang then begin
-      selectedlist := listposteingang;
-      selectedlb   := lbeingang;
-      unselect(lbausgang);
-      selecteddir := scanvz;
-    end;
-    if Sender = lbausgang then begin
-      selectedlb := lbausgang;
-      unselect(lbeingang);
-      selectedlist := listpostausgang;
-      selecteddir  := postausgverz;
-    end;
-    filetypelabel.Caption := selectedlb.Items[selectedlb.ItemIndex];
-
-    // fid.Text := laufendeid;
-
-    Timer1.Enabled := true;
-
-    if not pagerspeicher.Visible then begin
-      // fid.Visible := true;
-      pagerspeicher.Visible := true;
-    end;
-  end;
-
-  procedure Tformmain.lbeingangDblClick(Sender: TObject);
-  begin
-
-    if Sender = lbeingang then
-        abspath := IncludeTrailingPathDelimiter(scanvz) +
-        listposteingang.Strings[lbeingang.ItemIndex]
-    else abspath := IncludeTrailingPathDelimiter(postausgverz) +
-        listpostausgang.Strings[lbausgang.ItemIndex];
-
-    if (AnsiLowerCase(ExtractFileExt(abspath)) = '.pdf') then
-        abspath := copytotmp(abspath);
-    ShellExecute(Handle, 'open', pchar(abspath), nil, nil, SW_SHOWNORMAL)
-  end;
-
-  procedure Tformmain.leingangsordnerDblClick(Sender: TObject);
-  var
-    Pfad: string;
-  begin
-    if not SelectDirectory('Ordner auswählen', 'C:\', Pfad) then exit;
-    (Sender as TLabel).Hint := Pfad;
-    if Sender = leingangsordner then begin
-      scanvz := Pfad;
-    end
-    else postausgverz := Pfad;
-    saveSettings('', kn, sb, scanvz, postausgverz, idanzeigen, dosplitnumber);
-    lookforfile;
-  end;
-
-  procedure Tformmain.lkundennummerChange(Sender: TObject);
-  begin
-
-    formsachkunde.Show;
-    if Sender = lkundennummer then begin
-      formsachkunde.lname.Caption := 'Kundennummer: ';
-      formsachkunde.eedit.Text    := kn;
-    end;
-    if Sender = lsachbearbeiter then begin
-      formsachkunde.lname.Caption := 'Sachbearbeiter: ';
-      formsachkunde.eedit.Text    := sb;
-    end;
-  end;
-
-  procedure Tformmain.lkundennummerDblClick(Sender: TObject);
-begin
-  formkunde.show;
+  disablecontrols(voll.Panel5);
+  voll.bsave.Enabled := true;
+  setliegenschaftsdaten(lg, '');
 
 end;
 
+procedure Tformmain.flipspaltenClick(Sender: TObject);
+begin
+
+end;
+
+// ---------------------------------------------
+procedure Tformmain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  // minimizeme;
+  // Action := caNone;
+
+  Killprocess(procidbfw);
+  Killprocess(procidplinkmysql);
+  // KillTask('plink.exe');
+  if isexerunning('plink.exe') then KillTask('plink.exe');
+  // try
+  // if DirectoryExists(getlocaltmpfolder) then DeleteFiles(getlocaltmpfolder);
+  // except outputdebugstring('Verzeichnis nicht vorhanden');
+  // end;
+  try
+    if (ftpcollectorlist.Count > 0) then begin
+      ftpcollectorlist.SaveToFile(getnotsentlist);
+    end;
+  except outputdebugstring('Verzeichnis nicht gefunden');
+  end;
+
+end;
+
+procedure Tformmain.FormCreate(Sender: TObject);
+var
+  list: TStringList;
+begin
+  connectwithplink;
+  connectToPipe;
+  list := TStringList.Create;
+  try ListFileDir(getCollectorfolder, list);
+  except
+    showmessage('collectorfolder');
+    ;
+
+  end;
+  worker           := TWorker.Create;
+  ftpcollectorlist := TStringList.Create;
+  // piupdate.Visible := worker.checkUpdate;
+  if not FileExists(getnotsentlist) then exit;
+  try ftpcollectorlist.LoadFromFile(getnotsentlist);
+  except showmessage('not sent list error');
+  end;
+
+end;
+
+procedure Tformmain.FormDestroy(Sender: TObject);
+begin
+  try
+    if (ftpcollectorlist.Count > 0) then
+        ftpcollectorlist.SaveToFile(getnotsentlist);
+  except outputdebugstring('Verzeichnis kann nicht gelöscht werden');
+
+  end;
+end;
+
+procedure Tformmain.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+
+var
+  prefix: string;
+  Button: TNxButton;
+begin
+
+  prefix := getprefix(pagerspeicher.activepageindex);
+  if Key = vk_down then begin
+    Key := ord(#0);
+    Perform(WM_NextDlgCtl, ord(Shift = [ssShift]), 0);
+  end;
+
+  if Key = vk_up then begin
+    Key := ord(#0);
+    Perform(WM_NextDlgCtl, 1, 0);
+  end;
+end;
+
+procedure Tformmain.FormKeyPress(Sender: TObject; var Key: Char);
+var
+  prefix: string;
+  memo  : TfMemo;
+  Button: TNxButton;
+  frame : Tframebase;
+begin
+
+  prefix := getprefix(pagerspeicher.activepageindex);
+  frame  := getframe;
+  memo   := frame.FindComponent('menotizen') as TfMemo;
+  if memo.Focused then exit;
+  Button := frame.FindComponent('bsave') as TNxButton;
+  if Button.Focused then begin
+    if Key = #13 then
+
+      // button.Click;
+
+        exit;
+  end;
+
+  if true then
+
+    if Key = #13 then begin
+      Perform(WM_NextDlgCtl, 0, 0);
+      Key := #0;
+    end;
+end;
+
+procedure Tformmain.FormShow(Sender: TObject);
+var
+  path: string;
+  anz : string;
+begin
+  listposteingang        := TStringList.Create;
+  listpostausgang        := TStringList.Create;
+  selectedlb             := TListBox.Create(nil);
+  selectedlb.MultiSelect := true;
+  formmain.Width         := 1500;
+  iueber.Left            := 1500 - 40;
+  ieinstellungen.Left    := 1500 - 80;
+  path                   := getLocalFolder;
+  procidbfw              := -1;
+  // piupdate.Visible := worker.checkUpdate;
+  try
+    if not FileExists(getinifile(inidatei)) then begin
+      if not assigned(Einstellungen) then
+          Einstellungen := TEinstellungen.Create(self);
+      showeinstellungen;
+
+      bfwpfad := getbfwpfad;
+      exit;
+    end;
+  except
+    showmessage('Einstellungen können nicht gestartet werden');
+    exit;
+  end;
+  setzwitab;
+  scanvz := readfromini(getinifile(inidatei), 'Section', 'Verzeichnis',
+    default_value);
+  kn := readfromini(getinifile(inidatei), 'Section', 'Kundennummer',
+    default_value);
+  sb := readfromini(getinifile(inidatei), 'Section', 'Sachbearbeiter',
+    default_value);
+  passwort := readfromini(getinifile(inidatei), 'Section', 'Passwort',
+    default_value);
+  // digverz := readfromini(getinifile(inidatei), 'Section', 'Digverzeichnis',
+  // default_value);
+  bfwpfad := readfromini(getinifile(inidatei), 'Section', 'bfwpfad',
+    default_value);
+  postausgverz := readfromini(getinifile(inidatei), 'Section', 'Postausgang',
+    default_value);
+  anz := readfromini(getinifile(inidatei), 'Section', 'Idanzeigen', '0');
+  if anz = '0' then idanzeigen := false
+  else idanzeigen      := true;
+  cbid.Checked         := idanzeigen;
+  lausgangsordner.Hint := postausgverz;
+  leingangsordner.Hint := scanvz;
+  if bfwpfad = 'kein wert' then begin
+    bfwpfad := getbfwpfad;
+    writeToIni(bfwpfad);
+  end;
+  anz := readfromini(getinifile(inidatei), 'Section', 'Splitnumber', '0');
+  if anz = '0' then dosplitnumber := false
+  else dosplitnumber                                := true;
+  if (scanvz = 'kein wert') then scanvz             := getcommonDocFolder;
+  if (postausgverz = 'kein wert') then postausgverz := getcommonDocFolder;
+  if kn = 'kein wert' then kn                       := '';
+  if sb = 'kein wert' then sb                       := '';
+
+  // Kundennummer (inkl "Ordnernummern") erstellen.
+  // Zugangsberechtigungen anlegen
+  getsettings;
+
+  if not FileExists(getauftragsdaten) then begin
+    worker.setauftragsdaten;
+  end;
+
+  pagerspeicher.ActivePage := LEER;
+  lkundennummer.Caption    := 'Kundennummer: ' + kn;
+  lsachbearbeiter.Caption  := 'Sachbearbeiter: ' + sb;
+  allowthread              := true;
+
+  getallids;
+
+  pagermain.ActivePage := tabspeichern;
+
+  pagermain.ShowTabs     := false;
+  ptabellen.ShowTabs     := false;
+  pagerspeicher.ShowTabs := false;
+  // pvollbilder.ShowTabs := false;
+  pagerspeicher.ActivePage := LEER;
+  pvollbilder.ActivePage   := leer2;
+  pvollbilder.ShowTabs     := false;
+end;
+
+procedure Tformmain.Neexit(Sender: TObject);
+begin
+  frameauftrag.enutzerexit(Sender);
+
+end;
+
+procedure Tformmain.frameenergiecbpseudoChange(Sender: TObject);
+begin
+  framen.cbpseudoChange(Sender);
+
+end;
+
+procedure Tformmain.frameenergiecbpseudoClick(Sender: TObject);
+begin
+  framen.cbpseudoClick(Sender);
+end;
+
+procedure Tformmain.frameenergieeliegenschaftExit(Sender: TObject);
+begin
+  framen.eliegenschaftExit(Sender);
+
+end;
+
+procedure Tformmain.frameenergieeposteingangExit(Sender: TObject);
+begin
+  framen.dateexit(Sender);
+
+end;
+
+procedure Tformmain.frameenfilterbanwendenClick(Sender: TObject);
+begin
+  frameenfilter.banwendenClick(Sender);
+end;
+
+procedure Tformmain.frameenfilterblöschenClick(Sender: TObject);
+begin
+  frameenfilter.blöschenClick(Sender);
+  formdb.queryen.Filtered := false;
+end;
+
+procedure Tformmain.frameenfiltereselaeExit(Sender: TObject);
+begin
+  frameenfilter.eselaeExit(Sender);
+  setfilter(formdb.queryen, frameenfilter.getfilter);
+end;
+
+procedure Tformmain.frameenfiltereseldiExit(Sender: TObject);
+begin
+  frameenfilter.eseldiExit(Sender);
+  setfilter(formdb.queryen, frameenfilter.getfilter);
+
+end;
+
+procedure Tformmain.frameenfilteresellgExit(Sender: TObject);
+begin
+  frameenfilter.esellgExit(Sender);
+  setfilter(formdb.queryen, frameenfilter.getfilter);
+end;
+
+procedure Tformmain.frameenfiltereselpeExit(Sender: TObject);
+begin
+  frameenfilter.eselpeExit(Sender);
+  setfilter(formdb.queryen, frameenfilter.getfilter);
+end;
+
+procedure Tformmain.frameenfiltereselsbExit(Sender: TObject);
+begin
+  frameenfilter.eselsbExit(Sender);
+  setfilter(formdb.queryen, frameenfilter.getfilter);
+end;
+
+procedure Tformmain.framefilterreklamationbanwendenClick(Sender: TObject);
+begin
+  framefilterreklamation.banwendenClick(Sender);
+
+end;
+
+procedure Tformmain.framefilterreklamationblöschenClick(Sender: TObject);
+begin
+  framefilterreklamation.blöschenClick(Sender);
+  formdb.queryrekl.Filtered := false;
+end;
+
+procedure Tformmain.framefilterreklamationeselaeExit(Sender: TObject);
+begin
+  framefilterreklamation.eselaeExit(Sender);
+  setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
+end;
+
+procedure Tformmain.framefilterreklamationeseldiExit(Sender: TObject);
+begin
+  framefilterreklamation.eseldiExit(Sender);
+
+end;
+
+procedure Tformmain.framefilterreklamationesellgExit(Sender: TObject);
+begin
+  framefilterreklamation.esellgExit(Sender);
+  setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
+end;
+
+procedure Tformmain.framefilterreklamationeselpeExit(Sender: TObject);
+begin
+  framefilterreklamation.eselpeExit(Sender);
+  setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
+end;
+
+procedure Tformmain.framefilterreklamationeselsbExit(Sender: TObject);
+begin
+  framefilterreklamation.eselsbExit(Sender);
+  setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
+end;
+
+procedure Tformmain.framemonfilterbanwendenClick(Sender: TObject);
+begin
+  framemonfilter.banwendenClick(Sender);
+end;
+
+procedure Tformmain.framemonfilterblöschenClick(Sender: TObject);
+begin
+  framemonfilter.blöschenClick(Sender);
+  formdb.querymon.Filtered := false;
+end;
+
+procedure Tformmain.framemonfiltereselaeExit(Sender: TObject);
+begin
+  try
+    framemonfilter.eselaeExit(Sender);
+    setfilter(formdb.querymon, framemonfilter.getfilter);
+  except
+
+  end;
+end;
+
+procedure Tformmain.framemonfiltereseldiExit(Sender: TObject);
+begin
+  try
+    framemonfilter.eseldiExit(Sender);
+    setfilter(formdb.querymon, framemonfilter.getfilter);
+  except
+  end;
+end;
+
+procedure Tformmain.framemonfilteresellgExit(Sender: TObject);
+var
+  filter: string;
+begin
+  try
+    framemonfilter.esellgExit(Sender);
+    filter := framemonfilter.getfilter;
+    setfilter(formdb.querymon, filter);
+  except
+    ;
+  end;
+end;
+
+procedure Tformmain.framemonfiltereselpeExit(Sender: TObject);
+begin
+  try
+    framemonfilter.eselpeExit(Sender);
+    setfilter(formdb.querymon, framemonfilter.getfilter);
+
+  except
+    ;
+  end;
+end;
+
+procedure Tformmain.framemonfiltereselsbExit(Sender: TObject);
+begin
+  try
+    framemonfilter.eselsbExit(Sender);
+    setfilter(formdb.querymon, framemonfilter.getfilter);
+
+  except
+    ;
+  end;
+end;
+
+procedure Tformmain.framemonnutbanwendenClick(Sender: TObject);
+begin
+  framemonnut.banwendenClick(Sender);
+
+end;
+
+procedure Tformmain.framemonnutblöschenClick(Sender: TObject);
+begin
+  framemonnut.blöschenClick(Sender);
+  formdb.querynuliste.Filtered := false;
+end;
+
+procedure Tformmain.framemonnuteselaeExit(Sender: TObject);
+begin
+  framemonnut.eselaeExit(Sender);
+
+end;
+
+procedure Tformmain.framemonnuteseldiExit(Sender: TObject);
+begin
+  framemonnut.eseldiExit(Sender);
+
+end;
+
+procedure Tformmain.framemonnutesellgExit(Sender: TObject);
+begin
+  framemonnut.esellgExit(Sender);
+
+end;
+
+procedure Tformmain.framemonnuteselpeExit(Sender: TObject);
+begin
+  framemonnut.eselpeExit(Sender);
+
+end;
+
+procedure Tformmain.framemonnuteselsbExit(Sender: TObject);
+begin
+  framemonnut.eselsbExit(Sender);
+
+end;
+
+procedure Tformmain.framemontageeauftragsnummerExit(Sender: TObject);
+var
+  auftragsnr: string;
+  tmp       : string;
+  dict      : TStringList;
+
+  frame: Tframebase;
+begin
+  frame      := getframe as Tframereklmont;
+  auftragsnr := (frame as Tframereklmont).eauftragsnummer.Text;
+  showmessage(auftragsnr);
+  dict := TStringList.Create;
+  dict.add('*');
+  with formdb do begin
+    formdb.doquery(queryaufträge, 'aufträge', ' WHERE ' + Auftragsnummer + '=' +
+      quotedstr(auftragsnr), dict);
+    tmp := queryaufträge.FieldByName(liegenschaft).asstring;
+    if not(tmp = '') then frame.eliegenschaft.Text := tmp;
+    tmp := queryaufträge.FieldByName(Nutzernummer).asstring;
+    if not(tmp = '') then
+      (frame as Tframereklmont).enutzernummer.Text := tmp;
+
+    tmp := queryaufträge.FieldByName(abrechnungsende).asstring;
+    if not(tmp = '') then begin
+      frame.dtabrechnungsende.Text := tmp;
+      frame.eabrechnungsende.Text  := tmp;
+    end;
+  end;
+
+end;
+
+procedure Tformmain.framemontageemontageExit(Sender: TObject);
+begin
+  framemontage.dateexit(Sender);
+
+end;
+
+procedure Tformmain.framemontageExit(Sender: TObject);
+begin
+  framemontage.eliegenschaftExit(Sender);
+end;
+
+procedure Tformmain.framesonstigeseliegenschaftExit(Sender: TObject);
+begin
+  framesonstiges.eliegenschaftExit(Sender);
+
+end;
+
+procedure Tformmain.framevertragenutzernummerExit(Sender: TObject);
+begin
+  framevertrag.enutzerexit(Sender);
+
+end;
+
+procedure Tformmain.framezwidtauszugExit(Sender: TObject);
+begin
+  if (Sender as tfmaskedit).Text = '' then exit;
+
+end;
+
+procedure Tformmain.framezwidtposteingangExit(Sender: TObject);
+begin
+  framezwi.dtposteingangExit(Sender);
+  // framezwi.eposteingange
+
+end;
+
+procedure Tformmain.framezwieliegenschaftExit(Sender: TObject);
+begin
+  framezwi.eliegenschaftExit(Sender);
+
+end;
+
+procedure Tformmain.framezwienutzernameKeyPress(Sender: TObject; var Key: Char);
+begin
+  framezwi.enutzernameKeyPress(Sender, Key);
+
+end;
+
+procedure Tformmain.framezwieposteingangExit(Sender: TObject);
+begin
+  framezwi.dateexit(Sender);
+
+end;
+
+procedure Tformmain.framezwifEdit1Exit(Sender: TObject);
+begin
+  framezwi.fEdit1Exit(Sender);
+
+end;
+
+procedure Tformmain.framezwifilterbanwendenClick(Sender: TObject);
+begin
+  framezwifilter.banwendenClick(Sender);
+end;
+
+procedure Tformmain.framezwifilterblöschenClick(Sender: TObject);
+begin
+  framezwifilter.blöschenClick(Sender);
+  formdb.queryzwi.Filtered := false;
+end;
+
+procedure Tformmain.framezwifiltereselaeExit(Sender: TObject);
+var
+  filter: string;
+begin
+  try
+    framezwifilter.eselaeExit(Sender);
+    filter := framezwifilter.getfilter;
+    setfilter(formdb.queryzwi, filter);
+  except
+
+  end;
+
+end;
+
+procedure Tformmain.framezwifiltereseldiExit(Sender: TObject);
+var
+  filter: string;
+begin
+  try
+    framezwifilter.eseldiExit(Sender);
+    filter := framezwifilter.getfilter;
+    setfilter(formdb.queryzwi, filter);
+  except
+
+  end;
+
+end;
+
+procedure Tformmain.framezwifilteresellgExit(Sender: TObject);
+var
+  filter: string;
+begin
+  try
+    framezwifilter.esellgExit(Sender);
+
+    filter := framezwifilter.getfilter;
+    setfilter(formdb.queryzwi, filter);
+
+  except
+    ;
+
+  end;
+
+end;
+
+procedure Tformmain.framezwifiltereselpeExit(Sender: TObject);
+var
+  filter: string;
+begin
+  try
+    framezwifilter.eselpeExit(Sender);
+    filter := framezwifilter.getfilter;
+    setfilter(formdb.queryzwi, filter);
+  except
+    on e: Exception do begin
+      showmessage(e.Message);
+    end;
+  end;
+end;
+
+procedure Tformmain.framezwifiltereselsbExit(Sender: TObject);
+var
+  filter: string;
+begin
+  try
+    framezwifilter.eselsbExit(Sender);
+    filter := framezwifilter.getfilter;
+    setfilter(formdb.queryzwi, filter);
+  except
+    on e: Exception do begin
+      showmessage(e.Message);
+    end;
+
+  end;
+end;
+
+procedure Tformmain.liegenschaftexit(Sender: TObject);
+var
+  frame: Tframebase;
+  edit : tfedit;
+begin
+
+  pimage.Visible := false;
+  // IStatusok.Visible := fa;
+  edit := Sender as tfedit;
+  if length(edit.Text) = 0 then exit;
+
+  frame := (edit.parent).parent.parent as Tframebase;
+  frame.eliegenschaftExit(Sender);
+  if (length(edit.Text) <> 7) then exit;
+
+  setliegenschaftsdaten;
+
+  try
+    if ((frame as Tframebasenutzer).enutzernummer.Text = '') then exit;
+    Nexit(((frame as Tframebasenutzer).enutzernummer) as tfedit);
+  except outputdebugstring('keine Nutzernummer');
+
+  end;
+
+end;
+
+procedure Tformmain.Nexit(Sender: TObject);
+var
+  dict : TDictionary<string, string>;
+  frame: Tframebasenutzer;
+begin { TODO : framemon!!! }
+  frame := getframe as Tframebasenutzer;
+  frame.enutzerexit(Sender);
+  try
+    dict := worker.getnutzerdaten((Sender as tfedit).Text, kn,
+      frame.eliegenschaft.Text);
+    setnutzerdaten(dict);
+  except
+    ;
+  end;
+
+end;
+
+function Tformmain.getAblesedatum: string;
+var
+  prefix: string;
+  helper: string;
+
+  frame: Tframebase;
+begin
+  frame := getframe;
+  // prefix := getprefix(pagerspeicher.activepageindex);
+  // helper := prefix + 'dtablesung';
+  // Result := getdate(frame.FindComponent('dtablesung') as tfmaskedit);
+  Result := getdate((frame as Tframezwischen).eablesedatum);
+end;
+
+function Tformmain.getabrechnungsende: string;
+var
+  prefix : string;
+  abredit: TMaskEdit;
+
+  frame: Tframebase;
+begin
+  frame   := getframe;
+  prefix  := getprefix(pagerspeicher.activepageindex);
+  abredit := frame.FindComponent('dtabrechnungsende') as TMaskEdit;
+  // Result := getdate(abredit as tfmaskedit);
+  Result := getdate(frame.eabrechnungsende);
+end;
+
+procedure Tformmain.getallids;
+var
+  kn         : Integer;
+  index, size: Integer;
+  frame      : Tframebase;
+begin
+  if not idanzeigen then laufendeid := ''
+  else begin
+    try
+      laufendeid       := (formdb.getmaxno(inttostr(kn), sb));
+      idnotset         := false;
+      Timer4.Enabled   := false;
+      size             := length(speicherframes);
+      for index        := 0 to size - 1 do begin
+        frame          := FindComponent(speicherframes[index]) as Tframebase;
+        frame.eid.Text := laufendeid;
+      end;
+    except
+      begin
+        // laufendeid := '-1';
+        idnotset       := true;
+        Timer4.Enabled := true;
+      end;
+    end;
+  end;
+
+end;
+
+function Tformmain.getanrufer: string;
+var
+  prefix: string;
+
+  frame: Tframebase;
+  edit : tfedit;
+begin
+  frame  := getframe;
+  prefix := getprefix(pagerspeicher.activepageindex);
+  edit   := frame.FindComponent('eanrufer') as tfedit;
+  Result := edit.Text;
+end;
+
+function Tformmain.getauftragsnummer: string;
+begin
+  if pagermain.ActivePage = TMontage then
+
+      Result := framemontage.eauftragsnummer.Text;
+  if pagermain.ActivePage = treklamaion then
+      Result := framereklamation.eauftragsnummer.Text;
+end;
+
+function Tformmain.getauftragstyp: string;
+begin
+  Result := frameauftrag.cbselectauftrag.Text;
+end;
+
+function Tformmain.getAuszugsdatum: string;
+var
+  prefix: string;
+  frame : Tframebase;
+begin
+  frame := getframe;
+  // prefix := getprefix(pagerspeicher.activepageindex);
+  // Result := getdate(frame.FindComponent('dtauszug') as tfmaskedit);
+  Result := getdate((frame as Tframezwischen).eauszug);
+
+end;
+
+function Tformmain.getbfwpfad: string;
+begin
+  with TRegistry.Create(KEY_READ or KEY_WOW64_64KEY) do begin
+    try
+      Rootkey := HKEY_LOCAL_MACHINE;
+      if OpenKey
+        ('SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{DF79F885-40E2-4ABE-8BEA-3CD1F42A90CE}_is1',
+        true) then begin
+        bfwpfad := Readstring('InstallLocation');
+        Result  := bfwpfad;
+      end;
+    finally Free;
+    end;
+  end;
+end;
+
+function Tformmain.getcollectorlist: TStringList;
+begin
+  Result := ftpcollectorlist;
+end;
+
+function Tformmain.getdate(em: tfedit): string;
+var
+  dt: string;
+begin
+  try
+    dt                                 := em.Text;
+    if AnsiStartsStr('  ', dt) then dt := '';
+    Result                             := formatDateOhneTrenner(dt);
+  except Result                        := '000000';
+
+  end;
+
+end;
+
+function Tformmain.getdatemitpunkt(Tag: Integer; datestring: string): string;
+var
+  datemitpunkt: string;
+  abrdat      : tdatetime;
+begin
+  case Tag of
+    ZwischenablsgINT, MontageINT, ReklamationINT: datemitpunkt := datestring;
+    KostenINT, SonstigesInt: begin
+        abrdat := StrToDateTime(datestring);
+        abrdat := abrdat + 365;
+        DateTimeToString(datemitpunkt, 'dd.mm.yy', abrdat);
+      end
+  else DateTimeToString(datemitpunkt, 'dd.mm.yy', now);
+  end;
+  Result := datemitpunkt;
+end;
+
+function Tformmain.getdatumchecked: string;
+begin
+  Result := '0';
+  // das Datum muss nicht überprüft sein!
+
+end;
+
+function Tformmain.getdb: TNextDBGrid;
+begin
+  case ptabellen.activepageindex of
+    0: Result := gridzwi;
+    1: Result := gridmon;
+    2: Result := gridnutzerliste;
+    3: Result := gridenergie;
+    4: Result := gridrek;
+  else Result := gridzwi;
+  end;
+end;
+
+function Tformmain.getdigverzeichnis: string;
+begin
+  Result := digverz;
+end;
+
+function Tformmain.getDocumentid: string;
+var
+  prefix: string;
+  editid: Tedit;
+  frame : Tframebase;
+begin
+  frame  := getframe;
+  prefix := getprefix(pagerspeicher.activepageindex);
+  editid := frame.FindComponent('eid') as Tedit;
+
+  Result := editid.Text;
+  // Result := fid.Text;
+end;
+
+function Tformmain.getdokumente(table_zwi, wherestring: string;
+  values: TStringList): string;
+begin
+
+end;
+
+function Tformmain.getkundennrfordb: string;
+begin
+  Result := Format('%.2d', [strtoint(copy(getLiegenschaft, 1, 2))]);
+end;
+
+function Tformmain.getkundennrnAsString: TStringList;
+var
+  item: Integer;
+begin
+  Result := TStringList.Create;
+  for item in kundennummern do begin
+    Result.add(Format('%.2d', [item]));
+  end;
+end;
+
+function Tformmain.getErledigt: string;
+var
+  frame: Tframebase;
+begin
+  frame         := getframe;
+  try Result    := inttostr((frame as Tframereklmont).rgerledigt.ItemIndex);
+  except Result := '0';
+  end;
+end;
+
+function Tformmain.getFilename: string;
+begin
+  try Result    := selectedlist[selectedlb.ItemIndex];
+  except Result := '';
+  end;
+end;
+
+function Tformmain.getfilesizeex(const afilename: string): int64;
+var
+  F: TSearchRec;
+begin
+  Result := -1;
+  if FindFirst(afilename, faAnyFile, F) = 0 then begin
+    try Result := F.FindData.nFileSizeLow or (F.FindData.nFileSizeHigh shl 32);
+    finally findClose(F);
+    end;
+  end;
+end;
+
+function Tformmain.getFiletype(filename: string): Integer;
+var
+  lfiletype: TLabel;
+  prefix   : string;
+  frame    : Tframebase;
+begin
+  frame := getframe;
+  // prefix := getprefix(pagerspeicher.activepageindex);
+  // lfiletype := frame.FindComponent('lfiletype') as TLabel;
+
+  fileext := ExtractFileExt(filename);
+  if fileext.Contains('eml') then begin
+    filetype          := emailverarbeitung;
+    lfiletype.Caption := eml;
+    exit;
+  end;
+  if length(filename) > 0 then begin
+    if AnsiStartsStr('scan', filename) then begin
+      lfiletype.Caption := bild;
+      filetype          := bildverarbeitung;
+    end else begin
+      lfiletype.Caption := digital;
+      filetype          := bildverarbeitung;
+    end;
+  end;
+end;
+
+function Tformmain.getfittingabrechnungsende(abrdat: string): string;
+var
+  aktabrende                        : tdatetime;
+  abryear, abrmonth, abrday         : Word;
+  nowyear, nowmonth, nowday         : Word;
+  resultdate                        : tdatetime;
+  today                             : tdatetime;
+  resultyear, resultmonth, resultday: Word;
+  res                               : string;
+begin
+  today      := now;
+  aktabrende := StrToDate(abrdat);
+  DecodeDate(aktabrende, abryear, abrmonth, abrday);
+  DecodeDate(today, nowyear, nowmonth, nowday);
+
+  resultday   := abrday;
+  resultmonth := abrmonth;
+  resultyear  := nowyear;
+
+  case pagerspeicher.activepageindex of
+
+    KostenINT: begin // in nächster Abrechnungsperiode
+        if nowmonth > abrmonth then resultyear := resultyear + 2
+        else inc(resultyear);
+      end;
+  else // in aktuelle Abrechnungsperiode
+    begin
+      if nowmonth > abrmonth then inc(resultyear);
+    end;
+  end;
+  resultdate := Encodedate(resultyear, resultmonth, resultday);
+  res        := formatdatetime('dd.mm.yy', resultdate);
+  Result     := res;
+end;
+
+function Tformmain.getframe: Tframebase;
+begin
+  Result := FindComponent(speicherframes[pagerspeicher.activepageindex])
+    as Tframebase;
+  if Result = nil then Result := framezwi;
+
+end;
+
+function Tformmain.getkundennummer: string;
+begin
+  try Result    := kn;
+  except Result := '';
+
+  end;
+end;
+
+function Tformmain.getLiegenschaft: string;
+var
+  prefix: string;
+  frame : Tframebase;
+begin
+  frame  := getframe;
+  prefix := getprefix(pagerspeicher.activepageindex);
+  Result := (frame.FindComponent('eliegenschaft') as Tedit).Text;
+
+end;
+
+function Tformmain.getMontagedatum: string;
+var
+  prefix: string;
+  frame : Tframebase;
+begin
+  frame  := getframe;
+  prefix := getprefix(pagerspeicher.activepageindex);
+  // Result := getdate(frame.FindComponent('dtmontage') as tfmaskedit);
+  Result := getdate(framemontage.emontage);
+end;
+
+function Tformmain.getNotizen: string;
+var
+  prefix: String;
+  frame : Tframebase;
+begin
+  frame  := getframe;
+  prefix := getprefix(pagerspeicher.activepageindex);
+  Result := (frame.FindComponent('menotizen') as TMemo).Text;
+end;
+
+function Tformmain.getNutzername: string;
+var
+  prefix, name: string;
+  frame       : Tframebase;
+begin
+  frame                  := getframe;
+  prefix                 := getprefix(pagerspeicher.activepageindex);
+  name                   := (frame.FindComponent('enutzername') as Tedit).Text;
+  if name = '' then name := 'LEERSTAND';
+  Result                 := name;
+
+end;
+
+function Tformmain.getNutzernummer: string;
+var
+  prefix: string;
+  frame : Tframebase;
+begin
+  frame  := getframe;
+  prefix := getprefix(pagerspeicher.activepageindex);
+  Result := (frame.FindComponent('enutzernummer') as Tedit).Text;
+end;
+
+function Tformmain.getort: string;
+begin
+  Result := framen.eeort.Text;
+end;
+
+function Tformmain.getpasswort: string;
+begin
+  Result := passwort;
+end;
+
+function Tformmain.getplz: string;
+begin
+  Result := framen.eeplz.Text;
+end;
+
+function Tformmain.getpostausgangsverzeichnis: string;
+begin
+  try Result    := postausgverz;
+  except Result := '';
+
+  end;
+end;
+
+function Tformmain.getPosteingang: string;
+var
+  prefix: string;
+  frame : Tframebase;
+begin
+  frame  := getframe;
+  prefix := getprefix(pagerspeicher.activepageindex);
+  // Result := getdate(frame.FindComponent('dtposteingang') as tfmaskedit);
+  Result := getdate(frame.eposteingang);
+end;
+
+function Tformmain.getprefix(active: Integer): string;
+var
+  prefix: string;
+  sheet : TNxTabSheet;
+begin
+  sheet                                    := pagerspeicher.ActivePage;
+  if sheet = TZwischenablesung then prefix := 'z';
+  if sheet = TMontage then prefix          := 'm';
+  if sheet = treklamaion then prefix       := 'r';
+  if sheet = Tenergieausweis then prefix   := 'e';
+  if sheet = TKostenermittlung then prefix := 'k';
+  if sheet = tNutzerliste then prefix      := 'n';
+  if sheet = tsonstiges then prefix        := 's';
+  if sheet = TVerträge then prefix         := 'v';
+  if sheet = tauftrag then prefix          := 'na';
+  if sheet = Tangebotsanfragen then prefix := 'a';
+
+  Result := prefix;
+end;
+
+function Tformmain.getpseudoliegenschaft: string;
+begin
+  Result                                 := '0';
+  if framen.cbpseudo.Checked then Result := '1';
+
+end;
+
+function Tformmain.getsachbearbeiter: String;
+begin
+  try Result    := sb;
+  except Result := '';
+
+  end;
+end;
+
+function Tformmain.getSammelordner: string;
+begin
+  if lbeingang.SelCount > 0 then begin
+    Result := '0';
+    exit;
+  end;
+  if lbausgang.SelCount > 0 then begin
+    Result := '1';
+    exit;
+  end;
+
+  Result := '2';
+end;
+
+function Tformmain.gettag(sheet: TNxTabSheet): Integer;
+begin
+  if sheet = Tangebotsanfragen then Result := Angebotsint;
+  if sheet = tauftrag then Result          := Auftragsint;
+  if sheet = Tenergieausweis then Result   := EnergieausweisINT;
+  if sheet = TKostenermittlung then Result := KostenINT;
+  if sheet = TMontage then Result          := MontageINT;
+  if sheet = tNutzerliste then Result      := Nutzerint;
+  if sheet = treklamaion then Result       := ReklamationINT;
+  if sheet = tsonstiges then Result        := SonstigesInt;
+  if sheet = TVerträge then Result         := Vertragsint;
+  if sheet = TZwischenablesung then Result := ZwischenablsgINT;
+end;
+
+function Tformmain.gettelefonnummer: string;
+var
+  prefix: string;
+  frame : Tframebase;
+  edit  : tfedit;
+begin
+  frame  := getframe;
+  prefix := getprefix(pagerspeicher.activepageindex);
+  edit   := frame.FindComponent('etelefonnummer') as tfedit;
+  Result := edit.Text;
+end;
+
+function Tformmain.getzwivalues: TStringList;
+begin
+  Result := TStringList.Create;
+  Result.add('*');
+  // Result.Add('Dokumentid');
+  // Result.Add(Nutzernummer);
+  // Result.Add(Nutzername);
+  // Result.Add(abrechnungsende);
+  // Result.Add(Posteingang);
+  // Result.Add(sammelordner);
+
+end;
+
+function Tformmain.getscanverzeichnis: string;
+begin
+  try Result    := scanvz;
+  except Result := '';
+
+  end;
+end;
+
+function Tformmain.getstrasse: string;
+begin
+  Result := framen.eestrasse.Text;
+end;
+
+procedure Tformmain.ibfwClick(Sender: TObject);
+var
+  lieg, nn, prefix: string;
+  frame           : Tframebase;
+
+begin
+  frame := getframe;
+  if not(procidbfw = -1) then Killprocess(procidbfw);
+  prefix    := getprefix(pagerspeicher.activepageindex);
+  lieg      := (frame.FindComponent('eliegenschaft') as Tedit).Text;
+  nn        := (frame.FindComponent('enutzernummer') as Tedit).Text;
+  procidbfw := Shellmyex(pchar(IncludeTrailingPathDelimiter(bfwpfad) +
+    'Bfwonline.exe ' + lieg + ' ' + nn), sw_normal);
+end;
+
+procedure Tformmain.ieinstellungenClick(Sender: TObject);
+begin
+  if not assigned(Einstellungen) then
+      Einstellungen := TEinstellungen.Create(self);
+  try Einstellungen.Show;
+  except
+
+  end;
+end;
+
+procedure Tformmain.iueberClick(Sender: TObject);
+var
+  helpr: Integer;
+var
+  versionsnummer         : string;
+  aenderungen            : TStringList;
+  aenderungsmessage, line: string;
+begin
+  versionsnummer := GetCurrentVersion;
+  aenderungen    := TStringList.Create;
+  aenderungen.LoadFromFile(getaenderungsfile);
+  for line in aenderungen do begin
+    aenderungsmessage := aenderungsmessage + #10#13 + line;
+  end;
+  helpr := MyMesssageDlg('Version ' + versionsnummer + #10#13 +
+    aenderungsmessage);
+
+end;
+
+function Tformmain.MyMesssageDlg(MyMessage: String): Integer;
+var
+  AMsgDialog: TForm;
+  ACheckBox : TCheckBox;
+begin
+  AMsgDialog := CreateMessageDialog(MyMessage, mtInformation, [mbOK]);
+
+  with AMsgDialog do
+    try
+      // Font.Name := 'Arial';
+      // Font.Size := 8;
+      // Font.Color := clNavy;
+      Font.Color := $00696969;
+      Caption    := 'Versionsinformation';
+      Height     := formmain.Height - 100;
+      top        := formmain.top + 100;
+      // left := Screen.';
+      Result := ShowModal;
+      // scroll
+
+      // with ACheckBox do
+      // begin
+      // Parent := AMsgDialog;
+      /// /      Caption := 'Don't show this message again.';
+      // Top := 121;
+      // Left := 8;
+      // end;
+      AMsgDialog.Show;
+    finally AMsgDialog.Free;
+    end;
+end;
+
+procedure Tformmain.iupdateClick(Sender: TObject);
+begin
+  if not(MessageDlg('Möchten Sie die neue Version installieren?',
+    mtConfirmation, mbYesNo, 0) = mrYes) then exit;
+  downloadupdate;
+end;
+
+procedure Tformmain.lbausgangMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  listentry: string;
+  lb       : TListBox;
+  list     : TStringList;
+  dir      : string;
+  filename : string;
+  index    : Integer;
+begin
+
+  lb := Sender as TListBox;
+  if not(Button = mbright) then exit;
+  // nur Rechtsklick
+  index := lb.ItemIndex; // ins Leere geklickt
+  if index < 0 then exit;
+  lb.Selected[index] := true;
+  if lb = lbausgang then begin
+    list := listpostausgang;
+    dir  := postausgverz;
+  end;
+  if Sender = lbeingang then begin
+    list := listposteingang;
+    dir  := scanvz;
+  end;
+  filename := list[lb.ItemIndex];
+  if not(MessageDlg('Datei löschen?' + #10#13 + filename, mtConfirmation,
+    [mbOK, mbCancel], 0) = mrOk) then exit;
+  DeleteFile(IncludeTrailingPathDelimiter(dir) + filename);
+end;
+
+procedure Tformmain.lbausgangMouseEnter(Sender: TObject);
+var
+  lb: TListBox;
+begin
+  lb := (Sender as TListBox);
+  if lb.SelCount = 0 then exit;
+
+  lb.Hint := lb.Items.Strings[lb.ItemIndex];
+end;
+
+procedure Tformmain.lbausgangMouseLeave(Sender: TObject);
+begin
+  (Sender as TListBox).Hint := '';
+end;
+
+procedure Tformmain.lbeingangClick(Sender: TObject);
+var
+  index        : Integer;
+  filename     : string;
+  prefix       : string;
+  filetypelabel: TLabel;
+  eid          : TLabel;
+  senderlb     : TListBox;
+  frame        : Tframebase;
+begin
+  frame        := getframe;
+  telefonieren := false;
+  senderlb     := Sender as TListBox;
+  index        := senderlb.ItemIndex;
+  if index < 0 then exit;
+  prefix         := getprefix(pagerspeicher.activepageindex);
+  frame.eid.Text := laufendeid;
+  filetypelabel  := frame.lfiletype;
+  if Sender = lbeingang then begin
+    selectedlist := listposteingang;
+    selectedlb   := lbeingang;
+    unselect(lbausgang);
+    selecteddir := scanvz;
+  end;
+  if Sender = lbausgang then begin
+    selectedlb := lbausgang;
+    unselect(lbeingang);
+    selectedlist := listpostausgang;
+    selecteddir  := postausgverz;
+  end;
+  filetypelabel.Caption := selectedlb.Items[selectedlb.ItemIndex];
+
+  // fid.Text := laufendeid;
+
+  Timer1.Enabled := true;
+
+  if not pagerspeicher.Visible then begin
+    // fid.Visible := true;
+    pagerspeicher.Visible := true;
+  end;
+end;
+
+procedure Tformmain.lbeingangDblClick(Sender: TObject);
+begin
+
+  if Sender = lbeingang then
+      abspath := IncludeTrailingPathDelimiter(scanvz) + listposteingang.Strings
+      [lbeingang.ItemIndex]
+  else abspath := IncludeTrailingPathDelimiter(postausgverz) +
+      listpostausgang.Strings[lbausgang.ItemIndex];
+
+  if (AnsiLowerCase(ExtractFileExt(abspath)) = '.pdf') then
+      abspath := copytotmp(abspath);
+  ShellExecute(Handle, 'open', pchar(abspath), nil, nil, SW_SHOWNORMAL)
+end;
+
+procedure Tformmain.leingangsordnerDblClick(Sender: TObject);
+var
+  Pfad: string;
+begin
+  if not SelectDirectory('Ordner auswählen', 'C:\', Pfad) then exit;
+  (Sender as TLabel).Hint := Pfad;
+  if Sender = leingangsordner then begin
+    scanvz := Pfad;
+  end
+  else postausgverz := Pfad;
+  saveSettings('', kn, sb, scanvz, postausgverz, idanzeigen, dosplitnumber);
+  lookforfile;
+end;
+
+procedure Tformmain.lkundennummerChange(Sender: TObject);
+begin
+
+  formsachkunde.Show;
+  if Sender = lkundennummer then begin
+    formsachkunde.lname.Caption := 'Kundennummer: ';
+    formsachkunde.eedit.Text    := kn;
+  end;
+  if Sender = lsachbearbeiter then begin
+    formsachkunde.lname.Caption := 'Sachbearbeiter: ';
+    formsachkunde.eedit.Text    := sb;
+  end;
+end;
+
+procedure Tformmain.lkundennummerDblClick(Sender: TObject);
+begin
+  formkunde.Show;
+end;
+
 procedure Tformmain.lookforfile;
-  var
-    prefix: string;
-    // lfiletype: TLabel;
-    frame   : Tframebase;
-    filetext: String;
-  begin
-    frame := getframe;
-    with frame do begin
-      if not assigned(listposteingang) then
-          listposteingang := TStringList.Create;
-      if not assigned(listpostausgang) then
-          listpostausgang := TStringList.Create;
-      listposteingang.clear;
-      listpostausgang.clear;
+var
+  prefix: string;
+  // lfiletype: TLabel;
+  frame   : Tframebase;
+  filetext: String;
+begin
+  frame := getframe;
+  with frame do begin
+    if not assigned(listposteingang) then listposteingang := TStringList.Create;
+    if not assigned(listpostausgang) then listpostausgang := TStringList.Create;
+    listposteingang.clear;
+    listpostausgang.clear;
 
-      if not(scanvz = '') then append(scanvz, listposteingang, lbeingang);
-      if not(postausgverz = '') then
-          append(postausgverz, listpostausgang, lbausgang);
-      deleteremoved(listposteingang, lbeingang);
-      deleteremoved(listpostausgang, lbausgang);
+    if not(scanvz = '') then append(scanvz, listposteingang, lbeingang);
+    if not(postausgverz = '') then
+        append(postausgverz, listpostausgang, lbausgang);
+    deleteremoved(listposteingang, lbeingang);
+    deleteremoved(listpostausgang, lbausgang);
 
-      if ((((lbeingang.Count > 0) or (lbausgang.Count > 0)) and
-        (lbeingang.SelCount = 0) and (lbausgang.SelCount = 0))) then begin
+    if ((((lbeingang.Count > 0) or (lbausgang.Count > 0)) and
+      (lbeingang.SelCount = 0) and (lbausgang.SelCount = 0))) then begin
+      try
+
+        lbeingang.Selected[0] := true;
+        lfiletype.Caption     := lbeingang.Items[0];
+        if pagerspeicher.ActivePage = LEER then begin
+          ComboBox1.ItemIndex := 0;
+          ComboBox1Click(nil);
+          lbeingangClick(lbeingang);
+          pagerspeicher.Visible := true;
+        end;
+      except
+      end;
+    end;
+    if telefonieren or (lbeingang.SelCount = 0) and (lbausgang.SelCount = 0)
+    then lfiletype.Caption := 'telefonisch';
+
+    filetypecaption := lfiletype.Caption;
+  end;
+end;
+
+procedure Tformmain.minimizeme;
+begin
+
+  hide();
+  WindowState := wsMinimized;
+
+  { Show the animated tray icon and also a hint balloon. }
+  TrayIcon1.Visible := true;
+  TrayIcon1.Animate := true;
+  TrayIcon1.ShowBalloonHint;
+  minimized := true;
+end;
+
+function Tformmain.noDokIdNeeded: Boolean;
+begin
+  try Result := not(AnsiStartsStr('gescannt',
+      selectedlist[selectedlb.ItemIndex]));
+  except Result := false;
+
+  end;
+end;
+
+procedure Tformmain.npcError(Sender: TObject; AException: Exception);
+var
+  item : string;
+  index: Integer;
+begin
+  item := npc.getDatastring;
+  if not ftpcollectorlist.Find(item, index) then addtolist(item);
+  // Showmessage('derzeit nicht verbunden mit pipe');
+  // if not isexerunning then
+
+  if not connectToPipe then showmessage('pipe kann nicht geöffnet werden');
+end;
+
+procedure Tformmain.resetadrclick(Sender: TObject);
+begin
+  framen.eestrasse.Text := '';
+  framen.eeort.Text     := '';
+  framen.eeplz.Text     := '';
+end;
+
+procedure Tformmain.resetdate(tem: tfedit);
+var
+  today, setdate   : string;
+  formatteddatetime: string;
+begin
+  DateTimeToString(today, 'dd.mm.yy', now);
+  if (tem.Text = '') then begin
+    tem.Text := today;
+  end;
+
+end;
+
+procedure Tformmain.showauftrag(Sender: TObject);
+begin
+  formauftragsart.Show;
+end;
+
+procedure Tformmain.NxButton3Click(Sender: TObject);
+begin
+  NxPanel1.hide;
+  Panel4.Show;
+end;
+
+procedure Tformmain.banzeigeverlassen(Sender: TObject);
+begin
+  pagermain.ActivePage     := tabspeichern;
+  pagerspeicher.ActivePage := tabzwischen;
+end;
+
+procedure Tformmain.NxComboBox1Change(Sender: TObject);
+begin
+  // var
+  // query: string;
+  // begin
+  // case NxComboBox1.ItemIndex of
+  // 0: showzwischenablesungen;
+  // 1: showmontagen;
+  // 2: shownutzerlisten;
+  // end;
+
+end;
+
+procedure Tformmain.NxDBButtonColumn1ButtonClick(Sender: TObject);
+begin
+  showmessage('klicked');
+end;
+
+procedure Tformmain.NxDBButtonColumn1SetCell(Sender: TObject;
+  ACol, ARow: Integer; CellRect: TRect; CellState: TCellState);
+var
+  rect: TRect;
+begin
+  rect := TRect.Create(0, 0, 20, 20);
+  DrawFrameControl(Canvas.Handle, rect, DFC_BUTTON, DFCS_BUTTONPUSH);
+end;
+
+procedure Tformmain.NxGlyphButton1Click(Sender: TObject);
+
+var
+  dbgrid: TNextDBGrid;
+begin
+  dec(selectedRow);
+  dbgrid := getdb;
+  try
+    dbgrid.selectedRow := selectedRow;
+    fillvollbild(dbgrid, selectedRow);
+  finally
+    // dbgrid.Free;
+  end;
+
+end;
+
+procedure Tformmain.NxGlyphButton2Click(Sender: TObject);
+begin
+  vorclick(nil);
+end;
+
+procedure Tformmain.NxGlyphButton3Click(Sender: TObject);
+var
+  dbgrid: TNextDBGrid;
+begin
+  pagermain.ActivePage := tabanzeige;
+  dbgrid               := getdb;
+
+  dbgrid.selectedRow           := selectedRow;
+  dbgrid.Selected[selectedRow] := true;
+  dbgrid.ScrollToRow(selectedRow);
+  gridzwiClick(dbgrid);
+end;
+
+procedure Tformmain.NxTabSheet1Hide(Sender: TObject);
+begin
+  // fid.Visible := true;
+  // NxTabSheet1.Visible := false;
+end;
+
+procedure Tformmain.NxTabSheet1Show(Sender: TObject);
+begin
+  // fid.Visible := false;
+end;
+
+procedure Tformmain.znxtelefonnotizChange(Sender: TObject);
+var
+  prefix  : string;
+  frame   : Tframebase;
+  eanrufer: Tedit;
+begin
+  frame    := getframe;
+  prefix   := getprefix(pagerspeicher.activepageindex);
+  eanrufer := frame.FindComponent('eanrufer') as Tedit;
+  if (Sender as TNxFlipPanel).Expanded and
+    not((frame.FindComponent('eliegenschaft') as tfedit).Focused) then
+      eanrufer.SetFocus;
+
+end;
+
+procedure Tformmain.zwivollbildSetCell(Sender: TObject; ACol, ARow: Integer;
+  CellRect: TRect; CellState: TCellState);
+begin
+
+  ImageList1.Draw(gridzwi.Canvas, CellRect.Left, CellRect.top, 1);
+end;
+
+procedure Tformmain.pagerspeicherChanging(Sender: TObject; PageIndex: Integer;
+  var AllowChange: Boolean);
+begin
+  // sleep(100);
+end;
+
+procedure Tformmain.pagerspeicherEnter(Sender: TObject);
+begin
+  // fid.Visible := true;
+end;
+
+procedure Tformmain.pagerspeicherExit(Sender: TObject);
+begin
+  // fid.Visible := false;
+end;
+
+procedure Tformmain.panelfocus(panel: TPanel);
+begin
+  panel.Font.Style := [fsbold];
+  panel.BevelKind  := TBevelKind.bkSoft;
+
+end;
+
+procedure Tformmain.popup;
+begin
+  TrayIcon1.Visible := false;
+  Show();
+  WindowState := wsNormal;
+  Application.BringToFront();
+  minimized := false;
+end;
+
+procedure Tformmain.pseudocheckChange(Sender: TObject);
+begin
+
+  framen.flipadress.Expanded := (Sender as TNxCheckBox).Checked;
+  framen.eestrasse.SetFocus;
+end;
+
+procedure Tformmain.pzClick(Sender: TObject);
+begin
+  pk.Font.Style := [];
+  pm.Font.Style := [];
+  pz.Font.Style := [];
+  pr.Font.Style := [];
+
+  pk.BevelKind := TBevelKind.bkNone;
+  pm.BevelKind := TBevelKind.bkNone;
+  pz.BevelKind := TBevelKind.bkNone;
+  pr.BevelKind := TBevelKind.bkNone;
+
+  // pr.hide;
+
+  (Sender as TPanel).Font.Style                := [fsbold];
+  (Sender as TPanel).BevelKind                 := TBevelKind.bkSoft;
+  if Sender = pz then pagerspeicher.ActivePage := TZwischenablesung;
+  if Sender = pk then pagerspeicher.ActivePage := TKostenermittlung;
+  if Sender = pm then pagerspeicher.ActivePage := TMontage;
+  if Sender = pr then begin
+    if pr.Caption = '' then exit;
+    ComboBox1Click(pr);
+
+  end;
+
+end;
+
+procedure Tformmain.pzMouseEnter(Sender: TObject);
+begin
+  (Sender as TPanel).Font.Style := [fsbold];
+end;
+
+procedure Tformmain.pzMouseLeave(Sender: TObject);
+begin
+  (Sender as TPanel).Font.Style := [];
+end;
+
+procedure Tformmain.tNutzerlisteShow(Sender: TObject);
+var
+  number: string;
+begin
+  resetpanelfonts;
+  panelfocus(pr);
+  pr.Caption := 'Nutzerliste';
+  try
+  except
+    ;
+  end;
+  resetdate(framenutzer.dtposteingang);
+  // resetdate(framenutzer.eposteingang);
+end;
+
+procedure Tformmain.TrayIcon1DblClick(Sender: TObject);
+begin
+  Show();
+  WindowState := wsNormal;
+
+  { Show the animated tray icon and also a hint balloon. }
+  TrayIcon1.Visible := false;
+  TrayIcon1.Animate := false;
+  minimized         := false;
+end;
+
+procedure Tformmain.edtposteingangExit(Sender: TObject);
+
+var
+  day, month, year: Integer;
+  Mask            : TMaskEdit;
+  date            : string;
+  valid           : Boolean;
+begin
+  valid := true;
+  Mask  := Sender as TMaskEdit;
+  date  := Mask.Text;
+  if AnsiStartsText('  ', date) or AnsiStartsText('__', date) then exit;
+
+  day   := strtoint(trimright(copy(date, 1, 2)));
+  month := strtoint(trimright(copy(date, 4, 2)));
+  year  := strtoint(trimright(copy(date, 7, 4)));
+
+  if (month < 1) or (month > 12) then begin
+    valid := false;
+  end;
+  if day < 0 then begin
+    valid := false;
+  end;
+  case month of
+    1, 3, 5, 7, 8, 12: if day > 31 then begin
+        valid := false;
+      end;
+    2: if day > 29 then begin
+        valid := false;
+      end;
+    4, 6, 9, 11: if day > 30 then begin
+        valid := false;
+      end;
+  end;
+  if not valid then begin
+    Mask.Color := clred;
+    Mask.SetFocus;
+    Mask.SelStart := 0;
+  end
+  else Mask.Color := clWhite;
+
+end;
+
+procedure Tformmain.reset(frame: Tframebase);
+var
+  i, size, number, pheight: Integer;
+  prefix                  : string;
+  Tag                     : Integer;
+begin
+  number := 0;
+  try frame.eid.SetFocus;
+  except outputdebugstring('kann focus nicht erhalten');
+  end;
+  frame.bsave.Enabled          := true;
+  frame.lfiletype.Caption      := '';
+  frame.eid.Text               := '';
+  pdatenrechts.Visible         := false;
+  telefonieren                 := false;
+  frame.dtposteingang.Text     := formatDateTimeOhneTrenner(now);
+  frame.eposteingang.Text      := formatedatefrom4jto2j(DateToStr(now));
+  frame.eliegenschaft.Text     := '';
+  frame.menotizen.Text         := '';
+  frame.dtabrechnungsende.Text := '__.__.__';
+
+  Tag := gettag(pagerspeicher.ActivePage);
+  case Tag of
+    ZwischenablsgINT: begin
+        framezwi.enutzernummer.Text := '';
+        framezwi.enutzername.Text   := '';
+        framezwi.enutzername.clear;
+        framezwi.enutzernummer.clear;
+      end;
+    MontageINT: begin
+        framemontage.eauftragsnummer.Text := '';
+        framemontage.dtmontage.Text       := '__.__.__';
+        framemontage.emontage.clear;
+        framemontage.rgerledigt.ItemIndex := 0;
+      end;
+    ReklamationINT: begin
+        framereklamation.dtmontage.Text := '__.__.__';
+        framereklamation.emontage.clear;
+        framereklamation.rgerledigt.ItemIndex := 0;
+        framereklamation.eauftragsnummer.Text := '';
+      end;
+    EnergieausweisINT: begin
+        framen.cbpseudo.Checked := false;
+        framen.eestrasse.Text   := '';
+        framen.eeplz.Text       := '';
+        framen.eeort.Text       := '';
+      end;
+  end;
+end;
+
+procedure Tformmain.resetdate(tem: TMaskEdit);
+var
+  today, setdate   : string;
+  formatteddatetime: string;
+begin
+  DateTimeToString(today, 'dd.mm.yy', now);
+  if (tem.Text = '  .  .  ') then begin
+    tem.Text := today;
+  end;
+
+end;
+
+procedure Tformmain.resetids;
+var
+  fid    : tfedit;
+  i, size: Integer;
+  frame  : Tframebase;
+begin
+  frame := getframe;
+
+  size             := length(speicherframes);
+  for i            := 0 to size - 1 do begin
+    frame.eid.Text := '';
+  end;
+end;
+
+procedure Tformmain.resetlisten;
+begin
+  try
+    selectedlb.clear;
+    selectedlist.clear;
+  except outputdebugstring('keine Liste ausgewählt');
+
+  end;
+end;
+
+procedure Tformmain.resetpanelfonts;
+begin
+
+  pz.Font.Style := [];
+  pm.Font.Style := [];
+  pk.Font.Style := [];
+  pr.Font.Style := [];
+  // pr.Caption := '';
+
+  pk.BevelKind := TBevelKind.bkNone;
+  pm.BevelKind := TBevelKind.bkNone;
+  pz.BevelKind := TBevelKind.bkNone;
+  pr.BevelKind := TBevelKind.bkNone;
+end;
+
+procedure Tformmain.workwithfile(filename: string);
+begin
+end;
+
+procedure Tformmain.zdtauszugKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then begin
+    Key := #0;
+    Perform(WM_NextDlgCtl, 0, 0);
+  end;
+
+end;
+
+procedure Tformmain.zdtposteingangKeyPress(Sender: TObject; var Key: Char);
+begin
+  Key := ignoreNonNumerics(Key);
+end;
+
+procedure Tformmain.zeliegenschaftExit(Sender: TObject);
+var
+  lab         : Tedit;
+  S           : String;
+  kunde       : string;
+  len         : Integer;
+  prefix      : string;
+  liegenschaft: TLabel;
+  dict        : TDictionary<string, string>;
+begin
+
+  lab                  := Sender as Tedit;
+  pimage.Visible       := false;
+  iSTAtusfalse.Visible := false;
+  prefix               := getprefix(pagerspeicher.activepageindex);
+  if pverarbeitungsstatus.Visible then pverarbeitungsstatus.Visible := false;
+  S := lab.Text;
+
+  case lab.Tag of
+    // 0: begin // dokumentid
+    // if lab.Text = '---' then exit;
+    // lab.Text := StringOfChar('0', 4 - length(S)) + S;
+    // end;
+    1: // Liegenschaft
+      begin
+        lab.Color := clWindow;
+        lab.Hint  := '';
+        { "erfolgreich gespeichert" ausblenden, falls sichtbar }
+        if IStatusok.Visible then begin
+          IStatusok.Visible := false;
+          pimage.Visible    := false;
+        end;
+        if (length(lab.Text) = 7) then begin
+          setliegenschaftsdaten;
+          exit;
+        end;
+        if (length(lab.Text) > 5) then begin
+          lab.SetFocus;
+          lab.Color := clred;
+          lab.Hint  :=
+            'entweder gesamte Liegenschaftsnummer angeben oder maximal 5 Zeichen';
+          exit;
+        end;
+        if (length(lab.Text) = 0) then exit;
+        kunde    := formmain.getkundennummer;
+        len      := length(kunde);
+        len      := 7 - len;
+        lab.Text := kunde + StringOfChar('0', len - length(S)) + S;
+        setliegenschaftsdaten;
+      end;
+    2: // Nutzernummer
+      begin
+        if length(lab.Text) = 0 then exit;
+
+        lab.Text := StringOfChar('0', 3 - length(S)) + S;
+
         try
-
-          lbeingang.Selected[0] := true;
-          lfiletype.Caption     := lbeingang.Items[0];
-          if pagerspeicher.ActivePage = LEER then begin
-            ComboBox1.ItemIndex := 0;
-            ComboBox1Click(nil);
-            lbeingangClick(lbeingang);
-            pagerspeicher.Visible := true;
-          end;
+          dict := worker.getnutzerdaten(lab.Text, kn,
+            (FindComponent(prefix + 'eliegenschaft') as tfedit).Text);
+          setnutzerdaten(dict);
         except
+          ;
+
         end;
       end;
-      if telefonieren or (lbeingang.SelCount = 0) and (lbausgang.SelCount = 0)
-      then lfiletype.Caption := 'telefonisch';
+  end;
+end;
 
-      filetypecaption := lfiletype.Caption;
+procedure Tformmain.zenutzernameExit(Sender: TObject);
+begin
+  // if zenutzername.Text = '' then zenutzername.Text := 'LEERSTAND';
+end;
+
+procedure Tformmain.zlnameKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  // zenutzername.Hint := zenutzername.Text;
+end;
+
+procedure Tformmain.zlnameKeyPress(Sender: TObject; var Key: Char);
+
+begin
+  Key := ansiuppercase(Key)[1];
+  // zenutzername.Hint := zenutzername.Text + Key;
+end;
+
+procedure Tformmain.save();
+var
+  number      : Integer;
+  filename    : string;
+  hastoscan   : Boolean;
+  filenamelist: TStringList;
+  size, i     : Integer;
+  prefix      : string;
+  bsave       : TNxButton;
+  frame       : Tframebase;
+begin
+  frame               := getframe;
+  successful          := false;
+  frame.bsave.Enabled := false;
+  try
+    filenamelist := TStringList.Create;
+    try size     := selectedlb.Count;
+    except size  := -1;
     end;
-  end;
-
-  procedure Tformmain.minimizeme;
-  begin
-
-    hide();
-    WindowState := wsMinimized;
-
-    { Show the animated tray icon and also a hint balloon. }
-    TrayIcon1.Visible := true;
-    TrayIcon1.Animate := true;
-    TrayIcon1.ShowBalloonHint;
-    minimized := true;
-  end;
-
-  function Tformmain.noDokIdNeeded: Boolean;
-  begin
-    try Result := not(AnsiStartsStr('gescannt',
-        selectedlist[selectedlb.ItemIndex]));
-    except Result := false;
-
+    for i := 0 to size - 1 do begin
+      if selectedlb.Selected[i] then
+          filenamelist.add(IncludeTrailingPathDelimiter(selecteddir) +
+          selectedlist[i]);
     end;
+    pimage.Visible       := false;
+    IStatusok.Visible    := false;
+    iSTAtusfalse.Visible := false;
+
+    // pverarbeitungsstatus.visible := true;
+    lhochruntergeladen.Caption := 'hochgeladen';
+
+    Killprocess(procidwin);
+    Tag        := gettag(pagerspeicher.ActivePage);
+    successful := worker.dowork(filenamelist, Tag);
+    if successful then begin
+      resetlisten;
+      if idanzeigen then getallids;
+      pimage.Visible    := true;
+      IStatusok.Visible := true;
+      lliegenschaftsdaten.hide;
+      reset(frame);
+    end else begin
+      pimage.Visible       := true;
+      pimage.Caption       := 'nicht gespeichert';
+      iSTAtusfalse.Visible := true;
+    end;
+  finally
+
+    lookforfile;
+    getallids;
+  end;
+end;
+
+function Tformmain.saveanrufer(anrufer, telefonnummer: string): Boolean;
+begin
+  self.anrufer       := anrufer;
+  self.telefonnummer := telefonnummer;
+  Result             := true;
+end;
+
+function Tformmain.saveSettings(pw, kn, sb, vzscan, vzpost: string;
+  shownumber, splitno: Boolean): Boolean;
+begin
+  self.passwort     := pw;
+  self.kn           := kn;
+  self.sb           := sb;
+  self.scanvz       := vzscan;
+  self.postausgverz := vzpost;
+  writeToIni(pw, kn, sb, vzscan, vzpost, shownumber, splitno);
+  lsachbearbeiter.Caption := 'Sachbearbeiter: ' + sb;
+  lkundennummer.Caption   := 'Kundennummer: ' + kn;
+  idanzeigen              := shownumber;
+  dosplitnumber           := splitno;
+  getsettings;
+  if idanzeigen then getallids
+  else resetids;
+end;
+
+procedure Tformmain.setFile(path: string);
+begin
+  getFiletype(path);
+end;
+
+procedure Tformmain.setfilter(query: tzquery; filter: string);
+begin
+  query.Filtered := false;
+  query.filter   := filter;
+  query.Filtered := true;
+end;
+
+procedure Tformmain.setid(table: string);
+
+var
+  prefix  : string;
+  eid     : Tedit;
+  act     : Integer;
+  number  : Integer;
+  filetype: TLabel;
+begin
+
+  try
+    if formdb = nil then formdb := Tformdb.Create(self);
+    tmpdokid                    := formdb.getno(strtoint(kn), table, sb);
+  except tmpdokid               := 0;
+
   end;
 
-  procedure Tformmain.npcError(Sender: TObject; AException: Exception);
-  var
-    item : string;
-    index: Integer;
-  begin
-    item := npc.getDatastring;
-    if not ftpcollectorlist.Find(item, index) then addtolist(item);
-    // Showmessage('derzeit nicht verbunden mit pipe');
-    // if not isexerunning then
+end;
 
-    if not connectToPipe then showmessage('pipe kann nicht geöffnet werden');
+function Tformmain.setkundennummern(kdnn: TList<Integer>): Boolean;
+begin
+  Result            := false;
+  try kundennummern := kdnn;
+  except
+    ;
+  end;
+  Result := true
+end;
+
+procedure Tformmain.setliegenschaftsdaten(liegg, nn: string);
+var
+  query                : string;
+  prefix               : string;
+  lie                  : Tedit;
+  dic                  : TDictionary<string, string>;
+  database, wherestring: string;
+  list                 : TStringList;
+  abrdat               : TMaskEdit;
+  abrechnungsende      : string;
+  vermerkstring        : String;
+  ortstring            : string;
+  parent               : TPanel;
+  vermheight           : Integer;
+  notexisting          : Boolean;
+  voll                 : Tframebase;
+begin
+
+  case ptabellen.activepageindex of
+    0: voll := vollzwischen;
+    1: voll := vollmont;
+    // 2: voll   := vollnutzer;
+    3: voll := vollenergie;
+    4: voll := vollrekl;
+  else voll := vollzwischen;
   end;
 
-  procedure Tformmain.resetadrclick(Sender: TObject);
+  vermheight := 677;
+  prefix     := getprefix(pagerspeicher.activepageindex);
+  if prefix = 'e' then begin
+    framen.eestrasse.Text      := '';
+    framen.eeort.Text          := '';
+    framen.eeplz.Text          := '';
+    framen.flipadress.Expanded := true;
+  end;
+  // parent := findcomponent(prefix + 'pparent') as TPanel;
+  parent              := voll.rightparent;
+  pdatenrechts.parent := parent;
+  pdatenrechts.Width  := 370;
+  // pdatenrechts.Height := zgp.Height + 20;
+  pdatenrechts.top := 0;
+  pdatenrechts.Show;
+  pliedaten.Visible := false;
+  list              := TStringList.Create;
+  list.add('PLZ');
+  list.add('Ort');
+  list.add('strasse');
+  list.add('Databr');
+  list.add('vermerke');
+  database    := 'DANLSUC';
+  wherestring := ' WHERE lienr =  ' + liegg;
+  dic         := formdb.get(database, wherestring, list);
+  if dic.Count = 0 then begin
+    pdatenrechts.Caption := 'Diese Liegenschaft existiert nicht';
+    notexisting          := true;
+    if prefix = 'e' then framen.cbpseudo.Checked := notexisting;
+
+    exit;
+  end;
+  eplz.Caption := dic.Items['PLZ'];
+  ortstring    := dic.Items['Ort'];
+  // if Length(ortstring) > 13 then
+  // ortstring := getmultilinestring(ortstring, 13);
+  eort.Caption  := ortstring;
+  vermerkstring := StringReplace(dic.Items['vermerke'], '' + #10, #13#10,
+    [rfReplaceAll, rfignorecase]);
+  vermerke.Text    := vermerkstring;
+  estrasse.Caption := dic.Items['strasse'];
+
+  lliegenschaftsdaten.Show;
+  pliedaten.Show;
+
+  if vermheight < (vermerke.Lines.Count + 5) * abs(vermerke.Font.Height) then
+      vermerke.ScrollBars  := ssVertical
+  else vermerke.ScrollBars := ssNone;
+  if vermheight > ((vermerke.Lines.Count + 5) * abs(vermerke.Font.Height)) then
   begin
-    framen.eestrasse.Text := '';
-    framen.eeort.Text     := '';
-    framen.eeplz.Text     := '';
+    // Bottom = originalhöhe + 10 - 74 - texthöhe
+    vermerke.Margins.bottom := vermerke.parent.Height + 10 -
+      ((vermerke.Lines.Count + 5) * abs(vermerke.Font.Height)) - vermerke.top;
+  end;
+  shapeverm.top    := vermerke.top - 1;
+  shapeverm.Left   := vermerke.Left - 1;
+  shapeverm.Height := vermerke.Height + 2;
+  shapeverm.Width  := vermerke.Width + 2;
+end;
+
+procedure Tformmain.setliegenschaftsdaten;
+var
+  query                : string;
+  prefix               : string;
+  dic                  : TDictionary<string, string>;
+  database, wherestring: string;
+  list                 : TStringList;
+  abrdat               : TMaskEdit;
+  abrechnungsende      : string;
+  vermerkstring        : String;
+  ortstring            : string;
+  parent               : TPanel;
+  vermheight           : Integer;
+  notexisting          : Boolean;
+  vermerkstringtmp     : string;
+
+  frame: Tframebase;
+begin
+  frame      := getframe;
+  vermheight := 677;
+  prefix     := getprefix(pagerspeicher.activepageindex);
+  if prefix = 'e' then begin
+    framen.eestrasse.Text      := '';
+    framen.eeort.Text          := '';
+    framen.eeplz.Text          := '';
+    framen.flipadress.Expanded := true;
+  end;
+  parent              := (frame.rightparent) as TPanel;
+  pdatenrechts.parent := parent;
+  pdatenrechts.Width  := 370;
+  // pdatenrechts.Height := zgp.Height + 20;
+  pdatenrechts.top := 0;
+  pdatenrechts.Show;
+  pliedaten.Visible := false;
+  list              := TStringList.Create;
+  list.add('PLZ');
+  list.add('Ort');
+  list.add('strasse');
+  list.add('Databr');
+  list.add('vermerke');
+  database    := 'DANLSUC';
+  wherestring := ' WHERE lienr =  ' + frame.eliegenschaft.Text;
+  dic         := formdb.get(database, wherestring, list);
+  if dic.Count = 0 then begin
+    pdatenrechts.Caption := 'Diese Liegenschaft existiert nicht';
+    notexisting          := true;
+    if prefix = 'e' then framen.cbpseudo.Checked := notexisting;
+
+    exit;
+  end;
+  lname1.Caption := '';
+  lname2.Caption := '';
+  eplz.Caption   := dic.Items['PLZ'];
+  ortstring      := dic.Items['Ort'];
+  // if Length(ortstring) > 13 then
+  // ortstring := getmultilinestring(ortstring, 13);
+  eort.Caption     := ortstring;
+  vermerkstringtmp := dic.Items['vermerke'];
+  vermerkstring    := StringReplace(vermerkstringtmp, '' + #10, #13#10,
+    [rfReplaceAll, rfignorecase]);
+  vermerke.Text    := vermerkstring;
+  estrasse.Caption := dic.Items['strasse'];
+  // abrdat := frame.dtabrechnungsende;
+  // abrdat := frame.eabrechnungsende;
+  abrechnungsende := getdatemitpunkt(pagerspeicher.activepageindex,
+    dic.Items['Databr']);
+  // datemitpunkt := dic.Items['Databr'];
+  if abrechnungsende = '' then
+      DateTimeToString(abrechnungsende, 'dd.mm.yy', now);
+  abrechnungsende := getfittingabrechnungsende(abrechnungsende);
+  // abrdat.Text := abrechnungsende;
+  frame.eabrechnungsende.Text := abrechnungsende;
+
+  if prefix = 'e' then begin
+    framen.cbpseudo.Checked    := notexisting;
+    framen.eestrasse.Text      := estrasse.Caption;
+    framen.eeort.Text          := eort.Caption;
+    framen.eeplz.Text          := eplz.Caption;
+    framen.flipadress.Expanded := true;
+
+    if notexisting then framen.eestrasse.SetFocus;
   end;
 
-  procedure Tformmain.resetdate(tem: tfedit);
-  var
-    today, setdate   : string;
-    formatteddatetime: string;
+  lliegenschaftsdaten.Show;
+  pliedaten.Show;
+
+  if vermheight < (vermerke.Lines.Count + 5) * abs(vermerke.Font.Height) then
+      vermerke.ScrollBars  := ssVertical
+  else vermerke.ScrollBars := ssNone;
+  if vermheight > ((vermerke.Lines.Count + 5) * abs(vermerke.Font.Height)) then
   begin
-    DateTimeToString(today, 'dd.mm.yy', now);
-    if (tem.Text = '') then begin
-      tem.Text := today;
+    // Bottom = originalhöhe + 10 - 74 - texthöhe
+    vermerke.Margins.bottom := vermerke.parent.Height + 10 -
+      ((vermerke.Lines.Count + 5) * abs(vermerke.Font.Height)) - vermerke.top;
+  end;
+  shapeverm.top    := vermerke.top - 1;
+  shapeverm.Left   := vermerke.Left - 1;
+  shapeverm.Height := vermerke.Height + 2;
+  shapeverm.Width  := vermerke.Width + 2;
+
+end;
+
+procedure Tformmain.setnutzerdaten(dict: TDictionary<string, string>);
+var
+  name1, name2: string;
+begin
+  name1 := dict.Items['WO5'];
+  name2 := dict.Items['WO6'];
+
+  if (name1 = '') and (name2 = '') then begin
+    lname1.Caption := 'ungültige Nutzernummer';
+    exit;
+  end;
+  try lname1.Caption    := dict.Items['WO5'];
+  except lname1.Caption := 'ungültige Nutzernummer';
+
+  end;
+  try lname2.Caption    := dict.Items['WO6'];
+  except lname2.Caption := '';
+
+  end;
+end;
+
+procedure Tformmain.setzwitab;
+// var tabwidth: integer;
+begin
+  // zwiname.Width := 400;
+  // tabwidth := trunc((gridzwi.Width - zwiname.Width) / 6) -10;
+  // zwidokid.Width := tabwidth;
+  // zwilg.Width := tabwidth;
+  // zwinutzernummer.Width := tabwidth;
+  // zwiposteingang.Width := tabwidth;
+  // zwiimage.Width := tabwidth + 20;
+end;
+
+function Tformmain.showingid: Boolean;
+begin
+  Result := idanzeigen;
+end;
+
+procedure Tformmain.showmontagen;
+var
+  query: string;
+  list : TStringList;
+begin
+  // NxDBTextColumn4.Visible := true;
+  //
+  // NxDBTextColumn4.FieldName := auftragsnummer;
+  // NxDBTextColumn4.Header.Caption := 'Auftragsnummer';
+  list := TStringList.Create;
+  list.add('*');
+  // list.add(Nutzernummer);
+  // list.add(dateiname);
+  // list.add(auftragsnummer);
+  // list.add(Posteingang);
+  // list.add(abrechnungsende);
+  // list.add('Dokumentid');
+  // formdb.doquery(formdb.querymon, table_mon, ' WHERE kundennummer = ' + kn +
+  // ' order by Dokumentid desc ;', list);
+  // filldb(formdb.dsmon);
+
+  formdb.querymon.SQL.clear;
+  formdb.querymon.SQL.Text := 'SELECT * FROM ' + montage +
+    ' WHERE kundennummer = ' + kn;
+  formdb.querymon.Open;
+
+  filldb(formdb.dsmon, gridmon);
+  // query := 'SELECT Dokumentid, Liegenschaft,  Nutzernummer, Posteingang, Einbaudatum,'
+  // + '   Notizen   ' + 'FROM montagen ' + 'WHERE SACHBEARBEITER= ' + sb +
+  // '  AND Kundennummer= ' + kn + ' order by Dokumentid desc';
+
+end;
+
+procedure Tformmain.shownutzerlisten;
+
+var
+  query: string;
+  list : TStringList;
+begin
+
+  list := TStringList.Create;
+  list.add('*');
+  formdb.doquery(formdb.querynuliste, table_nut, ' WHERE kundennummer = ' + kn +
+    ' order by Dokumentid desc ;', list);
+  // filldb(formdb.dsdokumente);
+
+end;
+
+procedure Tformmain.showreklamation;
+
+var
+  query: string;
+  list : TStringList;
+begin
+
+  list := TStringList.Create;
+  list.add('*');
+  // list.add(liegenschaft);
+  // list.add(dateiname);
+  // list.add(Nutzernummer);
+  // list.add(Posteingang);
+  // list.add('Dokumentid');
+  formdb.doquery(formdb.queryrekl, table_rekl, ' WHERE kundennummer = ' + kn +
+    ' order by Dokumentid desc ;', list);
+  // filldb(formdb.dsdokumente);
+
+end;
+
+procedure Tformmain.showupdate;
+begin
+  // pneueversionverfügbar.Visible := true;
+end;
+
+procedure Tformmain.showzwischenablesungen;
+var
+  list: TStringList;
+begin
+  if not assigned(formdb) then formdb := Tformdb.Create(self);
+  list                                := TStringList.Create;
+  list.add('*');
+  formdb.queryzwi.SQL.clear;
+  formdb.queryzwi.SQL.Text := 'SELECT * FROM ' + zwischenablesung +
+    ' WHERE kundennummer = ' + kn;
+  formdb.queryzwi.Open;
+
+  filldb(formdb.dszwi, gridzwi);
+end;
+
+procedure Tformmain.sortenergie(ACol: Integer; ascbool: Boolean);
+
+var
+  QueryString: string;
+  asc        : string;
+begin
+  QueryString := 'SELECT * FROM energieausweis'; // Query statement
+  if gridenergie.Columns[ACol].FieldName = '' then exit;
+
+  if ascbool then asc := 'ASC'
+  else asc            := 'DESC';
+  QueryString         := QueryString + ' ORDER BY ' + gridenergie.Columns[ACol]
+    .FieldName + ' ' + asc;
+  formdb.queryen.SQL.clear;
+  formdb.queryen.SQL.Text := QueryString;
+  formdb.queryen.Open;
+end;
+
+procedure Tformmain.sortmontagen(ACol: Integer; ascbool: Boolean);
+var
+  QueryString: string;
+  asc        : string;
+begin
+  QueryString := 'SELECT * FROM montagen'; // Query statement
+  if gridmon.Columns[ACol].FieldName = '' then exit;
+
+  if ascbool then asc := 'ASC'
+  else asc            := 'DESC';
+  QueryString := QueryString + ' ORDER BY ' + gridmon.Columns[ACol].FieldName +
+    ' ' + asc;
+
+  formdb.querymon.SQL.clear;
+  formdb.querymon.SQL.Text := QueryString;
+  formdb.querymon.Open;
+end;
+
+function Tformmain.splitnumber: Boolean;
+begin
+  Result := dosplitnumber;
+end;
+
+procedure Tformmain.sortnutzer(ACol: Integer; ascbool: Boolean);
+
+var
+  QueryString: string;
+  asc        : string;
+  list       : TStringList;
+
+begin
+  list := TStringList.Create;
+  list.add('*');
+  QueryString := 'SELECT * FROM nutzerlisten'; // Query statement
+  if gridnutzerliste.Columns[ACol].FieldName = '' then exit;
+
+  if ascbool then asc := 'ASC'
+  else asc            := 'DESC';
+  // QueryString := QueryString + ' ORDER BY ' + gridnutzerliste.Columns[ACol]
+  // .FieldName + ' ' + asc;
+  QueryString := 'order by Liegenschaft desc';
+  // formdb.querynutzer.SQL.clear;
+  // formdb.querynutzer.SQL.Text := QueryString;
+  // formdb.querynutzer.Open;
+  formdb.doquery(formdb.querynuliste, table_nut, ' WHERE kundennummer = ' + kn +
+    ' ' + QueryString, list);
+  // filldb(formdb.dsdokumente);
+
+end;
+
+procedure Tformmain.sortrekl(ACol: Integer; Ascending: Boolean);
+var
+  QueryString: string;
+  asc        : string;
+begin
+
+  QueryString := 'SELECT * FROM reklamation'; // Query statement
+  if gridrek.Columns[ACol].FieldName = '' then exit;
+
+  if Ascending then asc := 'ASC'
+  else asc              := 'DESC';
+  QueryString := QueryString + ' ORDER BY ' + gridrek.Columns[ACol].FieldName +
+    ' ' + asc;
+  formdb.queryrekl.SQL.clear;
+  formdb.queryrekl.SQL.Text := QueryString;
+  formdb.queryrekl.Open;
+end;
+
+// -----------------------------------------
+
+procedure Tformmain.sortzwischen(ACol: Integer; ascbool: Boolean);
+var
+  QueryString: string;
+  asc        : string;
+begin
+
+  QueryString := 'SELECT * FROM zwischenablesung'; // Query statement
+  if gridzwi.Columns[ACol].FieldName = '' then exit;
+
+  if ascbool then asc := 'ASC'
+  else asc            := 'DESC';
+  QueryString := QueryString + ' ORDER BY ' + gridzwi.Columns[ACol].FieldName +
+    ' ' + asc;
+  formdb.queryzwi.SQL.clear;
+  formdb.queryzwi.SQL.Text := QueryString;
+  formdb.queryzwi.Open;
+end;
+
+// ------------------------------
+procedure Tformmain.tabenergieausweisShow(Sender: TObject);
+begin
+
+  try
+    if not assigned(formdb) then exit;
+
+    formdb.queryen.Filtered := false;
+    showenergieausweise;
+  except
+    ;
+  end;
+end;
+
+procedure Tformmain.tabmontagenShow(Sender: TObject);
+begin
+  if not assigned(formdb) then exit;
+
+  try showmontagen;
+  except
+    ;
+
+  end;
+end;
+
+// ------------------------------
+procedure Tformmain.tabnutzerlistenShow(Sender: TObject);
+begin
+  if not assigned(formdb) then exit;
+
+  try shownutzerlisten;
+  except
+    ;
+
+  end;
+end;
+
+// --------------------------------------
+procedure Tformmain.tabreklamationShow(Sender: TObject);
+begin
+  if not assigned(formdb) then exit;
+
+  try showreklamation;
+  except
+    ;
+  end;
+end;
+
+procedure Tformmain.tabspeichernHide(Sender: TObject);
+begin
+
+end;
+
+// ------------------------------
+procedure Tformmain.tabzwischenShow(Sender: TObject);
+begin
+  if not assigned(formdb) then exit;
+  try showzwischenablesungen;
+  except
+    on e: Exception do begin
+      showmessage(e.Message);
     end;
 
   end;
+end;
+// ------------------------------
 
-  procedure Tformmain.showauftrag(Sender: TObject);
-  begin
-    formauftragsart.Show;
-  end;
+procedure Tformmain.hidecontrol(Sender: TObject);
+var
+  prefix  : string;
+  lfile   : TLabel;
+  filename: string;
 
-  procedure Tformmain.NxButton3Click(Sender: TObject);
-  begin
-    NxPanel1.hide;
-    Panel4.Show;
-  end;
+begin
+  // prefix := getprefix(pagerspeicher.activepageindex);
+  // lfile := FindComponent(prefix + 'lfiletype') as TLabel;
+  // filetypecaption := lfile.Caption;
+end;
 
-  procedure Tformmain.banzeigeverlassen(Sender: TObject);
-  begin
-    pagermain.ActivePage     := tabspeichern;
-    pagerspeicher.ActivePage := tabzwischen;
-  end;
+// ------------------------------
 
-  procedure Tformmain.NxComboBox1Change(Sender: TObject);
-  begin
-    // var
-    // query: string;
-    // begin
-    // case NxComboBox1.ItemIndex of
-    // 0: showzwischenablesungen;
-    // 1: showmontagen;
-    // 2: shownutzerlisten;
-    // end;
+// ------------------------------
+procedure Tformmain.TangebotsanfragenShow(Sender: TObject);
+var
+  number: string;
+begin
+  try
+    if not assigned(formdb) then exit;
 
-  end;
+    frameangebot.eid.SetFocus;
 
-  procedure Tformmain.NxDBButtonColumn1ButtonClick(Sender: TObject);
-  begin
-    showmessage('klicked');
-  end;
-
-  procedure Tformmain.NxDBButtonColumn1SetCell(Sender: TObject;
-    ACol, ARow: Integer; CellRect: TRect; CellState: TCellState);
-  var
-    rect: TRect;
-  begin
-    rect := TRect.Create(0, 0, 20, 20);
-    DrawFrameControl(Canvas.Handle, rect, DFC_BUTTON, DFCS_BUTTONPUSH);
-  end;
-
-  procedure Tformmain.NxGlyphButton1Click(Sender: TObject);
-
-  var
-    dbgrid: TNextDBGrid;
-  begin
-    dec(selectedRow);
-    dbgrid := getdb;
-    try
-      dbgrid.selectedRow := selectedRow;
-      fillvollbild(dbgrid, selectedRow);
-    finally
-      // dbgrid.Free;
-    end;
-
-  end;
-
-  procedure Tformmain.NxGlyphButton2Click(Sender: TObject);
-  begin
-    vorclick(nil);
-  end;
-
-  procedure Tformmain.NxGlyphButton3Click(Sender: TObject);
-  var
-    dbgrid: TNextDBGrid;
-  begin
-    pagermain.ActivePage := tabanzeige;
-    dbgrid               := getdb;
-
-    dbgrid.selectedRow           := selectedRow;
-    dbgrid.Selected[selectedRow] := true;
-    dbgrid.ScrollToRow(selectedRow);
-    gridzwiClick(dbgrid);
-  end;
-
-  procedure Tformmain.NxTabSheet1Hide(Sender: TObject);
-  begin
-    // fid.Visible := true;
-    // NxTabSheet1.Visible := false;
-  end;
-
-  procedure Tformmain.NxTabSheet1Show(Sender: TObject);
-  begin
-    // fid.Visible := false;
-  end;
-
-  procedure Tformmain.znxtelefonnotizChange(Sender: TObject);
-  var
-    prefix  : string;
-    frame   : Tframebase;
-    eanrufer: Tedit;
-  begin
-    frame    := getframe;
-    prefix   := getprefix(pagerspeicher.activepageindex);
-    eanrufer := frame.FindComponent('eanrufer') as Tedit;
-    if (Sender as TNxFlipPanel).Expanded and
-      not((frame.FindComponent('eliegenschaft') as tfedit).Focused) then
-        eanrufer.SetFocus;
-
-  end;
-
-  procedure Tformmain.zwivollbildSetCell(Sender: TObject; ACol, ARow: Integer;
-    CellRect: TRect; CellState: TCellState);
-  begin
-
-    ImageList1.Draw(gridzwi.Canvas, CellRect.Left, CellRect.top, 1);
-  end;
-
-  procedure Tformmain.pagerspeicherChanging(Sender: TObject; PageIndex: Integer;
-    var AllowChange: Boolean);
-  begin
-    // sleep(100);
-  end;
-
-  procedure Tformmain.pagerspeicherEnter(Sender: TObject);
-  begin
-    // fid.Visible := true;
-  end;
-
-  procedure Tformmain.pagerspeicherExit(Sender: TObject);
-  begin
-    // fid.Visible := false;
-  end;
-
-  procedure Tformmain.panelfocus(panel: TPanel);
-  begin
-    panel.Font.Style := [fsbold];
-    panel.BevelKind  := TBevelKind.bkSoft;
-
-  end;
-
-  procedure Tformmain.popup;
-  begin
-    TrayIcon1.Visible := false;
-    Show();
-    WindowState := wsNormal;
-    Application.BringToFront();
-    minimized := false;
-  end;
-
-  procedure Tformmain.pseudocheckChange(Sender: TObject);
-  begin
-
-    framen.flipadress.Expanded := (Sender as TNxCheckBox).Checked;
-    framen.eestrasse.SetFocus;
-  end;
-
-  procedure Tformmain.pzClick(Sender: TObject);
-  begin
-    pk.Font.Style := [];
-    pm.Font.Style := [];
-    pz.Font.Style := [];
-    pr.Font.Style := [];
-
-    pk.BevelKind := TBevelKind.bkNone;
-    pm.BevelKind := TBevelKind.bkNone;
-    pz.BevelKind := TBevelKind.bkNone;
-    pr.BevelKind := TBevelKind.bkNone;
-
-    // pr.hide;
-
-    (Sender as TPanel).Font.Style                := [fsbold];
-    (Sender as TPanel).BevelKind                 := TBevelKind.bkSoft;
-    if Sender = pz then pagerspeicher.ActivePage := TZwischenablesung;
-    if Sender = pk then pagerspeicher.ActivePage := TKostenermittlung;
-    if Sender = pm then pagerspeicher.ActivePage := TMontage;
-    if Sender = pr then begin
-      if pr.Caption = '' then exit;
-      ComboBox1Click(pr);
-
-    end;
-
-  end;
-
-  procedure Tformmain.pzMouseEnter(Sender: TObject);
-  begin
-    (Sender as TPanel).Font.Style := [fsbold];
-  end;
-
-  procedure Tformmain.pzMouseLeave(Sender: TObject);
-  begin
-    (Sender as TPanel).Font.Style := [];
-  end;
-
-  procedure Tformmain.tNutzerlisteShow(Sender: TObject);
-  var
-    number: string;
-  begin
+    resetdate(frameangebot.dtposteingang);
+    resetdate(frameangebot.eposteingang);
+    frameangebot.lfiletype.Caption := filetypecaption;
     resetpanelfonts;
     panelfocus(pr);
-    pr.Caption := 'Nutzerliste';
-    try
+    pr.Caption := 'Angebotsanfrage';
+  Except outputdebugstring('kein focus');
+  end;
+  // updateid(Angebotsint);
+end;
+
+// ------------------------------
+procedure Tformmain.tAuftragShow(Sender: TObject);
+var
+  list: TStringList;
+  item: string;
+begin
+  try
+    frameauftrag.eid.SetFocus;
+
+    resetdate(frameauftrag.dtposteingang);
+    resetdate(frameauftrag.eposteingang);
+  except outputdebugstring('kein Focus');
+  end;
+  list := TStringList.Create;
+  if FileExists(getauftragsdaten) then list.LoadFromFile(getauftragsdaten);
+  try
+    frameauftrag.cbselectauftrag.Items.clear;
+
+    for item in list do begin
+      frameauftrag.cbselectauftrag.Items.add(item);
+    end;
+  except
+
+  end;
+end;
+
+// ------------------------------
+procedure Tformmain.TenergieausweisShow(Sender: TObject);
+var
+  number: string;
+begin
+  if not assigned(framen) then exit;
+
+  try
+    framen.flipadress.Expanded := false;
+    resetdate(framen.dtposteingang);
+    resetdate(framen.eposteingang);
+    framen.lfiletype.Caption := filetypecaption;
+    framen.eid.SetFocus;
+    resetpanelfonts;
+    panelfocus(pr);
+    pr.Caption := 'Energieausweis';
+  except
+    ;
+  end;
+end;
+
+procedure Tformmain.Tframebasefilter1banwendenClick(Sender: TObject);
+var
+  query: string;
+begin
+  with framezwifilter do begin
+    banwendenClick(Sender);
+
+  end;
+  with formdb do begin
+    // doquery(querydokumente, zwischenablesung, query, getzwivalues);
+    // querydokumente.Filter := '
+  end;
+end;
+
+procedure Tformmain.Tframebasefilter1esellgExit(Sender: TObject);
+var
+  filter: string;
+begin
+  try
+    framezwifilter.esellgExit(Sender);
+
+    filter := framezwifilter.getfilter;
+    setfilter(formdb.queryzwi, filter);
+
+  except
+    ;
+
+  end;
+
+end;
+
+procedure Tformmain.Timer1Timer(Sender: TObject);
+begin
+  lookforfile;
+end;
+
+procedure Tformmain.Timer2Timer(Sender: TObject);
+begin
+  try piupdate.Visible := worker.checkUpdate;
+  except
+
+  end;
+end;
+
+procedure Tformmain.Timer3Timer(Sender: TObject);
+var
+  list     : TStringList;
+  sendingel: string;
+begin
+  list := TStringList.Create;
+  try
+    ListFileDir(getCollectorfolder, list);
+    if (list.Count = 0) then exit;
+    sendingel := worker.createrescue(list[0]);
+    npc.Send(sendingel);
+  except
+    ;
+
+  end;
+
+end;
+
+procedure Tformmain.Timer4Timer(Sender: TObject);
+begin
+  if idnotset then getallids;
+
+end;
+
+procedure Tformmain.TKostenermittlungShow(Sender: TObject);
+var
+  number: string;
+begin
+  try
+    framekosten.eid.SetFocus;
+    resetdate(framekosten.dtposteingang);
+    resetdate(framekosten.eposteingang);
+    framekosten.lfiletype.Caption := filetypecaption;
+    resetpanelfonts;
+    panelfocus(pk);
+
+  except
+    ;
+  end;
+
+end;
+
+procedure Tformmain.TMontageShow(Sender: TObject);
+var
+  number: string;
+begin
+  try
+    framemontage.eid.SetFocus;
+    resetdate(framemontage.dtposteingang);
+    resetdate(framemontage.eposteingang);
+    framemontage.lfiletype.Caption := filetypecaption;
+    resetpanelfonts;
+    panelfocus(pm);
+  except outputdebugstring('energieausweis kann focus nicht erhalten');
+  end;
+end;
+// ----------------------------------
+
+procedure Tformmain.treklamaionShow(Sender: TObject);
+var
+  number: string;
+begin
+
+  try
+    framereklamation.eid.SetFocus;
+    resetdate(framereklamation.dtposteingang);
+    resetdate(framereklamation.eposteingang);
+    framereklamation.lfiletype.Caption := filetypecaption;
+    resetpanelfonts;
+    panelfocus(pr);
+    pr.Caption := 'Reklamation';
+  except outputdebugstring('energieausweis kann focus nicht erhalten');
+  end;
+  // updateid(ReklamationINT);
+end;
+
+// -------------------------
+procedure Tformmain.tsonstigesShow(Sender: TObject);
+var
+  number: string;
+begin
+  try
+    resetpanelfonts;
+    panelfocus(pr);
+    pr.Caption := 'Sonstiges';
+    resetdate(framesonstiges.dtposteingang);
+    resetdate(framesonstiges.eposteingang);
+    framesonstiges.lfiletype.Caption := filetypecaption;
+    framesonstiges.eid.SetFocus;
+  except
+    ;
+  end;
+  // updateid(SonstigesInt);
+end;
+
+// ---------------------------
+
+procedure Tformmain.TVerträgeShow(Sender: TObject);
+var
+  number: string;
+begin
+  try
+    resetdate(framevertrag.dtposteingang);
+    resetdate(framevertrag.eposteingang);
+    framevertrag.lfiletype.Caption := filetypecaption;
+    framevertrag.eid.SetFocus;
+    resetpanelfonts;
+    panelfocus(pr);
+    pr.Caption := 'Verträge';
+  except
+    ;
+  end;
+  // updateid(Vertragsint);
+end;
+
+procedure Tformmain.TZwischenablesungPaint(Sender: TObject);
+begin
+  if not initialized then begin
+    Application.ProcessMessages;
+    // thready := tdbthread.Create(false);
+    initialized := true;
+  end;
+end;
+
+procedure Tformmain.TZwischenablesungShow(Sender: TObject);
+var
+  number: string;
+begin
+  with framezwi do begin
+    resetdate(dtposteingang);
+    resetdate(eposteingang);
+    lfiletype.Caption := filetypecaption;
+    resetpanelfonts;
+    panelfocus(pz);
+    try eid.SetFocus;
     except
-      ;
+
     end;
-    resetdate(framenutzer.dtposteingang);
-    // resetdate(framenutzer.eposteingang);
   end;
+end;
 
-  procedure Tformmain.TrayIcon1DblClick(Sender: TObject);
-  begin
-    Show();
-    WindowState := wsNormal;
+procedure Tformmain.updateid(Tag: Integer);
+var
+  prefix      : string;
+  eeid        : tfedit;
+  selectedFile: string;
+  lists       : array [0 .. 1] of TListBox;
+  helper      : Integer;
+begin
+  lists[0]     := lbeingang;
+  lists[1]     := lbausgang;
+  prefix       := getprefix(Tag);
+  selectedFile := getselected(lists);
 
-    { Show the animated tray icon and also a hint balloon. }
-    TrayIcon1.Visible := false;
-    TrayIcon1.Animate := false;
-    minimized         := false;
-  end;
-
-  procedure Tformmain.edtposteingangExit(Sender: TObject);
-
-  var
-    day, month, year: Integer;
-    Mask            : TMaskEdit;
-    date            : string;
-    valid           : Boolean;
-  begin
-    valid := true;
-    Mask  := Sender as TMaskEdit;
-    date  := Mask.Text;
-    if AnsiStartsText('  ', date) or AnsiStartsText('__', date) then exit;
-
-    day   := strtoint(trimright(copy(date, 1, 2)));
-    month := strtoint(trimright(copy(date, 4, 2)));
-    year  := strtoint(trimright(copy(date, 7, 4)));
-
-    if (month < 1) or (month > 12) then begin
-      valid := false;
-    end;
-    if day < 0 then begin
-      valid := false;
-    end;
-    case month of
-      1, 3, 5, 7, 8, 12: if day > 31 then begin
-          valid := false;
-        end;
-      2: if day > 29 then begin
-          valid := false;
-        end;
-      4, 6, 9, 11: if day > 30 then begin
-          valid := false;
-        end;
-    end;
-    if not valid then begin
-      Mask.Color := clred;
-      Mask.SetFocus;
-      Mask.SelStart := 0;
-    end
-    else Mask.Color := clWhite;
-
-  end;
-
-  procedure Tformmain.reset(frame: Tframebase);
-  var
-    i, size, number, pheight: Integer;
-    prefix                  : string;
-    Tag                     : Integer;
-  begin
-    number := 0;
-    try frame.eid.SetFocus;
-    except outputdebugstring('kann focus nicht erhalten');
-    end;
-    frame.bsave.Enabled          := true;
-    frame.lfiletype.Caption      := '';
-    frame.eid.Text               := '';
-    pdatenrechts.Visible         := false;
-    telefonieren                 := false;
-    frame.dtposteingang.Text     := formatDateTimeOhneTrenner(now);
-    frame.eposteingang.Text      := formatedatefrom4jto2j(DateToStr(now));
-    frame.eliegenschaft.Text     := '';
-    frame.menotizen.Text         := '';
-    frame.dtabrechnungsende.Text := '__.__.__';
-
-    Tag := gettag(pagerspeicher.ActivePage);
+  eeid := FindComponent(prefix + 'eid') as tfedit;
+  if AnsiStartsStr('gescannt', selectedFile) then begin
+    // getallids;
     case Tag of
-      ZwischenablsgINT: begin
-          framezwi.enutzernummer.Text := '';
-          framezwi.enutzername.Text   := '';
-          framezwi.enutzername.clear;
-          framezwi.enutzernummer.clear;
-        end;
-      MontageINT: begin
-          framemontage.eauftragsnummer.Text := '';
-          framemontage.dtmontage.Text       := '__.__.__';
-          framemontage.emontage.clear;
-          framemontage.rgerledigt.ItemIndex := 0;
-        end;
-      ReklamationINT: begin
-          framereklamation.dtmontage.Text := '__.__.__';
-          framereklamation.emontage.clear;
-          framereklamation.rgerledigt.ItemIndex := 0;
-          framereklamation.eauftragsnummer.Text := '';
-        end;
-      EnergieausweisINT: begin
-          framen.cbpseudo.Checked := false;
-          framen.eestrasse.Text   := '';
-          framen.eeplz.Text       := '';
-          framen.eeort.Text       := '';
-        end;
+      ZwischenablsgINT: helper  := zid;
+      MontageINT: helper        := mid;
+      SonstigesInt: Helper      := sid;
+      ReklamationINT: Helper    := rid;
+      EnergieausweisINT: helper := eid;
+      Nutzerint: helper         := nid;
+      Vertragsint: helper       := vid;
+      Auftragsint: helper       := aid;
+      Angebotsint: helper       := naid;
+      KostenINT: helper         := kid;
     end;
+    eeid.Text := Format('%.4d', [helper]);
+    exit;
   end;
+  eeid.Text := '---';
 
-  procedure Tformmain.resetdate(tem: TMaskEdit);
-  var
-    today, setdate   : string;
-    formatteddatetime: string;
-  begin
-    DateTimeToString(today, 'dd.mm.yy', now);
-    if (tem.Text = '  .  .  ') then begin
-      tem.Text := today;
-    end;
+end;
 
-  end;
-
-  procedure Tformmain.resetids;
-  var
-    fid    : tfedit;
-    i, size: Integer;
-    frame  : Tframebase;
-  begin
-    frame := getframe;
-
-    size             := length(speicherframes);
-    for i            := 0 to size - 1 do begin
-      frame.eid.Text := '';
-    end;
-  end;
-
-  procedure Tformmain.resetlisten;
-  begin
-    try
-      selectedlb.clear;
-      selectedlist.clear;
-    except outputdebugstring('keine Liste ausgewählt');
-
-    end;
-  end;
-
-  procedure Tformmain.resetpanelfonts;
-  begin
-
-    pz.Font.Style := [];
-    pm.Font.Style := [];
-    pk.Font.Style := [];
-    pr.Font.Style := [];
-    // pr.Caption := '';
-
-    pk.BevelKind := TBevelKind.bkNone;
-    pm.BevelKind := TBevelKind.bkNone;
-    pz.BevelKind := TBevelKind.bkNone;
-    pr.BevelKind := TBevelKind.bkNone;
-  end;
-
-  procedure Tformmain.workwithfile(filename: string);
-  begin
-  end;
-
-  procedure Tformmain.zdtauszugKeyPress(Sender: TObject; var Key: Char);
-  begin
-    if Key = #13 then begin
-      Key := #0;
-      Perform(WM_NextDlgCtl, 0, 0);
-    end;
+procedure Tformmain.vollzwischenbsaveClick(Sender: TObject);
+var
+  dateiname: string;
+  dbgrid   : TNextDBGrid;
+begin
+  case pvollbilder.activepageindex of
+    0: dbgrid := gridzwi;
+    1: dbgrid := gridmon;
+    4: dbgrid := gridnutzerliste;
+    2: dbgrid := gridenergie;
+    3: dbgrid := gridrek;
 
   end;
+  dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.asstring);
+  showDocument(dateiname);
+end;
 
-  procedure Tformmain.zdtposteingangKeyPress(Sender: TObject; var Key: Char);
-  begin
-    Key := ignoreNonNumerics(Key);
+procedure Tformmain.vorclick(Sender: TObject);
+var
+  dbgrid: TNextDBGrid;
+begin
+  inc(selectedRow);
+  dbgrid := getdb;
+  try
+    dbgrid.selectedRow := selectedRow;
+    fillvollbild(dbgrid, selectedRow);
+  finally
+    // dbgrid.Free;
   end;
 
-  procedure Tformmain.zeliegenschaftExit(Sender: TObject);
-  var
-    lab         : Tedit;
-    S           : String;
-    kunde       : string;
-    len         : Integer;
-    prefix      : string;
-    liegenschaft: TLabel;
-    dict        : TDictionary<string, string>;
-  begin
-
-    lab                  := Sender as Tedit;
-    pimage.Visible       := false;
-    iSTAtusfalse.Visible := false;
-    prefix               := getprefix(pagerspeicher.activepageindex);
-    if pverarbeitungsstatus.Visible then pverarbeitungsstatus.Visible := false;
-    S := lab.Text;
-
-    case lab.Tag of
-      // 0: begin // dokumentid
-      // if lab.Text = '---' then exit;
-      // lab.Text := StringOfChar('0', 4 - length(S)) + S;
-      // end;
-      1: // Liegenschaft
-        begin
-          lab.Color := clWindow;
-          lab.Hint  := '';
-          { "erfolgreich gespeichert" ausblenden, falls sichtbar }
-          if IStatusok.Visible then begin
-            IStatusok.Visible := false;
-            pimage.Visible    := false;
-          end;
-          if (length(lab.Text) = 7) then begin
-            setliegenschaftsdaten;
-            exit;
-          end;
-          if (length(lab.Text) > 5) then begin
-            lab.SetFocus;
-            lab.Color := clred;
-            lab.Hint  :=
-              'entweder gesamte Liegenschaftsnummer angeben oder maximal 5 Zeichen';
-            exit;
-          end;
-          if (length(lab.Text) = 0) then exit;
-          kunde    := formmain.getkundennummer;
-          len      := length(kunde);
-          len      := 7 - len;
-          lab.Text := kunde + StringOfChar('0', len - length(S)) + S;
-          setliegenschaftsdaten;
-        end;
-      2: // Nutzernummer
-        begin
-          if length(lab.Text) = 0 then exit;
-
-          lab.Text := StringOfChar('0', 3 - length(S)) + S;
-
-          try
-            dict := worker.getnutzerdaten(lab.Text, kn,
-              (FindComponent(prefix + 'eliegenschaft') as tfedit).Text);
-            setnutzerdaten(dict);
-          except
-            ;
-
-          end;
-        end;
-    end;
-  end;
-
-  procedure Tformmain.zenutzernameExit(Sender: TObject);
-  begin
-    // if zenutzername.Text = '' then zenutzername.Text := 'LEERSTAND';
-  end;
-
-  procedure Tformmain.zlnameKeyDown(Sender: TObject; var Key: Word;
-    Shift: TShiftState);
-  begin
-    // zenutzername.Hint := zenutzername.Text;
-  end;
-
-  procedure Tformmain.zlnameKeyPress(Sender: TObject; var Key: Char);
-
-  begin
-    Key := ansiuppercase(Key)[1];
-    // zenutzername.Hint := zenutzername.Text + Key;
-  end;
-
-  procedure Tformmain.save();
-  var
-    number      : Integer;
-    filename    : string;
-    hastoscan   : Boolean;
-    filenamelist: TStringList;
-    size, i     : Integer;
-    prefix      : string;
-    bsave       : TNxButton;
-    frame       : Tframebase;
-  begin
-    frame               := getframe;
-    successful          := false;
-    frame.bsave.Enabled := false;
-    try
-      filenamelist := TStringList.Create;
-      try size     := selectedlb.Count;
-      except size  := -1;
-      end;
-      for i := 0 to size - 1 do begin
-        if selectedlb.Selected[i] then
-            filenamelist.add(IncludeTrailingPathDelimiter(selecteddir) +
-            selectedlist[i]);
-      end;
-      pimage.Visible       := false;
-      IStatusok.Visible    := false;
-      iSTAtusfalse.Visible := false;
-
-      // pverarbeitungsstatus.visible := true;
-      lhochruntergeladen.Caption := 'hochgeladen';
-
-      Killprocess(procidwin);
-      Tag        := gettag(pagerspeicher.ActivePage);
-      successful := worker.dowork(filenamelist, Tag);
-      if successful then begin
-        resetlisten;
-        if idanzeigen then getallids;
-        pimage.Visible    := true;
-        IStatusok.Visible := true;
-        lliegenschaftsdaten.hide;
-        reset(frame);
-      end else begin
-        pimage.Visible       := true;
-        pimage.Caption       := 'nicht gespeichert';
-        iSTAtusfalse.Visible := true;
-      end;
-    finally
-
-      lookforfile;
-      getallids;
-    end;
-  end;
-
-  function Tformmain.saveanrufer(anrufer, telefonnummer: string): Boolean;
-  begin
-    self.anrufer       := anrufer;
-    self.telefonnummer := telefonnummer;
-    Result             := true;
-  end;
-
-  function Tformmain.saveSettings(pw, kn, sb, vzscan, vzpost: string;
-    shownumber, splitno: Boolean): Boolean;
-  begin
-    self.passwort     := pw;
-    self.kn           := kn;
-    self.sb           := sb;
-    self.scanvz       := vzscan;
-    self.postausgverz := vzpost;
-    writeToIni(pw, kn, sb, vzscan, vzpost, shownumber, splitno);
-    lsachbearbeiter.Caption := 'Sachbearbeiter: ' + sb;
-    lkundennummer.Caption   := 'Kundennummer: ' + kn;
-    idanzeigen              := shownumber;
-    dosplitnumber           := splitno;
-    getsettings;
-    if idanzeigen then getallids
-    else resetids;
-  end;
-
-  procedure Tformmain.setFile(path: string);
-  begin
-    getFiletype(path);
-  end;
-
-  procedure Tformmain.setfilter(query: tzquery; filter: string);
-  begin
-    query.Filtered := false;
-    query.filter   := filter;
-    query.Filtered := true;
-  end;
-
-  procedure Tformmain.setid(table: string);
-
-  var
-    prefix  : string;
-    eid     : Tedit;
-    act     : Integer;
-    number  : Integer;
-    filetype: TLabel;
-  begin
-
-    try
-      if formdb = nil then formdb := Tformdb.Create(self);
-      tmpdokid                    := formdb.getno(strtoint(kn), table, sb);
-    except tmpdokid               := 0;
-
-    end;
-
-  end;
-
-  function Tformmain.setkundennummern(kdnn: TList<Integer>): Boolean;
-  begin
-    Result            := false;
-    try kundennummern := kdnn;
-    except
-      ;
-    end;
-    Result := true
-  end;
-
-  procedure Tformmain.setliegenschaftsdaten(liegg, nn: string);
-  var
-    query                : string;
-    prefix               : string;
-    lie                  : Tedit;
-    dic                  : TDictionary<string, string>;
-    database, wherestring: string;
-    list                 : TStringList;
-    abrdat               : TMaskEdit;
-    abrechnungsende      : string;
-    vermerkstring        : String;
-    ortstring            : string;
-    parent               : TPanel;
-    vermheight           : Integer;
-    notexisting          : Boolean;
-    voll                 : Tframebase;
-  begin
-
-    case ptabellen.activepageindex of
-      0: voll := vollzwischen;
-      1: voll := vollmont;
-      // 2: voll   := vollnutzer;
-      3: voll := vollenergie;
-      4: voll := vollrekl;
-    else voll := vollzwischen;
-    end;
-
-    vermheight := 677;
-    prefix     := getprefix(pagerspeicher.activepageindex);
-    if prefix = 'e' then begin
-      framen.eestrasse.Text      := '';
-      framen.eeort.Text          := '';
-      framen.eeplz.Text          := '';
-      framen.flipadress.Expanded := true;
-    end;
-    // parent := findcomponent(prefix + 'pparent') as TPanel;
-    parent              := voll.rightparent;
-    pdatenrechts.parent := parent;
-    pdatenrechts.Width  := 370;
-    // pdatenrechts.Height := zgp.Height + 20;
-    pdatenrechts.top := 0;
-    pdatenrechts.Show;
-    pliedaten.Visible := false;
-    list              := TStringList.Create;
-    list.add('PLZ');
-    list.add('Ort');
-    list.add('strasse');
-    list.add('Databr');
-    list.add('vermerke');
-    database    := 'DANLSUC';
-    wherestring := ' WHERE lienr =  ' + liegg;
-    dic         := formdb.get(database, wherestring, list);
-    if dic.Count = 0 then begin
-      pdatenrechts.Caption := 'Diese Liegenschaft existiert nicht';
-      notexisting          := true;
-      if prefix = 'e' then framen.cbpseudo.Checked := notexisting;
-
-      exit;
-    end;
-    eplz.Caption := dic.Items['PLZ'];
-    ortstring    := dic.Items['Ort'];
-    // if Length(ortstring) > 13 then
-    // ortstring := getmultilinestring(ortstring, 13);
-    eort.Caption  := ortstring;
-    vermerkstring := StringReplace(dic.Items['vermerke'], '' + #10, #13#10,
-      [rfReplaceAll, rfignorecase]);
-    vermerke.Text    := vermerkstring;
-    estrasse.Caption := dic.Items['strasse'];
-
-    lliegenschaftsdaten.Show;
-    pliedaten.Show;
-
-    if vermheight < (vermerke.Lines.Count + 5) * abs(vermerke.Font.Height) then
-        vermerke.ScrollBars  := ssVertical
-    else vermerke.ScrollBars := ssNone;
-    if vermheight > ((vermerke.Lines.Count + 5) * abs(vermerke.Font.Height))
-    then begin
-      // Bottom = originalhöhe + 10 - 74 - texthöhe
-      vermerke.Margins.bottom := vermerke.parent.Height + 10 -
-        ((vermerke.Lines.Count + 5) * abs(vermerke.Font.Height)) - vermerke.top;
-    end;
-    shapeverm.top    := vermerke.top - 1;
-    shapeverm.Left   := vermerke.Left - 1;
-    shapeverm.Height := vermerke.Height + 2;
-    shapeverm.Width  := vermerke.Width + 2;
-  end;
-
-  procedure Tformmain.setliegenschaftsdaten;
-  var
-    query                : string;
-    prefix               : string;
-    dic                  : TDictionary<string, string>;
-    database, wherestring: string;
-    list                 : TStringList;
-    abrdat               : TMaskEdit;
-    abrechnungsende      : string;
-    vermerkstring        : String;
-    ortstring            : string;
-    parent               : TPanel;
-    vermheight           : Integer;
-    notexisting          : Boolean;
-    vermerkstringtmp     : string;
-
-    frame: Tframebase;
-  begin
-    frame      := getframe;
-    vermheight := 677;
-    prefix     := getprefix(pagerspeicher.activepageindex);
-    if prefix = 'e' then begin
-      framen.eestrasse.Text      := '';
-      framen.eeort.Text          := '';
-      framen.eeplz.Text          := '';
-      framen.flipadress.Expanded := true;
-    end;
-    parent              := (frame.rightparent) as TPanel;
-    pdatenrechts.parent := parent;
-    pdatenrechts.Width  := 370;
-    // pdatenrechts.Height := zgp.Height + 20;
-    pdatenrechts.top := 0;
-    pdatenrechts.Show;
-    pliedaten.Visible := false;
-    list              := TStringList.Create;
-    list.add('PLZ');
-    list.add('Ort');
-    list.add('strasse');
-    list.add('Databr');
-    list.add('vermerke');
-    database    := 'DANLSUC';
-    wherestring := ' WHERE lienr =  ' + frame.eliegenschaft.Text;
-    dic         := formdb.get(database, wherestring, list);
-    if dic.Count = 0 then begin
-      pdatenrechts.Caption := 'Diese Liegenschaft existiert nicht';
-      notexisting          := true;
-      if prefix = 'e' then framen.cbpseudo.Checked := notexisting;
-
-      exit;
-    end;
-    lname1.Caption := '';
-    lname2.Caption := '';
-    eplz.Caption   := dic.Items['PLZ'];
-    ortstring      := dic.Items['Ort'];
-    // if Length(ortstring) > 13 then
-    // ortstring := getmultilinestring(ortstring, 13);
-    eort.Caption     := ortstring;
-    vermerkstringtmp := dic.Items['vermerke'];
-    vermerkstring    := StringReplace(vermerkstringtmp, '' + #10, #13#10,
-      [rfReplaceAll, rfignorecase]);
-    vermerke.Text    := vermerkstring;
-    estrasse.Caption := dic.Items['strasse'];
-    // abrdat := frame.dtabrechnungsende;
-    // abrdat := frame.eabrechnungsende;
-    abrechnungsende := getdatemitpunkt(pagerspeicher.activepageindex,
-      dic.Items['Databr']);
-    // datemitpunkt := dic.Items['Databr'];
-    if abrechnungsende = '' then
-        DateTimeToString(abrechnungsende, 'dd.mm.yy', now);
-    abrechnungsende := getfittingabrechnungsende(abrechnungsende);
-    // abrdat.Text := abrechnungsende;
-    frame.eabrechnungsende.Text := abrechnungsende;
-
-    if prefix = 'e' then begin
-      framen.cbpseudo.Checked    := notexisting;
-      framen.eestrasse.Text      := estrasse.Caption;
-      framen.eeort.Text          := eort.Caption;
-      framen.eeplz.Text          := eplz.Caption;
-      framen.flipadress.Expanded := true;
-
-      if notexisting then framen.eestrasse.SetFocus;
-    end;
-
-    lliegenschaftsdaten.Show;
-    pliedaten.Show;
-
-    if vermheight < (vermerke.Lines.Count + 5) * abs(vermerke.Font.Height) then
-        vermerke.ScrollBars  := ssVertical
-    else vermerke.ScrollBars := ssNone;
-    if vermheight > ((vermerke.Lines.Count + 5) * abs(vermerke.Font.Height))
-    then begin
-      // Bottom = originalhöhe + 10 - 74 - texthöhe
-      vermerke.Margins.bottom := vermerke.parent.Height + 10 -
-        ((vermerke.Lines.Count + 5) * abs(vermerke.Font.Height)) - vermerke.top;
-    end;
-    shapeverm.top    := vermerke.top - 1;
-    shapeverm.Left   := vermerke.Left - 1;
-    shapeverm.Height := vermerke.Height + 2;
-    shapeverm.Width  := vermerke.Width + 2;
-
-  end;
-
-  procedure Tformmain.setnutzerdaten(dict: TDictionary<string, string>);
-  var
-    name1, name2: string;
-  begin
-    name1 := dict.Items['WO5'];
-    name2 := dict.Items['WO6'];
-
-    if (name1 = '') and (name2 = '') then begin
-      lname1.Caption := 'ungültige Nutzernummer';
-      exit;
-    end;
-    try lname1.Caption    := dict.Items['WO5'];
-    except lname1.Caption := 'ungültige Nutzernummer';
-
-    end;
-    try lname2.Caption    := dict.Items['WO6'];
-    except lname2.Caption := '';
-
-    end;
-  end;
-
-  procedure Tformmain.setzwitab;
-  // var tabwidth: integer;
-  begin
-    // zwiname.Width := 400;
-    // tabwidth := trunc((gridzwi.Width - zwiname.Width) / 6) -10;
-    // zwidokid.Width := tabwidth;
-    // zwilg.Width := tabwidth;
-    // zwinutzernummer.Width := tabwidth;
-    // zwiposteingang.Width := tabwidth;
-    // zwiimage.Width := tabwidth + 20;
-  end;
-
-  function Tformmain.showingid: Boolean;
-  begin
-    Result := idanzeigen;
-  end;
-
-  procedure Tformmain.showmontagen;
-  var
-    query: string;
-    list : TStringList;
-  begin
-    // NxDBTextColumn4.Visible := true;
-    //
-    // NxDBTextColumn4.FieldName := auftragsnummer;
-    // NxDBTextColumn4.Header.Caption := 'Auftragsnummer';
-    list := TStringList.Create;
-    list.add('*');
-    // list.add(Nutzernummer);
-    // list.add(dateiname);
-    // list.add(auftragsnummer);
-    // list.add(Posteingang);
-    // list.add(abrechnungsende);
-    // list.add('Dokumentid');
-    // formdb.doquery(formdb.querymon, table_mon, ' WHERE kundennummer = ' + kn +
-    // ' order by Dokumentid desc ;', list);
-    // filldb(formdb.dsmon);
-
-    formdb.querymon.SQL.clear;
-    formdb.querymon.SQL.Text := 'SELECT * FROM ' + montage +
-      ' WHERE kundennummer = ' + kn;
-    formdb.querymon.Open;
-
-    filldb(formdb.dsmon, gridmon);
-    // query := 'SELECT Dokumentid, Liegenschaft,  Nutzernummer, Posteingang, Einbaudatum,'
-    // + '   Notizen   ' + 'FROM montagen ' + 'WHERE SACHBEARBEITER= ' + sb +
-    // '  AND Kundennummer= ' + kn + ' order by Dokumentid desc';
-
-  end;
-
-  procedure Tformmain.shownutzerlisten;
-
-  var
-    query: string;
-    list : TStringList;
-  begin
-
-    list := TStringList.Create;
-    list.add('*');
-    formdb.doquery(formdb.querynuliste, table_nut, ' WHERE kundennummer = ' + kn
-      + ' order by Dokumentid desc ;', list);
-    // filldb(formdb.dsdokumente);
-
-  end;
-
-  procedure Tformmain.showreklamation;
-
-  var
-    query: string;
-    list : TStringList;
-  begin
-
-    list := TStringList.Create;
-    list.add('*');
-    // list.add(liegenschaft);
-    // list.add(dateiname);
-    // list.add(Nutzernummer);
-    // list.add(Posteingang);
-    // list.add('Dokumentid');
-    formdb.doquery(formdb.queryrekl, table_rekl, ' WHERE kundennummer = ' + kn +
-      ' order by Dokumentid desc ;', list);
-    // filldb(formdb.dsdokumente);
-
-  end;
-
-  procedure Tformmain.showupdate;
-  begin
-    // pneueversionverfügbar.Visible := true;
-  end;
-
-  procedure Tformmain.showzwischenablesungen;
-  var
-    list: TStringList;
-  begin
-    if not assigned(formdb) then formdb := Tformdb.Create(self);
-    list                                := TStringList.Create;
-    list.add('*');
-    formdb.queryzwi.SQL.clear;
-    formdb.queryzwi.SQL.Text := 'SELECT * FROM ' + zwischenablesung +
-      ' WHERE kundennummer = ' + kn;
-    formdb.queryzwi.Open;
-
-    filldb(formdb.dszwi, gridzwi);
-  end;
-
-  procedure Tformmain.sortenergie(ACol: Integer; ascbool: Boolean);
-
-  var
-    QueryString: string;
-    asc        : string;
-  begin
-    QueryString := 'SELECT * FROM energieausweis'; // Query statement
-    if gridenergie.Columns[ACol].FieldName = '' then exit;
-
-    if ascbool then asc := 'ASC'
-    else asc            := 'DESC';
-    QueryString := QueryString + ' ORDER BY ' + gridenergie.Columns[ACol]
-      .FieldName + ' ' + asc;
-    formdb.queryen.SQL.clear;
-    formdb.queryen.SQL.Text := QueryString;
-    formdb.queryen.Open;
-  end;
-
-  procedure Tformmain.sortmontagen(ACol: Integer; ascbool: Boolean);
-  var
-    QueryString: string;
-    asc        : string;
-  begin
-    QueryString := 'SELECT * FROM montagen'; // Query statement
-    if gridmon.Columns[ACol].FieldName = '' then exit;
-
-    if ascbool then asc := 'ASC'
-    else asc            := 'DESC';
-    QueryString := QueryString + ' ORDER BY ' + gridmon.Columns[ACol].FieldName
-      + ' ' + asc;
-
-    formdb.querymon.SQL.clear;
-    formdb.querymon.SQL.Text := QueryString;
-    formdb.querymon.Open;
-  end;
-
-  function Tformmain.splitnumber: Boolean;
-  begin
-    Result := dosplitnumber;
-  end;
-
-  procedure Tformmain.sortnutzer(ACol: Integer; ascbool: Boolean);
-
-  var
-    QueryString: string;
-    asc        : string;
-    list       : TStringList;
-
-  begin
-    list := TStringList.Create;
-    list.add('*');
-    QueryString := 'SELECT * FROM nutzerlisten'; // Query statement
-    if gridnutzerliste.Columns[ACol].FieldName = '' then exit;
-
-    if ascbool then asc := 'ASC'
-    else asc            := 'DESC';
-    // QueryString := QueryString + ' ORDER BY ' + gridnutzerliste.Columns[ACol]
-    // .FieldName + ' ' + asc;
-    QueryString := 'order by Liegenschaft desc';
-    // formdb.querynutzer.SQL.clear;
-    // formdb.querynutzer.SQL.Text := QueryString;
-    // formdb.querynutzer.Open;
-    formdb.doquery(formdb.querynuliste, table_nut, ' WHERE kundennummer = ' + kn
-      + ' ' + QueryString, list);
-    // filldb(formdb.dsdokumente);
-
-  end;
-
-  procedure Tformmain.sortrekl(ACol: Integer; Ascending: Boolean);
-  var
-    QueryString: string;
-    asc        : string;
-  begin
-
-    QueryString := 'SELECT * FROM reklamation'; // Query statement
-    if gridrek.Columns[ACol].FieldName = '' then exit;
-
-    if Ascending then asc := 'ASC'
-    else asc              := 'DESC';
-    QueryString := QueryString + ' ORDER BY ' + gridrek.Columns[ACol].FieldName
-      + ' ' + asc;
-    formdb.queryrekl.SQL.clear;
-    formdb.queryrekl.SQL.Text := QueryString;
-    formdb.queryrekl.Open;
-  end;
-
-  // -----------------------------------------
-
-  procedure Tformmain.sortzwischen(ACol: Integer; ascbool: Boolean);
-  var
-    QueryString: string;
-    asc        : string;
-  begin
-
-    QueryString := 'SELECT * FROM zwischenablesung'; // Query statement
-    if gridzwi.Columns[ACol].FieldName = '' then exit;
-
-    if ascbool then asc := 'ASC'
-    else asc            := 'DESC';
-    QueryString := QueryString + ' ORDER BY ' + gridzwi.Columns[ACol].FieldName
-      + ' ' + asc;
-    formdb.queryzwi.SQL.clear;
-    formdb.queryzwi.SQL.Text := QueryString;
-    formdb.queryzwi.Open;
-  end;
-
-  // ------------------------------
-  procedure Tformmain.tabenergieausweisShow(Sender: TObject);
-  begin
-
-    try
-      if not assigned(formdb) then exit;
-
-      formdb.queryen.Filtered := false;
-      showenergieausweise;
-    except
-      ;
-    end;
-  end;
-
-  procedure Tformmain.tabmontagenShow(Sender: TObject);
-  begin
-    if not assigned(formdb) then exit;
-
-    try showmontagen;
-    except
-      ;
-
-    end;
-  end;
-
-  // ------------------------------
-  procedure Tformmain.tabnutzerlistenShow(Sender: TObject);
-  begin
-    if not assigned(formdb) then exit;
-
-    try shownutzerlisten;
-    except
-      ;
-
-    end;
-  end;
-
-  // --------------------------------------
-  procedure Tformmain.tabreklamationShow(Sender: TObject);
-  begin
-    if not assigned(formdb) then exit;
-
-    try showreklamation;
-    except
-      ;
-    end;
-  end;
-
-  procedure Tformmain.tabspeichernHide(Sender: TObject);
-  begin
-
-  end;
-
-  // ------------------------------
-  procedure Tformmain.tabzwischenShow(Sender: TObject);
-  begin
-    if not assigned(formdb) then exit;
-    try showzwischenablesungen;
-    except
-      ;
-
-    end;
-  end;
-  // ------------------------------
-
-  procedure Tformmain.hidecontrol(Sender: TObject);
-  var
-    prefix  : string;
-    lfile   : TLabel;
-    filename: string;
-
-  begin
-    // prefix := getprefix(pagerspeicher.activepageindex);
-    // lfile := FindComponent(prefix + 'lfiletype') as TLabel;
-    // filetypecaption := lfile.Caption;
-  end;
-
-  // ------------------------------
-
-  // ------------------------------
-  procedure Tformmain.TangebotsanfragenShow(Sender: TObject);
-  var
-    number: string;
-  begin
-    try
-      if not assigned(formdb) then exit;
-
-      frameangebot.eid.SetFocus;
-
-      resetdate(frameangebot.dtposteingang);
-      resetdate(frameangebot.eposteingang);
-      frameangebot.lfiletype.Caption := filetypecaption;
-      resetpanelfonts;
-      panelfocus(pr);
-      pr.Caption := 'Angebotsanfrage';
-    Except outputdebugstring('kein focus');
-    end;
-    // updateid(Angebotsint);
-  end;
-
-  // ------------------------------
-  procedure Tformmain.tAuftragShow(Sender: TObject);
-  var
-    list: TStringList;
-    item: string;
-  begin
-    try
-      frameauftrag.eid.SetFocus;
-
-      resetdate(frameauftrag.dtposteingang);
-      resetdate(frameauftrag.eposteingang);
-    except outputdebugstring('kein Focus');
-    end;
-    list := TStringList.Create;
-    if FileExists(getauftragsdaten) then list.LoadFromFile(getauftragsdaten);
-    try
-      frameauftrag.cbselectauftrag.Items.clear;
-
-      for item in list do begin
-        frameauftrag.cbselectauftrag.Items.add(item);
-      end;
-    except
-
-    end;
-  end;
-
-  // ------------------------------
-  procedure Tformmain.TenergieausweisShow(Sender: TObject);
-  var
-    number: string;
-  begin
-    if not assigned(framen) then exit;
-
-    try
-      framen.flipadress.Expanded := false;
-      resetdate(framen.dtposteingang);
-      resetdate(framen.eposteingang);
-      framen.lfiletype.Caption := filetypecaption;
-      framen.eid.SetFocus;
-      resetpanelfonts;
-      panelfocus(pr);
-      pr.Caption := 'Energieausweis';
-    except
-      ;
-    end;
-  end;
-
-  procedure Tformmain.Tframebasefilter1banwendenClick(Sender: TObject);
-  var
-    query: string;
-  begin
-    with framezwifilter do begin
-      banwendenClick(Sender);
-
-    end;
-    with formdb do begin
-      // doquery(querydokumente, zwischenablesung, query, getzwivalues);
-      // querydokumente.Filter := '
-    end;
-  end;
-
-  procedure Tformmain.Tframebasefilter1esellgExit(Sender: TObject);
-  var
-    filter: string;
-  begin
-    try
-      framezwifilter.esellgExit(Sender);
-
-      filter := framezwifilter.getfilter;
-      setfilter(formdb.queryzwi, filter);
-
-    except
-      ;
-
-    end;
-
-  end;
-
-  procedure Tformmain.Timer1Timer(Sender: TObject);
-  begin
-    lookforfile;
-  end;
-
-  procedure Tformmain.Timer2Timer(Sender: TObject);
-  begin
-    try piupdate.Visible := worker.checkUpdate;
-    except
-
-    end;
-  end;
-
-  procedure Tformmain.Timer3Timer(Sender: TObject);
-  var
-    list     : TStringList;
-    sendingel: string;
-  begin
-    list := TStringList.Create;
-    try
-      ListFileDir(getCollectorfolder, list);
-      if (list.Count = 0) then exit;
-      sendingel := worker.createrescue(list[0]);
-      npc.Send(sendingel);
-    except
-      ;
-
-    end;
-
-  end;
-
-  procedure Tformmain.Timer4Timer(Sender: TObject);
-  begin
-    if idnotset then getallids;
-
-  end;
-
-  procedure Tformmain.TKostenermittlungShow(Sender: TObject);
-  var
-    number: string;
-  begin
-    try
-      framekosten.eid.SetFocus;
-      resetdate(framekosten.dtposteingang);
-      resetdate(framekosten.eposteingang);
-      framekosten.lfiletype.Caption := filetypecaption;
-      resetpanelfonts;
-      panelfocus(pk);
-
-    except
-      ;
-    end;
-
-  end;
-
-  procedure Tformmain.TMontageShow(Sender: TObject);
-  var
-    number: string;
-  begin
-    try
-      framemontage.eid.SetFocus;
-      resetdate(framemontage.dtposteingang);
-      resetdate(framemontage.eposteingang);
-      framemontage.lfiletype.Caption := filetypecaption;
-      resetpanelfonts;
-      panelfocus(pm);
-    except outputdebugstring('energieausweis kann focus nicht erhalten');
-    end;
-  end;
-  // ----------------------------------
-
-  procedure Tformmain.treklamaionShow(Sender: TObject);
-  var
-    number: string;
-  begin
-
-    try
-      framereklamation.eid.SetFocus;
-      resetdate(framereklamation.dtposteingang);
-      resetdate(framereklamation.eposteingang);
-      framereklamation.lfiletype.Caption := filetypecaption;
-      resetpanelfonts;
-      panelfocus(pr);
-      pr.Caption := 'Reklamation';
-    except outputdebugstring('energieausweis kann focus nicht erhalten');
-    end;
-    // updateid(ReklamationINT);
-  end;
-
-  // -------------------------
-  procedure Tformmain.tsonstigesShow(Sender: TObject);
-  var
-    number: string;
-  begin
-    try
-      resetpanelfonts;
-      panelfocus(pr);
-      pr.Caption := 'Sonstiges';
-      resetdate(framesonstiges.dtposteingang);
-      resetdate(framesonstiges.eposteingang);
-      framesonstiges.lfiletype.Caption := filetypecaption;
-      framesonstiges.eid.SetFocus;
-    except
-      ;
-    end;
-    // updateid(SonstigesInt);
-  end;
-
-  // ---------------------------
-
-  procedure Tformmain.TVerträgeShow(Sender: TObject);
-  var
-    number: string;
-  begin
-    try
-      resetdate(framevertrag.dtposteingang);
-      resetdate(framevertrag.eposteingang);
-      framevertrag.lfiletype.Caption := filetypecaption;
-      framevertrag.eid.SetFocus;
-      resetpanelfonts;
-      panelfocus(pr);
-      pr.Caption := 'Verträge';
-    except
-      ;
-    end;
-    // updateid(Vertragsint);
-  end;
-
-  procedure Tformmain.TZwischenablesungPaint(Sender: TObject);
-  begin
-    if not initialized then begin
-      Application.ProcessMessages;
-      // thready := tdbthread.Create(false);
-      initialized := true;
-    end;
-  end;
-
-  procedure Tformmain.TZwischenablesungShow(Sender: TObject);
-  var
-    number: string;
-  begin
-    with framezwi do begin
-      resetdate(dtposteingang);
-      resetdate(eposteingang);
-      lfiletype.Caption := filetypecaption;
-      resetpanelfonts;
-      panelfocus(pz);
-      try eid.SetFocus;
-      except
-
-      end;
-    end;
-  end;
-
-  procedure Tformmain.updateid(Tag: Integer);
-  var
-    prefix      : string;
-    eeid        : tfedit;
-    selectedFile: string;
-    lists       : array [0 .. 1] of TListBox;
-    helper      : Integer;
-  begin
-    lists[0]     := lbeingang;
-    lists[1]     := lbausgang;
-    prefix       := getprefix(Tag);
-    selectedFile := getselected(lists);
-
-    eeid := FindComponent(prefix + 'eid') as tfedit;
-    if AnsiStartsStr('gescannt', selectedFile) then begin
-      // getallids;
-      case Tag of
-        ZwischenablsgINT: helper  := zid;
-        MontageINT: helper        := mid;
-        SonstigesInt: Helper      := sid;
-        ReklamationINT: Helper    := rid;
-        EnergieausweisINT: helper := eid;
-        Nutzerint: helper         := nid;
-        Vertragsint: helper       := vid;
-        Auftragsint: helper       := aid;
-        Angebotsint: helper       := naid;
-        KostenINT: helper         := kid;
-      end;
-      eeid.Text := Format('%.4d', [helper]);
-      exit;
-    end;
-    eeid.Text := '---';
-
-  end;
-
-  procedure Tformmain.vollzwischenbsaveClick(Sender: TObject);
-  var
-    dateiname: string;
-    dbgrid   : TNextDBGrid;
-  begin
-    case pvollbilder.activepageindex of
-      0: dbgrid := gridzwi;
-      1: dbgrid := gridmon;
-      4: dbgrid := gridnutzerliste;
-      2: dbgrid := gridenergie;
-      3: dbgrid := gridrek;
-
-    end;
-    dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.asstring);
-    showDocument(dateiname);
-  end;
-
-  procedure Tformmain.vorclick(Sender: TObject);
-  var
-    dbgrid: TNextDBGrid;
-  begin
-    inc(selectedRow);
-    dbgrid := getdb;
-    try
-      dbgrid.selectedRow := selectedRow;
-      fillvollbild(dbgrid, selectedRow);
-    finally
-      // dbgrid.Free;
-    end;
-
-  end;
-
-  procedure Tformmain.wertebuttonClick(Sender: TObject);
-  var
-    i, j                 : Integer;
-    query                : string;
-    table, x1, x2, x3, x4: string;
-    wheres               : string;
-    fed                  : tfedit;
-  begin
-    // flipwerte.Expanded := false;
-    /// /  if combotyp.ItemIndex = -1 then exit;
-    //
-    /// /  table := AnsiLowerCase(combotyp.Items[combotyp.ItemIndex]);
-    //
-    // if not(esellg.Text = '') then
-    // wheres := ' Liegenschaft ' + csellg.Text + ' ' + esellg.Text;
-    // if not(eselnn.Text = '') then
-    // wheres := wheres + ' AND nutzernummer ' + cselnn.Text + ' ' + eselnn.Text;
-    // if not(eselae.Text = '') then
-    // wheres := wheres + ' AND abrechnungsende ' + cselae.Text + ' ' +
-    // eselae.Text;
-    // if not(eselsb.Text = '') then
-    // wheres := wheres + ' AND ' + cselsb.Text + ' ' + eselsb.Text;
-    // if not(eselpe.Text = '') then
-    // wheres := wheres + ' ANd ' + cselpe.Text + ' ' + eselpe.Text + ';';
-    // query := 'SELECT *  FROM ' + table + ' WHERE ' + wheres;
-    // // query := 'SELECT * FROM scandokumente.zwischenablesung WHERE Liegenschaft = 1000001 ';
-    // formdb.querydokumente.SQL.clear;
-    // formdb.querydokumente.SQL.add(query);
-    // formdb.querydokumente.Open;
-    // gridzwi.DataSource := formdb.dsdokumente;
-  end;
-
-  procedure Tformmain.WMGetDlgCode(var msg: TWMGetDlgCode);
-  var
-    prefix: string;
-    Button: TNxButton;
-  begin
-    prefix := getprefix(pagerspeicher.activepageindex);
-    Button := FindComponent(prefix + 'save') as TNxButton;
-    if ActiveControl = Button then exit;
-
-  end;
+end;
+
+procedure Tformmain.wertebuttonClick(Sender: TObject);
+var
+  i, j                 : Integer;
+  query                : string;
+  table, x1, x2, x3, x4: string;
+  wheres               : string;
+  fed                  : tfedit;
+begin
+  // flipwerte.Expanded := false;
+  /// /  if combotyp.ItemIndex = -1 then exit;
+  //
+  /// /  table := AnsiLowerCase(combotyp.Items[combotyp.ItemIndex]);
+  //
+  // if not(esellg.Text = '') then
+  // wheres := ' Liegenschaft ' + csellg.Text + ' ' + esellg.Text;
+  // if not(eselnn.Text = '') then
+  // wheres := wheres + ' AND nutzernummer ' + cselnn.Text + ' ' + eselnn.Text;
+  // if not(eselae.Text = '') then
+  // wheres := wheres + ' AND abrechnungsende ' + cselae.Text + ' ' +
+  // eselae.Text;
+  // if not(eselsb.Text = '') then
+  // wheres := wheres + ' AND ' + cselsb.Text + ' ' + eselsb.Text;
+  // if not(eselpe.Text = '') then
+  // wheres := wheres + ' ANd ' + cselpe.Text + ' ' + eselpe.Text + ';';
+  // query := 'SELECT *  FROM ' + table + ' WHERE ' + wheres;
+  // // query := 'SELECT * FROM scandokumente.zwischenablesung WHERE Liegenschaft = 1000001 ';
+  // formdb.querydokumente.SQL.clear;
+  // formdb.querydokumente.SQL.add(query);
+  // formdb.querydokumente.Open;
+  // gridzwi.DataSource := formdb.dsdokumente;
+end;
+
+procedure Tformmain.WMGetDlgCode(var msg: TWMGetDlgCode);
+var
+  prefix: string;
+  Button: TNxButton;
+begin
+  prefix := getprefix(pagerspeicher.activepageindex);
+  Button := FindComponent(prefix + 'save') as TNxButton;
+  if ActiveControl = Button then exit;
+
+end;
 
 end.
