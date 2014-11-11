@@ -17,7 +17,7 @@ uses umain, uconstants, uutils, Winapi.Windows, Winapi.Messages,
   System.Generics.collections, Contnrs, ShlObj, Registry, StrUtils, DateUtils,
   IdHashMessageDigest, IdFTPList, IdAllFTPListParsers,
   IdExplicitTLSClientServerBase, IdFTP, IdSSLOpenSSL, IdFTPCommon, CommCtrl,
-  udbconnector;
+  udbconnector, uEinstellungen;
 
 // MD5-Checksumme für einen String bilden
 function MD5String(const Input: string): string;
@@ -124,11 +124,25 @@ begin
     if formmain.kdNr = '06' then formmain.isTernes := true;
     // if not(formmain.kdNr = '') then
 
-    if not formmain.intern then
+    // if not formmain.intern then
 
-        kundennummern  := getKundennrn(strtoint(formmain.kdNr))
-    else kundennummern := getAllKundennrn;
-    formmain.setkundennummern(kundennummern);
+    try
+      kundennummern := getKundennrn(strtoint(formmain.kdNr));
+      // else kundennummern := getAllKundennrn;
+      formmain.setkundennummern(kundennummern);
+    except
+      outputdebugstring('keine Kundennummer eingegeben');
+      ShowMessage
+        ('Bitte geben Sie in den Einstellungen Ihr Firmenpasswort ein!');
+      try
+        Einstellungen.Show;
+        Einstellungen.epasswort.SetFocus;
+      except
+
+      end;
+      ;
+
+    end;
   finally STR.Free;
   end;
 end;

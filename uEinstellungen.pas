@@ -90,7 +90,7 @@ end;
 procedure TEinstellungen.FormShow(Sender: TObject);
 begin
   // ekundennummer.Text            := formmain.getKundennummer;
-//  fkundennummer.Items           := formmain.getkundennrnAsString;
+  // fkundennummer.Items           := formmain.getkundennrnAsString;
   escanverzeichnis.Text         := formmain.getscanverzeichnis;
   esachbearbeiter.Text          := formmain.getSachbearbeiter;
   epasswort.Text                := formmain.getpasswort;

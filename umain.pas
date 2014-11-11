@@ -801,7 +801,7 @@ begin
 
   formdb.queryen.SQL.clear;
   formdb.queryen.SQL.Text := 'SELECT * FROM ' + Energieausweis +
-    ' WHERE kundennummer = ' + kn;
+    ' WHERE kundennummer = ' + kdnr;
   formdb.queryen.Open;
 
   filldb(formdb.dsen, gridenergie);
@@ -3608,7 +3608,7 @@ begin
   list.add('*');
   formdb.queryzwi.SQL.clear;
   formdb.queryzwi.SQL.Text := 'SELECT * FROM ' + zwischenablesung +
-    ' WHERE kundennummer = ' + kn;
+    ' WHERE kundennummer = ' + kdnr;
   formdb.queryzwi.Open;
 
   filldb(formdb.dszwi, gridzwi);

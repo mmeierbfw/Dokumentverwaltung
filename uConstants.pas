@@ -232,6 +232,7 @@ begin
   Result := TList<integer>.create;
   Result.Add(kdn);
   case kdn of
+    10: Result := getAllKundennrn;
     13: // Gohl
       Result.Add(9);
     9: // Gohl
