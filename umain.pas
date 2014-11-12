@@ -918,7 +918,7 @@ begin
     if frame.menotizen.Text = '' then begin
       showmessage('kein gescanntes Dokument und keine Notizen eingetragen.' +
         #13#10 + 'Bitte entweder Scannen oder Informationen in Notizfeld speichern');
-      memo.SetFocus;
+      frame.menotizen.SetFocus;
       exit;
     end;
   end;
