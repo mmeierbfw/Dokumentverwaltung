@@ -1452,10 +1452,9 @@ begin
 
   pagermain.ActivePage := tabspeichern;
 
-  pagermain.ShowTabs     := false;
-  ptabellen.ShowTabs     := false;
-  pagerspeicher.ShowTabs := false;
-  // pvollbilder.ShowTabs := false;
+  pagermain.ShowTabs       := false;
+  ptabellen.ShowTabs       := false;
+  pagerspeicher.ShowTabs   := false;
   pagerspeicher.ActivePage := LEER;
   pvollbilder.ActivePage   := leer2;
   pvollbilder.ShowTabs     := false;
@@ -1889,8 +1888,9 @@ procedure Tformmain.Nexit(Sender: TObject);
 var
   dict : TDictionary<string, string>;
   frame: Tframebasenutzer;
-begin { TODO : framemon!!! }
+begin
   frame := getframe as Tframebasenutzer;
+  // frame.enutzernummer.Text := '';
   frame.enutzerexit(Sender);
   try
     dict := worker.getnutzerdaten((Sender as tfedit).Text, kn,
