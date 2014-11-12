@@ -2995,7 +2995,8 @@ begin
   frame.eliegenschaft.Text     := '';
   frame.menotizen.Text         := '';
   frame.dtabrechnungsende.Text := '__.__.__';
-
+  frame.eabrechnungsende.clear;
+  frame.menotizen.clear;
   Tag := gettag(pagerspeicher.ActivePage);
   case Tag of
     ZwischenablsgINT: begin
@@ -3003,24 +3004,42 @@ begin
         framezwi.enutzername.Text   := '';
         framezwi.enutzername.clear;
         framezwi.enutzernummer.clear;
+        framezwi.eauszug.clear;
+        framezwi.eablesedatum.clear;
+
       end;
     MontageINT: begin
-        framemontage.eauftragsnummer.Text := '';
-        framemontage.dtmontage.Text       := '__.__.__';
+        framemontage.eauftragsnummer.clear;
+        framemontage.dtmontage.Text := '__.__.__';
         framemontage.emontage.clear;
         framemontage.rgerledigt.ItemIndex := 0;
       end;
     ReklamationINT: begin
+        framereklamation.eauftragsnummer.clear;
         framereklamation.dtmontage.Text := '__.__.__';
         framereklamation.emontage.clear;
-        framereklamation.rgerledigt.ItemIndex := 0;
-        framereklamation.eauftragsnummer.Text := '';
+        framereklamation.rgerledigt.ItemIndex := 0;;
+        // framereklamation.eauftragsnummer.Clear;
       end;
     EnergieausweisINT: begin
         framen.cbpseudo.Checked := false;
-        framen.eestrasse.Text   := '';
-        framen.eeplz.Text       := '';
-        framen.eeort.Text       := '';
+        framen.eestrasse.clear;
+        framen.eeplz.clear;
+        framen.eeort.clear;
+      end;
+    SonstigesInt: begin
+        framesonstiges.enutzernummer.clear;
+      end;
+    Vertragsint: begin
+        framevertrag.enutzernummer.clear;
+      end;
+    Angebotsint: begin
+        frameangebot.enutzernummer.clear;
+      end;
+    Auftragsint: begin
+        frameauftrag.enutzernummer.clear;
+        frameauftrag.cbselectauftrag.ItemIndex := -1;
+        frameauftrag.cbselectauftrag.Text      := 'Auftragstyp';
       end;
   end;
 end;

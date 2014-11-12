@@ -135,8 +135,14 @@ const
   Gueltigkeitsdatum = 'Gueltigkeitsdatum';
   Montagedatum      = 'Einbaudatum';
 
-  nicherledigtstr = '0';
-  erledigtstr     = '1';
+  informiert       = 'informiert';
+  ausführungsstart = 'ausführungsstart';
+  ausführungsende  = 'ausführungsende';
+  Monteur          = 'Monteur';
+  erreicht         = 'erreicht';
+  ausführungsdatum = 'ausführungsdatum';
+  nicherledigtstr  = '0';
+  erledigtstr      = '1';
 
   pseudoliegenschaft = 'Pseudoliegenschaft';
   strasse            = 'Strasse';
