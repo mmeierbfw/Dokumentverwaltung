@@ -22,15 +22,15 @@ type
       gueltigkeitsdat: string;
     fmypath, pathname: string;
 
-    col: TCollector;
-    no: string;
-    zielverzeichnis: string;
-    zieldatei: string;
-    abspathziel: string;
-    size64: Int64;
+    col             : TCollector;
+    no              : string;
+    zielverzeichnis : string;
+    zieldatei       : string;
+    abspathziel     : string;
+    size64          : Int64;
     scanneddocuments: TStringList;
-    zieldateien: TStringList;
-    dict: TDictionary<string, string>;
+    zieldateien     : TStringList;
+    dict            : TDictionary<string, string>;
     ftpcollectorlist: TStringList;
     { erzeuge eine Pfad aus Kundennummer, Liegenschaft, Dateityp und Datum }
     function createPath(dict: TDictionary<string, string>;
@@ -96,8 +96,8 @@ constructor TWorker.Create;
 begin
 
   // pad zum erstellen temporärer Dateien in appdata...
-  fmypath := getLocalFolder;
-  col := TCollector.Create();
+  fmypath          := getLocalFolder('Scannerprogramm');
+  col              := TCollector.Create();
   ftpcollectorlist := TStringList.Create;
 
 end;
@@ -108,8 +108,8 @@ var
   line: string;
 begin
   zielverzeichnis := createPath(dict, doctype);
-  zieldateien := createfiles(dict, doctype);
-  abspathziel := '';
+  zieldateien     := createfiles(dict, doctype);
+  abspathziel     := '';
   for line in zieldateien do begin
     abspathziel := abspathziel + ';' + includetrailingpathdelimiter
       (zielverzeichnis) + line;
@@ -121,9 +121,9 @@ end;
 procedure TWorker.createfileandpath(doc: string;
   dict: TDictionary<string, string>; doctpy: integer);
 begin
-  zieldateien := TStringList.Create;
+  zieldateien     := TStringList.Create;
   zielverzeichnis := createPath(dict, doctpy);
-  zieldatei := createFileName(doc, dict, doctpy);
+  zieldatei       := createFileName(doc, dict, doctpy);
 
   abspathziel := zielverzeichnis + zieldatei;
   zieldateien.Add(abspathziel);
@@ -133,15 +133,15 @@ function TWorker.createfiles(dict: TDictionary<string, string>;
   doctype: integer): TStringList;
 var
   filename, ending: string;
-  i, size: integer;
-  list: TStringList;
+  i, size         : integer;
+  list            : TStringList;
 begin
-  list := TStringList.Create;
-  Dok := Format('%.3d', [doctype]);
-  size := scanneddocuments.Count;
-  for i := 0 to size - 1 do begin
+  list              := TStringList.Create;
+  Dok               := Format('%.3d', [doctype]);
+  size              := scanneddocuments.Count;
+  for i             := 0 to size - 1 do begin
     scannedDocument := scanneddocuments[i];
-    ending := ExtractFileExt(scannedDocument);
+    ending          := ExtractFileExt(scannedDocument);
     filename := createfilenamewithoutending(scannedDocument, dict, doctype);
     filename := filename + '(' + inttostr(i) + ')' + ending;
     list.Add(filename);
@@ -155,25 +155,27 @@ function TWorker.createfilenamewithoutending(doc: string;
 var
   ending, li, ni, pi, ii, nowstring: string;
 var
-  Dok: string;
+  Dok   : string;
   helper: string;
 begin
-  Dok := Format('%.3d', [doctype]);
+  with formmain.dokcons do begin
+    Dok := Format('%.3d', [doctype]);
 
-  li := StringOfchar('0', 7 - Length(dict.items[liegenschaft])) + dict.items
-    [liegenschaft];
-  try ni := StringOfchar('0', 3 - Length(dict[nutzernummer])) + dict.items
-      [nutzernummer];
-  except ni := 'xxx';
-  end;
-  pi := dict.items[Posteingang];
-  try ii := dict.items['Dokumentid'];
-  except ii := 'xx';
+    li := StringOfchar('0', 7 - Length(dict.items[formmain.dokcons.liegenschaft]
+      )) + dict.items[liegenschaft];
+    try ni := StringOfchar('0', 3 - Length(dict[nutzernummer])) + dict.items
+        [nutzernummer];
+    except ni := 'xxx';
+    end;
+    pi        := dict.items[Posteingang];
+    try ii    := dict.items['Dokumentid'];
+    except ii := 'xx';
 
+    end;
+    DateTimeToString(nowstring, 'yymmddhhmmsszzz', now);
+    if ii = '' then ii := 'xx';
+    Result := li + '_' + ni + '_' + Dok + '_' + pi + '_' + nowstring + '_' + ii;
   end;
-  DateTimeToString(nowstring, 'yymmddhhmmsszzz', now);
-  if ii = '' then ii := 'xx';
-  Result := li + '_' + ni + '_' + Dok + '_' + pi + '_' + nowstring + '_' + ii;
 end;
 
 function TWorker.createFileName(doc: string; dict: TDictionary<string, string>;
@@ -185,7 +187,7 @@ begin
   if not(doc = '') then ending := ExtractFileExt(scannedDocument)
   else // es gibt kein gescanntes Dokument, weil es nur eine Telefonnotiz ist...
       ending := '.txt'; { TODO : was, wenn erst später gescannt wird?! }
-  Result := name + ending;
+  Result     := name + ending;
 
 end;
 
@@ -200,11 +202,12 @@ begin
   formftp := Tformftp.Create(nil);
   try
     screen.Cursor := crHourGlass;
-    if formftp.downloadsetup(setupdirection, getsetuplocation) then
+    if formftp.downloadsetup(formmain.dokcons.setupdirection,
+      getsetuplocation('Scannerprogramm')) then
 
       // begin
-        ShellExecute(Application.Handle, 'open', pchar(getsetuplocation), nil,
-        nil, SW_SHOWNORMAL);
+        ShellExecute(Application.Handle, 'open',
+        pchar(getsetuplocation('Scannerprogramm')), nil, nil, SW_SHOWNORMAL);
     formmain.Close;
     // end
     // else Showmessage('nicht so einfach');
@@ -237,10 +240,10 @@ begin
   if hastowritefile then // es darf keine dokid vergeben werden!!
   begin
     dict.Remove('Dokumentid');
-    writenote(dict[Notizen], abspathziel);
+    writenote(dict[formmain.dokcons.Notizen], abspathziel);
   end;
 
-  dict.AddOrSetValue(dateiname, escapetext(abspathziel));
+  dict.AddOrSetValue(formmain.dokcons.Dateiname, escapetext(abspathziel));
 end;
 
 procedure TWorker.handleemails(doctype: integer);
@@ -249,7 +252,7 @@ var
 begin
   if emailsent then begin
     email := getemailinfo;
-    dict := col.collect(doctype, email.getproperties);
+    dict  := col.collect(doctype, email.getproperties);
   end
   else dict := col.collect(doctype);
 end;
@@ -265,8 +268,8 @@ var
 begin
   if formftp = nil then formftp := Tformftp.Create(nil);
 
-  localloc := gettmpversion;
-  serverloc := serverversionsdatei;
+  localloc  := gettmpversion('Scannerprogramm');
+  serverloc := formmain.dokcons.serverversionsdatei;
 
   if formftp.getversioninfo(serverloc, localloc) then Result := compareversions
   else Result := false;
@@ -274,31 +277,31 @@ end;
 
 function TWorker.compareversions: boolean;
 var
-  thisversion: string;
-  serverversion: string;
-  list: TStringList;
+  thisversion          : string;
+  serverversion        : string;
+  list                 : TStringList;
   serverlist, locallist: TStringList;
-  i, size: integer;
-  serverint, localint: integer;
+  i, size              : integer;
+  serverint, localint  : integer;
 begin
   list := TStringList.Create;
   try
-    list.loadfromfile(gettmpversion);
-    serverversion := list[0];
+    list.loadfromfile(gettmpversion('Scannerprogramm'));
+    serverversion      := list[0];
   except serverversion := '1.0.0';
 
   end;
   // showmessage('Version online: ' + serverversion);
   thisversion := GetCurrentVersionforcheck;
   // showmessage('installierte Version: ' + thisversion);
-  serverlist := TStringList.Create;
-  locallist := TStringList.Create;
+  serverlist               := TStringList.Create;
+  locallist                := TStringList.Create;
   serverlist.DelimitedText := serverversion;
-  locallist.DelimitedText := thisversion;
-  serverlist.Delimiter := '.';
-  locallist.Delimiter := '.';
-  size := min(locallist.Count, serverlist.Count);
-  for i := 0 to size - 1 do begin
+  locallist.DelimitedText  := thisversion;
+  serverlist.Delimiter     := '.';
+  locallist.Delimiter      := '.';
+  size                     := min(locallist.Count, serverlist.Count);
+  for i                    := 0 to size - 1 do begin
     if (serverlist[i] > locallist[i]) then begin
       Result := true;
       exit;
@@ -310,77 +313,80 @@ end;
 function TWorker.createPath(dict: TDictionary<string, string>;
   doctype: integer): string;
 var
-  path: WideString;
-  Dok: string;
+  path            : WideString;
+  Dok             : string;
   tp, kn, li, year: string;
 begin
 
-  kn := StringOfchar('0', 2 - Length(dict.items[kundennummer])) + dict.items
-    [kundennummer];
-  li := StringOfchar('0', 7 - Length(dict.items[liegenschaft])) + dict.items
-    [liegenschaft];
-  year := '20' + copy(dict.items[Posteingang], 1, 2);
-  if goOnline then tp := tiffpathonline
-  else tp := tiffPath;
-  Dok := Format('%.3d', [doctype]);
-  Result := '';
-  if not daheim then
-      path := tp + '\' + kn + '\' + li + '\' + Dok + '\' + year + '\'
-  else path := 'c:\Users\Melanie\Documents\Arbeitsordner\gescannt\' + knummer +
-      '\' + lieg + '\' + Dok + '\' + jahr + '\';
+  with formmain.dokcons do begin
+    kn := StringOfchar('0', 2 - Length(dict.items[formmain.dokcons.kundennummer]
+      )) + dict.items[kundennummer];
+    li := StringOfchar('0', 7 - Length(dict.items[liegenschaft])) +
+      dict.items[liegenschaft];
+    year                := '20' + copy(dict.items[Posteingang], 1, 2);
+    if goOnline then tp := tiffpathonline
+    else tp             := tiffPath;
+    Dok                 := Format('%.3d', [doctype]);
+    Result              := '';
+    if not daheim then
+        path  := tp + '\' + kn + '\' + li + '\' + Dok + '\' + year + '\'
+    else path := 'c:\Users\Melanie\Documents\Arbeitsordner\gescannt\' + knummer
+        + '\' + lieg + '\' + Dok + '\' + jahr + '\';
 
-  if goOnline then begin
+    if goOnline then begin
+      Result := path;
+      exit;
+    end;
+    if not Directoryexists(path) then begin
+      forcedirectories(path);
+    end;
     Result := path;
-    exit;
   end;
-  if not Directoryexists(path) then begin
-    forcedirectories(path);
-  end;
-  Result := path;
 end;
 
 function TWorker.createrescue(item: string): string;
 var
-  path: string;
-  l: string;
-  n: string;
-  j: string;
-  t: string;
-  k: string;
-  tp: string;
-  list: TStringList;
+  path                : string;
+  l                   : string;
+  n                   : string;
+  j                   : string;
+  t                   : string;
+  k                   : string;
+  tp                  : string;
+  list                : TStringList;
   abspath, newfilename: String;
-  str: string;
+  str                 : string;
 begin
-  list := TStringList.Create;
-  list.Delimiter := '_';
+  list               := TStringList.Create;
+  list.Delimiter     := '_';
   list.DelimitedText := item;
-  tp := 'scdb';
-  l := list[0];
-  k := copy(l, 1, 2);
-  t := list[2];
-  n := list[1];
-  j := '20' + copy(list[3], 1, 2);
-  path := tp + '\' + k + '\' + l + '\' + t + '\' + j + '\';
+  tp                 := 'scdb';
+  l                  := list[0];
+  k                  := copy(l, 1, 2);
+  t                  := list[2];
+  n                  := list[1];
+  j                  := '20' + copy(list[3], 1, 2);
+  path               := tp + '\' + k + '\' + l + '\' + t + '\' + j + '\';
   // showmessage(path);
-  abspath := includetrailingpathdelimiter(getCollectorfolder) + item;
+  abspath := includetrailingpathdelimiter
+    (getCollectorfolder('Scannerprogramm')) + item;
   newfilename := includetrailingpathdelimiter(path) + item;
-  Result := 'SET ' + abspath + '^' + newfilename;
+  Result      := 'SET ' + abspath + '^' + newfilename;
   // formmain.npc.Send(str);
 end;
 
 function TWorker.doStuff(doctype: integer): boolean;
 var
 
-  tmplist: TDictionary<string, string>;
-  email: Temail;
-  col: TCollector;
+  tmplist       : TDictionary<string, string>;
+  email         : Temail;
+  col           : TCollector;
   hastowritefile: boolean;
-  line: string;
-  scannedd: TObject;
-  helpersb: string;
-  helperid: string;
-  helperint: integer;
+  line          : string;
+  scannedd      : TObject;
+  helpersb      : string;
+  helperid      : string;
+  helperint     : integer;
 begin
   col := TCollector.Create;
   try
@@ -398,20 +404,20 @@ begin
       exit;
     end;
     // und die Datenbank hochsetzen
-    tmplist := TDictionary<string, string>.Create;
-    helpersb := formmain.getsachbearbeiter;
-    try helperid := dict.items['Dokumentid'];
+    tmplist         := TDictionary<string, string>.Create;
+    helpersb        := formmain.getsachbearbeiter;
+    try helperid    := dict.items['Dokumentid'];
     except helperid := '-1';
     end;
     if helperid = '' then helperid := '0';
-    try helperint := strtoint(helperid);
-    except helperint := 0;
+    try helperint                  := strtoint(helperid);
+    except helperint               := 0;
     end;
     if (helperint > 0) then begin
 
       try
         try
-          tmplist.Add(sachbearbeiter, formmain.getsachbearbeiter);
+          tmplist.Add(formmain.dokcons.sachbearbeiter, formmain.getsachbearbeiter);
           tmplist.Add('Dokumentid.Dokumentid', helperid);
           formdb.replacequery('Dokumentid', tmplist);
         except
@@ -424,6 +430,7 @@ begin
       end;
     end;
 
+    // alle temporären Dateien wieder löschen - sind jetzt auf dem Server
     for line in scanneddocuments do DeleteFile(line);
     Result := true;
   finally
@@ -435,7 +442,7 @@ end;
 
 function TWorker.dowork(path: TStringList; tag: integer): boolean;
 begin
-  scanneddocuments := path;
+  scanneddocuments    := path;
   try scannedDocument := scanneddocuments[0];
   except
     scannedDocument := '';
@@ -447,7 +454,7 @@ end;
 function TWorker.dowork(path: string; tag: integer): boolean;
 begin
   scanneddocuments := TStringList.Create;
-  scannedDocument := path;
+  scannedDocument  := path;
   scanneddocuments.Add(scannedDocument);
   Result := doStuff(tag);
 end;
@@ -472,8 +479,11 @@ function TWorker.insertquery(doctype: integer;
 var
   table: string;
 begin
+
   table := gettable(doctype);
-  Result := formdb.insertquery(table, dict);
+  with formmain.dokcons do begin
+    Result := formdb.insertquery(doctype, table, dict);
+  end;
 
 end;
 
@@ -481,13 +491,13 @@ function TWorker.installupdate: boolean;
 var
   serverloc, localloc: string;
 begin
-  serverloc := setupdirection;
-{$IFDEF debug}
+  serverloc := formmain.dokcons.setupdirection;
+  {$IFDEF debug}
   localloc := 'c:\Users\jovani\Pictures\setup.exe';
-{$ENDIF}
-{$IFDEF release}
-  localloc := getlocalsetupdirection;
-{$ENDIF}
+  {$ENDIF}
+  {$IFDEF release}
+  localloc := getlocalsetupdirection('Scannerprogramm');
+  {$ENDIF}
   if not formftp.getupdate(serverloc, localloc) then begin
     showmessage('update konnte nicht heruntergeladen werden');
     Result := false;
@@ -500,7 +510,7 @@ function TWorker.moveonewlocation(path, newfilename: string): boolean;
 var
   dateinamen: string;
 begin
-  dateinamen := dict.items[dateiname];
+  dateinamen               := dict.items[formmain.dokcons.Dateiname];
   formmain.Gauge1.MinValue := 0;
   formmain.Gauge1.Progress := 0;
 
@@ -513,11 +523,11 @@ function TWorker.moveonewlocation(path: string; filenames: TStringList)
   : boolean;
 var
   filename: string;
-  i, size: integer;
+  i, size : integer;
 begin
-  size := filenames.Count;
-  for i := 0 to size - 1 do begin
-    filename := filenames[i];
+  size                               := filenames.Count;
+  for i                              := 0 to size - 1 do begin
+    filename                         := filenames[i];
     if size > 1 then scannedDocument := scanneddocuments[i];
     // if not moveonewlocation(zielverzeichnis, filename) then
     if not movetoftpcollector(scannedDocument, filename) then exit;
@@ -529,22 +539,22 @@ function TWorker.movetoftpcollector(originaldocument,
   newfilename: string): boolean;
 var
   collectdir: string;
-  abspath: string;
-  stream: TFileStream;
-  str: pchar;
-  buf: array [0 .. BufSize - 1] of char;
-  written: Cardinal;
-  pipe: Thandle;
-  FSA: SECURITY_ATTRIBUTES;
-  FSD: SECURITY_DESCRIPTOR;
-  MS: TMemoryStream;
-  elem: string;
+  abspath   : string;
+  stream    : TFileStream;
+  str       : pchar;
+  buf       : array [0 .. BufSize - 1] of char;
+  written   : Cardinal;
+  pipe      : Thandle;
+  FSA       : SECURITY_ATTRIBUTES;
+  FSD       : SECURITY_DESCRIPTOR;
+  MS        : TMemoryStream;
+  elem      : string;
   lastminute: TStringList;
 begin
 
   // stream := TFileStream.Create(getcollectorlistfile, fmOpenReadWrite);
-  collectdir := getCollectorfolder;
-  abspath := includetrailingpathdelimiter(collectdir) +
+  collectdir := getCollectorfolder('Scannerprogramm');
+  abspath    := includetrailingpathdelimiter(collectdir) +
     extractfilename(newfilename);
   if copyfile(pchar(originaldocument), pchar(abspath), true) then
       DeleteFile(originaldocument);
@@ -587,7 +597,7 @@ end;
 
 function TWorker.rescueolddata(list: TStringList): boolean;
 var
-  elem: string;
+  elem     : string;
   sendingel: string;
 begin
   try
@@ -604,33 +614,33 @@ function TWorker.setauftragsdaten: boolean;
 var
   list: TStringList;
 begin
-  if FileExists(getauftragsdaten) then exit;
+  if FileExists(getauftragsdaten('Scannerprogramm')) then exit;
   list := TStringList.Create;
   list.Add('Zwischenablesung');
   list.Add('Montage');
   list.Add('Reklamation');
-  list.SaveToFile(getauftragsdaten);
+  list.SaveToFile(getauftragsdaten('Scannerprogramm'));
 end;
 
 function TWorker.getnutzerdaten(nutzernummer, kundennummer,
   liegenschaft: string): TDictionary<string, string>;
 
 var
-  dict: TDictionary<string, string>;
+  dict                 : TDictionary<string, string>;
   hostname, wherestring: string;
-  list: TStringList;
-  database: string;
-  table: string;
+  list                 : TStringList;
+  database             : string;
+  table                : string;
 begin
   list := TStringList.Create;
   list.Add('WO5');
   list.Add('WO6');
-  database := kuarchiv + kundennummer + '\' + liegenschaft + '\' +
+  database := formmain.dokcons.kuarchiv + kundennummer + '\' + liegenschaft + '\' +
     liegenschaft + '.DB';
   wherestring := ' WHERE WO1 = ' + inttostr(strtoint(nutzernummer)) +
     ' AND WO0=' + QuotedStr('W');
-  table := 'WO_TYP';
-  dict := formdb.getfromhn(database, table, wherestring, list);
+  table  := 'WO_TYP';
+  dict   := formdb.getfromhn(database, table, wherestring, list);
   Result := dict;
 end;
 
@@ -638,9 +648,9 @@ function TWorker.writenote(text, filepath: string): boolean;
 var
   myfile: TextFile;
 begin
-  if not goOnline then AssignFile(myfile, filepath)
+  if not formmain.dokcons.goOnline then AssignFile(myfile, filepath)
   else begin
-    scannedDocument := getLocalFolder + 'tmp.txt';
+    scannedDocument := getLocalFolder('Scannerprogramm') + 'tmp.txt';
     scanneddocuments.Add(scannedDocument);
   end;
 

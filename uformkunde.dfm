@@ -82,16 +82,16 @@ object formkunde: Tformkunde
       BevelKind = bkTile
       BevelOuter = bvNone
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = 6908265
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       TabOrder = 2
       TabOnEnter = False
-      FontColorOnEnter = 36607
-      ColorFocused = 36607
-      ColorNotFocused = clBlack
+      FontColorOnEnter = 10252872
+      ColorFocused = 10252872
+      ColorNotFocused = 6908265
     end
   end
 end

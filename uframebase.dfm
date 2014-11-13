@@ -8,8 +8,8 @@ object framebase: Tframebase
   object gridpanel: TGridPanel
     Left = 0
     Top = 0
-    Width = 1076
-    Height = 689
+    Width = 1096
+    Height = 656
     HelpType = htKeyword
     Align = alClient
     BevelOuter = bvNone
@@ -58,8 +58,8 @@ object framebase: Tframebase
       Padding.Bottom = 25
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 532
-      ExplicitHeight = 681
+      ExplicitWidth = 542
+      ExplicitHeight = 648
       object lfiletype: TLabel
         AlignWithMargins = True
         Left = 13
@@ -217,7 +217,7 @@ object framebase: Tframebase
         ColorNotFocused = 6908265
       end
       object menotizen: TfMemo
-        Left = 124
+        Left = 123
         Top = 237
         Width = 262
         Height = 150
@@ -303,6 +303,37 @@ object framebase: Tframebase
         FontColorOnEnter = 10252872
         ColorFocused = 10252872
         ColorNotFocused = 6908265
+      end
+      object pinfo: TPanel
+        Left = 408
+        Top = 134
+        Width = 125
+        Height = 26
+        Color = 16711384
+        Padding.Left = 10
+        Padding.Top = 10
+        Padding.Right = 10
+        Padding.Bottom = 10
+        ParentBackground = False
+        TabOrder = 8
+        Visible = False
+        object labelinfo: TLabel
+          Left = 11
+          Top = 6
+          Width = 80
+          Height = 13
+          Margins.Left = 10
+          Margins.Top = 10
+          Margins.Right = 10
+          Margins.Bottom = 10
+          Caption = 'Datum als ttmmjj'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6908265
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+        end
       end
     end
     object rightparent: TPanel

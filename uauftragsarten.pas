@@ -67,8 +67,8 @@ begin
     formmain.frameauftrag.cbselectauftrag.Items.Add(item);
     list.Add(item);
   end;
-  DeleteFile(getauftragsdaten);
-  list.SaveToFile(getauftragsdaten);
+  DeleteFile(getauftragsdaten('Scannerprogramm'));
+  list.SaveToFile(getauftragsdaten('Scannerprogramm'));
   formmain.frameauftrag.cbselectauftrag.Update;
   self.Hide;
 end;
@@ -124,9 +124,9 @@ var
   item: string;
 begin
   list := Tstringlist.Create;
-  if FileExists(getauftragsdaten) then
+  if FileExists(getauftragsdaten('Scannerprogramm')) then
   begin
-    list.LoadFromFile(getauftragsdaten);
+    list.LoadFromFile(getauftragsdaten('Scannerprogramm'));
     for item in list do
     begin
       ListBox1.Items.Add(item);
@@ -170,9 +170,9 @@ end;
   for i := 0 to size - 1 do begin
     list.Add(ListBox1.Items.Strings[i]);
   end;
-  if FileExists(getauftragsdaten) then
-    DeleteFile(getauftragsdaten);
-  list.SaveToFile(getauftragsdaten);
+  if FileExists(getauftragsdaten('Scannerprogramm')) then
+    DeleteFile(getauftragsdaten('Scannerprogramm'));
+  list.SaveToFile(getauftragsdaten('Scannerprogramm'));
 
 
 

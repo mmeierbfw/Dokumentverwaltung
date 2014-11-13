@@ -13,10 +13,8 @@ uses
   udirlisting in 'udirlisting.pas',
   usachkunde in 'usachkunde.pas' {formsachkunde},
   udbthread in 'udbthread.pas',
-  uutils in '..\sources2208\uutils.pas',
   uftpconnector in '..\neueftpverbindung\uftpconnector.pas' {formftp},
   uEinstellungen in 'uEinstellungen.pas' {Einstellungen},
-  uUsables in '..\sources2208\uUsables.pas',
   uConstants in 'uConstants.pas',
   umain in 'umain.pas' {formmain},
   uframebase in 'uframebase.pas' {framebase: TFrame},
@@ -26,9 +24,8 @@ uses
   uframezwischen in 'uframezwischen.pas' {framezwischen: TFrame},
   uframeauftrag in 'uframeauftrag.pas' {frameauftrag: TFrame},
   uframefilter in 'uframefilter.pas' {framebasefilter: TFrame},
-  uframeauftragsverwaltung in '..\sources\uframeauftragsverwaltung.pas' {frameauftragsdaten: TFrame},
   usettings in 'usettings.pas',
-  uformkunde in 'uformkunde.pas' {formkunde:TFrame};
+  uformkunde in 'uformkunde.pas' {formkunde: F};
 
 {$R *.res}
 

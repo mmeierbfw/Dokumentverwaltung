@@ -102,7 +102,7 @@ begin
     passw         := passw + XZFRTWert[9];
     passw         := passw + XZFRTWert[10];
 
-    apppath := includetrailingpathdelimiter(getlocalfolder);
+    apppath := includetrailingpathdelimiter(getlocalfolder('Scannerprogramm'));
 
     stream.LoadFromfile(apppath + 'printpcl.org');
     test      := stream.DataString;
@@ -127,7 +127,7 @@ begin
     // if not formmain.intern then
 
     try
-      kundennummern := getKundennrn(strtoint(formmain.kdNr));
+      kundennummern := formmain.dokcons.getKundennrn(strtoint(formmain.kdNr));
       // else kundennummern := getAllKundennrn;
       formmain.setkundennummern(kundennummern);
     except

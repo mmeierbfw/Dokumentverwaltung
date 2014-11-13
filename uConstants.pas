@@ -3,7 +3,7 @@ unit uConstants;
 interface
 
 uses Windows, System.generics.collections, SysUtils, Variants, Classes,
-  Graphics, uutils, Controls, Forms, messages, dialogs;
+  Graphics, uutils, Controls, Forms, messages, dialogs, ubaseconstants;
 
 type
   TItem = record
@@ -11,229 +11,249 @@ type
     _Value: string;
   end;
 
-const
+  tconst = class(Tbaseconstants)
+  const
 
-  aenderungsdatei = 'aenderung.txt';
-  auftragsdatei   = 'auftrag.txt';
-  goOnline        = true;
-  daheim          = false;
-  default_value   = '';
-  { für main-Formular }
-  CSIDL_LOCAL_APPDATA    = $001C;
-  CSIDL_COMMON_DOCUMENTS = $002E;
-  CSIDL_COMMON_APPDATA   = $0023;
-  tiffPath               = '\\192.168.1.4\jovani\scdb';
-  tiffpathonline         = 'scdb';
+    keinekdn        = 'keine Kundennummer ausgewählt';
+    falschesFormat  = 'Datum als ttmmjj';
+    ungueltigDatum  = 'ungültiges Datum';
+    aenderungsdatei = 'aenderung.txt';
+    auftragsdatei   = 'auftrag.txt';
+    goOnline        = true;
+    daheim          = false;
+    default_value   = '';
+    { für main-Formular }
+    CSIDL_LOCAL_APPDATA    = $001C;
+    CSIDL_COMMON_DOCUMENTS = $002E;
+    CSIDL_COMMON_APPDATA   = $0023;
+    tiffPath               = '\\192.168.1.4\jovani\scdb';
+    tiffpathonline         = 'scdb';
 
-  kuarchiv            = '\\BFWKA\KUARCHIV\';
-  versionlocation     = 'dokver/';
-  serverversionsdatei = versionlocation + 'version.txt';
+    kuarchiv            = '\\BFWKA\KUARCHIV\';
+    versionlocation     = 'dokver/';
+    serverversionsdatei = versionlocation + 'version.txt';
 
-  setupdirection = versionlocation + 'setup.exe';
-  localsetup     = 'setup.exe';
-  inidatei       = 'scannertool.ini';
-  ending         = 'pdf';
-  { middle }
-  runningLabelText = 'Dokumentennummer';
-  { uscanningWiaWia }
+    setupdirection = versionlocation + 'setup.exe';
+    localsetup     = 'setup.exe';
+    inidatei       = 'scannertool.ini';
+    ending         = 'pdf';
+    { middle }
+    runningLabelText = 'Dokumentennummer';
+    { uscanningWiaWia }
 
-  table_zwi   = 'scandokumente.zwischenablesung';
-  table_zwi2  = 'scandokumente.zwischenablesung_copy';
-  table_mon   = 'scandokumente.montagen';
-  table_en    = 'scandokumente.energieausweis';
-  table_kos   = 'scandokumente.kostenermittlungen';
-  table_rekl  = 'scandokumente.reklamation';
-  table_ang   = 'scandokumente.angebotsanfrage';
-  table_auf   = 'scandokumente.auftragsanforderung';
-  table_nut   = 'scandokumente.nutzerlisten';
-  table_sonst = 'scandokumente.sonstiges';
-  table_vert  = 'scandokumente.verträge';
+    table_zwi       = 'scandokumente.zwischenablesung';
+    table_zwi_neu   = 'test.zwischenablesung';
+    table_zwi2      = 'scandokumente.zwischenablesung_copy';
+    table_mon       = 'scandokumente.montagen';
+    table_mon_neu   = 'test.montage';
+    table_en        = 'scandokumente.energieausweis';
+    table_en_neu    = 'test.energieausweis';
+    table_kos       = 'scandokumente.kostenermittlungen';
+    table_kos_neu   = 'test.kostenermittlung';
+    table_rekl      = 'scandokumente.reklamation';
+    table_rekl_neu  = 'test.reklamation';
+    table_ang       = 'scandokumente.angebotsanfrage';
+    table_ang_neu   = 'test.angebotsanfrage';
+    table_auf       = 'scandokumente.auftragsanforderung';
+    table_auf_neu   = 'test.auftragsanforderung';
+    table_nut       = 'scandokumente.nutzerlisten';
+    table_nut_neu   = 'test.nutzerliste';
+    table_sonst     = 'scandokumente.sonstiges';
+    table_sonst_neu = 'test.sonstiges';
+    table_vert      = 'scandokumente.verträge';
+    table_vert_neu  = 'test.vertrag';
+    table_common    = 'test.commontab';
+    table_dok       = 'test.dokument';
+    table_typen     = 'test.typen';
+    typ_name        = 'typen_name';
+    table_email     = 'test.email';
 
-  // muss halt so
-  WiaFormatBMP  = '{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}';
-  WiaFormatTIFF = '{B96B3CB1-0728-11D3-9D7B-0000F81EF32E}';
-  { B96B3CB1-0728-11D3-9D7B-0000F81EF32E }
-  // dito
-  cancelError = true;
-  // Zeit, die der Scanner wartet, bis er einen erneuten Papiereinzug versucht.
-  sleeptime = 3000;
-  tooslow   = 'Fertig mit Scannen?';
-  nopaper   = 'Es konnte kein Papier im Einzug gefunden werden. ' + #13 +
-    'Bitte Einlegen um zu scannen';
+    // muss halt so
+    WiaFormatBMP  = '{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}';
+    WiaFormatTIFF = '{B96B3CB1-0728-11D3-9D7B-0000F81EF32E}';
+    { B96B3CB1-0728-11D3-9D7B-0000F81EF32E }
+    // dito
+    cancelError = true;
+    // Zeit, die der Scanner wartet, bis er einen erneuten Papiereinzug versucht.
+    sleeptime = 3000;
+    tooslow   = 'Fertig mit Scannen?';
+    nopaper   = 'Es konnte kein Papier im Einzug gefunden werden. ' + #13 +
+      'Bitte Einlegen um zu scannen';
 
-  // Dateiname; so wird in tiffpath gespeichert. Ist vorerst die laufende Nummer.
-  tifffilename = '%s.pdf';
-  { NUR ZUM TESTEN!!!!!!! }
-  // user = 'Scantest12';
-  // password = '12';
+    // Dateiname; so wird in tiffpath gespeichert. Ist vorerst die laufende Nummer.
+    tifffilename = '%s.pdf';
+    { NUR ZUM TESTEN!!!!!!! }
+    // user = 'Scantest12';
+    // password = '12';
 
-  { lokal auf Laufwerk H }
-  localmysqluser = 'Scantest12';
-  localpassword  = 'maunze01';
+    { lokal auf Laufwerk H }
+    localmysqluser = 'Scantest12';
+    localpassword  = 'maunze01';
 
-  // localmysqluser = 'root';
-  localhostname = '192.168.1.215';
-  localPort     = '3306';
-  { auf Server }
-  servermysqluser     = 'root';
-  serveruser          = 'tiffy';
-  serverpassword      = 'C3_az?!a';
-  serverhostname      = '148.251.138.2';
-  serverport          = '7777';
-  serverlocalhost     = '127.0.0.1';
-  serverremotePort    = '3306';
-  serverlocalhostport = serverport + ':' + serverlocalhost + ':' +
-    serverremotePort;
+    // localmysqluser = 'root';
+    localhostname = '192.168.1.215';
+    localPort     = '3306';
+    { auf Server }
+    servermysqluser     = 'root';
+    serveruser          = 'tiffy';
+    serverpassword      = 'C3_az?!a';
+    serverhostname      = '148.251.138.2';
+    serverport          = '7777';
+    serverlocalhost     = '127.0.0.1';
+    serverremotePort    = '3306';
+    serverlocalhostport = serverport + ':' + serverlocalhost + ':' +
+      serverremotePort;
 
-  database  = 'scandokumente';
-  runningID = 'runningid';
+    database  = 'scandokumente';
+    runningID = 'runningid';
 
-  defaulttext =
-    'Wenn das Sammelverzeichnis (links mittig) leer ist, bitte mindestens ein Dokument scannen.'
-    + #13#13#13 +
-    'Eine Vorschau ist mit dem "Thumbnail" Button über der Verzeichnisliste möglich.'
-    + #13 + 'Innerhalb der Reiter kann man sich sowohl per Tabtaste, als auch per Pfeiltasten bewegen'
-    + #13 + 'Scannen ist auch während der Maskeneingabe möglich' +
-    'Zwischenablesungen sicher, Montagen und Telefonnotiz ungetestet' + #13 +
-    'Eingaben werden nicht mehr gelöscht, wenn der Reiter gewechselt wird' + #13
-    + 'Einige Labels angepasst' + #13 +
-    'Emails können auch in den Sammelordner geschoben werden:' + #13 +
-    'Für den Benutzer unverändert, im Hintergrund werden Daten aus der Mail gespeichert'
-    + #13 + '(Betreff, Absender und Empfänger und deren Emailadressen)';
+    defaulttext =
+      'Wenn das Sammelverzeichnis (links mittig) leer ist, bitte mindestens ein Dokument scannen.'
+      + #13#13#13 +
+      'Eine Vorschau ist mit dem "Thumbnail" Button über der Verzeichnisliste möglich.'
+      + #13 + 'Innerhalb der Reiter kann man sich sowohl per Tabtaste, als auch per Pfeiltasten bewegen'
+      + #13 + 'Scannen ist auch während der Maskeneingabe möglich' +
+      'Zwischenablesungen sicher, Montagen und Telefonnotiz ungetestet' + #13 +
+      'Eingaben werden nicht mehr gelöscht, wenn der Reiter gewechselt wird' +
+      #13 + 'Einige Labels angepasst' + #13 +
+      'Emails können auch in den Sammelordner geschoben werden:' + #13 +
+      'Für den Benutzer unverändert, im Hintergrund werden Daten aus der Mail gespeichert'
+      + #13 + '(Betreff, Absender und Empfänger und deren Emailadressen)';
 
-  { für Zwischenablesung }
-  zwischenablesung   = 'zwischenablesung';
-  montage            = 'montagen';
-  sonstiges          = 'sonstiges';
-  reklamation        = 'reklamation';
-  Energieausweis     = 'energieausweis';
-  Kostenermittlungen = 'kostenermittlungen';
-  nutzerlisten       = 'nutzerlisten';
-  vertrag            = 'verträge';
-  angebote           = 'angebotsanfrage';
-  auftrag            = 'auftragsanforderung';
+    { für Zwischenablesung }
+    zwischenablesung   = 'zwischenablesung';
+    montage            = 'montage';
+    sonstiges          = 'sonstiges';
+    reklamation        = 'reklamation';
+    Energieausweis     = 'energieausweis';
+    Kostenermittlungen = 'kostenermittlungen';
+    nutzerlisten       = 'nutzerlisten';
+    vertrag            = 'verträge';
+    angebote           = 'angebotsanfrage';
+    auftrag            = 'auftragsanforderung';
 
-  liegenschaft    = 'liegenschaft';
-  Kundennummer    = 'kundennummer';
-  Posteingang     = 'posteingang';
-  Vertragsbeginn  = 'Vertragsbeginn';
-  Ablesedatum     = 'Ablesedatum';
-  Nutzernummer    = 'Nutzernummer';
-  Nutzername1     = 'Nutzername1';
-  nutzername2     = 'Nutzername2';
-  nutzername      = 'Nutzername';
-  erledigt        = 'erledigt';
-  Notizen         = 'Notizen';
-  Auftragsnummer  = 'Auftragsnummer';
-  Dateiname       = 'Dateiname';
-  id              = 'Dokumentid';
-  sachbearbeiter  = 'sachbearbeiter';
-  datumgepr       = 'datumgeprueft';
-  sammelordner    = 'Sammelordner';
-  abrechnungsende = 'Abrechnungsende';
-  { für Montage }
-  Gueltigkeitsdatum = 'Gueltigkeitsdatum';
-  Montagedatum      = 'Einbaudatum';
+    liegenschaft    = 'liegenschaft';
+    Kundennummer    = 'kundennummer';
+    Posteingang     = 'posteingang';
+    Vertragsbeginn  = 'vertragsbeginn';
+    Ablesedatum     = 'ablesedatum';
+    Nutzernummer    = 'nutzernummer';
+    Nutzername1     = 'Nutzername1';
+    nutzername2     = 'Nutzername2';
+    nutzername      = 'nutzername';
+    erledigt        = 'erledigt';
+    Notizen         = 'notizen';
+    Auftragsnummer  = 'auftragsnummer';
+    Dateiname       = 'dateiname';
+    id              = 'dokumentid';
+    sachbearbeiter  = 'sachbearbeiter';
+    datumgepr       = 'datumgeprueft';
+    sammelordner    = 'Sammelordner';
+    abrechnungsende = 'abrechnungsende';
+    { für Montage }
+    Gueltigkeitsdatum = 'gueltigkeitsdatum';
+    Montagedatum      = 'einbaudatum';
 
-  informiert       = 'informiert';
-  ausführungsstart = 'ausführungsstart';
-  ausführungsende  = 'ausführungsende';
-  Monteur          = 'Monteur';
-  erreicht         = 'erreicht';
-  ausführungsdatum = 'ausführungsdatum';
-  nicherledigtstr  = '0';
-  erledigtstr      = '1';
+    informiert       = 'informiert';
+    ausführungsstart = 'ausführungsstart';
+    ausführungsende  = 'ausführungsende';
+    Monteur          = 'Monteur';
+    erreicht         = 'erreicht';
+    ausführungsdatum = 'ausführungsdatum';
+    nicherledigtstr  = '0';
+    erledigtstr      = '1';
 
-  pseudoliegenschaft = 'Pseudoliegenschaft';
-  strasse            = 'Strasse';
-  ort                = 'Ort';
-  plz                = 'PLZ';
+    pseudoliegenschaft = 'Pseudoliegenschaft';
+    strasse            = 'Strasse';
+    ort                = 'Ort';
+    plz                = 'PLZ';
 
-  { für neue Aufträge }
-  auftragstyp = 'Auftragstyp';
-  { Dokumentarten }
-  ZwischenablsgINT  = 0;
-  MontageINT        = 1;
-  ReklamationINT    = 2;
-  EnergieausweisINT = 3;
-  KostenINT         = 4;
-  Nutzerint         = 5;
-  SonstigesInt      = 6;
-  Vertragsint       = 7;
-  Angebotsint       = 8;
-  Auftragsint       = 9;
+    { für neue Aufträge }
+    auftragstyp = 'Auftragstyp';
+    { Dokumentarten }
+    ZwischenablsgINT  = 0;
+    MontageINT        = 1;
+    ReklamationINT    = 2;
+    EnergieausweisINT = 3;
+    KostenINT         = 4;
+    Nutzerint         = 5;
+    SonstigesInt      = 6;
+    Vertragsint       = 7;
+    Angebotsint       = 8;
+    Auftragsint       = 9;
 
-  { für Email }
-  Absendername     = 'Absendername';
-  Absenderadresse  = 'Absenderadresse';
-  Empfängername    = 'Empfängername';
-  Empfängeradresse = 'Empfängeradresse';
-  Betref           = 'Betreff';
+    { für Email }
+    Absendername     = 'Absendername';
+    Absenderadresse  = 'Absenderadresse';
+    Empfängername    = 'Empfängername';
+    Empfängeradresse = 'Empfängeradresse';
+    Betref           = 'Betreff';
 
-  { für anrufe }
-  Anrufer       = 'Anrufer';
-  Telefonnummer = 'Telefonnummer';
-  { für MysqlAufrufe }
-  insertBegin  = '%s %s (';
-  insertMiddle = ') VALUES(';
-  insertEnd    = ');';
-  // Variable für count(*) Aufrufe
-  cntVar      = 'cnt';
-  selectCount = 'SELECT COUNT(*) AS ' + cntVar + ' FROM %s Where ' +
-    Kundennummer + ' = %d';
+    { für anrufe }
+    Anrufer       = 'Anrufer';
+    Telefonnummer = 'Telefonnummer';
+    { für MysqlAufrufe }
+    insertBegin  = '%s %s (';
+    insertMiddle = ') VALUES(';
+    insertEnd    = ');';
+    // Variable für count(*) Aufrufe
+    cntVar      = 'cnt';
+    selectCount = 'SELECT COUNT(*) AS ' + cntVar + ' FROM %s Where ' +
+      Kundennummer + ' = %d';
 
-  selectLIegenschaftsdaten =
-    'SELECT plz, Ort, Strasse, databr, vermerke FROM danlsuc' +
-    ' WHERE lienr = %d';
+    selectLIegenschaftsdaten =
+      'SELECT plz, Ort, Strasse, databr, vermerke FROM danlsuc' +
+      ' WHERE lienr = %d';
 
-  { Farben }
+    { Farben }
 
-  blau            = $00EBBE8E;
-  hellgrau        = $00F1F1F1;
-  neueshellblau   = $00FEEACF;
-  neuestesellblau = $00FFFFF6;
-  hellorange      = $00008EFF;
-  dunkelblau      = $00745243;
-  hellblau        = $00DEC7BC;
-  grau            = $00DCDCDC;
-  orange          = $004E87FF;
-  hellbraun       = $005899AC;
-  dunkelgrau      = $696969;
+    blau            = $00EBBE8E;
+    hellgrau        = $00F1F1F1;
+    neueshellblau   = $00FEEACF;
+    neuestesellblau = $00FFFFF6;
+    hellorange      = $00008EFF;
+    dunkelblau      = $00745243;
+    hellblau        = $00DEC7BC;
+    grau            = $00DCDCDC;
+    orange          = $004E87FF;
+    hellbraun       = $005899AC;
+    dunkelgrau      = $696969;
 
-  { Dokumenttyp }
+    { Dokumenttyp }
 
-  pdf     = '  PDF-Datei';
-  bild    = 'gescanntes Dokument';
-  eml     = '  Email';
-  default = '  unbekanntes Dateiformat';
-  digital = 'digitales Dokument';
+    pdf     = '  PDF-Datei';
+    bild    = 'gescanntes Dokument';
+    eml     = '  Email';
+    default = '  unbekanntes Dateiformat';
+    digital = 'digitales Dokument';
 
-  emailverarbeitung = 1;
-  bildverarbeitung  = 2;
-  scandokument      = 3;
-  // fmypath = showspecialFolder(CSIDL_LOCAL_APPDATA) + '\ScannerProgramm' ;
-  // ShellAufruf = '/C plink.exe -ssh ' + serverhostname + ' -l ' + serveruser +' -L '
-  // + serverlocalhostPort;
-  ShellAufruf = '/C plink.exe -ssh linuxdb';
+    emailverarbeitung = 1;
+    bildverarbeitung  = 2;
+    scandokument      = 3;
+    // fmypath = showspecialFolder(CSIDL_LOCAL_APPDATA) + '\ScannerProgramm' ;
+    // ShellAufruf = '/C plink.exe -ssh ' + serverhostname + ' -l ' + serveruser +' -L '
+    // + serverlocalhostPort;
+    ShellAufruf = '/C plink.exe -ssh linuxdb';
 
-  scannerverzeichnis = 'scanner\';
+    scannerverzeichnis = 'scanner\';
 
-  keinedokumentetext = 'Keine Dokumente im Sammelverzeichnis';
-  programmname       = 'ScannerProgramm';
+    keinedokumentetext = 'Keine Dokumente im Sammelverzeichnis';
+    programmname       = 'ScannerProgramm';
 
-  editmaskdatum                           = '00/00/00;';
-  dokumentarten: array [0 .. 5] of string = (zwischenablesung, sonstiges,
-    montage, Energieausweis, nutzerlisten, Kostenermittlungen);
-  // function getScannerFolder(): string;
+    editmaskdatum                           = '00/00/00;';
+    dokumentarten: array [0 .. 5] of string = (zwischenablesung, sonstiges,
+      montage, Energieausweis, nutzerlisten, Kostenermittlungen);
+    // function getScannerFolder(): string;
 
-function getKundennrn(kdn: integer): TList<integer>;
+    function getKundennrn(kdn: integer): TList<integer>;
 
-function getAllKundennrn: TList<integer>;
+    function getAllKundennrn: TList<integer>;
+  end;
 
 implementation
 
 // ###################################################
-function getKundennrn(kdn: integer): TList<integer>;
+function tconst.getKundennrn(kdn: integer): TList<integer>;
 begin
   Result := TList<integer>.create;
   Result.Add(kdn);
@@ -253,7 +273,7 @@ begin
 end;
 
 // ###################################################
-function getAllKundennrn: TList<integer>;
+function tconst.getAllKundennrn: TList<integer>;
 begin
   Result := TList<integer>.create;
   Result.Add(10);

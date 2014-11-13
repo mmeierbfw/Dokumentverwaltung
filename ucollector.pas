@@ -2,14 +2,12 @@ unit ucollector;
 
 interface
 
-uses  Controls, StdCtrls,
+uses Controls, StdCtrls,
 
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Forms,
-  Dialogs, ExtCtrls,
-  Menus, DB, ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZAbstractConnection, ZConnection,  uusables, uconstants,
-   shellapi, uutils, umysqlcontroller, udbconnector,
-  System.Generics.collections;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Forms, Dialogs,
+  ExtCtrls, Menus, DB, ZAbstractRODataset, ZAbstractDataset, ZDataset,
+  ZAbstractConnection, ZConnection, uusables, uconstants, shellapi, uutils,
+  umysqlcontroller, udbconnector, System.Generics.collections;
 
 type
   TCollector = class(TObject)
@@ -51,7 +49,7 @@ type
     function collectAuftrag: tdictionary<string, string>; overload;
     function collectAuftrag(email: temail)
       : tdictionary<string, string>; overload;
-       
+
   end;
 
 var
@@ -66,11 +64,11 @@ uses umain;
 function TCollector.collectEnergieausweis(email: temail)
   : tdictionary<string, string>;
 var
-  endoc: TDocumentEnergieausweis;
+  endoc            : TDocumentEnergieausweis;
   dicten, dictemail: tdictionary<string, string>;
 begin
   dictemail := email.getproperties;
-  dicten := collectEnergieausweis;
+  dicten    := collectEnergieausweis;
   copydictionary(dictemail, dicten);
   Result := dicten;
 end;
@@ -80,7 +78,7 @@ function TCollector.collectKostenermittlung(email: temail)
 var
   dictkos, dictemail: tdictionary<string, string>;
 begin
-  dictkos := collectKostenermittlung;
+  dictkos   := collectKostenermittlung;
   dictemail := email.getproperties;
   copydictionary(dictemail, dictkos);
   Result := dictkos;
@@ -91,7 +89,7 @@ function TCollector.collectMontage(email: temail): tdictionary<string, string>;
 var
   dictmon, dictemail: tdictionary<string, string>;
 begin
-  dictmon := collectMontage;
+  dictmon   := collectMontage;
   dictemail := email.getproperties;
   copydictionary(dictemail, dictmon);
   Result := dictmon;
@@ -103,7 +101,7 @@ function TCollector.collectNutzerliste(email: temail)
 var
   dictnu, dictemail: tdictionary<string, string>;
 begin
-  dictnu := collectNutzerliste;
+  dictnu    := collectNutzerliste;
   dictemail := email.getproperties;
   copydictionary(dictemail, dictnu);
   Result := dictnu;
@@ -115,7 +113,7 @@ function TCollector.collectreklamation(email: temail)
 var
   dict, dictemail: tdictionary<string, string>;
 begin
-  dict := collectreklamation;
+  dict      := collectreklamation;
   dictemail := email.getproperties;
   copydictionary(dictemail, dict);
   Result := dict;
@@ -125,48 +123,49 @@ end;
 function TCollector.collectreklamation: tdictionary<string, string>;
 var
   dictre, dictd: tdictionary<string, string>;
-  rekdoc: TdocumentReklamation;
+  rekdoc       : TdocumentReklamation;
 begin
-  dictd := collectDefault(ReklamationINT);
-  rekdoc := TdocumentReklamation.create;
-  with formmain do
-  begin
-    rekdoc.setpropertie(Montagedatum, getMontagedatum);
-    rekdoc.setpropertie(Auftragsnummer, getauftragsnummer);
+  with formmain.dokcons do begin
+    dictd  := collectDefault(formmain.dokcons.ReklamationINT);
+    rekdoc := TdocumentReklamation.create;
+    with formmain do begin
+      rekdoc.setpropertie(Montagedatum, getMontagedatum);
+      rekdoc.setpropertie(Auftragsnummer, getauftragsnummer);
+    end;
+    dictre := rekdoc.getproperties;
+    copydictionary(dictd, dictre);
+    Result := dictre;
   end;
-  dictre := rekdoc.getproperties;
-  copydictionary(dictd, dictre);
-  Result := dictre;
 
 end;
 
 function TCollector.collectsonstiges: tdictionary<string, string>;
 var
   dictd, dictk: tdictionary<string, string>;
-  sonstdoc: Tdocumentsonstiges;
+  sonstdoc    : Tdocumentsonstiges;
 begin
-  sonstdoc := Tdocumentsonstiges.create;
-  dictd := collectDefault(KostenINT);
-  with formmain do
-  begin
-    sonstdoc.setpropertie(Nutzernummer, getNutzernummer);
+  with formmain.dokcons do begin
+    sonstdoc := Tdocumentsonstiges.create;
+    dictd    := collectDefault(KostenINT);
+    with formmain do begin
+      sonstdoc.setpropertie(Nutzernummer, getNutzernummer);
+    end;
+    dictk := sonstdoc.getproperties;
+    copydictionary(dictd, dictk);
+    Result := dictk;
   end;
-  dictk := sonstdoc.getproperties;
-  copydictionary(dictd, dictk);
-  Result := dictk;
 
 end;
 
 function TCollector.collectvertrag: tdictionary<string, string>;
 var
   dict, dictv: tdictionary<string, string>;
-  doc: TDocumentvertrag;
+  doc        : TDocumentvertrag;
 begin
-  doc := TDocumentvertrag.create;
-  dict := collectDefault(vertragsint);
-  with formmain do
-  begin
-    doc.setpropertie(Nutzernummer, getNutzernummer);
+  doc  := TDocumentvertrag.create;
+  dict := collectDefault(formmain.dokcons.vertragsint);
+  with formmain do begin
+    doc.setpropertie(formmain.dokcons.Nutzernummer, getNutzernummer);
   end;
   dictv := doc.getproperties;
   copydictionary(dict, dictv);
@@ -179,7 +178,7 @@ var
 
 begin
   dictemail := email.getproperties;
-  dict := collectvertrag;
+  dict      := collectvertrag;
   copydictionary(dictemail, dict);
   Result := dict;
 end;
@@ -189,7 +188,7 @@ function TCollector.collectZwischenablesung(email: temail)
 var
   dict, dictemail: tdictionary<string, string>;
 begin
-  dict := collectZwischenablesung;
+  dict      := collectZwischenablesung;
   dictemail := email.getproperties;
   copydictionary(dictemail, dict);
   Result := dict;
@@ -200,65 +199,58 @@ end;
 function TCollector.collectZwischenablesung: tdictionary<string, string>;
 var
   dictd, dictz: tdictionary<string, string>;
-  doc: TDocument;
-  zwdoc: TdocumentZwischenablesung;
-  checked: string;
+  doc         : TDocument;
+  zwdoc       : TdocumentZwischenablesung;
+  checked     : string;
 begin
-  dictd := collectDefault(ZwischenablsgINT);
-  zwdoc := TdocumentZwischenablesung.create;
-  with formmain do
-  begin
-    zwdoc.setpropertie(ablesedatum, getAblesedatum);
-    zwdoc.setpropertie(vertragsbeginn, getAuszugsdatum);
-    zwdoc.setpropertie(Nutzername, getNutzername);
-    zwdoc.setpropertie(Nutzernummer, getNutzernummer);
-    dictz := zwdoc.getproperties;
-    copydictionary(dictd, dictz);
+  with formmain.dokcons do begin
+    dictd := collectDefault(formmain.dokcons.ZwischenablsgINT);
+    zwdoc := TdocumentZwischenablesung.create;
+    with formmain do begin
+      zwdoc.setpropertie(ablesedatum, getAblesedatum);
+      zwdoc.setpropertie(vertragsbeginn, getAuszugsdatum);
+      zwdoc.setpropertie(Nutzername, getNutzername);
+      zwdoc.setpropertie(Nutzernummer, getNutzernummer);
+      dictz := zwdoc.getproperties;
+      copydictionary(dictd, dictz);
+    end;
+    Result := dictz;
   end;
-  Result := dictz;
 end;
 
 function TCollector.collect(doctype: integer): tdictionary<string, string>;
 begin
-  case doctype of
-    ZwischenablsgINT:
-      Result := collectZwischenablesung;
-    MontageINT:
-      Result := collectMontage;
-    ReklamationINT:
-      Result := collectreklamation;
-    SonstigesInt:
-      Result := collectsonstiges;
-    EnergieausweisINT:
-      Result := collectEnergieausweis;
-    Nutzerint:
-      Result := collectNutzerliste;
-    KostenINT:
-      Result := collectKostenermittlung;
-    vertragsint:
-      Result := collectvertrag;
-    Angebotsint:
-      Result := collectangebotsanfrage;
-    Auftragsint:
-      Result := collectAuftrag;
+  with formmain.dokcons do begin
+    case doctype of
+      ZwischenablsgINT: Result  := collectZwischenablesung;
+      MontageINT: Result        := collectMontage;
+      ReklamationINT: Result    := collectreklamation;
+      SonstigesInt: Result      := collectsonstiges;
+      EnergieausweisINT: Result := collectEnergieausweis;
+      Nutzerint: Result         := collectNutzerliste;
+      KostenINT: Result         := collectKostenermittlung;
+      vertragsint: Result       := collectvertrag;
+      Angebotsint: Result       := collectangebotsanfrage;
+      Auftragsint: Result       := collectAuftrag;
+    end;
   end;
 end;
 
 function TCollector.collectangebotsanfrage: tdictionary<string, string>;
 var
-  doc: TdocumentAngebot;
+  doc         : TdocumentAngebot;
   dictd, dicta: tdictionary<string, string>;
 begin
-
-  dictd := collectDefault(Angebotsint);
-  doc := TdocumentAngebot.create;
-  with formmain do
-  begin
-    doc.setpropertie(Nutzernummer, getNutzernummer);
+  with formmain.dokcons do begin
+    dictd := collectDefault(Angebotsint);
+    doc   := TdocumentAngebot.create;
+    with formmain do begin
+      doc.setpropertie(Nutzernummer, getNutzernummer);
+    end;
+    dicta := doc.getproperties;
+    copydictionary(dictd, dicta);
+    Result := dicta;
   end;
-  dicta := doc.getproperties;
-  copydictionary(dictd, dicta);
-  Result := dicta;
 end;
 
 function TCollector.collectangebotsanfrage(email: temail)
@@ -266,29 +258,32 @@ function TCollector.collectangebotsanfrage(email: temail)
 var
   dicte, dict: tdictionary<string, string>;
 begin
-  dict := collectangebotsanfrage;
-  dicte := email.getproperties;
-  copydictionary(dicte, dict);
-  Result := dict;
+  with formmain.dokcons do begin
+    dict  := collectangebotsanfrage;
+    dicte := email.getproperties;
+    copydictionary(dicte, dict);
+    Result := dict;
+  end;
+
 end;
 
 function TCollector.collectAuftrag: tdictionary<string, string>;
 
 var
   dictd, dicta: tdictionary<string, string>;
-  auftragsdoc: TDocumentAuftrag;
+  auftragsdoc : TDocumentAuftrag;
 begin
-
-  dictd := collectDefault(Auftragsint);
-  auftragsdoc := TDocumentAuftrag.create;
-  with formmain do
-  begin
-    auftragsdoc.setpropertie(Nutzernummer, getNutzernummer);
-    auftragsdoc.setpropertie(auftragstyp, getauftragstyp);
+  with formmain.dokcons do begin
+    dictd       := collectDefault(Auftragsint);
+    auftragsdoc := TDocumentAuftrag.create;
+    with formmain do begin
+      auftragsdoc.setpropertie(Nutzernummer, getNutzernummer);
+      auftragsdoc.setpropertie(auftragstyp, getauftragstyp);
+    end;
+    dicta := auftragsdoc.getproperties;
+    copydictionary(dictd, dicta);
+    Result := dicta;
   end;
-  dicta := auftragsdoc.getproperties;
-  copydictionary(dictd, dicta);
-  Result := dicta;
 end;
 
 function TCollector.collectAuftrag(email: temail): tdictionary<string, string>;
@@ -296,7 +291,7 @@ var
   dict, dictemail: tdictionary<string, string>;
 begin
   dictemail := email.getproperties;
-  dict := collectAuftrag;
+  dict      := collectAuftrag;
   copydictionary(dictemail, dict);
   Result := dict;
 
@@ -316,100 +311,106 @@ end;
 function TCollector.collectDefault(doctype: integer)
   : tdictionary<string, string>;
 var
-  doc: TDocument;
+  doc    : TDocument;
   checked: string;
-  dictd: tdictionary<string, string>;
-  prefix: string;
-  helper: string;
+  dictd  : tdictionary<string, string>;
+  prefix : string;
+  helper : string;
 begin
-  doc := TDocument.create;
-  with formmain do
-  begin
-    // if not (doctype = TelefonnotizINT) then
+  with formmain.dokcons do begin
+    doc := TDocument.create;
+    with formmain do begin
+      // if not (doctype = TelefonnotizINT) then
 
-    doc.setpropertie(Dateiname, formmain.getfilename);
-    doc.setpropertie('Dokumentid', getDocumentid);
-    doc.setpropertie(Posteingang, getPosteingang);
-    doc.setpropertie(erledigt, getErledigt);
-    doc.setpropertie(Kundennummer, getkundennrfordb);
-    doc.setpropertie(liegenschaft, getLiegenschaft);
-    doc.setpropertie(Notizen, getNotizen);
-    doc.setpropertie(sachbearbeiter, getsachbearbeiter());
-    doc.setpropertie(datumgepr, getdatumchecked);
-    doc.setpropertie(Anrufer, getanrufer);
-    doc.setpropertie(Telefonnummer, gettelefonnummer);
-    doc.setpropertie(sammelordner, getsammelordner);
-    doc.setpropertie(abrechnungsende, getabrechnungsende);
-    doc.setpropertie(strasse, getstrasse);
-    doc.setpropertie(plz, getplz);
-    doc.setpropertie(ort, getort);
+      doc.setpropertie(Dateiname, formmain.getfilename);
+      doc.setpropertie('Dokumentid', getDocumentid);
+      doc.setpropertie(Posteingang, getPosteingang);
+      doc.setpropertie(erledigt, getErledigt);
+      doc.setpropertie(Kundennummer, getkundennrfordb);
+      doc.setpropertie(liegenschaft, getLiegenschaft);
+      doc.setpropertie(Notizen, getNotizen);
+      doc.setpropertie(sachbearbeiter, getsachbearbeiter());
+      doc.setpropertie(datumgepr, getdatumchecked);
+      doc.setpropertie(Anrufer, getanrufer);
+      doc.setpropertie(Telefonnummer, gettelefonnummer);
+      doc.setpropertie(sammelordner, getsammelordner);
+      doc.setpropertie(abrechnungsende, getabrechnungsende);
+      doc.setpropertie(strasse, getstrasse);
+      doc.setpropertie(plz, getplz);
+      doc.setpropertie(ort, getort);
 
-    doc.setpropertie(datumgepr, getdatumchecked);
+      doc.setpropertie(datumgepr, getdatumchecked);
+    end;
+
+    dictd  := doc.getproperties;
+    Result := dictd;
   end;
-
-  dictd := doc.getproperties;
-  Result := dictd;
 end;
 
 function TCollector.collectEnergieausweis: tdictionary<string, string>;
 
 var
   dictd, dicte: tdictionary<string, string>;
-  endoc: TDocumentEnergieausweis;
+  endoc       : TDocumentEnergieausweis;
 begin
-  endoc := TDocumentEnergieausweis.create;
-  dictd := collectDefault(EnergieausweisINT);
-  with formmain do
-  begin
-    endoc.setpropertie(pseudoliegenschaft, getpseudoliegenschaft);
-    endoc.setpropertie(strasse, getstrasse);
-    endoc.setpropertie(ort, getort);
-    endoc.setpropertie(plz, getplz);
+  with formmain.dokcons do begin
+    endoc := TDocumentEnergieausweis.create;
+    dictd := collectDefault(EnergieausweisINT);
+    with formmain do begin
+      endoc.setpropertie(pseudoliegenschaft, getpseudoliegenschaft);
+      endoc.setpropertie(strasse, getstrasse);
+      endoc.setpropertie(ort, getort);
+      endoc.setpropertie(plz, getplz);
+    end;
+    dicte := endoc.getproperties;
+    copydictionary(dictd, dicte);
+    Result := dicte;
   end;
-  dicte := endoc.getproperties;
-  copydictionary(dictd, dicte);
-  Result := dicte;
 end;
 
 function TCollector.collectKostenermittlung: tdictionary<string, string>;
 var
   dictd, dictk: tdictionary<string, string>;
-  kosdoc: TDocumentKostenermittlung;
+  kosdoc      : TDocumentKostenermittlung;
 begin
-  kosdoc := TDocumentKostenermittlung.create;
-  dictd := collectDefault(KostenINT);
-  with formmain do
-  begin
-    kosdoc.setpropertie(Nutzernummer, getNutzernummer);
+  with formmain.dokcons do begin
+    kosdoc := TDocumentKostenermittlung.create;
+    dictd  := collectDefault(KostenINT);
+    with formmain do begin
+      kosdoc.setpropertie(Nutzernummer, getNutzernummer);
+    end;
+    dictk := kosdoc.getproperties;
+    copydictionary(dictd, dictk);
+    Result := dictk;
   end;
-  dictk := kosdoc.getproperties;
-  copydictionary(dictd, dictk);
-  Result := dictk;
 end;
 
 function TCollector.collectMontage: tdictionary<string, string>;
 var
   dictd, dictm: tdictionary<string, string>;
-  mondoc: TDocumentMontage;
+  mondoc      : TDocumentMontage;
 begin
-  dictd := collectDefault(MontageINT);
-  mondoc := TDocumentMontage.create;
-  with formmain do
-  begin
-    mondoc.setpropertie(Montagedatum, getMontagedatum);
-    mondoc.setpropertie(Auftragsnummer, getauftragsnummer);
-    mondoc.setpropertie(Nutzernummer, getNutzernummer);
+  with formmain.dokcons do begin
+    dictd  := collectDefault(MontageINT);
+    mondoc := TDocumentMontage.create;
+    with formmain do begin
+      mondoc.setpropertie(Montagedatum, getMontagedatum);
+      mondoc.setpropertie(Auftragsnummer, getauftragsnummer);
+      mondoc.setpropertie(Nutzernummer, getNutzernummer);
+    end;
+    dictm := mondoc.getproperties;
+    copydictionary(dictd, dictm);
+    Result := dictm;
   end;
-  dictm := mondoc.getproperties;
-  copydictionary(dictd, dictm);
-  Result := dictm;
 end;
 
 function TCollector.collectNutzerliste: tdictionary<string, string>;
 var
   dictd: tdictionary<string, string>;
 begin
-  Result := collectDefault(Nutzerint);
+  with formmain.dokcons do begin
+    Result := collectDefault(Nutzerint);
+  end;
 end;
 
 end.

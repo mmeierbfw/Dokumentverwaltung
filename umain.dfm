@@ -736,8 +736,6 @@
         Options = [pgBoldActiveTab, pgPageBorder, pgTopBorder]
         Spacing = 0
         TabHeight = 17
-        ExplicitLeft = 1
-        ExplicitTop = 3
         object tabspeichern: TNxTabSheet
           Caption = 'Dokumente speichern'
           PageIndex = 0
@@ -827,6 +825,7 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -902,8 +901,19 @@
                       inherited emontage: TfEdit
                         OnExit = framemontageemontageExit
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -965,6 +975,7 @@
                     inherited Panel5: TPanel [1]
                       Width = 837
                       Height = 653
+                      Caption = 'delphi '
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -1039,6 +1050,15 @@
                       inherited eabrechnungsende: TfEdit
                         OnExit = dateexit
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                       inherited eauszug: TfEdit
                         OnExit = dateexit
                       end
@@ -1089,6 +1109,8 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
+                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -1152,8 +1174,20 @@
                       inherited eabrechnungsende: TfEdit
                         TabOrder = 4
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
+                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1200,6 +1234,8 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
+                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -1286,7 +1322,7 @@
                         Left = 244
                         Width = 141
                         Enabled = False
-                        TabOrder = 8
+                        TabOrder = 11
                         ExplicitLeft = 244
                         ExplicitWidth = 141
                       end
@@ -1298,8 +1334,20 @@
                         TabOrder = 4
                         ExplicitLeft = 320
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
+                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1420,6 +1468,15 @@
                       inherited eposteingang: TfEdit
                         OnExit = frameenergieeposteingangExit
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                     end
                     inherited rightparent: TPanel
                       Left = 847
@@ -1514,6 +1571,15 @@
                       end
                       inherited bsave: TNxButton
                         OnClick = ButtonSave
+                      end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
                       end
                     end
                     inherited rightparent: TPanel
@@ -1611,6 +1677,15 @@
                         ExplicitLeft = 14
                         ExplicitTop = 409
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                     end
                     inherited rightparent: TPanel
                       Height = 653
@@ -1661,6 +1736,7 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1731,8 +1807,19 @@
                         OnClick = Nexit
                         OnExit = Nexit
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -1920,6 +2007,8 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
+                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -1983,8 +2072,20 @@
                       inherited eabrechnungsende: TfEdit
                         TabOrder = 4
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
+                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -2032,6 +2133,8 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
+                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -2094,8 +2197,20 @@
                       inherited eabrechnungsende: TfEdit
                         TabOrder = 4
                       end
+                      inherited pinfo: TPanel
+                        inherited labelinfo: TLabel
+                          Width = 99
+                          Height = 16
+                          Font.Height = -13
+                          ExplicitWidth = 99
+                          ExplicitHeight = 16
+                        end
+                      end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
+                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -2247,8 +2362,8 @@
             Top = 0
             Width = 1686
             Height = 720
-            ActivePage = tabnutzerlisten
-            ActivePageIndex = 2
+            ActivePage = tabenergieausweis
+            ActivePageIndex = 3
             Align = alClient
             TabOrder = 0
             Margin = 0
@@ -2307,7 +2422,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 151
+                    DefaultWidth = 147
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2325,7 +2440,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 150
+                    Width = 146
                     FieldName = 'Dokumentid'
                     AutoExecute = True
                   end
@@ -2482,7 +2597,7 @@
                   end
                   object zwivollbild: TNxDBImageColumn
                     DefaultValue = '1'
-                    DefaultWidth = 234
+                    DefaultWidth = 238
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2500,7 +2615,7 @@
                     ParentCellColor = True
                     Position = 9
                     SortType = stNumeric
-                    Width = 235
+                    Width = 239
                     OnSetCell = zwivollbildSetCell
                     Images = ImageList1
                     Transparent = True
@@ -2670,7 +2785,7 @@
                   DataSource = formdb.dsmon
                   object mondokid: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
+                    DefaultWidth = 146
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2690,7 +2805,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 149
+                    Width = 145
                     FieldName = 'Dokumentid'
                   end
                   object monliegenschaft: TNxDBTextColumn
@@ -2868,7 +2983,7 @@
                   end
                   object NxDBImageColumn3: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 223
+                    DefaultWidth = 227
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2884,7 +2999,7 @@
                     ParentFont = False
                     Position = 9
                     SortType = stNumeric
-                    Width = 224
+                    Width = 228
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3309,7 +3424,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsen
                   object NxDBTextColumn1: TNxDBTextColumn
-                    DefaultWidth = 0
+                    DefaultWidth = 128
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3330,11 +3445,11 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 0
+                    Width = 127
                     FieldName = 'Dokumentid'
                   end
                   object NxDBTextColumn2: TNxDBTextColumn
-                    DefaultWidth = 271
+                    DefaultWidth = 248
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3352,7 +3467,7 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 270
+                    Width = 248
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn1: TNxDBMemoColumn
@@ -3378,7 +3493,7 @@
                     FieldName = 'Dateiname'
                   end
                   object NxDBTextColumn4: TNxDBTextColumn
-                    DefaultWidth = 281
+                    DefaultWidth = 259
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3396,11 +3511,11 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 281
+                    Width = 259
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn5: TNxDBTextColumn
-                    DefaultWidth = 282
+                    DefaultWidth = 260
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3419,7 +3534,7 @@
                     Position = 4
                     Sorted = True
                     SortType = stAlphabetic
-                    Width = 282
+                    Width = 260
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn15: TNxDBTextColumn
@@ -3483,7 +3598,7 @@
                     FieldName = 'PLZ'
                   end
                   object NxDBTextColumn18: TNxDBTextColumn
-                    DefaultWidth = 279
+                    DefaultWidth = 258
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3498,7 +3613,7 @@
                     ParentFont = False
                     Position = 8
                     SortType = stAlphabetic
-                    Width = 279
+                    Width = 258
                     FieldName = 'Pseudoliegenschaft'
                   end
                   object NxDBMemoColumn4: TNxDBMemoColumn
@@ -3523,7 +3638,7 @@
                   end
                   object NxDBImageColumn1: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 281
+                    DefaultWidth = 259
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3541,13 +3656,13 @@
                     ParentFont = False
                     Position = 10
                     SortType = stNumeric
-                    Width = 281
+                    Width = 259
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBImageColumn5: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 290
+                    DefaultWidth = 272
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3563,7 +3678,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 291
+                    Width = 273
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3667,7 +3782,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsrekl
                   object NxDBTextColumn3: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 146
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3687,7 +3802,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 149
+                    Width = 145
                     FieldName = 'Dokumentid'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
@@ -3893,7 +4008,7 @@
                   end
                   object NxDBImageColumn4: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 182
+                    DefaultWidth = 186
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3910,7 +4025,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 183
+                    Width = 187
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4092,6 +4207,8 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 836
+                    Height = 650
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4155,8 +4272,20 @@
                       Caption = 'Dokument anzeigen'
                       OnClick = vollzwischenbsaveClick
                     end
+                    inherited pinfo: TPanel
+                      inherited labelinfo: TLabel
+                        Width = 99
+                        Height = 16
+                        Font.Height = -13
+                        ExplicitWidth = 99
+                        ExplicitHeight = 16
+                      end
+                    end
                   end
                   inherited rightparent: TPanel
+                    Left = 846
+                    Width = 838
+                    Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -4203,6 +4332,8 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 837
+                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4266,8 +4397,20 @@
                       Caption = 'Dokument anzeigen'
                       OnClick = vollzwischenbsaveClick
                     end
+                    inherited pinfo: TPanel
+                      inherited labelinfo: TLabel
+                        Width = 99
+                        Height = 16
+                        Font.Height = -13
+                        ExplicitWidth = 99
+                        ExplicitHeight = 16
+                      end
+                    end
                   end
                   inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -4321,6 +4464,8 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 836
+                    Height = 650
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4382,8 +4527,20 @@
                         ExplicitHeight = 16
                       end
                     end
+                    inherited pinfo: TPanel
+                      inherited labelinfo: TLabel
+                        Width = 99
+                        Height = 16
+                        Font.Height = -13
+                        ExplicitWidth = 99
+                        ExplicitHeight = 16
+                      end
+                    end
                   end
                   inherited rightparent: TPanel
+                    Left = 846
+                    Width = 838
+                    Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -4430,6 +4587,8 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 837
+                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4493,8 +4652,20 @@
                       Caption = 'Dokument anzeigen'
                       OnClick = vollzwischenbsaveClick
                     end
+                    inherited pinfo: TPanel
+                      inherited labelinfo: TLabel
+                        Width = 99
+                        Height = 16
+                        Font.Height = -13
+                        ExplicitWidth = 99
+                        ExplicitHeight = 16
+                      end
+                    end
                   end
                   inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -4575,6 +4746,15 @@
                       Height = 16
                       ExplicitWidth = 42
                       ExplicitHeight = 16
+                    end
+                    inherited pinfo: TPanel
+                      inherited labelinfo: TLabel
+                        Width = 99
+                        Height = 16
+                        Font.Height = -13
+                        ExplicitWidth = 99
+                        ExplicitHeight = 16
+                      end
                     end
                   end
                   inherited rightparent: TPanel
@@ -5782,7 +5962,7 @@
     Left = 728
     Top = 688
     Bitmap = {
-      494C010103007400EC0010001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
+      494C010103007400FC0010001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

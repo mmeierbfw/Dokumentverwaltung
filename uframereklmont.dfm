@@ -1,14 +1,14 @@
 inherited framereklmont: Tframereklmont
-  Width = 1038
-  Height = 580
+  Width = 1089
+  Height = 681
   inherited gridpanel: TGridPanel
-    Width = 1038
-    Height = 580
+    Width = 1089
+    Height = 681
+    ExplicitWidth = 451
+    ExplicitHeight = 304
     inherited Panel5: TPanel
-      Width = 513
-      Height = 572
-      ExplicitWidth = 513
-      ExplicitHeight = 572
+      ExplicitWidth = 538
+      ExplicitHeight = 673
       inherited lfiletype: TLabel
         Height = 609
       end
@@ -145,7 +145,7 @@ inherited framereklmont: Tframereklmont
         TabOrder = 6
         ExplicitTop = 280
       end
-      object emontage: TfEdit
+      object emontage: TfEdit [22]
         Tag = 1
         Left = 321
         Top = 234
@@ -173,11 +173,14 @@ inherited framereklmont: Tframereklmont
         ColorFocused = 10252872
         ColorNotFocused = 6908265
       end
+      inherited pinfo: TPanel
+        TabOrder = 13
+      end
     end
     inherited rightparent: TPanel
-      Left = 523
-      Width = 513
-      Height = 572
+      ExplicitLeft = 229
+      ExplicitWidth = 220
+      ExplicitHeight = 296
     end
   end
 end

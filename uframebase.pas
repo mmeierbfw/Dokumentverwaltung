@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   NxCollection, Vcl.StdCtrls, fMemo, fEdit, Vcl.Mask, umaskedit, Vcl.ExtCtrls,
-  RegularExpressions, uutils;
+  RegularExpressions, uutils, uconstants;
 
 type
   Tframebase = class(TFrame)
@@ -28,12 +28,15 @@ type
     eposteingang: TfEdit;
     eabrechnungsende: TfEdit;
     NxButton2: TNxButton;
+    pinfo: TPanel;
+    labelinfo: TLabel;
     procedure eliegenschaftExit(Sender: TObject);
     procedure fEdit1Exit(Sender: TObject);
     procedure dtposteingangExit(Sender: TObject);
     procedure dateexit(Sender: TObject);
     procedure DATEPRESS(Sender: TObject; var Key: Char);
     procedure NxButton2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private-Deklarationen }
   public
@@ -58,12 +61,20 @@ procedure Tframebase.eliegenschaftExit(Sender: TObject);
 var
   kn: string;
 begin
-  kn := formmain.getkundennummer;
-  if kn = '' then exit;
-
-  if (length(eliegenschaft.text) = 0) then exit;
-  if length(eliegenschaft.text) < 6 then
-      eliegenschaft.text := kn + Format('%.5d', [strtoint(eliegenschaft.text)]);
+  with formmain.dokcons do begin
+    kn := formmain.getkundennummer;
+    if kn = '' then begin
+      pinfo.Show;
+      labelinfo.Caption := keinekdn;
+      pinfo.Top         := (Sender as TfEdit).Top;
+      exit;
+    end;
+    pinfo.Hide;
+    if (length(eliegenschaft.text) = 0) then exit;
+    if length(eliegenschaft.text) < 6 then
+        eliegenschaft.text := kn + Format('%.5d',
+        [strtoint(eliegenschaft.text)]);
+  end;
 end;
 
 procedure Tframebase.DATEPRESS(Sender: TObject; var Key: Char);
@@ -72,27 +83,46 @@ begin
 
 end;
 
+procedure Tframebase.Button1Click(Sender: TObject);
+begin
+  pinfo.Hide;
+end;
+
 procedure Tframebase.dateexit(Sender: TObject);
 var
   datestring: string;
   res       : string;
 begin
-  datestring := (Sender as TfEdit).text;
-  if datestring = '' then exit;
-  if (Pos('.', datestring, 1) > 0) then exit;
-  if (Pos('/', datestring, 1) > 0) then exit;
+  with formmain.dokcons do begin
+    datestring := (Sender as TfEdit).text;
+    if datestring = '' then exit;
+    if (Pos('.', datestring, 1) > 0) then exit;
+    if (Pos('/', datestring, 1) > 0) then exit;
 
-  if (Pos('-', datestring, 1) > 0) then exit;
-  if (length(datestring) <> 6) then begin
-    (Sender as TfEdit).Clear;
+    if (Pos('-', datestring, 1) > 0) then exit;
+    if (length(datestring) <> 6) then begin
+      (Sender as TfEdit).Clear;
+      labelinfo.Caption := falschesFormat;
+      pinfo.Show;
+      pinfo.Top := (Sender as TfEdit).Top;
+      (Sender as TfEdit).SetFocus;
+      exit;
+    end;
 
-    exit;
+    pinfo.Hide;
+    res := copy(datestring, 1, 2) + '.' + copy(datestring, 3, 2) + '.' +
+      copy(datestring, 5, 2);
+    (Sender as TfEdit).text := res;
+
+    if not isvalidDate((Sender as TfEdit).text) then begin
+      // (Sender as TfEdit).Clear;
+      pinfo.Show;
+      pinfo.Top         := (Sender as TfEdit).Top;
+      labelinfo.Caption := ungueltigDatum;
+      (Sender as TfEdit).SetFocus;
+    end;
+
   end;
-
-  res := copy(datestring, 1, 2) + '.' + copy(datestring, 3, 2) + '.' +
-    copy(datestring, 5, 2);
-  (Sender as TfEdit).text := res;
-
 end;
 
 procedure Tframebase.fEdit1Exit(Sender: TObject);
@@ -106,7 +136,7 @@ begin
   len     := length(datestr);
   if not((len = 8) or (len = 10)) then begin
     (Sender as TfEdit).Color := clred;
-    (Sender as TfEdit).setfocus;
+    (Sender as TfEdit).SetFocus;
     exit;
   end;
 
