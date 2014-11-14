@@ -68,6 +68,12 @@ type
     typ_name        = 'typen_name';
     table_email     = 'test.email';
 
+    view_zwi  = 'test.zwischenablesungen';
+    view_en   = 'test.energieausweise';
+    view_rekl = 'test.reklamationen';
+    view_nut  = 'test.nutzerlisten';
+    view_mon  = 'test.montagen';
+
     // muss halt so
     WiaFormatBMP  = '{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}';
     WiaFormatTIFF = '{B96B3CB1-0728-11D3-9D7B-0000F81EF32E}';
@@ -143,7 +149,7 @@ type
     nutzername      = 'nutzername';
     erledigt        = 'erledigt';
     Notizen         = 'notizen';
-    Auftragsnummer  = 'auftragsnummer';
+    Auftragsnummer  = 'auftragsnr';
     Dateiname       = 'dateiname';
     id              = 'dokumentid';
     sachbearbeiter  = 'sachbearbeiter';
@@ -163,10 +169,12 @@ type
     nicherledigtstr  = '0';
     erledigtstr      = '1';
 
-    pseudoliegenschaft = 'Pseudoliegenschaft';
-    strasse            = 'Strasse';
-    ort                = 'Ort';
-    plz                = 'PLZ';
+    pseudoliegenschaft = 'pseudoliegenschaft';
+    strasse            = 'str';
+    ort                = 'ort';
+    plz                = 'plz';
+
+    vertragstyp = 'vertragstyp';
 
     { für neue Aufträge }
     auftragstyp = 'Auftragstyp';

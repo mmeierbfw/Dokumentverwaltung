@@ -18,7 +18,7 @@ uses
   NxCustomGrid, NxDBGrid, Data.DB, ZAbstractRODataset, ZAbstractDataset,
   ZDataset, NxDBColumns, NxColumns, Vcl.ImgList, uframebase, uframereklmont,
   uframezwischenab, uframezwischen, uframebasemitnutzer, uframeauftrag,
-  uframeenergie, uframefilter, usettings;
+  uframeenergie, uframefilter, usettings, uframevertrag;
 
 type
 
@@ -179,7 +179,6 @@ type
     framekosten: Tframebase;
     framenutzer: Tframebase;
     framereklamation: Tframereklmont;
-    framevertrag: Tframebasenutzer;
     framesonstiges: Tframebasenutzer;
     vollzwischen: Tframezwischen;
     vollmont: Tframereklmont;
@@ -213,6 +212,11 @@ type
     lname1: TLabel;
     lname2: TLabel;
     vermerke: TMemo;
+    framevert: Tframevertrag;
+    NxDBTextColumn22: TNxDBTextColumn;
+    NxDBTextColumn23: TNxDBTextColumn;
+    NxDBTextColumn24: TNxDBTextColumn;
+    NxDBTextColumn25: TNxDBTextColumn;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -399,6 +403,7 @@ type
     procedure gridnutzerlisteApplyCell(Sender: TObject; ACol, ARow: Integer;
       var Value: WideString);
     procedure lkundennummerDblClick(Sender: TObject);
+    procedure framevertenutzernummerExit(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -546,6 +551,7 @@ type
       values: TStringList): string;
     function getdb: TNextDBGrid;
     function setkundennummern(kdnn: TList<Integer>): Boolean;
+    function getVertragstyp(): string;
 
   published
     property intern  : Boolean read Fintern write Fintern;
@@ -558,7 +564,7 @@ var
 const
   speicherframes: array [0 .. 9] of string = ('framemontage', 'framezwi',
     'frameangebot', 'frameauftrag', 'framen', 'framekosten', 'framenutzer',
-    'framereklamation', 'framesonstiges', 'framevertrag');
+    'framereklamation', 'framesonstiges', 'framevert');
 
 implementation
 
@@ -574,18 +580,18 @@ begin
 end;
 
 procedure Tformmain.ballemClick(Sender: TObject);
-
-var
-  query: string;
 begin
-  query := 'SELECT Dokumentid, Liegenschaft,  Nutzernummer, Posteingang, Einbaudatum,'
-    + '   Notizen   ' + 'FROM montagen ' + 'WHERE SACHBEARBEITER= ' + sb +
-    '  AND Kundennummer= ' + kn + ' order by Dokumentid desc';
-
-  try formdb.showquery(query);
-  except outputdebugstring('Datenbank kann nicht aufgerufen werden');
-
-  end;
+  // var
+  // query: string;
+  // begin
+  // query := 'SELECT Dokumentid, Liegenschaft,  Nutzernummer, Posteingang, Einbaudatum,'
+  // + '   Notizen   ' + 'FROM montagen ' + 'WHERE SACHBEARBEITER= ' + sb +
+  // '  AND Kundennummer= ' + kn + ' order by Dokumentid desc';
+  //
+  // try formdb.showquery(query);
+  // except outputdebugstring('Datenbank kann nicht aufgerufen werden');
+  //
+  // end;
 
 end;
 
@@ -612,7 +618,7 @@ end;
 procedure Tformmain.gridrekApplyCell(Sender: TObject; ACol, ARow: Integer;
   var Value: WideString);
 begin
-  if ACol = 12 then Value := '1';
+  if ACol = 11 then Value := '1';
 
 end;
 
@@ -801,7 +807,7 @@ begin
   // list.add('Dokumentid');
 
   formdb.queryen.SQL.clear;
-  formdb.queryen.SQL.Text := 'SELECT * FROM ' + dokcons.Energieausweis +
+  formdb.queryen.SQL.Text := 'SELECT * FROM ' + dokcons.view_en +
     ' WHERE kundennummer = ' + kdnr;
   formdb.queryen.Open;
 
@@ -1195,7 +1201,7 @@ begin
           pvollbilder.activepageindex := 1;
           voll                        := vollmont;
           with vollmont do begin
-            eauftragsnummer.Text := dbgrid.GetColumnByFieldName(Auftragsnummer)
+            eauftragsnummer.Text := dbgrid.GetColumnByFieldName(auftragsnummer)
               .field.asstring;
             date := dbgrid.GetColumnByFieldName(Montagedatum).field.asstring;
             if date = '00.00.00' then date := '';
@@ -1216,16 +1222,27 @@ begin
           pvollbilder.activepageindex := 3;
           voll                        := vollrekl;
           with vollrekl do begin
-            date := dbgrid.GetColumnByFieldName(Auftragsnummer).field.asstring;
+            try date := dbgrid.GetColumnByFieldName(auftragsnummer)
+                .field.asstring;
+            except date := '';
+
+            end;
             eauftragsnummer.Text := date;
 
-            date := dbgrid.GetColumnByFieldName(Montagedatum).field.asstring;
+            try date := dbgrid.GetColumnByFieldName(Montagedatum)
+                .field.asstring;
+            except date := '00.00.00';
+
+            end;
             if date = '00.00.00' then date := '';
 
-            dtmontage.Text       := date;
-            emontage.Text        := date;
-            rgerledigt.ItemIndex := dbgrid.GetColumnByFieldName(erledigt)
-              .field.AsInteger;
+            dtmontage.Text           := date;
+            emontage.Text            := date;
+            try rgerledigt.ItemIndex := dbgrid.GetColumnByFieldName(erledigt)
+                .field.AsInteger;
+            except rgerledigt.ItemIndex := 0;
+
+            end;
           end;
         end;
       3: begin
@@ -1242,7 +1259,7 @@ begin
 
     // Daten Links
     with voll do begin
-      eid.Text := dbgrid.GetColumnByFieldName('Dokumentid').field.asstring;
+      eid.Text := dbgrid.GetColumnByFieldName('ablagenr').field.asstring;
       eliegenschaft.Text := dbgrid.GetColumnByFieldName(liegenschaft)
         .field.asstring;
 
@@ -1706,7 +1723,7 @@ begin
     dict := TStringList.Create;
     dict.add('*');
     with formdb do begin
-      formdb.doquery(queryaufträge, 'aufträge', ' WHERE ' + Auftragsnummer + '='
+      formdb.doquery(queryaufträge, 'aufträge', ' WHERE ' + auftragsnummer + '='
         + quotedstr(auftragsnr), dict);
       tmp := queryaufträge.FieldByName(liegenschaft).asstring;
       if not(tmp = '') then frame.eliegenschaft.Text := tmp;
@@ -1744,6 +1761,12 @@ begin
 end;
 
 // ###############################################
+procedure Tformmain.framevertenutzernummerExit(Sender: TObject);
+begin
+  framevert.enutzerexit(Sender);
+
+end;
+
 procedure Tformmain.framevertragenutzernummerExit(Sender: TObject);
 begin
   framevertrag.enutzerexit(Sender);
@@ -2432,6 +2455,11 @@ begin
   prefix := getprefix(pagerspeicher.activepageindex);
   edit   := frame.FindComponent('etelefonnummer') as tfedit;
   Result := edit.Text;
+end;
+
+function Tformmain.getVertragstyp: string;
+begin
+  Result := AnsiLowerCase(framevert.cbvertrag.Text);
 end;
 
 // ###############################################
@@ -3135,7 +3163,7 @@ begin
           framesonstiges.enutzernummer.clear;
         end;
       Vertragsint: begin
-          framevertrag.enutzernummer.clear;
+          framevert.enutzernummer.clear;
         end;
       Angebotsint: begin
           frameangebot.enutzernummer.clear;
@@ -3688,7 +3716,7 @@ begin
     list.add('*');
 
     formdb.querymon.SQL.clear;
-    formdb.querymon.SQL.Text := 'SELECT * FROM ' + montage +
+    formdb.querymon.SQL.Text := 'SELECT * FROM ' + view_mon +
       ' WHERE kundennummer = ' + kn;
     formdb.querymon.Open;
     filldb(formdb.dsmon, gridmon);
@@ -3705,8 +3733,8 @@ begin
   with dokcons do begin
     list := TStringList.Create;
     list.add('*');
-    formdb.doquery(formdb.querynuliste, table_nut, ' WHERE kundennummer = ' + kn
-      + ' order by Dokumentid desc ;', list);
+    formdb.doquery(formdb.querynuliste, view_nut, ' WHERE kundennummer = ' + kn
+      + ' order by ablagenr desc ;', list);
   end;
 end;
 
@@ -3721,8 +3749,8 @@ begin
   list := TStringList.Create;
   list.add('*');
 
-  formdb.doquery(formdb.queryrekl, dokcons.table_rekl, ' WHERE kundennummer = '
-    + kn + ' order by Dokumentid desc ;', list);
+  formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = ' +
+    kn + ' order by ablagenr desc ;', list);
   // filldb(formdb.dsdokumente);
 
 end;
@@ -3742,7 +3770,7 @@ begin
   list                                := TStringList.Create;
   list.add('*');
   formdb.queryzwi.SQL.clear;
-  formdb.queryzwi.SQL.Text := 'SELECT * FROM ' + dokcons.zwischenablesung +
+  formdb.queryzwi.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
     ' WHERE kundennummer = ' + kdnr;
   formdb.queryzwi.Open;
 
@@ -3756,7 +3784,7 @@ var
   QueryString: string;
   asc        : string;
 begin
-  QueryString := 'SELECT * FROM energieausweis'; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_en; // Query statement
   if gridenergie.Columns[ACol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
@@ -3774,7 +3802,7 @@ var
   QueryString: string;
   asc        : string;
 begin
-  QueryString := 'SELECT * FROM montagen'; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_mon; // Query statement
   if gridmon.Columns[ACol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
@@ -3804,7 +3832,7 @@ var
 begin
   list := TStringList.Create;
   list.add('*');
-  QueryString := 'SELECT * FROM nutzerlisten'; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_nut; // Query statement
   if gridnutzerliste.Columns[ACol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
@@ -3815,8 +3843,8 @@ begin
   // formdb.querynutzer.SQL.clear;
   // formdb.querynutzer.SQL.Text := QueryString;
   // formdb.querynutzer.Open;
-  formdb.doquery(formdb.querynuliste, dokcons.table_nut,
-    ' WHERE kundennummer = ' + kn + ' ' + QueryString, list);
+  formdb.doquery(formdb.querynuliste, dokcons.view_nut, ' WHERE kundennummer = '
+    + kn + ' ' + QueryString, list);
   // filldb(formdb.dsdokumente);
 
 end;
@@ -3828,7 +3856,7 @@ var
   asc        : string;
 begin
 
-  QueryString := 'SELECT * FROM reklamation'; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_rekl; // Query statement
   if gridrek.Columns[ACol].FieldName = '' then exit;
 
   if Ascending then asc := 'ASC'
@@ -3849,7 +3877,7 @@ var
   asc        : string;
 begin
 
-  QueryString := 'SELECT * FROM zwischenablesung'; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_zwi; // Query statement
   if gridzwi.Columns[ACol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
@@ -4164,10 +4192,10 @@ var
   number: string;
 begin
   try
-    resetdate(framevertrag.dtposteingang);
-    resetdate(framevertrag.eposteingang);
-    framevertrag.lfiletype.Caption := filetypecaption;
-    framevertrag.eid.SetFocus;
+    // resetdate(framevertrag.dtposteingang);
+    resetdate(framevert.eposteingang);
+    framevert.lfiletype.Caption := filetypecaption;
+    framevert.eid.SetFocus;
     resetpanelfonts;
     panelfocus(pr);
     pr.Caption := 'Verträge';

@@ -219,6 +219,7 @@ begin
   with formmain.dokcons do begin
     inherited;
     dict.Add(Nutzernummer, default_value);
+    dict.Add(vertragstyp, default_value);
   end;
 end;
 

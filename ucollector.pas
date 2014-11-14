@@ -166,6 +166,7 @@ begin
   dict := collectDefault(formmain.dokcons.vertragsint);
   with formmain do begin
     doc.setpropertie(formmain.dokcons.Nutzernummer, getNutzernummer);
+    doc.setpropertie(formmain.dokcons.vertragstyp, getvertragstyp);
   end;
   dictv := doc.getproperties;
   copydictionary(dict, dictv);

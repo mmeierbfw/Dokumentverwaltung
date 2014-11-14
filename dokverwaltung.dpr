@@ -25,7 +25,8 @@ uses
   uframeauftrag in 'uframeauftrag.pas' {frameauftrag: TFrame},
   uframefilter in 'uframefilter.pas' {framebasefilter: TFrame},
   usettings in 'usettings.pas',
-  uformkunde in 'uformkunde.pas' {formkunde: F};
+  uformkunde in 'uformkunde.pas' {formkunde: F},
+  uframevertrag in 'uframevertrag.pas' {framevertrag: TFrame};
 
 {$R *.res}
 
