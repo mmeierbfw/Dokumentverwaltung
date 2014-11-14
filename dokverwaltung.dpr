@@ -26,7 +26,8 @@ uses
   uframefilter in 'uframefilter.pas' {framebasefilter: TFrame},
   usettings in 'usettings.pas',
   uformkunde in 'uformkunde.pas' {formkunde: F},
-  uframevertrag in 'uframevertrag.pas' {framevertrag: TFrame};
+  uframevertrag in 'uframevertrag.pas' {framevertrag: TFrame},
+  unotiz in 'unotiz.pas' {notizbox};
 
 {$R *.res}
 
@@ -43,6 +44,7 @@ begin
   Application.CreateForm(Tformftp, formftp);
   Application.CreateForm(Tformftp, formftp);
   Application.CreateForm(Tformkunde, formkunde);
+  Application.CreateForm(Tnotizbox, notizbox);
   //  Application.CreateForm(Tformmain1, formmain1);
   //  Application.CreateForm(TEinstellungen, Einstellungen);
   Application.Run;

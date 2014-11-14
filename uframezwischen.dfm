@@ -1,14 +1,16 @@
 inherited framezwischen: Tframezwischen
-  Width = 947
-  Height = 684
+  Width = 1244
+  Height = 715
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   inherited gridpanel: TGridPanel
-    Width = 947
-    Height = 684
+    Width = 1244
+    Height = 715
+    ExplicitWidth = 451
+    ExplicitHeight = 304
     inherited Panel5: TPanel
-      Width = 467
-      Height = 676
-      ExplicitWidth = 467
-      ExplicitHeight = 676
+      ExplicitWidth = 616
+      ExplicitHeight = 707
       inherited lfiletype: TLabel
         Height = 609
       end
@@ -66,7 +68,7 @@ inherited framezwischen: Tframezwischen
       inherited menotizen: TfMemo
         Left = 121
         Top = 347
-        TabOrder = 8
+        TabOrder = 14
         ExplicitLeft = 121
         ExplicitTop = 347
       end
@@ -220,9 +222,9 @@ inherited framezwischen: Tframezwischen
       end
     end
     inherited rightparent: TPanel
-      Left = 477
-      Width = 468
-      Height = 676
+      ExplicitLeft = 229
+      ExplicitWidth = 220
+      ExplicitHeight = 296
     end
   end
 end

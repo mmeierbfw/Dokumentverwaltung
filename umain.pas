@@ -18,7 +18,7 @@ uses
   NxCustomGrid, NxDBGrid, Data.DB, ZAbstractRODataset, ZAbstractDataset,
   ZDataset, NxDBColumns, NxColumns, Vcl.ImgList, uframebase, uframereklmont,
   uframezwischenab, uframezwischen, uframebasemitnutzer, uframeauftrag,
-  uframeenergie, uframefilter, usettings, uframevertrag;
+  uframeenergie, uframefilter, usettings, uframevertrag, unotiz;
 
 type
 
@@ -152,7 +152,6 @@ type
     tabvollenergie: TNxTabSheet;
     tabvollreklamation: TNxTabSheet;
     NxDBTextColumn11: TNxDBTextColumn;
-    NxDBTextColumn12: TNxDBTextColumn;
     NxDBTextColumn13: TNxDBTextColumn;
     NxDBImageColumn3: TNxDBImageColumn;
     NxDBTextColumn14: TNxDBTextColumn;
@@ -170,7 +169,6 @@ type
     NxDBTextColumn15: TNxDBTextColumn;
     NxDBTextColumn16: TNxDBTextColumn;
     NxDBTextColumn17: TNxDBTextColumn;
-    NxDBTextColumn18: TNxDBTextColumn;
     NxDBMemoColumn4: TNxDBMemoColumn;
     framemontage: Tframereklmont;
     framezwi: Tframezwischen;
@@ -214,9 +212,10 @@ type
     vermerke: TMemo;
     framevert: Tframevertrag;
     NxDBTextColumn22: TNxDBTextColumn;
-    NxDBTextColumn23: TNxDBTextColumn;
     NxDBTextColumn24: TNxDBTextColumn;
     NxDBTextColumn25: TNxDBTextColumn;
+    NxDBTextColumn18: TNxDBImageColumn;
+    NxDBImageColumn7: TNxDBImageColumn;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -473,6 +472,7 @@ type
     procedure reset(frame: Tframebase);
     procedure setid(table: string); overload;
     procedure updateid(Tag: Integer);
+    procedure shownotizen(notiz: string);
     function getprefix(active: Integer): string;
     function autosizememoy(memo: TMemo): Word;
     function getdatemitpunkt(Tag: Integer; datestring: string): string;
@@ -599,6 +599,11 @@ procedure Tformmain.gridenergieApplyCell(Sender: TObject; ACol, ARow: Integer;
   var Value: WideString);
 begin
   if ACol = 11 then Value := '1';
+  if (ACol = 8) then begin
+    if (gridenergie.GetColumnByFieldName(dokcons.pseudoliegenschaft)
+      .field.AsInteger = 1) then Value := '3'
+    else Value                         := '-1';
+  end;
 
 end;
 
@@ -617,8 +622,18 @@ end;
 
 procedure Tformmain.gridrekApplyCell(Sender: TObject; ACol, ARow: Integer;
   var Value: WideString);
+var
+  notizstr: string;
 begin
+  try notizstr    := gridrek.GetColumnByFieldName('notizen').field.AsString;
+  except notizstr := '';
+
+  end;
   if ACol = 11 then Value := '1';
+  if (ACol = 13) then begin
+    if (Length(notizstr) > 0) then Value := '2'
+    else Value                           := '-1';
+  end;
 
 end;
 
@@ -633,16 +648,17 @@ var
   dateiname: string;
   dbgrid   : TNextDBGrid;
   test     : string;
+  notiz    : string;
 begin
   test := Sender.ToString;
   test := (Sender as TNextDBGrid).Columns[ACol].Header.Caption;
+
   if AnsiStartsText('vollbild', AnsiLowerCase(test)) then begin
     // if not(ptabellen.activepageindex = 1) then
 
     fillvollbild(Sender as TNextDBGrid, selectedRow);
     exit;
   end;
-
   case ptabellen.activepageindex of
     0: dbgrid := gridzwi;
     1: dbgrid := gridmon;
@@ -651,8 +667,12 @@ begin
     4: dbgrid := gridrek;
   end;
 
+  if AnsiStartsText('notizen anz', AnsiLowerCase(test)) then begin
+    notiz := pchar(dbgrid.GetColumnByFieldName(dokcons.Notizen).field.AsString);
+    shownotizen(notiz);
+  end;
   if AnsiStartsText('dokument anzeigen', AnsiLowerCase(test)) then begin
-    dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.asstring);
+    dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.AsString);
     showDocument(dateiname);
   end;
 
@@ -911,7 +931,7 @@ var
 begin
   frame := getframe;
 
-  if not(length(frame.eliegenschaft.Text) = 7) then begin
+  if not(Length(frame.eliegenschaft.Text) = 7) then begin
     showmessage('es muss eine gültige Liegenschaft angegeben werden');
     frame.eliegenschaft.SetFocus;
     exit;
@@ -1160,7 +1180,7 @@ begin
   with dokcons do begin
     selectedRow          := row;
     pagermain.ActivePage := tabvollbild;
-    lg := dbgrid.GetColumnByFieldName(dokcons.liegenschaft).field.asstring;
+    lg := dbgrid.GetColumnByFieldName(dokcons.liegenschaft).field.AsString;
 
     case ptabellen.activepageindex of
       0: begin
@@ -1169,27 +1189,27 @@ begin
           voll                        := vollzwischen;
           with vollzwischen do begin
             enutzernummer.Text := dbgrid.GetColumnByFieldName
-              (dokcons.Nutzernummer).field.asstring;
+              (dokcons.Nutzernummer).field.AsString;
             enutzername.Text := dbgrid.GetColumnByFieldName(dokcons.Nutzername)
-              .field.asstring;
+              .field.AsString;
 
-            date := dbgrid.GetColumnByFieldName(vertragsbeginn).field.asstring;
+            date := dbgrid.GetColumnByFieldName(vertragsbeginn).field.AsString;
 
             date                           := formatedatefrom4jto2j(date);
             if date = '00.00.00' then date := '';
 
             dtauszug.Text := date;
             date          := formatedatefrom4jto2j
-              (dbgrid.GetColumnByFieldName(vertragsbeginn).field.asstring);
+              (dbgrid.GetColumnByFieldName(vertragsbeginn).field.AsString);
             if date = '00.00.00' then date := '';
 
             eauszug.Text := date;
             date         := formatedatefrom4jto2j
-              (dbgrid.GetColumnByFieldName(Ablesedatum).field.asstring);
+              (dbgrid.GetColumnByFieldName(Ablesedatum).field.AsString);
             if date = '00.00.00' then date := '';
             dtablesedatum.Text             := date;
             date                           := formatedatefrom4jto2j
-              (dbgrid.GetColumnByFieldName(Ablesedatum).field.asstring);
+              (dbgrid.GetColumnByFieldName(Ablesedatum).field.AsString);
             if date = '00.00.00' then date := '';
 
             eablesedatum.Text := date;
@@ -1202,8 +1222,8 @@ begin
           voll                        := vollmont;
           with vollmont do begin
             eauftragsnummer.Text := dbgrid.GetColumnByFieldName(auftragsnummer)
-              .field.asstring;
-            date := dbgrid.GetColumnByFieldName(Montagedatum).field.asstring;
+              .field.AsString;
+            date := dbgrid.GetColumnByFieldName(Montagedatum).field.AsString;
             if date = '00.00.00' then date := '';
             dtmontage.Text       := date;
             emontage.Text        := date;
@@ -1223,14 +1243,14 @@ begin
           voll                        := vollrekl;
           with vollrekl do begin
             try date := dbgrid.GetColumnByFieldName(auftragsnummer)
-                .field.asstring;
+                .field.AsString;
             except date := '';
 
             end;
             eauftragsnummer.Text := date;
 
             try date := dbgrid.GetColumnByFieldName(Montagedatum)
-                .field.asstring;
+                .field.AsString;
             except date := '00.00.00';
 
             end;
@@ -1259,22 +1279,22 @@ begin
 
     // Daten Links
     with voll do begin
-      eid.Text := dbgrid.GetColumnByFieldName('ablagenr').field.asstring;
+      eid.Text := dbgrid.GetColumnByFieldName('ablagenr').field.AsString;
       eliegenschaft.Text := dbgrid.GetColumnByFieldName(liegenschaft)
-        .field.asstring;
+        .field.AsString;
 
       date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(Posteingang)
-        .field.asstring);
+        .field.AsString);
       if date = '00.00.00' then date := '';
 
       eposteingang.Text := date;
       date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(abrechnungsende)
-        .field.asstring);
+        .field.AsString);
       if date = '00.00.00' then date := '';
       dtabrechnungsende.Text         := date;
       eabrechnungsende.Text          := date;
 
-      menotizen.Text := dbgrid.GetColumnByFieldName(notizen).field.asstring;
+      menotizen.Text := dbgrid.GetColumnByFieldName(Notizen).field.AsString;
     end;
 
     disablecontrols(voll.Panel5);
@@ -1725,13 +1745,13 @@ begin
     with formdb do begin
       formdb.doquery(queryaufträge, 'aufträge', ' WHERE ' + auftragsnummer + '='
         + quotedstr(auftragsnr), dict);
-      tmp := queryaufträge.FieldByName(liegenschaft).asstring;
+      tmp := queryaufträge.FieldByName(liegenschaft).AsString;
       if not(tmp = '') then frame.eliegenschaft.Text := tmp;
-      tmp := queryaufträge.FieldByName(Nutzernummer).asstring;
+      tmp := queryaufträge.FieldByName(Nutzernummer).AsString;
       if not(tmp = '') then
         (frame as Tframereklmont).enutzernummer.Text := tmp;
 
-      tmp := queryaufträge.FieldByName(abrechnungsende).asstring;
+      tmp := queryaufträge.FieldByName(abrechnungsende).AsString;
       if not(tmp = '') then begin
         frame.dtabrechnungsende.Text := tmp;
         frame.eabrechnungsende.Text  := tmp;
@@ -1915,11 +1935,11 @@ begin
   pimage.Visible := false;
   // IStatusok.Visible := fa;
   edit := Sender as tfedit;
-  if length(edit.Text) = 0 then exit;
+  if Length(edit.Text) = 0 then exit;
 
   frame := getframe;
   frame.eliegenschaftExit(Sender);
-  if (length(edit.Text) <> 7) then exit;
+  if (Length(edit.Text) <> 7) then exit;
 
   setliegenschaftsdaten;
 
@@ -1990,7 +2010,7 @@ begin
       laufendeid       := (formdb.getmaxno(inttostr(kn), sb));
       idnotset         := false;
       Timer4.Enabled   := false;
-      size             := length(speicherframes);
+      size             := Length(speicherframes);
       for index        := 0 to size - 1 do begin
         frame          := FindComponent(speicherframes[index]) as Tframebase;
         frame.eid.Text := laufendeid;
@@ -2207,7 +2227,7 @@ begin
       lfiletype.Caption := eml;
       exit;
     end;
-    if length(filename) > 0 then begin
+    if Length(filename) > 0 then begin
       if AnsiStartsStr('scan', filename) then begin
         lfiletype.Caption := bild;
         filetype          := bildverarbeitung;
@@ -3199,7 +3219,7 @@ var
 begin
   frame := getframe;
 
-  size             := length(speicherframes);
+  size             := Length(speicherframes);
   for i            := 0 to size - 1 do begin
     frame.eid.Text := '';
   end;
@@ -3286,29 +3306,29 @@ begin
           IStatusok.Visible := false;
           pimage.Visible    := false;
         end;
-        if (length(lab.Text) = 7) then begin
+        if (Length(lab.Text) = 7) then begin
           setliegenschaftsdaten;
           exit;
         end;
-        if (length(lab.Text) > 5) then begin
+        if (Length(lab.Text) > 5) then begin
           lab.SetFocus;
           lab.Color := clred;
           lab.Hint  :=
             'entweder gesamte Liegenschaftsnummer angeben oder maximal 5 Zeichen';
           exit;
         end;
-        if (length(lab.Text) = 0) then exit;
+        if (Length(lab.Text) = 0) then exit;
         kunde    := formmain.getkundennummer;
-        len      := length(kunde);
+        len      := Length(kunde);
         len      := 7 - len;
-        lab.Text := kunde + StringOfChar('0', len - length(S)) + S;
+        lab.Text := kunde + StringOfChar('0', len - Length(S)) + S;
         setliegenschaftsdaten;
       end;
     2: // Nutzernummer
       begin
-        if length(lab.Text) = 0 then exit;
+        if Length(lab.Text) = 0 then exit;
 
-        lab.Text := StringOfChar('0', 3 - length(S)) + S;
+        lab.Text := StringOfChar('0', 3 - Length(S)) + S;
 
         try
           dict := worker.getnutzerdaten(lab.Text, kn,
@@ -3724,6 +3744,12 @@ begin
 end;
 
 // ###############################################
+procedure Tformmain.shownotizen(notiz: string);
+begin
+  notizbox.Show;
+  notizbox.Memo1.Text := notiz;
+end;
+
 procedure Tformmain.shownutzerlisten;
 
 var
@@ -4285,7 +4311,7 @@ begin
     3: dbgrid := gridrek;
 
   end;
-  dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.asstring);
+  dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.AsString);
   showDocument(dateiname);
 end;
 
