@@ -216,7 +216,7 @@ type
     NxDBTextColumn25: TNxDBTextColumn;
     NxDBTextColumn18: TNxDBImageColumn;
     NxDBImageColumn7: TNxDBImageColumn;
-    Tframebasenutzer11: Tframebasenutzer1;
+    framevert: Tframebasenutzer1;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -1790,7 +1790,7 @@ end;
 
 procedure Tformmain.framevertragenutzernummerExit(Sender: TObject);
 begin
-  framevertrag.enutzerexit(Sender);
+//  framevertrag.enutzerexit(Sender);
 
 end;
 
@@ -3747,8 +3747,8 @@ end;
 // ###############################################
 procedure Tformmain.shownotizen(notiz: string);
 begin
-  notizbox.Show;
-  notizbox.Memo1.Text := notiz;
+//  notizbox.Show;
+//  notizbox.Memo1.Text := notiz;
 end;
 
 procedure Tformmain.shownutzerlisten;

@@ -2986,7 +2986,7 @@ END
 /* c:\program files\embarcadero\studio\14.0\lib\Win32\release\DE\Vcl.DBPWDlg.dfm */
 /* c:\program files\embarcadero\studio\14.0\lib\Win32\release\DBCtrls.res */
 /* c:\program files\embarcadero\studio\14.0\lib\Win32\release\DBGrids.res */
-/* C:\repositories\dbconnector\udbconnector.dfm */
+/* C:\repositories\dokverwaltungdbconnector\udbconnector.dfm */
 /* C:\repositories\Dokumentverwaltung\uanrufer.dfm */
 /* c:\program files\embarcadero\studio\14.0\lib\Win32\release\TeeFonts.res */
 /* c:\program files\embarcadero\studio\14.0\lib\Win32\release\TeeResou.res */
@@ -3013,7 +3013,6 @@ END
 /* C:\repositories\Dokumentverwaltung\uframeenergie.dfm */
 /* C:\repositories\Dokumentverwaltung\uframefilter.dfm */
 /* C:\repositories\Dokumentverwaltung\uframevertrag.dfm */
-/* C:\repositories\Dokumentverwaltung\unotiz.dfm */
 /* C:\repositories\neueftpverbindung\uftpconnector.dfm */
 /* C:\repositories\Dokumentverwaltung\uformkunde.dfm */
 /* C:\repositories\Dokumentverwaltung\umain.dfm */

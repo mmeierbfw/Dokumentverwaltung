@@ -2101,7 +2101,7 @@
                 OnShow = TVerträgeShow
                 ExplicitTop = 0
                 ExplicitHeight = 662
-                inline Tframebasenutzer11: Tframebasenutzer1
+                inline framevert: Tframebasenutzer1
                   Left = 0
                   Top = 0
                   Width = 1686
@@ -2118,12 +2118,12 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = Tframebasenutzer11.Panel5
+                        Control = framevert.Panel5
                         Row = 0
                       end
                       item
                         Column = 1
-                        Control = Tframebasenutzer11.rightparent
+                        Control = framevert.rightparent
                         Row = 0
                       end>
                     inherited Panel5: TPanel
