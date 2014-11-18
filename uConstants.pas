@@ -68,11 +68,12 @@ type
     typ_name        = 'typen_name';
     table_email     = 'test.email';
 
-    view_zwi  = 'test.zwischenablesungen';
-    view_en   = 'test.energieausweise';
-    view_rekl = 'test.reklamationen';
-    view_nut  = 'test.nutzerlisten';
-    view_mon  = 'test.montagen';
+    view_zwi    = 'test.zwischenablesungen';
+    view_en     = 'test.energieausweise';
+    view_rekl   = 'test.reklamationen';
+    view_nut    = 'test.nutzerlisten';
+    view_mon    = 'test.montagen';
+    view_kosnut = 'test.kostenermittlungen';
 
     // muss halt so
     WiaFormatBMP  = '{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}';

@@ -217,6 +217,14 @@ type
     NxDBTextColumn18: TNxDBImageColumn;
     NxDBImageColumn7: TNxDBImageColumn;
     framevert: Tframebasenutzer1;
+    NxDBTextColumn12: TNxDBTextColumn;
+    NxDBTextColumn23: TNxDBTextColumn;
+    NxDBTextColumn26: TNxDBTextColumn;
+    NxDBTextColumn27: TNxDBTextColumn;
+    NxDBTextColumn28: TNxDBTextColumn;
+    NxDBTextColumn29: TNxDBTextColumn;
+    NxDBTextColumn30: TNxDBTextColumn;
+    NxDBTextColumn31: TNxDBTextColumn;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -235,6 +243,7 @@ type
     procedure zlnameKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure TMontageShow(Sender: TObject);
 
+    function erledigttext(dbgrid: TNextDBGrid; acol: Integer): string;
     procedure iupdateClick(Sender: TObject);
     procedure dokanzeigeClick(Sender: TObject);
     procedure ballemClick(Sender: TObject); { TODO : todo!! }
@@ -295,16 +304,16 @@ type
     procedure pagerspeicherExit(Sender: TObject);
     procedure pagerspeicherEnter(Sender: TObject);
     procedure NxComboBox1Change(Sender: TObject);
-    procedure NxDBButtonColumn1SetCell(Sender: TObject; ACol, ARow: Integer;
+    procedure NxDBButtonColumn1SetCell(Sender: TObject; acol, ARow: Integer;
       CellRect: TRect; CellState: TCellState);
     procedure NxDBButtonColumn1ButtonClick(Sender: TObject);
-    procedure gridzwiCellDblClick(Sender: TObject; ACol, ARow: Integer);
+    procedure gridzwiCellDblClick(Sender: TObject; acol, ARow: Integer);
     procedure NxButton3Click(Sender: TObject);
     procedure pzClick(Sender: TObject);
     procedure TrayIcon1DblClick(Sender: TObject);
-    procedure gridzwiCellColoring(Sender: TObject; ACol, ARow: Integer;
+    procedure gridzwiCellColoring(Sender: TObject; acol, ARow: Integer;
       var CellColor, GridColor: TColor; CellState: TCellState);
-    procedure gridzwiSortColumn(Sender: TObject; ACol: Integer;
+    procedure gridzwiSortColumn(Sender: TObject; acol: Integer;
       Ascending: Boolean);
     procedure Button1Click(Sender: TObject);
     procedure tabzwischenShow(Sender: TObject);
@@ -313,14 +322,14 @@ type
     procedure tabnutzerlistenShow(Sender: TObject);
     procedure tabenergieausweisShow(Sender: TObject);
     procedure tabreklamationShow(Sender: TObject);
-    procedure gridzwiCellFormating(Sender: TObject; ACol, ARow: Integer;
+    procedure gridzwiCellFormating(Sender: TObject; acol, ARow: Integer;
       Value: WideString; var TextColor: TColor; var FontStyle: TFontStyles;
       CellState: TCellState);
-    procedure zwivollbildSetCell(Sender: TObject; ACol, ARow: Integer;
+    procedure zwivollbildSetCell(Sender: TObject; acol, ARow: Integer;
       CellRect: TRect; CellState: TCellState);
-    procedure gridzwiCustomDrawCell(Sender: TObject; ACol, ARow: Integer;
+    procedure gridzwiCustomDrawCell(Sender: TObject; acol, ARow: Integer;
       CellRect: TRect; CellState: TCellState);
-    procedure gridzwiApplyCell(Sender: TObject; ACol, ARow: Integer;
+    procedure gridzwiApplyCell(Sender: TObject; acol, ARow: Integer;
       var Value: WideString);
     procedure NxGlyphButton3Click(Sender: TObject);
     procedure NxGlyphButton2Click(Sender: TObject);
@@ -349,12 +358,12 @@ type
     procedure framemonfiltereselpeExit(Sender: TObject);
     procedure framemonfiltereselaeExit(Sender: TObject);
     procedure framemonfiltereseldiExit(Sender: TObject);
-    procedure gridzwiCellClick(Sender: TObject; ACol, ARow: Integer);
+    procedure gridzwiCellClick(Sender: TObject; acol, ARow: Integer);
     procedure bexitClick(Sender: TObject);
     procedure frameenergiecbpseudoChange(Sender: TObject);
     procedure framemontageeauftragsnummerExit(Sender: TObject);
     procedure panelfocus(panel: TPanel);
-    procedure gridmonApplyCell(Sender: TObject; ACol, ARow: Integer;
+    procedure gridmonApplyCell(Sender: TObject; acol, ARow: Integer;
       var Value: WideString);
     procedure framemonnutesellgExit(Sender: TObject);
     procedure framemonnuteselsbExit(Sender: TObject);
@@ -390,17 +399,17 @@ type
     procedure framevertragenutzernummerExit(Sender: TObject);
     procedure dateexit(Sender: TObject);
     procedure framemontageemontageExit(Sender: TObject);
-    procedure gridrekApplyCell(Sender: TObject; ACol, ARow: Integer;
+    procedure gridrekApplyCell(Sender: TObject; acol, ARow: Integer;
       var Value: WideString);
     procedure frameenergieeposteingangExit(Sender: TObject);
     procedure frameenergieeliegenschaftExit(Sender: TObject);
-    procedure gridenergieApplyCell(Sender: TObject; ACol, ARow: Integer;
+    procedure gridenergieApplyCell(Sender: TObject; acol, ARow: Integer;
       var Value: WideString);
     procedure Timer4Timer(Sender: TObject);
     procedure pzMouseEnter(Sender: TObject);
     procedure pzMouseLeave(Sender: TObject);
     procedure banzeigeverlassen(Sender: TObject);
-    procedure gridnutzerlisteApplyCell(Sender: TObject; ACol, ARow: Integer;
+    procedure gridnutzerlisteApplyCell(Sender: TObject; acol, ARow: Integer;
       var Value: WideString);
     procedure lkundennummerDblClick(Sender: TObject);
     procedure framevertenutzernummerExit(Sender: TObject);
@@ -463,6 +472,8 @@ type
     FisTernes    : Boolean;
     idnotset     : Boolean;
     prociplinkftp: Integer;
+    filter       : string;
+    filterlg     : string;
     procedure resetdate(tem: TMaskEdit); overload;
     procedure resetdate(tem: tfedit); overload;
     function connectToPipe: Boolean;
@@ -489,7 +500,7 @@ type
     procedure showzwischenablesungen;
     procedure showmontagen;
     procedure showenergieausweise;
-    procedure shownutzerlisten;
+    procedure showkostennutzerlisten;
     procedure showreklamation;
     function filldb(ds: TDataSource; dbgrid: TNextDBGrid): Boolean;
     procedure showDocument(var dat: string);
@@ -502,11 +513,11 @@ type
     procedure setliegenschaftsdaten; overload;
     procedure setliegenschaftsdaten(liegg, nn: string); overload;
     function getframe: Tframebase;
-    procedure sortzwischen(ACol: Integer; ascbool: Boolean);
-    procedure sortnutzer(ACol: Integer; ascbool: Boolean);
-    procedure sortrekl(ACol: Integer; Ascending: Boolean);
-    procedure sortmontagen(ACol: Integer; ascbool: Boolean);
-    procedure sortenergie(ACol: Integer; ascbool: Boolean);
+    procedure sortzwischen(acol: Integer; ascbool: Boolean);
+    procedure sortnutzer(acol: Integer; ascbool: Boolean);
+    procedure sortrekl(acol: Integer; Ascending: Boolean);
+    procedure sortmontagen(acol: Integer; ascbool: Boolean);
+    procedure sortenergie(acol: Integer; ascbool: Boolean);
     function getzwivalues: TStringList;
     procedure setfilter(query: tzquery; filter: string);
     procedure disablecontrols(parent: TPanel);
@@ -596,11 +607,11 @@ begin
 
 end;
 
-procedure Tformmain.gridenergieApplyCell(Sender: TObject; ACol, ARow: Integer;
+procedure Tformmain.gridenergieApplyCell(Sender: TObject; acol, ARow: Integer;
   var Value: WideString);
 begin
-  if ACol = 11 then Value := '1';
-  if (ACol = 8) then begin
+  if acol = 11 then Value := '1';
+  if (acol = 8) then begin
     if (gridenergie.GetColumnByFieldName(dokcons.pseudoliegenschaft)
       .field.AsInteger = 1) then Value := '3'
     else Value                         := '-1';
@@ -608,20 +619,24 @@ begin
 
 end;
 
-procedure Tformmain.gridmonApplyCell(Sender: TObject; ACol, ARow: Integer;
+procedure Tformmain.gridmonApplyCell(Sender: TObject; acol, ARow: Integer;
   var Value: WideString);
+var
+  val: Integer;
 begin
-  if ACol = 9 then Value := '1';
+  if acol = 9 then Value := '1';
+  if not(acol = 13) then exit;
+  Value := erledigttext(Sender as TNextDBGrid, acol);
 end;
 
 procedure Tformmain.gridnutzerlisteApplyCell(Sender: TObject;
-  ACol, ARow: Integer; var Value: WideString);
+  acol, ARow: Integer; var Value: WideString);
 begin
-  if ACol = 8 then Value := '1';
+  if acol = 8 then Value := '1';
 
 end;
 
-procedure Tformmain.gridrekApplyCell(Sender: TObject; ACol, ARow: Integer;
+procedure Tformmain.gridrekApplyCell(Sender: TObject; acol, ARow: Integer;
   var Value: WideString);
 var
   notizstr: string;
@@ -630,21 +645,35 @@ begin
   except notizstr := '';
 
   end;
-  if ACol = 11 then Value := '1';
-  if (ACol = 13) then begin
+  if acol = 11 then Value := '1';
+  if (acol = 13) then begin
     if (Length(notizstr) > 0) then Value := '2'
     else Value                           := '-1';
   end;
 
 end;
 
-procedure Tformmain.gridzwiApplyCell(Sender: TObject; ACol, ARow: Integer;
+procedure Tformmain.gridzwiApplyCell(Sender: TObject; acol, ARow: Integer;
   var Value: WideString);
+var
+  val: Integer;
 begin
-  if ACol = 8 then Value := '1';
+  if acol = 8 then Value := '1';
+  if not(acol = 13) then exit;
+  try
+
+    val := (Sender as TNextDBGrid).GetColumnByFieldName('erledigt')
+      .field.AsInteger;
+
+    Value := erledigttext(Sender as TNextDBGrid, acol);
+  except
+    on e: Exception do begin
+      showmessage(e.Message);
+    end;
+  end;
 end;
 
-procedure Tformmain.gridzwiCellClick(Sender: TObject; ACol, ARow: Integer);
+procedure Tformmain.gridzwiCellClick(Sender: TObject; acol, ARow: Integer);
 var
   dateiname: string;
   dbgrid   : TNextDBGrid;
@@ -652,9 +681,9 @@ var
   notiz    : string;
 begin
   test := Sender.ToString;
-  test := (Sender as TNextDBGrid).Columns[ACol].Header.Caption;
+  test := (Sender as TNextDBGrid).Columns[acol].Header.Caption;
 
-  if AnsiStartsText('vollbild', AnsiLowerCase(test)) then begin
+  if AnsiStartsText('einzel', AnsiLowerCase(test)) then begin
     // if not(ptabellen.activepageindex = 1) then
 
     fillvollbild(Sender as TNextDBGrid, selectedRow);
@@ -679,7 +708,7 @@ begin
 
 end;
 
-procedure Tformmain.gridzwiCellColoring(Sender: TObject; ACol, ARow: Integer;
+procedure Tformmain.gridzwiCellColoring(Sender: TObject; acol, ARow: Integer;
   var CellColor, GridColor: TColor; CellState: TCellState);
 begin
   if (((ARow mod 2) = 0) and (not(csselected in CellState))) then
@@ -688,7 +717,7 @@ begin
 
 end;
 
-procedure Tformmain.gridzwiCellDblClick(Sender: TObject; ACol, ARow: Integer);
+procedure Tformmain.gridzwiCellDblClick(Sender: TObject; acol, ARow: Integer);
 var
   dateiname: string;
   dbgrid   : TNextDBGrid;
@@ -700,7 +729,7 @@ begin
   fillvollbild(Sender as TNextDBGrid, selectedRow);
 end;
 
-procedure Tformmain.gridzwiCellFormating(Sender: TObject; ACol, ARow: Integer;
+procedure Tformmain.gridzwiCellFormating(Sender: TObject; acol, ARow: Integer;
   Value: WideString; var TextColor: TColor; var FontStyle: TFontStyles;
   CellState: TCellState);
 
@@ -730,7 +759,7 @@ begin
   inherited;
 end;
 
-procedure Tformmain.gridzwiCustomDrawCell(Sender: TObject; ACol, ARow: Integer;
+procedure Tformmain.gridzwiCustomDrawCell(Sender: TObject; acol, ARow: Integer;
   CellRect: TRect; CellState: TCellState);
 
 var
@@ -745,7 +774,7 @@ begin
   end;
 end;
 
-procedure Tformmain.gridzwiSortColumn(Sender: TObject; ACol: Integer;
+procedure Tformmain.gridzwiSortColumn(Sender: TObject; acol: Integer;
   Ascending: Boolean);
 var
   Key        : string;
@@ -754,11 +783,11 @@ var
 
 begin
   if not assigned(formdb) then exit; { TODO : todo }
-  if ptabellen.ActivePage = tabzwischen then sortzwischen(ACol, Ascending);
-  if ptabellen.ActivePage = tabmontagen then sortmontagen(ACol, Ascending);
-  if ptabellen.ActivePage = tabenergieausweis then sortenergie(ACol, Ascending);
-  if ptabellen.ActivePage = tabnutzerlisten then sortnutzer(ACol, Ascending);
-  if ptabellen.ActivePage = tabreklamation then sortrekl(ACol, Ascending);
+  if ptabellen.ActivePage = tabzwischen then sortzwischen(acol, Ascending);
+  if ptabellen.ActivePage = tabmontagen then sortmontagen(acol, Ascending);
+  if ptabellen.ActivePage = tabenergieausweis then sortenergie(acol, Ascending);
+  if ptabellen.ActivePage = tabnutzerlisten then sortnutzer(acol, Ascending);
+  if ptabellen.ActivePage = tabreklamation then sortrekl(acol, Ascending);
 
   // if ptabellen.ActivePage = tabzwischen then begin
   // // if acol=4 then begin
@@ -820,8 +849,8 @@ procedure Tformmain.showenergieausweise;
 var
   list: TStringList;
 begin
-
-  list := TStringList.Create;
+  frameenfilter.esellg.Text := filterlg;
+  list                      := TStringList.Create;
   list.add('*');
   // list.add(dateiname);
   // list.add(Posteingang);
@@ -832,6 +861,7 @@ begin
     ' WHERE kundennummer = ' + kdnr;
   formdb.queryen.Open;
 
+  setfilter(formdb.queryen, filter);
   filldb(formdb.dsen, gridenergie);
   // formdb.doquery(formdb.queryen, table_en, ' WHERE kundennummer = ' + kn +
   // ' order by Dokumentid desc ;', list);
@@ -1316,7 +1346,7 @@ begin
   // minimizeme;
   // Action := caNone;
 
-    Killprocess(procidbfw);
+  Killprocess(procidbfw);
   Killprocess(procidplinkmysql);
   // KillTask('plink.exe');
   if isexerunning('plink.exe') then KillTask('plink.exe');
@@ -1544,6 +1574,7 @@ end;
 
 procedure Tformmain.frameenfilterblöschenClick(Sender: TObject);
 begin
+  filterlg := '';
   frameenfilter.blöschenClick(Sender);
   formdb.queryen.Filtered := false;
 end;
@@ -1563,6 +1594,7 @@ end;
 
 procedure Tformmain.frameenfilteresellgExit(Sender: TObject);
 begin
+  filterlg := (Sender as tfedit).Text;
   frameenfilter.esellgExit(Sender);
   setfilter(formdb.queryen, frameenfilter.getfilter);
 end;
@@ -1587,6 +1619,7 @@ end;
 
 procedure Tformmain.framefilterreklamationblöschenClick(Sender: TObject);
 begin
+  filterlg := '';
   framefilterreklamation.blöschenClick(Sender);
   formdb.queryrekl.Filtered := false;
 end;
@@ -1605,6 +1638,7 @@ end;
 
 procedure Tformmain.framefilterreklamationesellgExit(Sender: TObject);
 begin
+  filterlg := (Sender as tfedit).Text;
   framefilterreklamation.esellgExit(Sender);
   setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
 end;
@@ -1628,6 +1662,7 @@ end;
 
 procedure Tformmain.framemonfilterblöschenClick(Sender: TObject);
 begin
+  filterlg := '';
   framemonfilter.blöschenClick(Sender);
   formdb.querymon.Filtered := false;
 end;
@@ -1652,10 +1687,9 @@ begin
 end;
 
 procedure Tformmain.framemonfilteresellgExit(Sender: TObject);
-var
-  filter: string;
 begin
   try
+    filterlg := (Sender as tfedit).Text;
     framemonfilter.esellgExit(Sender);
     filter := framemonfilter.getfilter;
     setfilter(formdb.querymon, filter);
@@ -1694,6 +1728,7 @@ end;
 
 procedure Tformmain.framemonnutblöschenClick(Sender: TObject);
 begin
+  filterlg := '';
   framemonnut.blöschenClick(Sender);
   formdb.querynuliste.Filtered := false;
 end;
@@ -1712,6 +1747,7 @@ end;
 
 procedure Tformmain.framemonnutesellgExit(Sender: TObject);
 begin
+  filterlg := (Sender as tfedit).Text;
   framemonnut.esellgExit(Sender);
 
 end;
@@ -1790,7 +1826,7 @@ end;
 
 procedure Tformmain.framevertragenutzernummerExit(Sender: TObject);
 begin
-//  framevertrag.enutzerexit(Sender);
+  // framevertrag.enutzerexit(Sender);
 
 end;
 
@@ -1846,6 +1882,7 @@ end;
 // ###############################################
 procedure Tformmain.framezwifilterblöschenClick(Sender: TObject);
 begin
+  filterlg := '';
   framezwifilter.blöschenClick(Sender);
   formdb.queryzwi.Filtered := false;
 end;
@@ -1880,12 +1917,10 @@ begin
 end;
 
 procedure Tformmain.framezwifilteresellgExit(Sender: TObject);
-var
-  filter: string;
 begin
   try
+    filterlg := (Sender as tfedit).Text;
     framezwifilter.esellgExit(Sender);
-
     filter := framezwifilter.getfilter;
     setfilter(formdb.queryzwi, filter);
 
@@ -2887,7 +2922,7 @@ end;
 
 // ###############################################
 procedure Tformmain.NxDBButtonColumn1SetCell(Sender: TObject;
-  ACol, ARow: Integer; CellRect: TRect; CellState: TCellState);
+  acol, ARow: Integer; CellRect: TRect; CellState: TCellState);
 var
   rect: TRect;
 begin
@@ -2962,7 +2997,7 @@ begin
 end;
 
 // ###############################################
-procedure Tformmain.zwivollbildSetCell(Sender: TObject; ACol, ARow: Integer;
+procedure Tformmain.zwivollbildSetCell(Sender: TObject; acol, ARow: Integer;
   CellRect: TRect; CellState: TCellState);
 begin
 
@@ -3124,6 +3159,18 @@ begin
   end
   else Mask.Color := clWhite;
 
+end;
+
+function Tformmain.erledigttext(dbgrid: TNextDBGrid; acol: Integer): string;
+var
+  val: Integer;
+begin
+  val := dbgrid.GetColumnByFieldName('erledigt').field.AsInteger;
+  case val of
+    0: Result := 'nein';
+    1: Result := 'ja';
+  else Result := 'keine Angabe';
+  end;
 end;
 
 // ###############################################
@@ -3732,6 +3779,7 @@ var
   query: string;
   list : TStringList;
 begin
+  framemonfilter.esellg.Text := filterlg;
   with dokcons do begin
     list := TStringList.Create;
     list.add('*');
@@ -3740,6 +3788,7 @@ begin
     formdb.querymon.SQL.Text := 'SELECT * FROM ' + view_mon +
       ' WHERE kundennummer = ' + kn;
     formdb.querymon.Open;
+    setfilter(formdb.querymon, filter);
     filldb(formdb.dsmon, gridmon);
   end;
 end;
@@ -3747,21 +3796,32 @@ end;
 // ###############################################
 procedure Tformmain.shownotizen(notiz: string);
 begin
-//  notizbox.Show;
-//  notizbox.Memo1.Text := notiz;
+  // notizbox.Show;
+  // notizbox.Memo1.Text := notiz;
 end;
 
-procedure Tformmain.shownutzerlisten;
+procedure Tformmain.showkostennutzerlisten;
 
 var
   query: string;
   list : TStringList;
 begin
+  framemonnut.esellg.Text := filterlg;
   with dokcons do begin
     list := TStringList.Create;
     list.add('*');
-    formdb.doquery(formdb.querynuliste, view_nut, ' WHERE kundennummer = ' + kn
-      + ' order by ablagenr desc ;', list);
+    // formdb.doquery(formdb.querynuliste, view_kosnut, ' WHERE kundennummer = ' + kn
+    // + ' order by ablagenr desc ;', list);
+    formdb.querynuliste.SQL.clear;
+    formdb.querynuliste.SQL.Text := 'SELECT *  FROM ' + view_kosnut +
+      ' WHERE kundennummer = ' + quotedstr(kn);
+    try formdb.querynuliste.Open;
+    except
+      on e: Exception do showmessage(e.Message);
+
+    end;
+    setfilter(formdb.querynuliste, filter);
+    filldb(formdb.dsnuliste, gridnutzerliste);
   end;
 end;
 
@@ -3772,12 +3832,13 @@ var
   query: string;
   list : TStringList;
 begin
-
-  list := TStringList.Create;
+  framefilterreklamation.esellg.Text := filterlg;
+  list                               := TStringList.Create;
   list.add('*');
 
   formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = ' +
     kn + ' order by ablagenr desc ;', list);
+  setfilter(formdb.queryrekl, filter);
   // filldb(formdb.dsdokumente);
 
 end;
@@ -3796,27 +3857,28 @@ begin
   if not assigned(formdb) then formdb := Tformdb.Create(self);
   list                                := TStringList.Create;
   list.add('*');
+  framezwifilter.esellg.Text := filterlg;
   formdb.queryzwi.SQL.clear;
   formdb.queryzwi.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
     ' WHERE kundennummer = ' + kdnr;
   formdb.queryzwi.Open;
-
+  setfilter(formdb.queryzwi, filter);
   filldb(formdb.dszwi, gridzwi);
 end;
 
 // ###############################################
-procedure Tformmain.sortenergie(ACol: Integer; ascbool: Boolean);
+procedure Tformmain.sortenergie(acol: Integer; ascbool: Boolean);
 
 var
   QueryString: string;
   asc        : string;
 begin
   QueryString := 'SELECT * FROM ' + dokcons.view_en; // Query statement
-  if gridenergie.Columns[ACol].FieldName = '' then exit;
+  if gridenergie.Columns[acol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
   else asc            := 'DESC';
-  QueryString         := QueryString + ' ORDER BY ' + gridenergie.Columns[ACol]
+  QueryString         := QueryString + ' ORDER BY ' + gridenergie.Columns[acol]
     .FieldName + ' ' + asc;
   formdb.queryen.SQL.clear;
   formdb.queryen.SQL.Text := QueryString;
@@ -3824,17 +3886,17 @@ begin
 end;
 
 // ###############################################
-procedure Tformmain.sortmontagen(ACol: Integer; ascbool: Boolean);
+procedure Tformmain.sortmontagen(acol: Integer; ascbool: Boolean);
 var
   QueryString: string;
   asc        : string;
 begin
   QueryString := 'SELECT * FROM ' + dokcons.view_mon; // Query statement
-  if gridmon.Columns[ACol].FieldName = '' then exit;
+  if gridmon.Columns[acol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
   else asc            := 'DESC';
-  QueryString := QueryString + ' ORDER BY ' + gridmon.Columns[ACol].FieldName +
+  QueryString := QueryString + ' ORDER BY ' + gridmon.Columns[acol].FieldName +
     ' ' + asc;
 
   formdb.querymon.SQL.clear;
@@ -3849,7 +3911,7 @@ begin
 end;
 
 // ###############################################
-procedure Tformmain.sortnutzer(ACol: Integer; ascbool: Boolean);
+procedure Tformmain.sortnutzer(acol: Integer; ascbool: Boolean);
 
 var
   QueryString: string;
@@ -3860,7 +3922,7 @@ begin
   list := TStringList.Create;
   list.add('*');
   QueryString := 'SELECT * FROM ' + dokcons.view_nut; // Query statement
-  if gridnutzerliste.Columns[ACol].FieldName = '' then exit;
+  if gridnutzerliste.Columns[acol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
   else asc            := 'DESC';
@@ -3877,18 +3939,18 @@ begin
 end;
 
 // ###############################################
-procedure Tformmain.sortrekl(ACol: Integer; Ascending: Boolean);
+procedure Tformmain.sortrekl(acol: Integer; Ascending: Boolean);
 var
   QueryString: string;
   asc        : string;
 begin
 
   QueryString := 'SELECT * FROM ' + dokcons.view_rekl; // Query statement
-  if gridrek.Columns[ACol].FieldName = '' then exit;
+  if gridrek.Columns[acol].FieldName = '' then exit;
 
   if Ascending then asc := 'ASC'
   else asc              := 'DESC';
-  QueryString := QueryString + ' ORDER BY ' + gridrek.Columns[ACol].FieldName +
+  QueryString := QueryString + ' ORDER BY ' + gridrek.Columns[acol].FieldName +
     ' ' + asc;
   formdb.queryrekl.SQL.clear;
   formdb.queryrekl.SQL.Text := QueryString;
@@ -3898,18 +3960,18 @@ end;
 // ###############################################
 // -----------------------------------------
 
-procedure Tformmain.sortzwischen(ACol: Integer; ascbool: Boolean);
+procedure Tformmain.sortzwischen(acol: Integer; ascbool: Boolean);
 var
   QueryString: string;
   asc        : string;
 begin
 
   QueryString := 'SELECT * FROM ' + dokcons.view_zwi; // Query statement
-  if gridzwi.Columns[ACol].FieldName = '' then exit;
+  if gridzwi.Columns[acol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
   else asc            := 'DESC';
-  QueryString := QueryString + ' ORDER BY ' + gridzwi.Columns[ACol].FieldName +
+  QueryString := QueryString + ' ORDER BY ' + gridzwi.Columns[acol].FieldName +
     ' ' + asc;
   formdb.queryzwi.SQL.clear;
   formdb.queryzwi.SQL.Text := QueryString;
@@ -3946,9 +4008,9 @@ procedure Tformmain.tabnutzerlistenShow(Sender: TObject);
 begin
   if not assigned(formdb) then exit;
 
-  try shownutzerlisten;
+  try showkostennutzerlisten;
   except
-    ;
+    on e: Exception do showmessage(e.Message);
 
   end;
 end;
