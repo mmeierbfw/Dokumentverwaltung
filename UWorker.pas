@@ -17,10 +17,9 @@ type
 
   private
     scannedDocument: string;
-    jahr, teilliegenschaft, lieg, nnummer, anummer, knummer, erl, Dok, Dokname,
-      PE, ntzn, nname, abldat, vertbg, datname, einbaudat,
-      gueltigkeitsdat: string;
-    fmypath, pathname: string;
+    jahr, lieg, nnummer, anummer, knummer, erl, Dok, Dokname, PE, ntzn, nname,
+      abldat, vertbg, datname, einbaudat, gueltigkeitsdat: string;
+    fmypath, pathname                                    : string;
 
     col             : TCollector;
     no              : string;
@@ -417,7 +416,8 @@ begin
 
       try
         try
-          tmplist.Add(formmain.dokcons.sachbearbeiter, formmain.getsachbearbeiter);
+          tmplist.Add(formmain.dokcons.sachbearbeiter,
+            formmain.getsachbearbeiter);
           tmplist.Add('Dokumentid.Dokumentid', helperid);
           formdb.replacequery('Dokumentid', tmplist);
         except
@@ -635,8 +635,8 @@ begin
   list := TStringList.Create;
   list.Add('WO5');
   list.Add('WO6');
-  database := formmain.dokcons.kuarchiv + kundennummer + '\' + liegenschaft + '\' +
-    liegenschaft + '.DB';
+  database := formmain.dokcons.kuarchiv + kundennummer + '\' + liegenschaft +
+    '\' + liegenschaft + '.DB';
   wherestring := ' WHERE WO1 = ' + inttostr(strtoint(nutzernummer)) +
     ' AND WO0=' + QuotedStr('W');
   table  := 'WO_TYP';

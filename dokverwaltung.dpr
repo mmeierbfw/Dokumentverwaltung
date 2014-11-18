@@ -5,7 +5,6 @@ program dokverwaltung;
 uses
   Vcl.Forms,
   UWorker in 'UWorker.pas',
-  udbconnector in '..\dbconnector\udbconnector.pas' {formdb},
   Vcl.Themes,
   Vcl.Styles,
   uparser in '..\perfectparser\uparser.pas' {formparser},
@@ -25,7 +24,8 @@ uses
   uframeauftrag in 'uframeauftrag.pas' {frameauftrag: TFrame},
   uframefilter in 'uframefilter.pas' {framebasefilter: TFrame},
   usettings in 'usettings.pas',
-  uformkunde in 'uformkunde.pas' {formkunde: F};
+  uformkunde in 'uformkunde.pas' {formkunde: F},
+  uframevertrag in 'uframevertrag.pas' {framebasenutzer1: TFrame};
 
 {$R *.res}
 
@@ -37,7 +37,6 @@ begin
   Application.CreateForm(Tformmain, formmain);
   Application.CreateForm(Tformftp, formftp);
   Application.CreateForm(Tformparser, formparser);
-  Application.CreateForm(Tformdb, formdb);
   Application.CreateForm(Tformsachkunde, formsachkunde);
   Application.CreateForm(Tformftp, formftp);
   Application.CreateForm(Tformftp, formftp);

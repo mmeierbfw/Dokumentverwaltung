@@ -116,10 +116,6 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="UWorker.pas"/>
-        <DCCReference Include="..\dbconnector\udbconnector.pas">
-            <Form>formdb</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\perfectparser\uparser.pas">
             <Form>formparser</Form>
             <FormType>dfm</FormType>
@@ -181,6 +177,11 @@
             <Form>formkunde</Form>
             <FormType>dfm</FormType>
             <DesignClass>F</DesignClass>
+        </DCCReference>
+        <DCCReference Include="uframevertrag.pas">
+            <Form>framebasenutzer1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <RcItem Include="libmysql.dll">
             <ContainerId>ResourceItem</ContainerId>
