@@ -1316,7 +1316,7 @@ begin
   // minimizeme;
   // Action := caNone;
 
-  Killprocess(procidbfw);
+    Killprocess(procidbfw);
   Killprocess(procidplinkmysql);
   // KillTask('plink.exe');
   if isexerunning('plink.exe') then KillTask('plink.exe');
