@@ -18,7 +18,7 @@ uses
   NxCustomGrid, NxDBGrid, Data.DB, ZAbstractRODataset, ZAbstractDataset,
   ZDataset, NxDBColumns, NxColumns, Vcl.ImgList, uframebase, uframereklmont,
   uframezwischenab, uframezwischen, uframebasemitnutzer, uframeauftrag,
-  uframeenergie, uframefilter, usettings, uframevertrag, unotiz;
+  uframeenergie, uframefilter, usettings, uframevertrag;
 
 type
 
@@ -210,12 +210,13 @@ type
     lname1: TLabel;
     lname2: TLabel;
     vermerke: TMemo;
-    framevert: Tframevertrag;
+    // framevert: Tframevertrag;
     NxDBTextColumn22: TNxDBTextColumn;
     NxDBTextColumn24: TNxDBTextColumn;
     NxDBTextColumn25: TNxDBTextColumn;
     NxDBTextColumn18: TNxDBImageColumn;
     NxDBImageColumn7: TNxDBImageColumn;
+    Tframebasenutzer11: Tframebasenutzer1;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
