@@ -212,7 +212,6 @@ type
     vermerke: TMemo;
     // framevert: Tframevertrag;
     NxDBTextColumn22: TNxDBTextColumn;
-    NxDBTextColumn24: TNxDBTextColumn;
     NxDBTextColumn25: TNxDBTextColumn;
     NxDBTextColumn18: TNxDBImageColumn;
     NxDBImageColumn7: TNxDBImageColumn;
@@ -225,6 +224,13 @@ type
     NxDBTextColumn29: TNxDBTextColumn;
     NxDBTextColumn30: TNxDBTextColumn;
     NxDBTextColumn31: TNxDBTextColumn;
+    NxDBTextColumn24: TNxDBTextColumn;
+    NxDBTextColumn32: TNxDBTextColumn;
+    NxDBTextColumn33: TNxDBTextColumn;
+    NxDBTextColumn34: TNxDBTextColumn;
+    NxDBTextColumn35: TNxDBTextColumn;
+    NxDBTextColumn36: TNxDBTextColumn;
+    NxDBTextColumn37: TNxDBTextColumn;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -331,6 +337,7 @@ type
       CellRect: TRect; CellState: TCellState);
     procedure gridzwiApplyCell(Sender: TObject; acol, ARow: Integer;
       var Value: WideString);
+    function setdateityp(dbgrid: TNextDBGrid): string;
     procedure NxGlyphButton3Click(Sender: TObject);
     procedure NxGlyphButton2Click(Sender: TObject);
     procedure gridzwiClick(Sender: TObject);
@@ -610,13 +617,16 @@ end;
 procedure Tformmain.gridenergieApplyCell(Sender: TObject; acol, ARow: Integer;
   var Value: WideString);
 begin
-  if acol = 11 then Value := '1';
-  if (acol = 8) then begin
-    if (gridenergie.GetColumnByFieldName(dokcons.pseudoliegenschaft)
-      .field.AsInteger = 1) then Value := '3'
-    else Value                         := '-1';
+  case acol of
+    11: Value := '1';
+    8: begin
+        if (gridenergie.GetColumnByFieldName(dokcons.pseudoliegenschaft)
+          .field.AsInteger = 1) then Value := '3'
+        else Value                         := '-1';
+      end;
+    13: Value := erledigttext(Sender as TNextDBGrid, acol);
+    14: Value := setdateityp(Sender as TNextDBGrid);
   end;
-
 end;
 
 procedure Tformmain.gridmonApplyCell(Sender: TObject; acol, ARow: Integer;
@@ -624,16 +634,22 @@ procedure Tformmain.gridmonApplyCell(Sender: TObject; acol, ARow: Integer;
 var
   val: Integer;
 begin
-  if acol = 9 then Value := '1';
-  if not(acol = 13) then exit;
-  Value := erledigttext(Sender as TNextDBGrid, acol);
+  case acol of
+    9: Value  := '1';
+    13: Value := erledigttext(Sender as TNextDBGrid, acol);
+    14: Value := setdateityp(Sender as TNextDBGrid);
+
+  end;
 end;
 
 procedure Tformmain.gridnutzerlisteApplyCell(Sender: TObject;
   acol, ARow: Integer; var Value: WideString);
 begin
-  if acol = 8 then Value := '1';
-
+  case acol of
+    8: Value  := '1';
+    10: Value := erledigttext(Sender as TNextDBGrid, acol);
+    11: Value := setdateityp(Sender as TNextDBGrid);
+  end;
 end;
 
 procedure Tformmain.gridrekApplyCell(Sender: TObject; acol, ARow: Integer;
@@ -645,37 +661,39 @@ begin
   except notizstr := '';
 
   end;
-  if acol = 11 then Value := '1';
-  if (acol = 13) then begin
-    if (Length(notizstr) > 0) then Value := '2'
-    else Value                           := '-1';
+  case acol of
+    11: Value := '1';
+    13: Value := erledigttext(Sender as TNextDBGrid, acol);
+    14: Value := setdateityp(Sender as TNextDBGrid);
   end;
-
 end;
 
 procedure Tformmain.gridzwiApplyCell(Sender: TObject; acol, ARow: Integer;
   var Value: WideString);
 var
-  val: Integer;
+  filename   : string;
+  dateiendung: string;
 begin
-  if acol = 8 then Value := '1';
-  if not(acol = 13) then exit;
-  try
+  if acol = 10 then Value := '1';
+  if (acol = 15) then begin
+    try
 
-    val := (Sender as TNextDBGrid).GetColumnByFieldName('erledigt')
-      .field.AsInteger;
-
-    Value := erledigttext(Sender as TNextDBGrid, acol);
-  except
-    on e: Exception do begin
-      showmessage(e.Message);
+        Value := erledigttext(Sender as TNextDBGrid, acol);
+    except
+      on e: Exception do begin
+        showmessage(e.Message);
+      end;
     end;
+  end;
+  if (acol = 16) then begin
+    Value := setdateityp(Sender as TNextDBGrid);
+
   end;
 end;
 
 procedure Tformmain.gridzwiCellClick(Sender: TObject; acol, ARow: Integer);
 var
-  dateiname: string;
+  Dateiname: string;
   dbgrid   : TNextDBGrid;
   test     : string;
   notiz    : string;
@@ -702,8 +720,8 @@ begin
     shownotizen(notiz);
   end;
   if AnsiStartsText('dokument anzeigen', AnsiLowerCase(test)) then begin
-    dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.AsString);
-    showDocument(dateiname);
+    Dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.AsString);
+    showDocument(Dateiname);
   end;
 
 end;
@@ -719,7 +737,7 @@ end;
 
 procedure Tformmain.gridzwiCellDblClick(Sender: TObject; acol, ARow: Integer);
 var
-  dateiname: string;
+  Dateiname: string;
   dbgrid   : TNextDBGrid;
   test     : string;
 begin
@@ -813,7 +831,7 @@ procedure Tformmain.showDocument(var dat: string);
 var
   dateilist: TStringList;
   tmpfile  : string;
-  dateiname: string;
+  Dateiname: string;
   tmp      : string;
 begin
   // // die Dateinamen ermitteln
@@ -823,9 +841,9 @@ begin
   dateilist.DelimitedText   := dat;
 
   // die Datei(en) lokal herunterladen
-  for dateiname in dateilist do begin
-    if dateiname = '' then continue;
-    tmp     := ReplaceStr(dateiname, '/', '\\');
+  for Dateiname in dateilist do begin
+    if Dateiname = '' then continue;
+    tmp     := ReplaceStr(Dateiname, '/', '\\');
     tmpfile := gettmpfile('Scannerprogramm', ExtractFileName(tmp));
     if not FileExists(tmpfile) then begin
       formftp.getFile(tmp, tmpfile);
@@ -3497,6 +3515,27 @@ begin
 end;
 
 // ###############################################
+function Tformmain.setdateityp(dbgrid: TNextDBGrid): string;
+var
+  Dateiname, endung: string;
+begin
+  Dateiname := dbgrid.GetColumnByFieldName(dokcons.Dateiname).field.AsString;
+  endung    := AnsiLowerCase(ExtractFileExt(Dateiname));
+  if strcontains('eml', AnsiLowerCase(endung)) then begin
+    Result := 'Email';
+    exit;
+  end;
+  if strcontains('txt', endung) then begin
+    Result := 'Notiz';
+    exit;
+  end;
+  if strcontains('pdf', endung) then begin
+    Result := 'PDF';
+    exit;
+  end;
+  Result := 'Bild';
+end;
+
 procedure Tformmain.setFile(path: string);
 begin
   getFiletype(path);
@@ -3839,7 +3878,7 @@ begin
   formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = ' +
     kn + ' order by ablagenr desc ;', list);
   setfilter(formdb.queryrekl, filter);
-  // filldb(formdb.dsdokumente);
+  filldb(formdb.dsrekl, gridrek);
 
 end;
 
@@ -4363,7 +4402,7 @@ end;
 // ###############################################
 procedure Tformmain.vollzwischenbsaveClick(Sender: TObject);
 var
-  dateiname: string;
+  Dateiname: string;
   dbgrid   : TNextDBGrid;
 begin
   case pvollbilder.activepageindex of
@@ -4374,8 +4413,8 @@ begin
     3: dbgrid := gridrek;
 
   end;
-  dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.AsString);
-  showDocument(dateiname);
+  Dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.AsString);
+  showDocument(Dateiname);
 end;
 
 // ###############################################
