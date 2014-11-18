@@ -141,9 +141,13 @@
     <Transaction>2014.11.18 16:45:04.928,C:\repositories\Dokumentverwaltung\uframevertrag.pas=C:\repositories\Dokumentverwaltung\Unit1.pas</Transaction>
     <Transaction>2014.11.18 16:45:04.928,C:\repositories\Dokumentverwaltung\uframevertrag.dfm=C:\repositories\Dokumentverwaltung\Unit1.dfm</Transaction>
     <Transaction>2014.11.18 16:48:25.248,C:\repositories\dbconnector\udbconnector.pas=</Transaction>
+    <Transaction>2014.11.18 16:48:39.213,=C:\repositories\dokverwaltungdbconnector\udbconnector.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="C:\repositories"/>
+    <File Path="..\dokverwaltungdbconnector"/>
+    <File Path="..\dokverwaltungdbconnector\udbconnector.pas"/>
+    <File Path="..\dokverwaltungdbconnector\udbconnector.dfm"/>
     <File Path="..\neueftpverbindung"/>
     <File Path="..\neueftpverbindung\uftpconnector.pas"/>
     <File Path="..\neueftpverbindung\uftpconnector.dfm"/>

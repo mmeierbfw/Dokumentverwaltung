@@ -25,7 +25,8 @@ uses
   uframefilter in 'uframefilter.pas' {framebasefilter: TFrame},
   usettings in 'usettings.pas',
   uformkunde in 'uformkunde.pas' {formkunde: F},
-  uframevertrag in 'uframevertrag.pas' {framebasenutzer1: TFrame};
+  uframevertrag in 'uframevertrag.pas' {framebasenutzer1: TFrame},
+  udbconnector in '..\dokverwaltungdbconnector\udbconnector.pas' {formdb};
 
 {$R *.res}
 
@@ -41,6 +42,7 @@ begin
   Application.CreateForm(Tformftp, formftp);
   Application.CreateForm(Tformftp, formftp);
   Application.CreateForm(Tformkunde, formkunde);
+  Application.CreateForm(Tformdb, formdb);
   //  Application.CreateForm(Tformmain1, formmain1);
   //  Application.CreateForm(TEinstellungen, Einstellungen);
   Application.Run;
