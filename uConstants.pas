@@ -69,9 +69,9 @@ type
     localhostname = '192.168.1.215';
     localPort     = '3306';
     { auf Server }
-    servermysqluser     = 'root';
+    servermysqluser     = 'tiffy';
     serveruser          = 'tiffy';
-    serverpassword      = 'C3_az?!a';
+    serverpassword      = 'maunze01';
     serverhostname      = '148.251.138.2';
     serverport          = '7777';
     serverlocalhost     = '127.0.0.1';

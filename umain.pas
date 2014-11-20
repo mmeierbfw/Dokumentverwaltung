@@ -3867,7 +3867,7 @@ begin
     // formdb.doquery(formdb.querynuliste, view_kosnut, ' WHERE kundennummer = ' + kn
     // + ' order by ablagenr desc ;', list);
     formdb.querynuliste.SQL.clear;
-    formdb.querynuliste.SQL.Text := 'SELECT *  FROM ' + view_kosnut +
+    formdb.querynuliste.SQL.Text := 'SELECT *  FROM ' + view_kos +
       ' WHERE kundennummer = ' + quotedstr(kn);
     try formdb.querynuliste.Open;
     except
