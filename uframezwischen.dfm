@@ -1,13 +1,12 @@
 inherited framezwischen: Tframezwischen
   Width = 1193
-  ExplicitWidth = 451
-  ExplicitHeight = 304
+  Height = 304
   inherited gridpanel: TGridPanel
     Width = 1193
     Height = 304
-    ExplicitWidth = 451
-    ExplicitHeight = 304
     inherited Panel5: TPanel
+      Width = 590
+      Height = 296
       ExplicitWidth = 590
       ExplicitHeight = 296
       inherited lfiletype: TLabel
@@ -67,7 +66,7 @@ inherited framezwischen: Tframezwischen
       inherited menotizen: TfMemo
         Left = 121
         Top = 347
-        TabOrder = 12
+        TabOrder = 8
         ExplicitLeft = 121
         ExplicitTop = 347
       end
@@ -98,7 +97,7 @@ inherited framezwischen: Tframezwischen
         Font.Style = []
         MaxLength = 8
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 11
         Text = '  .  .  '
         TabOnEnter = True
         FontColorOnEnter = 10252872
@@ -122,7 +121,7 @@ inherited framezwischen: Tframezwischen
         Font.Style = []
         MaxLength = 8
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 12
         Text = '  .  .  '
         TabOnEnter = True
         FontColorOnEnter = 10252872
@@ -163,6 +162,9 @@ inherited framezwischen: Tframezwischen
         Top = 301
         TabOrder = 7
         ExplicitTop = 301
+      end
+      inherited pinfo: TPanel
+        TabOrder = 10
       end
       object eauszug: TfEdit
         Tag = 1
@@ -222,9 +224,12 @@ inherited framezwischen: Tframezwischen
       end
     end
     inherited rightparent: TPanel
-      ExplicitLeft = 229
-      ExplicitWidth = 220
-      ExplicitHeight = 296
+      Left = 600
+      Width = 591
+      Height = 296
+      ExplicitLeft = 600
+      ExplicitWidth = 591
+      ExplicitHeight = 675
     end
   end
 end

@@ -766,8 +766,8 @@
               Margins.Top = 4
               Margins.Right = 2
               Margins.Bottom = 4
-              ActivePage = TZwischenablesung
-              ActivePageIndex = 1
+              ActivePage = tauftrag
+              ActivePageIndex = 3
               Align = alClient
               ShowHint = True
               TabOrder = 0
@@ -1524,6 +1524,7 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1577,9 +1578,10 @@
                       end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
-                      ExplicitWidth = 837
                       ExplicitHeight = 653
                     end
                   end
@@ -1625,6 +1627,7 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1682,9 +1685,10 @@
                       end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
-                      ExplicitWidth = 837
                       ExplicitHeight = 653
                     end
                   end
@@ -2126,9 +2130,6 @@
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -4573,6 +4574,7 @@
                     Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
+                    ExplicitHeight = 296
                   end
                 end
                 inherited NxButton2: TNxButton
@@ -4981,10 +4983,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 837
+                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 255
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -5027,9 +5031,11 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
-                    ExplicitHeight = 650
                   end
                 end
                 inherited NxButton2: TNxButton

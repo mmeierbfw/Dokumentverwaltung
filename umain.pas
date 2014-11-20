@@ -2069,9 +2069,9 @@ var
 
   frame: Tframebase;
 begin
-  frame   := getframe;
-  prefix  := getprefix(pagerspeicher.activepageindex);
-  abredit := frame.FindComponent('dtabrechnungsende') as TMaskEdit;
+  frame := getframe;
+  // prefix  := getprefix(pagerspeicher.activepageindex);
+  // abredit := frame.FindComponent('dtabrechnungsende') as TMaskEdit;
   // Result := getdate(abredit as tfmaskedit);
   Result := getdate(frame.eabrechnungsende);
 end;
@@ -2190,11 +2190,12 @@ begin
       KostenINT, SonstigesInt: begin
           abrdat := StrToDateTime(datestring);
           abrdat := abrdat + 365;
-          DateTimeToString(datemitpunkt, 'dd.mm.yy', abrdat);
+          DateTimeToString(Result, 'dd.mm.yy', abrdat);
         end
-    else DateTimeToString(datemitpunkt, 'dd.mm.yy', now);
+      // else DateTimeToString(datemitpunkt, 'dd.mm.yy', now);
+    else Result := '';
     end;
-    Result := datemitpunkt;
+    // Result := datemitpunkt;
   end;
 end;
 
@@ -3765,8 +3766,9 @@ begin
   abrechnungsende := getdatemitpunkt(pagerspeicher.activepageindex,
     dic.Items['Databr']);
   // datemitpunkt := dic.Items['Databr'];
-  if abrechnungsende = '' then
-      DateTimeToString(abrechnungsende, 'dd.mm.yy', now);
+//  if abrechnungsende = '' then
+//      DateTimeToString(abrechnungsende, 'dd.mm.yy', now);
+if not (abrechnungsende = '') then
   abrechnungsende := getfittingabrechnungsende(abrechnungsende);
   // abrdat.Text := abrechnungsende;
   frame.eabrechnungsende.Text := abrechnungsende;
