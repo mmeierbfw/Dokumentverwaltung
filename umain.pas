@@ -249,7 +249,7 @@ type
     procedure zlnameKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure TMontageShow(Sender: TObject);
 
-    function erledigttext(dbgrid: TNextDBGrid; acol: Integer): string;
+    function erledigttext(val: Integer): string;
     procedure iupdateClick(Sender: TObject);
     procedure dokanzeigeClick(Sender: TObject);
     procedure ballemClick(Sender: TObject); { TODO : todo!! }
@@ -337,7 +337,7 @@ type
       CellRect: TRect; CellState: TCellState);
     procedure gridzwiApplyCell(Sender: TObject; acol, ARow: Integer;
       var Value: WideString);
-    function setdateityp(dbgrid: TNextDBGrid): string;
+    function setdateityp(str: string): string;
     procedure NxGlyphButton3Click(Sender: TObject);
     procedure NxGlyphButton2Click(Sender: TObject);
     procedure gridzwiClick(Sender: TObject);
@@ -626,8 +626,8 @@ begin
           .field.AsInteger = 1) then Value := '3'
         else Value                         := '-1';
       end;
-    13: Value := erledigttext(Sender as TNextDBGrid, acol);
-    14: Value := setdateityp(Sender as TNextDBGrid);
+    13: Value := erledigttext((Sender as TNextDBGrid).CellValue[12, ARow]);
+    14: Value := setdateityp((Sender as TNextDBGrid).Cells[2, ARow]);
   end;
 end;
 
@@ -638,8 +638,8 @@ var
 begin
   case acol of
     9: Value  := '1';
-    13: Value := erledigttext(Sender as TNextDBGrid, acol);
-    14: Value := setdateityp(Sender as TNextDBGrid);
+    13: Value := erledigttext((Sender as TNextDBGrid).CellValue[12, ARow]);
+    14: Value := setdateityp((Sender as TNextDBGrid).Cells[3, ARow]);
 
   end;
 end;
@@ -649,8 +649,8 @@ procedure Tformmain.gridnutzerlisteApplyCell(Sender: TObject;
 begin
   case acol of
     8: Value  := '1';
-    10: Value := erledigttext(Sender as TNextDBGrid, acol);
-    11: Value := setdateityp(Sender as TNextDBGrid);
+    10: Value := erledigttext((Sender as TNextDBGrid).CellValue[9, ARow]);
+    11: Value := setdateityp((Sender as TNextDBGrid).Cells[3, ARow]);
   end;
 end;
 
@@ -665,8 +665,8 @@ begin
   end;
   case acol of
     11: Value := '1';
-    13: Value := erledigttext(Sender as TNextDBGrid, acol);
-    14: Value := setdateityp(Sender as TNextDBGrid);
+    13: Value := erledigttext((Sender as TNextDBGrid).CellValue[3, ARow]);
+    14: Value := setdateityp((Sender as TNextDBGrid).Cells[6, ARow]);
   end;
 end;
 
@@ -676,21 +676,27 @@ var
   filename   : string;
   dateiendung: string;
 begin
-  if acol = 10 then Value := '1';
-  if (acol = 15) then begin
-    try
+  if acol = 10 then
+    try Value := '1';
+    except
+      ;
 
-        Value := erledigttext(Sender as TNextDBGrid, acol);
+    end;
+  if (acol = 15) then begin
+    try Value := erledigttext((Sender as TNextDBGrid).CellValue[14, ARow]);
     except
       on e: Exception do begin
-        showmessage(e.Message);
+        // showmessage('except 1' + e.Message);
       end;
     end;
   end;
-  if (acol = 16) then begin
-    Value := setdateityp(Sender as TNextDBGrid);
-
-  end;
+  // if (acol = 16) then begin
+  // try Value := setdateityp((Sender as TNextDBGrid).Cells[3, ARow]);
+  // except
+  /// /      on e: Exception do showmessage('exec 2' + e.Message);
+  // end;
+  //
+  // end;
 end;
 
 procedure Tformmain.gridzwiCellClick(Sender: TObject; acol, ARow: Integer);
@@ -835,8 +841,7 @@ end;
 
 procedure Tformmain.gridzwiVerticalScroll(Sender: TObject; Position: Integer);
 begin
-  try
-                 outputdebugstring('ver');
+  try outputdebugstring('ver');
   except
     on e: Exception do showmessage(e.Message);
 
@@ -3198,11 +3203,8 @@ begin
 
 end;
 
-function Tformmain.erledigttext(dbgrid: TNextDBGrid; acol: Integer): string;
-var
-  val: Integer;
+function Tformmain.erledigttext(val: Integer): string;
 begin
-  val := dbgrid.GetColumnByFieldName('erledigt').field.AsInteger;
   case val of
     0: Result := 'nein';
     1: Result := 'ja';
@@ -3431,6 +3433,9 @@ end;
 procedure Tformmain.zenutzernameExit(Sender: TObject);
 begin
   // if zenutzername.Text = '' then zenutzername.Text := 'LEERSTAND';
+  if (Sender as tfedit).Text = '' then
+    (Sender as tfedit).Text := 'LEERSTAND';
+
 end;
 
 // ###############################################
@@ -3534,11 +3539,16 @@ begin
 end;
 
 // ###############################################
-function Tformmain.setdateityp(dbgrid: TNextDBGrid): string;
+function Tformmain.setdateityp(str: string): string;
 var
   Dateiname, endung: string;
 begin
-  Dateiname := dbgrid.GetColumnByFieldName(dokcons.Dateiname).field.AsString;
+  // try Dateiname := dbgrid.GetColumnByFieldName(dokcons.Dateiname)
+  // .field.AsString;
+  // except Dateiname := '';
+  //
+  // end;
+  Dateiname := str;
   endung    := AnsiLowerCase(ExtractFileExt(Dateiname));
   if strcontains('eml', AnsiLowerCase(endung)) then begin
     Result := 'Email';
@@ -3846,7 +3856,7 @@ begin
     formdb.querymon.SQL.Text := 'SELECT * FROM ' + view_mon +
       ' WHERE kundennummer = ' + kn;
     // formdb.querymon.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
-//     ' WHERE kundennummer = ' + kdnr;
+    // ' WHERE kundennummer = ' + kdnr;
     formdb.querymon.Open;
     setfilter(formdb.querymon, filter);
     filldb(formdb.dsmon, gridmon);
@@ -3934,7 +3944,8 @@ var
   QueryString: string;
   asc        : string;
 begin
-  QueryString := 'SELECT * FROM ' + dokcons.view_en; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_en;
+  // Query statement
   if gridenergie.Columns[acol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
@@ -3952,7 +3963,8 @@ var
   QueryString: string;
   asc        : string;
 begin
-  QueryString := 'SELECT * FROM ' + dokcons.view_mon; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_mon;
+  // Query statement
   if gridmon.Columns[acol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
@@ -4032,7 +4044,8 @@ begin
 
   if ascbool then asc := 'ASC'
   else asc            := 'DESC';
-  if acol = 0 then // die ablagenummer muss numerisch sortiert sein..
+  if acol = 0 then
+  // die ablagenummer muss numerisch sortiert sein..
   begin
     QueryString := QueryString + ' ORDER BY cast(' + gridzwi.Columns[acol]
       .FieldName + ' as unsigned)';

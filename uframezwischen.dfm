@@ -1,16 +1,15 @@
 inherited framezwischen: Tframezwischen
-  Width = 1244
-  Height = 715
+  Width = 1193
   ExplicitWidth = 451
   ExplicitHeight = 304
   inherited gridpanel: TGridPanel
-    Width = 1244
-    Height = 715
+    Width = 1193
+    Height = 304
     ExplicitWidth = 451
     ExplicitHeight = 304
     inherited Panel5: TPanel
-      ExplicitWidth = 616
-      ExplicitHeight = 707
+      ExplicitWidth = 590
+      ExplicitHeight = 296
       inherited lfiletype: TLabel
         Height = 609
       end
@@ -56,11 +55,11 @@ inherited framezwischen: Tframezwischen
       end
       inherited dtabrechnungsende: tfmaskedit
         Top = 301
-        TabOrder = 13
+        TabOrder = 14
         ExplicitTop = 301
       end
       inherited dtposteingang: tfmaskedit
-        TabOrder = 12
+        TabOrder = 13
       end
       inherited eliegenschaft: TfEdit
         TabOrder = 2
@@ -68,7 +67,7 @@ inherited framezwischen: Tframezwischen
       inherited menotizen: TfMemo
         Left = 121
         Top = 347
-        TabOrder = 14
+        TabOrder = 12
         ExplicitLeft = 121
         ExplicitTop = 347
       end
@@ -150,6 +149,7 @@ inherited framezwischen: Tframezwischen
         ParentShowHint = False
         ShowHint = True
         TabOrder = 6
+        OnExit = enutzernameexit
         OnKeyPress = enutzernameKeyPress
         TabOnEnter = True
         FontColorOnEnter = 10252872

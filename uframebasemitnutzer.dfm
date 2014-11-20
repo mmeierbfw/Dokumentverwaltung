@@ -1,17 +1,14 @@
 inherited framebasenutzer: Tframebasenutzer
-  Width = 953
-  Height = 509
+  Width = 1190
+  Height = 683
   inherited gridpanel: TGridPanel
-    Width = 953
-    Height = 509
+    Width = 1190
+    Height = 683
     inherited Panel5: TPanel
-      Width = 470
-      Height = 501
-      ExplicitWidth = 470
-      ExplicitHeight = 501
-      inherited lfiletype: TLabel
-        Height = 622
-      end
+      Width = 589
+      Height = 675
+      ExplicitWidth = 589
+      ExplicitHeight = 675
       inherited Label45: TLabel
         Top = 205
         ExplicitTop = 205
@@ -30,7 +27,7 @@ inherited framebasenutzer: Tframebasenutzer
       end
       inherited dtabrechnungsende: tfmaskedit
         Top = 205
-        TabOrder = 8
+        TabOrder = 9
         ExplicitTop = 205
       end
       inherited dtposteingang: tfmaskedit
@@ -40,9 +37,7 @@ inherited framebasenutzer: Tframebasenutzer
         TabOrder = 1
       end
       inherited menotizen: TfMemo
-        Left = 123
         Top = 251
-        ExplicitLeft = 123
         ExplicitTop = 251
       end
       inherited bsave: TNxButton
@@ -85,9 +80,9 @@ inherited framebasenutzer: Tframebasenutzer
       end
     end
     inherited rightparent: TPanel
-      Left = 480
-      Width = 471
-      Height = 501
+      Left = 599
+      Width = 589
+      Height = 675
     end
   end
 end

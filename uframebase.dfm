@@ -8,8 +8,8 @@ object framebase: Tframebase
   object gridpanel: TGridPanel
     Left = 0
     Top = 0
-    Width = 1096
-    Height = 656
+    Width = 451
+    Height = 304
     HelpType = htKeyword
     Align = alClient
     BevelOuter = bvNone
@@ -38,14 +38,12 @@ object framebase: Tframebase
         Value = 100.000000000000000000
       end>
     TabOrder = 0
-    ExplicitWidth = 451
-    ExplicitHeight = 304
     object Panel5: TPanel
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 837
-      Height = 650
+      Width = 219
+      Height = 296
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
@@ -58,14 +56,12 @@ object framebase: Tframebase
       Padding.Bottom = 25
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 542
-      ExplicitHeight = 648
       object lfiletype: TLabel
         AlignWithMargins = True
         Left = 13
         Top = 13
         Width = 5
-        Height = 19
+        Height = 609
         Margins.Left = 13
         Margins.Top = 13
         Align = alLeft
@@ -75,6 +71,7 @@ object framebase: Tframebase
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitHeight = 19
       end
       object Label45: TLabel
         Left = 13
@@ -338,10 +335,10 @@ object framebase: Tframebase
     end
     object rightparent: TPanel
       AlignWithMargins = True
-      Left = 847
+      Left = 229
       Top = 4
-      Width = 837
-      Height = 650
+      Width = 220
+      Height = 296
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
@@ -354,9 +351,6 @@ object framebase: Tframebase
       Padding.Bottom = 25
       ParentBackground = False
       TabOrder = 1
-      ExplicitLeft = 229
-      ExplicitWidth = 220
-      ExplicitHeight = 296
     end
   end
   object NxButton2: TNxButton

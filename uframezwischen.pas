@@ -18,6 +18,7 @@ type
     eauszug: TfEdit;
     eablesedatum: TfEdit;
     procedure enutzernameKeyPress(Sender: TObject; var Key: Char);
+    procedure enutzernameexit(Sender: TObject);
   private
     nutzername: string;
     { Private-Deklarationen }
@@ -31,6 +32,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure Tframezwischen.enutzernameexit(Sender: TObject);
+begin
+  inherited;
+  if enutzername.Text = '' then enutzername.Text := 'LEERSTAND';
+
+end;
 
 procedure Tframezwischen.enutzernameKeyPress(Sender: TObject; var Key: Char);
 begin

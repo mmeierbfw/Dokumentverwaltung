@@ -1,18 +1,16 @@
 inherited framebasenutzer1: Tframebasenutzer1
-  Width = 1079
-  Height = 648
   ExplicitWidth = 451
   ExplicitHeight = 304
   inherited gridpanel: TGridPanel
-    Width = 1079
-    Height = 648
+    Width = 451
+    Height = 304
     ExplicitWidth = 451
     ExplicitHeight = 304
     inherited Panel5: TPanel
       ExplicitWidth = 219
       ExplicitHeight = 296
       inherited lfiletype: TLabel
-        Height = 599
+        Height = 612
       end
       inherited Label45: TLabel
         Top = 255
@@ -32,19 +30,41 @@ inherited framebasenutzer1: Tframebasenutzer1
       end
       inherited dtabrechnungsende: tfmaskedit
         Top = 255
+        TabOrder = 10
         ExplicitTop = 255
+      end
+      inherited dtposteingang: tfmaskedit
+        TabOrder = 8
+      end
+      inherited eid: TfEdit
+        TabOrder = 1
+      end
+      inherited eliegenschaft: TfEdit
+        TabOrder = 2
       end
       inherited menotizen: TfMemo
         Top = 301
+        TabOrder = 6
         ExplicitTop = 301
       end
       inherited bsave: TNxButton
         Top = 474
+        TabOrder = 7
         ExplicitTop = 474
+      end
+      inherited enutzernummer: TfEdit
+        TabOrder = 3
+      end
+      inherited eposteingang: TfEdit
+        TabOrder = 0
       end
       inherited eabrechnungsende: TfEdit
         Top = 255
+        TabOrder = 4
         ExplicitTop = 255
+      end
+      inherited pinfo: TPanel
+        TabOrder = 9
       end
       object cbvertrag: TfComboBox
         Left = 240
@@ -60,7 +80,7 @@ inherited framebasenutzer1: Tframebasenutzer1
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        TabOrder = 10
+        TabOrder = 5
         Text = 'Vertragstyp'
         Items.Strings = (
           'Mietservice'
