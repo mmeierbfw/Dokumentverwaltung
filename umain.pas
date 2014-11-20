@@ -421,6 +421,7 @@ type
     procedure lkundennummerDblClick(Sender: TObject);
     procedure framevertenutzernummerExit(Sender: TObject);
     procedure gridzwiVerticalScroll(Sender: TObject; Position: Integer);
+    procedure gridzwiHorizontalScroll(Sender: TObject; Position: Integer);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -755,11 +756,11 @@ procedure Tformmain.gridzwiCellFormating(Sender: TObject; acol, ARow: Integer;
 var
   bmp: TBitmap;
 begin
-  if ARow = 8 then begin
-    bmp := TBitmap.Create;
-    ImageList1.GetBitmap(1, bmp);
-
-  end;
+  // if ARow = 8 then begin
+  // bmp := TBitmap.Create;
+  // ImageList1.GetBitmap(1, bmp);
+  //
+  // end;
 
 end;
 
@@ -785,12 +786,17 @@ var
   bmp    : TBitmap;
   fixRect: TRect;
 begin
-  if ARow = 8 then begin
-    bmp := TBitmap.Create;
-    ImageList1.GetBitmap(1, bmp);
-    fixRect := CellRect;
-    gridzwi.Canvas.Rectangle(fixRect);
-  end;
+  // if ARow = 8 then begin
+  // bmp := TBitmap.Create;
+  // ImageList1.GetBitmap(1, bmp);
+  // fixRect := CellRect;
+  // gridzwi.Canvas.Rectangle(fixRect);
+  // end;
+end;
+
+procedure Tformmain.gridzwiHorizontalScroll(Sender: TObject; Position: Integer);
+begin
+  outputdebugstring('hor');
 end;
 
 procedure Tformmain.gridzwiSortColumn(Sender: TObject; acol: Integer;
@@ -830,7 +836,7 @@ end;
 procedure Tformmain.gridzwiVerticalScroll(Sender: TObject; Position: Integer);
 begin
   try
-
+                 outputdebugstring('ver');
   except
     on e: Exception do showmessage(e.Message);
 
@@ -3837,10 +3843,10 @@ begin
     list.add('*');
 
     formdb.querymon.SQL.clear;
-     formdb.querymon.SQL.Text := 'SELECT * FROM ' + view_mon +
-       ' WHERE kundennummer = ' + kn;
-     // formdb.querymon.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
-//      ' WHERE kundennummer = ' + kdnr;
+    formdb.querymon.SQL.Text := 'SELECT * FROM ' + view_mon +
+      ' WHERE kundennummer = ' + kn;
+    // formdb.querymon.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
+//     ' WHERE kundennummer = ' + kdnr;
     formdb.querymon.Open;
     setfilter(formdb.querymon, filter);
     filldb(formdb.dsmon, gridmon);
@@ -3987,8 +3993,8 @@ begin
   // formdb.querynutzer.SQL.clear;
   // formdb.querynutzer.SQL.Text := QueryString;
   // formdb.querynutzer.Open;
-  formdb.doquery(formdb.querynuliste, dokcons.view_nutzer, ' WHERE kundennummer = '
-    + kn + ' ' + QueryString, list);
+  formdb.doquery(formdb.querynuliste, dokcons.view_nutzer,
+    ' WHERE kundennummer = ' + kn + ' ' + QueryString, list);
   // filldb(formdb.dsdokumente);
 
 end;
