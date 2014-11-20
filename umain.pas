@@ -3976,7 +3976,7 @@ var
 begin
   list := TStringList.Create;
   list.add('*');
-  QueryString := 'SELECT * FROM ' + dokcons.view_nut; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_nutzer; // Query statement
   if gridnutzerliste.Columns[acol].FieldName = '' then exit;
 
   if ascbool then asc := 'ASC'
@@ -3987,7 +3987,7 @@ begin
   // formdb.querynutzer.SQL.clear;
   // formdb.querynutzer.SQL.Text := QueryString;
   // formdb.querynutzer.Open;
-  formdb.doquery(formdb.querynuliste, dokcons.view_nut, ' WHERE kundennummer = '
+  formdb.doquery(formdb.querynuliste, dokcons.view_nutzer, ' WHERE kundennummer = '
     + kn + ' ' + QueryString, list);
   // filldb(formdb.dsdokumente);
 

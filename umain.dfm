@@ -825,7 +825,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -912,8 +911,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -1233,8 +1230,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
-                      Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
@@ -1344,9 +1339,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
-                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1735,7 +1727,6 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1817,8 +1808,6 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -4496,8 +4485,6 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 836
-                    Height = 650
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4572,9 +4559,6 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 846
-                    Width = 838
-                    Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -4621,8 +4605,6 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 837
-                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4697,9 +4679,6 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 847
-                    Width = 837
-                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -4753,8 +4732,6 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 836
-                    Height = 650
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4827,9 +4804,6 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 846
-                    Width = 838
-                    Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -4876,8 +4850,6 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 837
-                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -4952,9 +4924,6 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 847
-                    Width = 837
-                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650

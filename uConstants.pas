@@ -123,7 +123,7 @@ type
     id              = 'dokumentid';
     sachbearbeiter  = 'sachbearbeiter';
     datumgepr       = 'datumgeprueft';
-    sammelordner    = 'Sammelordner';
+//    sammelordner    = 'Sammelordner';
     abrechnungsende = 'abrechnungsende';
     { für Montage }
     Gueltigkeitsdatum = 'gueltigkeitsdatum';
