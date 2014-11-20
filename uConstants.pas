@@ -41,39 +41,7 @@ type
     runningLabelText = 'Dokumentennummer';
     { uscanningWiaWia }
 
-    table_zwi       = 'scandokumente.zwischenablesung';
-    table_zwi_neu   = 'test.zwischenablesung';
-    table_zwi2      = 'scandokumente.zwischenablesung_copy';
-    table_mon       = 'scandokumente.montagen';
-    table_mon_neu   = 'test.montage';
-    table_en        = 'scandokumente.energieausweis';
-    table_en_neu    = 'test.energieausweis';
-    table_kos       = 'scandokumente.kostenermittlungen';
-    table_kos_neu   = 'test.kostenermittlung';
-    table_rekl      = 'scandokumente.reklamation';
-    table_rekl_neu  = 'test.reklamation';
-    table_ang       = 'scandokumente.angebotsanfrage';
-    table_ang_neu   = 'test.angebotsanfrage';
-    table_auf       = 'scandokumente.auftragsanforderung';
-    table_auf_neu   = 'test.auftragsanforderung';
-    table_nut       = 'scandokumente.nutzerlisten';
-    table_nut_neu   = 'test.nutzerliste';
-    table_sonst     = 'scandokumente.sonstiges';
-    table_sonst_neu = 'test.sonstiges';
-    table_vert      = 'scandokumente.verträge';
-    table_vert_neu  = 'test.vertrag';
-    table_common    = 'test.commontab';
-    table_dok       = 'test.dokument';
-    table_typen     = 'test.typen';
-    typ_name        = 'typen_name';
-    table_email     = 'test.email';
-
-    view_zwi    = 'test.zwischenablesungen';
-    view_en     = 'test.energieausweise';
-    view_rekl   = 'test.reklamationen';
-    view_nut    = 'test.nutzerlisten';
-    view_mon    = 'test.montagen';
-    view_kosnut = 'test.kostenermittlungen';
+   
 
     // muss halt so
     WiaFormatBMP  = '{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}';
@@ -175,7 +143,7 @@ type
     ort                = 'ort';
     plz                = 'plz';
 
-    vertragstyp = 'vertragstyp';
+//    vertragstyp = 'vertragstyp';
 
     { für neue Aufträge }
     auftragstyp = 'Auftragstyp';

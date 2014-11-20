@@ -420,6 +420,7 @@ type
       var Value: WideString);
     procedure lkundennummerDblClick(Sender: TObject);
     procedure framevertenutzernummerExit(Sender: TObject);
+    procedure gridzwiVerticalScroll(Sender: TObject; Position: Integer);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -824,6 +825,16 @@ begin
   //
   // end;
   // end;
+end;
+
+procedure Tformmain.gridzwiVerticalScroll(Sender: TObject; Position: Integer);
+begin
+  try
+
+  except
+    on e: Exception do showmessage(e.Message);
+
+  end;
 end;
 
 // -------------------------------------------------
@@ -1711,6 +1722,7 @@ begin
     framemonfilter.esellgExit(Sender);
     filter := framemonfilter.getfilter;
     setfilter(formdb.querymon, filter);
+    filldb(formdb.dszwi, gridzwi);
   except
     ;
   end;
@@ -1940,10 +1952,11 @@ begin
     filterlg := (Sender as tfedit).Text;
     framezwifilter.esellgExit(Sender);
     filter := framezwifilter.getfilter;
-    setfilter(formdb.queryzwi, filter);
+    // setfilter(formdb.queryzwi, filter);
+    showzwischenablesungen;
 
   except
-    ;
+    on e: Exception do showmessage(e.Message);
 
   end;
 
@@ -3824,8 +3837,10 @@ begin
     list.add('*');
 
     formdb.querymon.SQL.clear;
-    formdb.querymon.SQL.Text := 'SELECT * FROM ' + view_mon +
-      ' WHERE kundennummer = ' + kn;
+     formdb.querymon.SQL.Text := 'SELECT * FROM ' + view_mon +
+       ' WHERE kundennummer = ' + kn;
+     // formdb.querymon.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
+//      ' WHERE kundennummer = ' + kdnr;
     formdb.querymon.Open;
     setfilter(formdb.querymon, filter);
     filldb(formdb.dsmon, gridmon);
@@ -3900,6 +3915,7 @@ begin
   formdb.queryzwi.SQL.clear;
   formdb.queryzwi.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
     ' WHERE kundennummer = ' + kdnr;
+  // formdb.queryzwi.SQL.Text := 'SELECT * FROM scandokumente.zwischenablesung';
   formdb.queryzwi.Open;
   setfilter(formdb.queryzwi, filter);
   filldb(formdb.dszwi, gridzwi);
@@ -4010,8 +4026,14 @@ begin
 
   if ascbool then asc := 'ASC'
   else asc            := 'DESC';
-  QueryString := QueryString + ' ORDER BY ' + gridzwi.Columns[acol].FieldName +
-    ' ' + asc;
+  if acol = 0 then // die ablagenummer muss numerisch sortiert sein..
+  begin
+    QueryString := QueryString + ' ORDER BY cast(' + gridzwi.Columns[acol]
+      .FieldName + ' as unsigned)';
+  end
+  else QueryString := QueryString + ' ORDER BY ' + gridzwi.Columns[acol]
+      .FieldName + ' ' + asc;
+
   formdb.queryzwi.SQL.clear;
   formdb.queryzwi.SQL.Text := QueryString;
   formdb.queryzwi.Open;
