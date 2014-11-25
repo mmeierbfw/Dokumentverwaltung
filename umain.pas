@@ -229,6 +229,23 @@ type
     NxDBTextColumn35: TNxDBTextColumn;
     NxDBTextColumn36: TNxDBTextColumn;
     NxDBTextColumn37: TNxDBTextColumn;
+    tabvertrag: TNxTabSheet;
+    gridverträge: TNextDBGrid;
+    NxDBTextColumn10: TNxDBTextColumn;
+    NxDBTextColumn38: TNxDBTextColumn;
+    NxDBMemoColumn2: TNxDBMemoColumn;
+    NxDBTextColumn40: TNxDBTextColumn;
+    NxDBImageColumn8: TNxDBImageColumn;
+    NxDBTextColumn41: TNxDBTextColumn;
+    NxDBTextColumn43: TNxDBTextColumn;
+    NxDBTextColumn44: TNxDBTextColumn;
+    NxDBImageColumn9: TNxDBImageColumn;
+    NxDBMemoColumn8: TNxDBMemoColumn;
+    NxDBTextColumn45: TNxDBTextColumn;
+    NxDBTextColumn46: TNxDBTextColumn;
+    NxDBTextColumn47: TNxDBTextColumn;
+    NxDBTextColumn48: TNxDBTextColumn;
+    NxDBTextColumn39: TNxDBTextColumn;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -340,7 +357,6 @@ type
     procedure NxGlyphButton2Click(Sender: TObject);
     procedure gridzwiClick(Sender: TObject);
     procedure vollzwischenbsaveClick(Sender: TObject);
-    procedure tabspeichernHide(Sender: TObject);
     procedure liegenschaftexit(Sender: TObject);
     procedure Nexit(Sender: TObject);
     procedure wertebuttonClick(Sender: TObject);
@@ -429,6 +445,7 @@ type
     procedure framenutzerUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure framesonstigesUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure framevertUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure tabvertragShow(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -515,6 +532,7 @@ type
     procedure popup;
     procedure minimizeme;
     procedure showzwischenablesungen;
+    procedure showverträge;
     procedure showmontagen;
     procedure showenergieausweise;
     procedure showkostennutzerlisten;
@@ -4117,6 +4135,23 @@ begin
   // pneueversionverfügbar.Visible := true;
 end;
 
+procedure Tformmain.showverträge;
+var
+  list: TStringList;
+begin
+  if not assigned(formdb) then formdb := Tformdb.Create(self);
+  list                                := TStringList.Create;
+  list.add('*');
+  { TODO : filter muss rein! }
+  formdb.queryvert.SQL.clear;
+  formdb.queryvert.SQL.Text := 'SELECT * FROM ' + dokcons.view_ver +
+    ' WHERE kundennummer = ' + kdnr;
+  formdb.queryvert.Open;
+  setfilter(formdb.queryvert, filter);
+  filldb(formdb.dsvert, gridverträge);
+
+end;
+
 // ###############################################
 procedure Tformmain.showzwischenablesungen;
 var
@@ -4315,9 +4350,15 @@ begin
   end;
 end;
 
-procedure Tformmain.tabspeichernHide(Sender: TObject);
+procedure Tformmain.tabvertragShow(Sender: TObject);
 begin
-
+  if not assigned(formdb) then exit;
+  try showverträge;
+  except
+    on e: Exception do begin
+      showmessage(e.Message);
+    end;
+  end;
 end;
 
 // ------------------------------
