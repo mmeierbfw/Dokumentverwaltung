@@ -86,7 +86,7 @@ begin
     dict.Add(liegenschaft, default_value);
     dict.Add(Notizen, default_value);
     dict.Add(sachbearbeiter, default_value);
-    dict.Add('Dokumentid', default_value);
+    dict.Add('ablagenr', default_value);
     dict.Add(datumgepr, nicherledigtstr);
     dict.Add(anrufer, default_value);
     dict.Add(telefonnummer, default_value);
@@ -120,7 +120,7 @@ begin
     dict := TDictionary<string, string>.create;
     dict.Add(nutzername, default_value);
     dict.Add(Ablesedatum, default_value);
-    dict.Add(Vertragsbeginn, default_value);
+    dict.Add(vertragsbeginn, default_value);
     dict.Add(Nutzernummer, default_value);
   end;
 end;

@@ -1,17 +1,14 @@
 inherited frameenergie: Tframeenergie
-  Width = 1090
-  Height = 595
+  Width = 1111
+  Height = 652
   inherited gridpanel: TGridPanel
-    Width = 1090
-    Height = 595
+    Width = 1111
+    Height = 652
     inherited Panel5: TPanel
-      Width = 539
-      Height = 587
-      ExplicitWidth = 539
-      ExplicitHeight = 587
-      inherited lfiletype: TLabel
-        Height = 609
-      end
+      Width = 549
+      Height = 644
+      ExplicitWidth = 219
+      ExplicitHeight = 296
       inherited Label45: TLabel
         Left = 14
         Top = 318
@@ -29,7 +26,7 @@ inherited frameenergie: Tframeenergie
         ExplicitTop = 318
       end
       inherited dtposteingang: tfmaskedit
-        TabOrder = 8
+        TabOrder = 9
       end
       inherited menotizen: TfMemo
         Top = 364
@@ -195,11 +192,18 @@ inherited frameenergie: Tframeenergie
         ExplicitLeft = 322
         ExplicitTop = 318
       end
+      inherited UpDown1: TUpDown
+        Left = 322
+        Top = 342
+        TabOrder = 11
+        ExplicitLeft = 322
+        ExplicitTop = 342
+      end
     end
     inherited rightparent: TPanel
-      Left = 549
-      Width = 539
-      Height = 587
+      Left = 559
+      Width = 550
+      Height = 644
     end
   end
 end

@@ -1,17 +1,14 @@
 inherited frameauftrag: Tframeauftrag
-  Width = 981
-  Height = 651
+  Width = 951
+  Height = 588
   inherited gridpanel: TGridPanel
-    Width = 981
-    Height = 651
+    Width = 951
+    Height = 588
     inherited Panel5: TPanel
-      Width = 484
-      Height = 643
-      ExplicitWidth = 484
-      ExplicitHeight = 643
-      inherited lfiletype: TLabel
-        Height = 622
-      end
+      Width = 469
+      Height = 580
+      ExplicitWidth = 219
+      ExplicitHeight = 296
       inherited Label29: TLabel
         Top = 343
         ExplicitTop = 343
@@ -23,9 +20,6 @@ inherited frameauftrag: Tframeauftrag
         Height = 13
         Margins.Left = 14
         Caption = 'Auftragstyp'
-      end
-      inherited dtabrechnungsende: tfmaskedit
-        TabOrder = 9
       end
       inherited menotizen: TfMemo
         Top = 343
@@ -52,16 +46,21 @@ inherited frameauftrag: Tframeauftrag
         TabOrder = 6
       end
       inherited eposteingang: TfEdit
-        TabOrder = 8
+        TabOrder = 11
       end
       inherited eabrechnungsende: TfEdit
         TabOrder = 10
       end
+      inherited UpDown1: TUpDown
+        Top = 229
+        TabOrder = 12
+        ExplicitTop = 229
+      end
     end
     inherited rightparent: TPanel
-      Left = 494
-      Width = 485
-      Height = 643
+      Left = 479
+      Width = 470
+      Height = 580
     end
   end
 end

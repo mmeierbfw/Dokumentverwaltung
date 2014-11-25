@@ -1,15 +1,17 @@
 object framebase: Tframebase
   Left = 0
   Top = 0
-  Width = 451
-  Height = 304
+  Width = 1117
+  Height = 747
   Align = alClient
   TabOrder = 0
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   object gridpanel: TGridPanel
     Left = 0
     Top = 0
-    Width = 451
-    Height = 304
+    Width = 1117
+    Height = 747
     HelpType = htKeyword
     Align = alClient
     BevelOuter = bvNone
@@ -38,12 +40,14 @@ object framebase: Tframebase
         Value = 100.000000000000000000
       end>
     TabOrder = 0
+    ExplicitWidth = 451
+    ExplicitHeight = 304
     object Panel5: TPanel
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 219
-      Height = 296
+      Width = 552
+      Height = 739
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
@@ -302,8 +306,8 @@ object framebase: Tframebase
         ColorNotFocused = 6908265
       end
       object pinfo: TPanel
-        Left = 408
-        Top = 134
+        Left = 400
+        Top = 202
         Width = 125
         Height = 26
         Color = 16711384
@@ -315,7 +319,7 @@ object framebase: Tframebase
         TabOrder = 8
         Visible = False
         object labelinfo: TLabel
-          Left = 11
+          Left = 19
           Top = 6
           Width = 80
           Height = 13
@@ -332,13 +336,31 @@ object framebase: Tframebase
           ParentFont = False
         end
       end
+      object UpDown1: TUpDown
+        Left = 321
+        Top = 211
+        Width = 64
+        Height = 17
+        Orientation = udHorizontal
+        TabOrder = 9
+        OnClick = abrupdown
+      end
+      object UpDown2: TUpDown
+        Left = 391
+        Top = 135
+        Width = 58
+        Height = 25
+        Orientation = udHorizontal
+        TabOrder = 10
+        OnClick = liegenschaftupdown
+      end
     end
     object rightparent: TPanel
       AlignWithMargins = True
-      Left = 229
+      Left = 562
       Top = 4
-      Width = 220
-      Height = 296
+      Width = 553
+      Height = 739
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
@@ -351,6 +373,9 @@ object framebase: Tframebase
       Padding.Bottom = 25
       ParentBackground = False
       TabOrder = 1
+      ExplicitLeft = 229
+      ExplicitWidth = 220
+      ExplicitHeight = 296
     end
   end
   object NxButton2: TNxButton

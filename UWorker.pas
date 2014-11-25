@@ -167,7 +167,7 @@ begin
     except ni := 'xxx';
     end;
     pi        := dict.items[Posteingang];
-    try ii    := dict.items['Dokumentid'];
+    try ii    := dict.items['ablagenr'];
     except ii := 'xx';
 
     end;
@@ -220,7 +220,7 @@ procedure TWorker.handledigitals;
 begin
   if onlydigital then
     // es sind alles digitale Dateien. Nicht analog vorhanden-
-    try dict.Remove('Dokumentid');
+    try dict.Remove('ablagenr');
     except outputdebugstring('keine Dokumentid vorhanden');
     end;
 end;
@@ -238,7 +238,7 @@ begin
 
   if hastowritefile then // es darf keine dokid vergeben werden!!
   begin
-    dict.Remove('Dokumentid');
+    dict.Remove('ablagenr');
     writenote(dict[formmain.dokcons.Notizen], abspathziel);
   end;
 
@@ -405,7 +405,7 @@ begin
     // und die Datenbank hochsetzen
     tmplist         := TDictionary<string, string>.Create;
     helpersb        := formmain.getsachbearbeiter;
-    try helperid    := dict.items['Dokumentid'];
+    try helperid    := dict.items['ablagenr'];
     except helperid := '-1';
     end;
     if helperid = '' then helperid := '0';
@@ -418,8 +418,8 @@ begin
         try
           tmplist.Add(formmain.dokcons.sachbearbeiter,
             formmain.getsachbearbeiter);
-          tmplist.Add('Dokumentid.Dokumentid', helperid);
-          formdb.replacequery('Dokumentid', tmplist);
+          tmplist.Add('neuescandokumente.dokumentid.dokumentid', helperid);
+          formdb.replacequery('neuescandokumente.dokumentid', tmplist);
         except
           begin
             Result := false;

@@ -104,7 +104,8 @@ begin
 
     apppath := includetrailingpathdelimiter(getlocalfolder('Scannerprogramm'));
 
-    stream.LoadFromfile(apppath + 'printpcl.org');
+    stream.LoadFromfile(IncludeTrailingPathDelimiter(ExtractFilePath
+      (Application.ExeName))  + 'printpcl.org');
     test      := stream.DataString;
     sOriginal := VernamCode(test, passw);
     outputdebugstring(pchar(sOriginal));

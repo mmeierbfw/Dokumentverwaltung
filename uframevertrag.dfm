@@ -1,17 +1,14 @@
 inherited framebasenutzer1: Tframebasenutzer1
-  ExplicitWidth = 451
-  ExplicitHeight = 304
+  Width = 1021
+  Height = 706
   inherited gridpanel: TGridPanel
-    Width = 451
-    Height = 304
-    ExplicitWidth = 451
-    ExplicitHeight = 304
+    Width = 1021
+    Height = 706
     inherited Panel5: TPanel
+      Width = 504
+      Height = 698
       ExplicitWidth = 219
       ExplicitHeight = 296
-      inherited lfiletype: TLabel
-        Height = 612
-      end
       inherited Label45: TLabel
         Top = 255
         ExplicitTop = 255
@@ -66,7 +63,7 @@ inherited framebasenutzer1: Tframebasenutzer1
       inherited pinfo: TPanel
         TabOrder = 9
       end
-      object cbvertrag: TfComboBox
+      object cbvertrag: TfComboBox [18]
         Left = 240
         Top = 209
         Width = 145
@@ -91,11 +88,16 @@ inherited framebasenutzer1: Tframebasenutzer1
         ColorFocused = 10252872
         ColorNotFocused = 6908265
       end
+      inherited UpDown1: TUpDown
+        Top = 278
+        TabOrder = 11
+        ExplicitTop = 278
+      end
     end
     inherited rightparent: TPanel
-      ExplicitLeft = 229
-      ExplicitWidth = 220
-      ExplicitHeight = 296
+      Left = 514
+      Width = 505
+      Height = 698
     end
   end
 end

@@ -1,17 +1,14 @@
 inherited framereklmont: Tframereklmont
-  Width = 1089
-  Height = 681
+  Width = 1119
+  Height = 660
   inherited gridpanel: TGridPanel
-    Width = 1089
-    Height = 681
-    ExplicitWidth = 451
-    ExplicitHeight = 304
+    Width = 1119
+    Height = 660
     inherited Panel5: TPanel
-      ExplicitWidth = 538
-      ExplicitHeight = 673
-      inherited lfiletype: TLabel
-        Height = 609
-      end
+      Width = 553
+      Height = 652
+      ExplicitWidth = 219
+      ExplicitHeight = 296
       inherited Label45: TLabel
         Left = 14
         Top = 280
@@ -176,11 +173,16 @@ inherited framereklmont: Tframereklmont
       inherited pinfo: TPanel
         TabOrder = 13
       end
+      inherited UpDown1: TUpDown
+        Top = 304
+        TabOrder = 14
+        ExplicitTop = 304
+      end
     end
     inherited rightparent: TPanel
-      ExplicitLeft = 229
-      ExplicitWidth = 220
-      ExplicitHeight = 296
+      Left = 563
+      Width = 554
+      Height = 652
     end
   end
 end

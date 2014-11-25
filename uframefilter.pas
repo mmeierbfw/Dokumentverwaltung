@@ -61,14 +61,14 @@ implementation
 
 procedure Tframebasefilter.banwendenClick(Sender: TObject);
 var
-  help: string;
+  help   : string;
   command: string;
 begin
   filterstring := '';
-  help := esellg.Text;
-  command := csellg.Text;
+  help         := esellg.Text;
+  command      := csellg.Text;
   if not(help = '') then begin
-    filterstring := 'liegenschaft';
+    filterstring                            := 'liegenschaft';
     if not(command = '~') then filterstring := filterstring + command + help
     else filterstring := filterstring + ' LIKE "%' + help + '%"';
 
@@ -97,7 +97,7 @@ var
 begin
   if eselae.Text = '' then exit;
 
-  date := floattostr(strtodatetime(eselae.text));
+  date := floattostr(strtodatetime(eselae.Text));
   if not(date = '00.00.00') then
 
       setfilter(filterae, 'abrechnungsende', date, cselae.Text)
@@ -112,11 +112,11 @@ procedure Tframebasefilter.eselpeExit(Sender: TObject);
 var
   date: string;
 begin
-if eselpe.Text = '' then exit;
+  if eselpe.Text = '' then exit;
 
-  date := floattostr(strtodatetime(eselpe.text));
-  
-//  if not(date = '00.00.00') then
+  date := floattostr(strtodatetime(eselpe.Text));
+
+  // if not(date = '00.00.00') then
   setfilter(filterpe, 'posteingang', date, cselpe.Text);
 end;
 
@@ -127,7 +127,7 @@ end;
 
 procedure Tframebasefilter.eseldiExit(Sender: TObject);
 begin
-  setfilter(filterdi, 'Dokumentid', eseldi.Text, cseldi.Text);
+  setfilter(filterdi, 'ablagenr', eseldi.Text, cseldi.Text);
 end;
 
 function Tframebasefilter.getfilter: string;
@@ -137,19 +137,19 @@ begin
       Result := filtersb;
   if not(AnsiEndsText('LIKE', Trim(filterlg)) or (filterlg = '')) then begin
     if not(Result = '') then Result := Result + ' AND ' + filterlg
-    else Result := filterlg;
+    else Result                     := filterlg;
   end;
   if not(AnsiEndsText('LIKE', Trim(filterpe)) or (filterpe = '')) then begin
     if not(Result = '') then Result := Result + ' AND ' + filterpe
-    else Result := filterpe;
+    else Result                     := filterpe;
   end;
   if not(AnsiEndsText('LIKE', Trim(filterdi)) or (filterdi = '')) then begin
     if not(Result = '') then Result := Result + ' AND ' + filterdi
-    else Result := filterdi;
+    else Result                     := filterdi;
   end;
   if not(AnsiEndsText('LIKE', Trim(filterae)) or (filterae = '')) then begin
     if not(Result = '') then Result := Result + ' AND ' + filterdi
-    else Result := filterae;
+    else Result                     := filterae;
   end;
 end;
 
@@ -159,8 +159,11 @@ var
   val: string;
 begin
   val := combo;
-  if val = '=' then val := ' LIKE ';
-  res := key + val + value;
+//  if key = 'ablagenr' then begin
+//    res := 'cast( ' + key + ' as unsigned) ' + val + ' ' + value; exit;
+//  end;
+//  if val = '=' then val := ' LIKE ';
+  res                   := key + val + value;
 end;
 
 end.

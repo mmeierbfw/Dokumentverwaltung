@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   uframebase, NxCollection, Vcl.StdCtrls, fMemo, fEdit, Vcl.Mask, umaskedit,
-  Vcl.ExtCtrls, NxEdit;
+  Vcl.ExtCtrls, NxEdit, Vcl.ComCtrls;
 
 type
   Tframeenergie = class(Tframebase)

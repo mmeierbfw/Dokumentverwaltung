@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   NxCollection, Vcl.StdCtrls, fMemo, fEdit, Vcl.Mask, umaskedit, Vcl.ExtCtrls,
-  RegularExpressions, uutils, uconstants;
+  RegularExpressions, uutils, uconstants, Vcl.ComCtrls;
 
 type
   Tframebase = class(TFrame)
@@ -30,6 +30,8 @@ type
     NxButton2: TNxButton;
     pinfo: TPanel;
     labelinfo: TLabel;
+    UpDown1: TUpDown;
+    UpDown2: TUpDown;
     procedure eliegenschaftExit(Sender: TObject);
     procedure fEdit1Exit(Sender: TObject);
     procedure dtposteingangExit(Sender: TObject);
@@ -37,6 +39,8 @@ type
     procedure DATEPRESS(Sender: TObject; var Key: Char);
     procedure NxButton2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure abrupdown(Sender: TObject; Button: TUDBtnType);
+    procedure liegenschaftupdown(Sender: TObject; Button: TUDBtnType);
   private
     { Private-Deklarationen }
   public
@@ -149,6 +153,22 @@ begin
 
 end;
 
+procedure Tframebase.liegenschaftupdown(Sender: TObject; Button: TUDBtnType);
+var
+  liegenschaftInt: Integer;
+begin
+  if eliegenschaft.text = '' then exit;
+
+  TRY liegenschaftInt := strtoint(eliegenschaft.text);
+  except exit;
+  END;
+  case Button of
+    btNext: inc(liegenschaftInt);
+    btPrev: dec(liegenschaftInt);
+  end;
+  eliegenschaft.text := inttostr(liegenschaftInt);
+end;
+
 procedure Tframebase.NxButton2Click(Sender: TObject);
 var
   datestr: string;
@@ -156,6 +176,27 @@ begin
   datestr           := DateToStr(now);
   datestr           := formatedatefrom4jto2j(datestr);
   eposteingang.text := datestr;
+end;
+
+procedure Tframebase.abrupdown(Sender: TObject; Button: TUDBtnType);
+var
+  abrdat          : TDate;
+  jahr, monat, tag: word;
+begin
+  try abrdat := StrToDate(eabrechnungsende.text);
+  except exit;
+  end;
+  DecodeDate(abrdat, jahr, monat, tag);
+  case Button of
+    btNext: begin
+        inc(jahr);
+      end;
+    btPrev: begin
+        jahr := jahr - 1;
+      end;
+  end;
+  abrdat                := EncodeDate(jahr, monat, tag);
+  eabrechnungsende.text := formatedatefrom4jto2j(DateToStr(abrdat));
 end;
 
 end.

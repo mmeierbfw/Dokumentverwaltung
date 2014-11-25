@@ -324,7 +324,7 @@ begin
       // if not (doctype = TelefonnotizINT) then
 
       doc.setpropertie(Dateiname, formmain.getfilename);
-      doc.setpropertie('Dokumentid', getDocumentid);
+      doc.setpropertie('ablagenr', getDocumentid);
       doc.setpropertie(Posteingang, getPosteingang);
       doc.setpropertie(erledigt, getErledigt);
       doc.setpropertie(Kundennummer, getkundennrfordb);

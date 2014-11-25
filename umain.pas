@@ -112,7 +112,6 @@ type
     gridnutzerliste: TNextDBGrid;
     nutdokid: TNxDBTextColumn;
     nutliegenschaft: TNxDBTextColumn;
-    nutnutzernummer: TNxDBTextColumn;
     nutdatei: TNxDBMemoColumn;
     nutposteingang: TNxDBTextColumn;
     nutimage: TNxDBImageColumn;
@@ -143,7 +142,6 @@ type
     NxGlyphButton1: TNxGlyphButton;
     NxGlyphButton2: TNxGlyphButton;
     NxGlyphButton3: TNxGlyphButton;
-    NxDBTextColumn10: TNxDBTextColumn;
     zwinotizen: TNxDBMemoColumn;
     tauftrag: TNxTabSheet;
     pvollbilder: TNxPageControl;
@@ -422,6 +420,15 @@ type
     procedure framevertenutzernummerExit(Sender: TObject);
     procedure gridzwiVerticalScroll(Sender: TObject; Position: Integer);
     procedure gridzwiHorizontalScroll(Sender: TObject; Position: Integer);
+    procedure frameauftragUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure framemontageUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure framezwiUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure frameangebotUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure framenUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure framekostenUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure framenutzerUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure framesonstigesUpDown2Click(Sender: TObject; Button: TUDBtnType);
+    procedure framevertUpDown2Click(Sender: TObject; Button: TUDBtnType);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -483,6 +490,7 @@ type
     prociplinkftp: Integer;
     filter       : string;
     filterlg     : string;
+    clicked      : array [0 .. 3] of Boolean;
     procedure resetdate(tem: TMaskEdit); overload;
     procedure resetdate(tem: tfedit); overload;
     function connectToPipe: Boolean;
@@ -586,6 +594,7 @@ const
   speicherframes: array [0 .. 9] of string = ('framemontage', 'framezwi',
     'frameangebot', 'frameauftrag', 'framen', 'framekosten', 'framenutzer',
     'framereklamation', 'framesonstiges', 'framevert');
+  panels: array [0 .. 3] of string = ('pz', 'pk', 'pr', 'pm');
 
 implementation
 
@@ -646,11 +655,14 @@ end;
 
 procedure Tformmain.gridnutzerlisteApplyCell(Sender: TObject;
   acol, ARow: Integer; var Value: WideString);
+var
+  header: string;
 begin
+  // header := (sender as TNextDBGrid).ge
   case acol of
-    8: Value  := '1';
-    10: Value := erledigttext((Sender as TNextDBGrid).CellValue[9, ARow]);
-    11: Value := setdateityp((Sender as TNextDBGrid).Cells[3, ARow]);
+    7: Value  := '1';
+    9: Value  := erledigttext((Sender as TNextDBGrid).CellValue[9, ARow]);
+    10: Value := setdateityp((Sender as TNextDBGrid).Cells[3, ARow]);
   end;
 end;
 
@@ -682,7 +694,7 @@ begin
       ;
 
     end;
-  if (acol = 15) then begin
+  if (acol = 14) then begin
     try Value := erledigttext((Sender as TNextDBGrid).CellValue[14, ARow]);
     except
       on e: Exception do begin
@@ -707,7 +719,7 @@ var
   notiz    : string;
 begin
   test := Sender.ToString;
-  test := (Sender as TNextDBGrid).Columns[acol].Header.Caption;
+  test := (Sender as TNextDBGrid).Columns[acol].header.Caption;
 
   if AnsiStartsText('einzel', AnsiLowerCase(test)) then begin
     // if not(ptabellen.activepageindex = 1) then
@@ -819,24 +831,6 @@ begin
   if ptabellen.ActivePage = tabenergieausweis then sortenergie(acol, Ascending);
   if ptabellen.ActivePage = tabnutzerlisten then sortnutzer(acol, Ascending);
   if ptabellen.ActivePage = tabreklamation then sortrekl(acol, Ascending);
-
-  // if ptabellen.ActivePage = tabzwischen then begin
-  // // if acol=4 then begin
-  // // inherited;
-  // // exit;
-  // //
-  // // end;
-  // sortzwischen(ACol, Ascending);
-  // if ptabellen.ActivePage = tabnutzerlisten then begin
-  // sortnutzer(ACol, Ascending);
-  //
-  // end;
-  //
-  // if ptabellen.ActivePage = tabmontagen then begin
-  // sortmontagen(ACol, Ascending);
-  //
-  // end;
-  // end;
 end;
 
 procedure Tformmain.gridzwiVerticalScroll(Sender: TObject; Position: Integer);
@@ -993,12 +987,13 @@ end;
 
 procedure Tformmain.ButtonSave(Sender: TObject);
 var
-  prefix: string;
-  l     : tfedit;
-  Count : Integer;
-  bsave : TNxButton;
-  memo  : TfMemo;
-  frame : Tframebase;
+  prefix        : string;
+  l             : tfedit;
+  Count         : Integer;
+  bsave         : TNxButton;
+  memo          : TfMemo;
+  frame         : Tframebase;
+  buttonselected: Integer;
 begin
   frame := getframe;
 
@@ -1018,6 +1013,18 @@ begin
         #13#10 + 'Bitte entweder Scannen oder Informationen in Notizfeld speichern');
       frame.menotizen.SetFocus;
       exit;
+    end else begin
+      buttonselected :=
+        MessageDlg
+        ('Soll wirklich ohne ein gescanntes Dokument gespeichert werden?',
+        mtWarning, mbYesNoCancel, 0);
+      case buttonselected of
+        mrYes: begin
+            save();
+            exit;
+          end
+      else exit;
+      end;
     end;
   end;
   save();
@@ -1041,8 +1048,14 @@ begin
   prefix     := getprefix(pagerspeicher.activepageindex);
   try
     if not idanzeigen then ablid := ''
-    else ablid                   := inttostr(formdb.getno(strtoint(kn),
-        gettable(pagerspeicher.activepageindex), sb));
+    else begin
+      if dosplitnumber then begin
+
+        ablid := inttostr(formdb.getno(strtoint(kn),
+          gettable(pagerspeicher.activepageindex), sb));
+      end
+      else ablid := (formdb.getmaxno(kn, sb));
+    end;
   except ablid := '';
   end;
   // fid.Text := ablid;
@@ -1081,20 +1094,23 @@ begin
         cap   := 'Zwischenablesung';
         panelfocus(pz);
         pagerspeicher.ActivePage := sheet;
+        clicked[0]               := true;
         exit;
       end;
 
     1: begin
-        sheet := TKostenermittlung;
-        cap   := 'Nutzerliste / Kostenermittlung';
+        sheet      := TKostenermittlung;
+        cap        := 'Nutzerliste / Kostenermittlung';
+        clicked[1] := true;
         panelfocus(pk);
 
         pagerspeicher.ActivePage := sheet;
         exit;
       end;
     2: begin
-        sheet := TMontage;
-        cap   := 'Montage';
+        sheet      := TMontage;
+        cap        := 'Montage';
+        clicked[2] := true;
         panelfocus(pm);
 
         pagerspeicher.ActivePage := sheet;
@@ -1126,12 +1142,11 @@ begin
       end;
   else sheet := TZwischenablesung;
   end;
-  pr.Caption := cap;
   panelfocus(pr);
-
-  // pr.Show;
   pagerspeicher.ActivePage := sheet;
-  // sheet.tabwidth := tabwidth;
+  clicked[3]               := true;
+  pr.Caption               := cap;
+  pr.Color                 := dokcons.hellgrau;
 
 end;
 
@@ -1584,6 +1599,32 @@ begin
 
 end;
 
+procedure Tformmain.frameangebotUpDown2Click(Sender: TObject;
+  Button: TUDBtnType);
+begin
+  if frameangebot.eliegenschaft.Text = '' then exit;
+
+  try frameangebot.liegenschaftupdown(Sender, Button);
+  except exit;
+
+  end;
+  setliegenschaftsdaten;
+
+end;
+
+procedure Tformmain.frameauftragUpDown2Click(Sender: TObject;
+  Button: TUDBtnType);
+begin
+
+  if frameauftrag.eliegenschaft.Text = '' then exit;
+
+  try frameauftrag.liegenschaftupdown(Sender, Button);
+  except exit;
+
+  end;
+  setliegenschaftsdaten;
+end;
+
 procedure Tformmain.frameenergiecbpseudoChange(Sender: TObject);
 begin
   framen.cbpseudoChange(Sender);
@@ -1693,6 +1734,20 @@ procedure Tformmain.framefilterreklamationeselsbExit(Sender: TObject);
 begin
   framefilterreklamation.eselsbExit(Sender);
   setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
+end;
+
+procedure Tformmain.framekostenUpDown2Click(Sender: TObject;
+  Button: TUDBtnType);
+begin
+  if framekosten.eliegenschaft.Text = '' then exit;
+
+  try
+    framekosten.liegenschaftupdown(Sender, Button);
+    setliegenschaftsdaten;
+  except exit;
+
+  end;
+
 end;
 
 procedure Tformmain.framemonfilterbanwendenClick(Sender: TObject);
@@ -1852,10 +1907,60 @@ begin
   framemontage.eliegenschaftExit(Sender);
 end;
 
+procedure Tformmain.framemontageUpDown2Click(Sender: TObject;
+  Button: TUDBtnType);
+begin
+  if framemontage.eliegenschaft.Text = '' then exit;
+  try
+    framemontage.liegenschaftupdown(Sender, Button);
+    setliegenschaftsdaten;
+  except
+
+  end;
+end;
+
+procedure Tformmain.framenUpDown2Click(Sender: TObject; Button: TUDBtnType);
+begin
+  try
+    if framen.eliegenschaft.Text = '' then exit;
+
+    framen.liegenschaftupdown(Sender, Button);
+    setliegenschaftsdaten;
+  except exit;
+  end;
+end;
+
+procedure Tformmain.framenutzerUpDown2Click(Sender: TObject;
+  Button: TUDBtnType);
+begin
+  if framenutzer.eliegenschaft.Text = '' then exit;
+
+  try
+    framenutzer.liegenschaftupdown(Sender, Button);
+    setliegenschaftsdaten;
+  except exit;
+  end;
+end;
+
 // ###############################################
 procedure Tformmain.framesonstigeseliegenschaftExit(Sender: TObject);
 begin
   framesonstiges.eliegenschaftExit(Sender);
+end;
+
+procedure Tformmain.framesonstigesUpDown2Click(Sender: TObject;
+  Button: TUDBtnType);
+begin
+  if framesonstiges.eliegenschaft.Text = '' then exit;
+
+  try
+
+    framesonstiges.liegenschaftupdown(Sender, Button);
+    setliegenschaftsdaten;
+  except
+
+  end;
+
 end;
 
 // ###############################################
@@ -1869,6 +1974,17 @@ procedure Tformmain.framevertragenutzernummerExit(Sender: TObject);
 begin
   // framevertrag.enutzerexit(Sender);
 
+end;
+
+procedure Tformmain.framevertUpDown2Click(Sender: TObject; Button: TUDBtnType);
+begin
+  if framevert.eliegenschaft.Text = '' then exit;
+
+  try
+    framevert.liegenschaftupdown(Sender, Button);
+    setliegenschaftsdaten;
+  except exit;
+  end;
 end;
 
 // ###############################################
@@ -2002,6 +2118,19 @@ begin
     end;
 
   end;
+end;
+
+procedure Tformmain.framezwiUpDown2Click(Sender: TObject; Button: TUDBtnType);
+begin
+  if framezwi.eliegenschaft.Text = '' then exit;
+
+  try
+    framezwi.liegenschaftupdown(Sender, Button);
+    setliegenschaftsdaten;
+  except exit;
+
+  end;
+
 end;
 
 procedure Tformmain.liegenschaftexit(Sender: TObject);
@@ -2184,18 +2313,24 @@ var
   datemitpunkt: string;
   abrdat      : tdatetime;
 begin
+  abrdat := StrToDateTime(datestring);
   with dokcons do begin
+
     case Tag of
-      ZwischenablsgINT, MontageINT, ReklamationINT: datemitpunkt := datestring;
+      ZwischenablsgINT, MontageINT, ReklamationINT: Result := datestring;
       KostenINT, SonstigesInt: begin
-          abrdat := StrToDateTime(datestring);
+
           abrdat := abrdat + 365;
-          DateTimeToString(Result, 'dd.mm.yy', abrdat);
-        end
-      // else DateTimeToString(datemitpunkt, 'dd.mm.yy', now);
-    else Result := '';
+
+        end;
+      //
+      // EnergieausweisINT, Nutzerint,
+      //
+      // Vertragsint, Angebotsint, Auftragsint:
+      // // else DateTimeToString(datemitpunkt, 'dd.mm.yy', now);
+      // else Result := '';
     end;
-    // Result := datemitpunkt;
+    DateTimeToString(Result, 'dd.mm.yy', abrdat);
   end;
 end;
 
@@ -2232,10 +2367,8 @@ var
 begin
   frame  := getframe;
   prefix := getprefix(pagerspeicher.activepageindex);
-  editid := frame.FindComponent('eid') as Tedit;
+  Result := frame.eid.Text;
 
-  Result := editid.Text;
-  // Result := fid.Text;
 end;
 
 function Tformmain.getdokumente(table_zwi, wherestring: string;
@@ -2278,12 +2411,12 @@ end;
 
 function Tformmain.getfilesizeex(const afilename: string): int64;
 var
-  F: TSearchRec;
+  f: TSearchRec;
 begin
   Result := -1;
-  if FindFirst(afilename, faAnyFile, F) = 0 then begin
-    try Result := F.FindData.nFileSizeLow or (F.FindData.nFileSizeHigh shl 32);
-    finally findClose(F);
+  if FindFirst(afilename, faAnyFile, f) = 0 then begin
+    try Result := f.FindData.nFileSizeLow or (f.FindData.nFileSizeHigh shl 32);
+    finally findClose(f);
     end;
   end;
 end;
@@ -2796,7 +2929,8 @@ begin
     scanvz := Pfad;
   end
   else postausgverz := Pfad;
-  saveSettings('', kn, sb, scanvz, postausgverz, idanzeigen, dosplitnumber);
+  saveSettings(passwort, kn, sb, scanvz, postausgverz, idanzeigen,
+    dosplitnumber);
   lookforfile;
 end;
 
@@ -2847,6 +2981,7 @@ begin
       try
 
         lbeingang.Selected[0] := true;
+        lbeingang.ItemIndex   := 0;
         lfiletype.Caption     := lbeingang.Items[0];
         if pagerspeicher.ActivePage = LEER then begin
           ComboBox1.ItemIndex := 0;
@@ -3071,7 +3206,6 @@ procedure Tformmain.panelfocus(panel: TPanel);
 begin
   panel.Font.Style := [fsbold];
   panel.BevelKind  := TBevelKind.bkSoft;
-
 end;
 
 // ###############################################
@@ -3094,28 +3228,51 @@ end;
 
 // ###############################################
 procedure Tformmain.pzClick(Sender: TObject);
+var
+  index: Integer;
 begin
-  pk.Font.Style := [];
-  pm.Font.Style := [];
-  pz.Font.Style := [];
-  pr.Font.Style := [];
+  //
+  // pk.Font.Style := [];
+  // pm.Font.Style := [];
+  // pz.Font.Style := [];
+  // pr.Font.Style := [];
+  //
+  // pk.Color := clWhite;
+  // pm.Color := clWhite;
+  // pz.Color := clWhite;
+  // pr.Color := clWhite;
+  //
+  // pk.BevelKind := TBevelKind.bkNone;
+  // pm.BevelKind := TBevelKind.bkNone;
+  // pz.BevelKind := TBevelKind.bkNone;
+  // pr.BevelKind := TBevelKind.bkNone;
 
-  pk.BevelKind := TBevelKind.bkNone;
-  pm.BevelKind := TBevelKind.bkNone;
-  pz.BevelKind := TBevelKind.bkNone;
-  pr.BevelKind := TBevelKind.bkNone;
+  resetpanelfonts;
 
   // pr.hide;
 
-  (Sender as TPanel).Font.Style                := [fsbold];
-  (Sender as TPanel).BevelKind                 := TBevelKind.bkSoft;
-  if Sender = pz then pagerspeicher.ActivePage := TZwischenablesung;
-  if Sender = pk then pagerspeicher.ActivePage := TKostenermittlung;
-  if Sender = pm then pagerspeicher.ActivePage := TMontage;
+  (Sender as TPanel).Font.Style := [fsbold];
+  (Sender as TPanel).BevelKind  := TBevelKind.bkSoft;
+  if Sender = pz then begin
+    pagerspeicher.ActivePage := TZwischenablesung;
+    clicked[0]               := true;
+    pz.Color                 := dokcons.hellgrau;
+  end;
+  if Sender = pk then begin
+    pagerspeicher.ActivePage := TKostenermittlung;
+    clicked[1]               := true;
+    pk.Color                 := dokcons.hellgrau;
+  end;
+  if Sender = pm then begin
+    pagerspeicher.ActivePage := TMontage;
+    clicked[2]               := true;
+    pm.Color                 := dokcons.hellgrau;
+  end;
   if Sender = pr then begin
     if pr.Caption = '' then exit;
     ComboBox1Click(pr);
-
+    clicked[3] := true;
+    pr.Color   := dokcons.hellgrau;
   end;
 
 end;
@@ -3128,8 +3285,40 @@ end;
 
 // ###############################################
 procedure Tformmain.pzMouseLeave(Sender: TObject);
+var
+  pan, panel: TPanel;
+  index     : Integer;
+
 begin
-  (Sender as TPanel).Font.Style := [];
+  panel := Sender as TPanel;
+  if panel = pz then begin
+    if clicked[0] then exit;
+  end;
+  if panel = pk then begin
+    if clicked[1] then exit;
+  end;
+  if panel = pm then begin
+    if clicked[2] then exit;
+  end;
+  if panel = pr then begin
+    if clicked[3] then exit;
+  end;
+  // for index := 0 to 3 do begin
+  // try pan := FindComponent(panels[index]) as TPanel;
+  // except
+  // on e: Exception do showmessage('...' + e.Message);
+  //
+  // end;
+  // try
+  // if pan = panel then begin
+  //
+  // if clicked[index] then exit;
+  // end;
+  // except on e: exception do ShowMessage(' mymessga' + e.Message);
+  //
+  // end;
+  // end;
+  panel.Font.Style := [];
 end;
 
 // ###############################################
@@ -3326,8 +3515,10 @@ end;
 
 // ###############################################
 procedure Tformmain.resetpanelfonts;
+var
+  index: Integer;
 begin
-
+  for index     := 0 to 3 do clicked[index] := false;
   pz.Font.Style := [];
   pm.Font.Style := [];
   pk.Font.Style := [];
@@ -3338,6 +3529,11 @@ begin
   pm.BevelKind := TBevelKind.bkNone;
   pz.BevelKind := TBevelKind.bkNone;
   pr.BevelKind := TBevelKind.bkNone;
+
+  pk.Color := clWhite;
+  pm.Color := clWhite;
+  pr.Color := clWhite;
+  pz.Color := clWhite;
 end;
 
 // ###############################################
@@ -3766,10 +3962,10 @@ begin
   abrechnungsende := getdatemitpunkt(pagerspeicher.activepageindex,
     dic.Items['Databr']);
   // datemitpunkt := dic.Items['Databr'];
-//  if abrechnungsende = '' then
-//      DateTimeToString(abrechnungsende, 'dd.mm.yy', now);
-if not (abrechnungsende = '') then
-  abrechnungsende := getfittingabrechnungsende(abrechnungsende);
+  // if abrechnungsende = '' then
+  // DateTimeToString(abrechnungsende, 'dd.mm.yy', now);
+  if not(abrechnungsende = '') then
+      abrechnungsende := getfittingabrechnungsende(abrechnungsende);
   // abrdat.Text := abrechnungsende;
   frame.eabrechnungsende.Text := abrechnungsende;
 
@@ -3909,7 +4105,7 @@ begin
   list.add('*');
 
   formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = ' +
-    kn + ' order by ablagenr desc ;', list);
+    kn + ' order by  liegenschaft desc ', list);
   setfilter(formdb.queryrekl, filter);
   filldb(formdb.dsrekl, gridrek);
 
@@ -3952,8 +4148,11 @@ begin
 
   if ascbool then asc := 'ASC'
   else asc            := 'DESC';
-  QueryString         := QueryString + ' ORDER BY ' + gridenergie.Columns[acol]
-    .FieldName + ' ' + asc;
+  if acol = 0 then
+      QueryString := QueryString + ' ORDER BY cast(' + gridenergie.Columns[acol]
+      .FieldName + ' as unsigned) ' + asc
+  else QueryString := QueryString + ' ORDER BY ' + gridenergie.Columns[acol]
+      .FieldName + ' ' + asc;
   formdb.queryen.SQL.clear;
   formdb.queryen.SQL.Text := QueryString;
   formdb.queryen.Open;
@@ -3971,8 +4170,11 @@ begin
 
   if ascbool then asc := 'ASC'
   else asc            := 'DESC';
-  QueryString := QueryString + ' ORDER BY ' + gridmon.Columns[acol].FieldName +
-    ' ' + asc;
+  if acol = 0 then
+      QueryString := QueryString + ' ORDER BY cast(' + gridmon.Columns[acol]
+      .FieldName + ' as unsigned) ' + asc
+  else QueryString := QueryString + ' ORDER BY ' + gridmon.Columns[acol]
+      .FieldName + ' ' + asc;
 
   formdb.querymon.SQL.clear;
   formdb.querymon.SQL.Text := QueryString;
@@ -3994,22 +4196,23 @@ var
   list       : TStringList;
 
 begin
-  list := TStringList.Create;
-  list.add('*');
-  QueryString := 'SELECT * FROM ' + dokcons.view_nutzer; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_kos; // Query statement
   if gridnutzerliste.Columns[acol].FieldName = '' then exit;
 
-  if ascbool then asc := 'ASC'
-  else asc            := 'DESC';
-  // QueryString := QueryString + ' ORDER BY ' + gridnutzerliste.Columns[ACol]
-  // .FieldName + ' ' + asc;
-  QueryString := 'order by Liegenschaft desc';
-  // formdb.querynutzer.SQL.clear;
-  // formdb.querynutzer.SQL.Text := QueryString;
-  // formdb.querynutzer.Open;
-  formdb.doquery(formdb.querynuliste, dokcons.view_nutzer,
-    ' WHERE kundennummer = ' + kn + ' ' + QueryString, list);
-  // filldb(formdb.dsdokumente);
+  if ascbool then asc := ' ASC'
+  else asc            := ' DESC';
+  if acol = 0 then
+  // die ablagenummer muss numerisch sortiert sein..
+  begin
+    QueryString := QueryString + ' ORDER BY cast(' + gridnutzerliste.Columns
+      [acol].FieldName + ' as unsigned) ' + asc;
+  end
+  else QueryString := QueryString + ' ORDER BY ' + gridnutzerliste.Columns[acol]
+      .FieldName + asc;
+
+  formdb.querynuliste.SQL.clear;
+  formdb.querynuliste.SQL.Text := QueryString;
+  formdb.querynuliste.Open;
 
 end;
 
@@ -4020,13 +4223,17 @@ var
   asc        : string;
 begin
 
-  QueryString := 'SELECT * FROM ' + dokcons.view_rekl; // Query statement
+  QueryString := 'SELECT * FROM ' + dokcons.view_rekl;
+  // Query statement
   if gridrek.Columns[acol].FieldName = '' then exit;
 
   if Ascending then asc := 'ASC'
   else asc              := 'DESC';
-  QueryString := QueryString + ' ORDER BY ' + gridrek.Columns[acol].FieldName +
-    ' ' + asc;
+  if acol = 0 then
+      QueryString := QueryString + ' ORDER BY cast(' + gridrek.Columns[acol]
+      .FieldName + ' as unsigned) ' + asc
+  else QueryString := QueryString + ' ORDER BY ' + gridrek.Columns[acol]
+      .FieldName + ' ' + asc;
   formdb.queryrekl.SQL.clear;
   formdb.queryrekl.SQL.Text := QueryString;
   formdb.queryrekl.Open;
@@ -4044,13 +4251,13 @@ begin
   QueryString := 'SELECT * FROM ' + dokcons.view_zwi; // Query statement
   if gridzwi.Columns[acol].FieldName = '' then exit;
 
-  if ascbool then asc := 'ASC'
-  else asc            := 'DESC';
+  if ascbool then asc := ' ASC'
+  else asc            := ' DESC';
   if acol = 0 then
   // die ablagenummer muss numerisch sortiert sein..
   begin
     QueryString := QueryString + ' ORDER BY cast(' + gridzwi.Columns[acol]
-      .FieldName + ' as unsigned)';
+      .FieldName + ' as unsigned) ' + asc;
   end
   else QueryString := QueryString + ' ORDER BY ' + gridzwi.Columns[acol]
       .FieldName + ' ' + asc;

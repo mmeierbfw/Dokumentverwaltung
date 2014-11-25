@@ -1,14 +1,17 @@
 inherited framebasenutzer: Tframebasenutzer
-  Width = 1190
-  Height = 683
+  Width = 1079
+  Height = 615
   inherited gridpanel: TGridPanel
-    Width = 1190
-    Height = 683
+    Width = 1079
+    Height = 615
     inherited Panel5: TPanel
-      Width = 589
-      Height = 675
-      ExplicitWidth = 589
-      ExplicitHeight = 675
+      Width = 533
+      Height = 607
+      ExplicitWidth = 533
+      ExplicitHeight = 607
+      inherited lfiletype: TLabel
+        Height = 255
+      end
       inherited Label45: TLabel
         Top = 205
         ExplicitTop = 205
@@ -78,11 +81,16 @@ inherited framebasenutzer: Tframebasenutzer
         Top = 205
         ExplicitTop = 205
       end
+      inherited UpDown1: TUpDown
+        Top = 228
+        TabOrder = 10
+        ExplicitTop = 228
+      end
     end
     inherited rightparent: TPanel
-      Left = 599
-      Width = 589
-      Height = 675
+      Left = 543
+      Width = 534
+      Height = 607
     end
   end
 end

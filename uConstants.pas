@@ -41,8 +41,6 @@ type
     runningLabelText = 'Dokumentennummer';
     { uscanningWiaWia }
 
-   
-
     // muss halt so
     WiaFormatBMP  = '{B96B3CAB-0728-11D3-9D7B-0000F81EF32E}';
     WiaFormatTIFF = '{B96B3CB1-0728-11D3-9D7B-0000F81EF32E}';
@@ -107,23 +105,23 @@ type
     angebote           = 'angebotsanfrage';
     auftrag            = 'auftragsanforderung';
 
-    liegenschaft    = 'liegenschaft';
-    Kundennummer    = 'kundennummer';
-    Posteingang     = 'posteingang';
-    Vertragsbeginn  = 'vertragsbeginn';
-    Ablesedatum     = 'ablesedatum';
-    Nutzernummer    = 'nutzernummer';
-    Nutzername1     = 'Nutzername1';
-    nutzername2     = 'Nutzername2';
-    nutzername      = 'nutzername';
-    erledigt        = 'erledigt';
-    Notizen         = 'notizen';
-    Auftragsnummer  = 'auftragsnr';
-    Dateiname       = 'dateiname';
-    id              = 'dokumentid';
-    sachbearbeiter  = 'sachbearbeiter';
-    datumgepr       = 'datumgeprueft';
-//    sammelordner    = 'Sammelordner';
+    liegenschaft   = 'liegenschaft';
+    Kundennummer   = 'kundennummer';
+    Posteingang    = 'posteingang';
+    Vertragsbeginn = 'vertragsende';
+    Ablesedatum    = 'ablesedatum';
+    Nutzernummer   = 'nutzernummer';
+    Nutzername1    = 'Nutzername1';
+    nutzername2    = 'Nutzername2';
+    nutzername     = 'nutzername';
+    erledigt       = 'erledigt';
+    Notizen        = 'notizen';
+    Auftragsnummer = 'auftragsnr';
+    Dateiname      = 'dateiname';
+    id             = 'dokumentid';
+    sachbearbeiter = 'sachbearbeiter';
+    datumgepr      = 'datumgeprueft';
+    // sammelordner    = 'Sammelordner';
     abrechnungsende = 'abrechnungsende';
     { für Montage }
     Gueltigkeitsdatum = 'gueltigkeitsdatum';
@@ -143,21 +141,11 @@ type
     ort                = 'ort';
     plz                = 'plz';
 
-//    vertragstyp = 'vertragstyp';
+    // vertragstyp = 'vertragstyp';
 
     { für neue Aufträge }
-    auftragstyp = 'Auftragstyp';
+    // auftragstyp = 'auftragstyp';
     { Dokumentarten }
-    ZwischenablsgINT  = 0;
-    MontageINT        = 1;
-    ReklamationINT    = 2;
-    EnergieausweisINT = 3;
-    KostenINT         = 4;
-    Nutzerint         = 5;
-    SonstigesInt      = 6;
-    Vertragsint       = 7;
-    Angebotsint       = 8;
-    Auftragsint       = 9;
 
     { für Email }
     Absendername     = 'Absendername';
@@ -185,7 +173,7 @@ type
     { Farben }
 
     blau            = $00EBBE8E;
-    hellgrau        = $00F1F1F1;
+    hellgrau        = $00E3DFD9;
     neueshellblau   = $00FEEACF;
     neuestesellblau = $00FFFFF6;
     hellorange      = $00008EFF;

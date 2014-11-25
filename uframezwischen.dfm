@@ -1,16 +1,16 @@
 inherited framezwischen: Tframezwischen
-  Width = 1193
-  Height = 304
+  Width = 1008
+  Height = 590
   inherited gridpanel: TGridPanel
-    Width = 1193
-    Height = 304
+    Width = 1008
+    Height = 590
+    ExplicitWidth = 451
+    ExplicitHeight = 304
     inherited Panel5: TPanel
-      Width = 590
-      Height = 296
-      ExplicitWidth = 590
+      ExplicitWidth = 219
       ExplicitHeight = 296
       inherited lfiletype: TLabel
-        Height = 609
+        Height = 541
       end
       inherited Label45: TLabel
         Top = 301
@@ -166,7 +166,7 @@ inherited framezwischen: Tframezwischen
       inherited pinfo: TPanel
         TabOrder = 10
       end
-      object eauszug: TfEdit
+      object eauszug: TfEdit [23]
         Tag = 1
         Left = 321
         Top = 207
@@ -194,7 +194,7 @@ inherited framezwischen: Tframezwischen
         ColorFocused = 10252872
         ColorNotFocused = 6908265
       end
-      object eablesedatum: TfEdit
+      object eablesedatum: TfEdit [24]
         Tag = 1
         Left = 321
         Top = 231
@@ -222,14 +222,16 @@ inherited framezwischen: Tframezwischen
         ColorFocused = 10252872
         ColorNotFocused = 6908265
       end
+      inherited UpDown1: TUpDown
+        Top = 324
+        TabOrder = 15
+        ExplicitTop = 324
+      end
     end
     inherited rightparent: TPanel
-      Left = 600
-      Width = 591
-      Height = 296
-      ExplicitLeft = 600
-      ExplicitWidth = 591
-      ExplicitHeight = 675
+      ExplicitLeft = 229
+      ExplicitWidth = 220
+      ExplicitHeight = 296
     end
   end
 end
