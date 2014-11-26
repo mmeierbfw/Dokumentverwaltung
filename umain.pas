@@ -1544,7 +1544,7 @@ begin
       menotizen.Text := dbgrid.GetColumnByFieldName(Notizen).field.AsString;
     end;
 
-    disablecontrols(voll.panel5);
+//    disablecontrols(voll.panel5);
     voll.bsave.Enabled := true;
     setliegenschaftsdaten(lg, '');
 
