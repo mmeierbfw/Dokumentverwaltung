@@ -32,7 +32,7 @@ var
 
 implementation
 
-{$R *.dfm}
+{$R uframeenergie.dfm}
 
 procedure Tframeenergie.cbpseudoChange(Sender: TObject);
 begin
