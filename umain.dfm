@@ -765,8 +765,8 @@
               Margins.Top = 4
               Margins.Right = 2
               Margins.Bottom = 4
-              ActivePage = tauftrag
-              ActivePageIndex = 3
+              ActivePage = Tangebotsanfragen
+              ActivePageIndex = 2
               Align = alClient
               ShowHint = True
               TabOrder = 0
@@ -813,7 +813,6 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framemontage.panpan
                         Row = 0
                       end
                       item
@@ -823,99 +822,9 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited Label7: TLabel
-                        Width = 96
-                        Height = 16
-                        ExplicitWidth = 96
-                        ExplicitHeight = 16
-                      end
-                      inherited Label34: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited Label26: TLabel
-                        Width = 36
-                        Height = 16
-                        ExplicitWidth = 36
-                        ExplicitHeight = 16
-                      end
-                      inherited Label5: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        OnExit = liegenschaftexit
-                      end
-                      inherited bsave: TNxButton
-                        OnClick = ButtonSave
-                      end
-                      inherited enutzernummer: TfEdit
-                        OnExit = Nexit
-                      end
-                      inherited eposteingang: TfEdit
-                        OnExit = nil
-                      end
-                      inherited emontage: TfEdit
-                        OnExit = framemontageemontageExit
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = framemontageUpDown2Click
-                      end
-                      inherited upd: TUpDown
-                        OnClick = framemontageUpDown3Click
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -961,7 +870,6 @@
                       end
                       item
                         Column = 0
-                        Control = framezwi.panpan
                         Row = 0
                       end>
                     ExplicitWidth = 1686
@@ -973,108 +881,6 @@
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
-                    end
-                    inherited panpan: TPanel [1]
-                      Width = 837
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited Label2: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label3: TLabel
-                        Width = 74
-                        Height = 16
-                        ExplicitWidth = 74
-                        ExplicitHeight = 16
-                      end
-                      inherited Label4: TLabel
-                        Width = 73
-                        Height = 16
-                        ExplicitWidth = 73
-                        ExplicitHeight = 16
-                      end
-                      inherited Label5: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        OnExit = liegenschaftexit
-                      end
-                      inherited bsave: TNxButton
-                        OnClick = ButtonSave
-                      end
-                      inherited enutzernummer: TfEdit
-                        OnExit = Nexit
-                      end
-                      inherited enutzername: TfEdit
-                        OnExit = zenutzernameExit
-                      end
-                      inherited eposteingang: TfEdit
-                        OnExit = dateexit
-                      end
-                      inherited eabrechnungsende: TfEdit
-                        OnExit = dateexit
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited eauszug: TfEdit
-                        OnExit = dateexit
-                      end
-                      inherited eablesedatum: TfEdit
-                        OnExit = dateexit
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = framezwiUpDown2Click
-                      end
-                      inherited upd: TUpDown
-                        OnClick = framezwiUpDown3Click
-                      end
                     end
                   end
                 end
@@ -1108,7 +914,6 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = frameangebot.panpan
                         Row = 0
                       end
                       item
@@ -1118,87 +923,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      Width = 837
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited Label5: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        TabOrder = 2
-                        OnExit = liegenschaftexit
-                      end
-                      inherited menotizen: TfMemo
-                        TabOrder = 5
-                      end
-                      inherited bsave: TNxButton
-                        TabOrder = 6
-                        OnClick = vollzwischenbsaveClick
-                        OnDblClick = ButtonSave
-                      end
-                      inherited enutzernummer: TfEdit
-                        TabOrder = 3
-                        OnClick = Nexit
-                        OnExit = Nexit
-                      end
-                      inherited eposteingang: TfEdit
-                        TabOrder = 1
-                      end
-                      inherited eabrechnungsende: TfEdit
-                        TabOrder = 4
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = frameangebotUpDown2Click
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
                       Left = 847
                       Width = 837
                       Height = 653
@@ -1237,7 +962,6 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = frameauf.panpan
                         Row = 0
                       end
                       item
@@ -1247,119 +971,10 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited Label5: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited Label1: TLabel
-                        Width = 65
-                        Height = 16
-                        ExplicitWidth = 65
-                        ExplicitHeight = 16
-                      end
-                      inherited dtabrechnungsende: tfmaskedit
-                        TabOrder = 13
-                      end
-                      inherited dtposteingang: tfmaskedit
-                        TabOrder = 9
-                      end
-                      inherited eliegenschaft: TfEdit
-                        TabOrder = 2
-                        OnExit = liegenschaftexit
-                      end
-                      inherited menotizen: TfMemo
-                        TabOrder = 6
-                      end
-                      inherited bsave: TNxButton
-                        TabOrder = 7
-                        OnClick = ButtonSave
-                      end
-                      inherited enutzernummer: TfEdit
-                        TabOrder = 3
-                        OnClick = Nexit
-                        OnExit = Nexit
-                      end
-                      inherited cbselectauftrag: TNxComboBox
-                        Left = 244
-                        Width = 141
-                        Height = 24
-                        TabOrder = 5
-                        Items.Strings = (
-                          'Montage'
-                          'Nachablesung'
-                          'Ger'#228'tetausch')
-                        ExplicitLeft = 244
-                        ExplicitWidth = 141
-                        ExplicitHeight = 24
-                      end
-                      inherited NxButton1: TNxButton
-                        Left = 244
-                        Width = 141
-                        Enabled = False
-                        TabOrder = 11
-                        ExplicitLeft = 244
-                        ExplicitWidth = 141
-                      end
-                      inherited eposteingang: TfEdit
-                        TabOrder = 1
-                      end
-                      inherited eabrechnungsende: TfEdit
-                        Left = 320
-                        TabOrder = 4
-                        ExplicitLeft = 320
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = frameauftragUpDown2Click
-                      end
-                      inherited upd: TUpDown
-                        OnClick = frameauftragUpDown3Click
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
+                      Left = 847
+                      Width = 837
+                      Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1397,7 +1012,6 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framen.panpan
                         Row = 0
                       end
                       item
@@ -1407,93 +1021,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      Width = 837
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        OnExit = liegenschaftexit
-                      end
-                      inherited bsave: TNxButton
-                        OnClick = ButtonSave
-                      end
-                      inherited cbpseudo: TNxCheckBox
-                        Top = 158
-                        ExplicitTop = 158
-                      end
-                      inherited flipadress: TNxFlipPanel
-                        Font.Height = -13
-                        FullHeight = 18
-                        inherited Label1: TLabel
-                          Width = 38
-                          Height = 16
-                          ExplicitWidth = 38
-                          ExplicitHeight = 16
-                        end
-                        inherited Label2: TLabel
-                          Width = 20
-                          Height = 16
-                          ExplicitWidth = 20
-                          ExplicitHeight = 16
-                        end
-                        inherited Label3: TLabel
-                          Width = 18
-                          Height = 16
-                          ExplicitWidth = 18
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited eposteingang: TfEdit
-                        OnExit = frameenergieeposteingangExit
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = framenUpDown2Click
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
                       Left = 847
                       Width = 837
                       Height = 653
@@ -1534,7 +1062,6 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framekosten.panpan
                         Row = 0
                       end
                       item
@@ -1544,64 +1071,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      Width = 837
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        OnExit = liegenschaftexit
-                      end
-                      inherited bsave: TNxButton
-                        OnClick = ButtonSave
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = framekostenUpDown2Click
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
                       Left = 847
                       Width = 837
                       Height = 653
@@ -1641,7 +1111,6 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framenutzer.panpan
                         Row = 0
                       end
                       item
@@ -1651,68 +1120,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      Width = 837
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        OnExit = liegenschaftexit
-                      end
-                      inherited bsave: TNxButton
-                        Left = 14
-                        Top = 409
-                        OnClick = ButtonSave
-                        ExplicitLeft = 14
-                        ExplicitTop = 409
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = framenutzerUpDown2Click
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
                       Left = 847
                       Width = 837
                       Height = 653
@@ -1752,7 +1160,6 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framereklamation.panpan
                         Row = 0
                       end
                       item
@@ -1762,88 +1169,9 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited Label7: TLabel
-                        Width = 96
-                        Height = 16
-                        ExplicitWidth = 96
-                        ExplicitHeight = 16
-                      end
-                      inherited Label34: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited Label26: TLabel
-                        Width = 36
-                        Height = 16
-                        ExplicitWidth = 36
-                        ExplicitHeight = 16
-                      end
-                      inherited Label5: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        OnExit = liegenschaftexit
-                      end
-                      inherited bsave: TNxButton
-                        OnClick = ButtonSave
-                      end
-                      inherited enutzernummer: TfEdit
-                        OnClick = Nexit
-                        OnExit = Nexit
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -2020,7 +1348,6 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framesonstiges.panpan
                         Row = 0
                       end
                       item
@@ -2030,86 +1357,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      Width = 837
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited Label5: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        TabOrder = 2
-                        OnExit = liegenschaftexit
-                      end
-                      inherited menotizen: TfMemo
-                        TabOrder = 5
-                      end
-                      inherited bsave: TNxButton
-                        TabOrder = 6
-                        OnClick = ButtonSave
-                      end
-                      inherited enutzernummer: TfEdit
-                        TabOrder = 3
-                        OnClick = Nexit
-                        OnExit = Nexit
-                      end
-                      inherited eposteingang: TfEdit
-                        TabOrder = 1
-                      end
-                      inherited eabrechnungsende: TfEdit
-                        TabOrder = 4
-                      end
-                      inherited pinfo: TPanel
-                        inherited labelinfo: TLabel
-                          Width = 99
-                          Height = 16
-                          Font.Height = -13
-                          ExplicitWidth = 99
-                          ExplicitHeight = 16
-                        end
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = framesonstigesUpDown2Click
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
                       Left = 847
                       Width = 837
                       Height = 653
@@ -2146,9 +1394,8 @@
                     Height = 661
                     ControlCollection = <
                       item
-                        Column = 0
-                        Control = framevert.panpan
-                        Row = 0
+                        Column = -1
+                        Row = -1
                       end
                       item
                         Column = 1
@@ -2157,73 +1404,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited panpan: TPanel
-                      Width = 837
-                      Height = 653
-                      ExplicitWidth = 837
-                      ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
-                      inherited Label45: TLabel
-                        Width = 102
-                        Height = 16
-                        ExplicitWidth = 102
-                        ExplicitHeight = 16
-                      end
-                      inherited Label46: TLabel
-                        Width = 69
-                        Height = 16
-                        ExplicitWidth = 69
-                        ExplicitHeight = 16
-                      end
-                      inherited Label47: TLabel
-                        Width = 71
-                        Height = 16
-                        ExplicitWidth = 71
-                        ExplicitHeight = 16
-                      end
-                      inherited Label48: TLabel
-                        Width = 87
-                        Height = 16
-                        ExplicitWidth = 87
-                        ExplicitHeight = 16
-                      end
-                      inherited Label29: TLabel
-                        Width = 42
-                        Height = 16
-                        ExplicitWidth = 42
-                        ExplicitHeight = 16
-                      end
-                      inherited Label5: TLabel
-                        Width = 85
-                        Height = 16
-                        ExplicitWidth = 85
-                        ExplicitHeight = 16
-                      end
-                      inherited Label1: TLabel
-                        Width = 66
-                        Height = 16
-                        ExplicitWidth = 66
-                        ExplicitHeight = 16
-                      end
-                      inherited eliegenschaft: TfEdit
-                        OnExit = liegenschaftexit
-                      end
-                      inherited bsave: TNxButton
-                        OnClick = ButtonSave
-                      end
-                      inherited enutzernummer: TfEdit
-                        OnExit = Nexit
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = framevertUpDown2Click
-                      end
-                      inherited upd: TUpDown
-                        OnClick = framevertUpDown3Click
-                      end
-                    end
-                    inherited rightparent: TPanel
+                    inherited rightparent: TPanel [0]
                       Left = 847
                       Width = 837
                       Height = 653
@@ -2442,7 +1623,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 60
+                    DefaultWidth = 59
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2461,7 +1642,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 59
+                    Width = 58
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
@@ -2759,7 +1940,7 @@
                   end
                   object zwiimage: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 145
+                    DefaultWidth = 146
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2776,7 +1957,7 @@
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 146
+                    Width = 147
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3617,7 +2798,7 @@
                   OnCellDblClick = gridzwiCellDblClick
                   OnSortColumn = gridzwiSortColumn
                   object NxDBTextColumn1: TNxDBTextColumn
-                    DefaultWidth = 96
+                    DefaultWidth = 95
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3638,7 +2819,7 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 95
+                    Width = 94
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn2: TNxDBTextColumn
@@ -3908,7 +3089,7 @@
                   end
                   object NxDBImageColumn1: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 242
+                    DefaultWidth = 243
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3926,7 +3107,7 @@
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 243
+                    Width = 244
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4030,7 +3211,7 @@
                   OnSortColumn = gridzwiSortColumn
                   SequencedScroll = True
                   object NxDBTextColumn3: TNxDBTextColumn
-                    DefaultWidth = 111
+                    DefaultWidth = 110
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4050,7 +3231,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 110
+                    Width = 109
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
@@ -4312,7 +3493,7 @@
                   end
                   object NxDBImageColumn2: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 164
+                    DefaultWidth = 165
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4328,7 +3509,7 @@
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 165
+                    Width = 166
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4472,7 +3653,7 @@
                     AutoExecute = True
                   end
                   object NxDBTextColumn38: TNxDBTextColumn
-                    DefaultWidth = 234
+                    DefaultWidth = 233
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4489,7 +3670,7 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 233
+                    Width = 232
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn2: TNxDBMemoColumn
@@ -4738,7 +3919,7 @@
                   end
                   object NxDBImageColumn8: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 240
+                    DefaultWidth = 241
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4755,7 +3936,7 @@
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 241
+                    Width = 242
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4864,7 +4045,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object NxDBTextColumn49: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 75
+                    DefaultWidth = 74
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4883,7 +4064,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 74
+                    Width = 73
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
@@ -5116,7 +4297,7 @@
                   end
                   object NxDBImageColumn10: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 180
+                    DefaultWidth = 181
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5133,7 +4314,7 @@
                     ParentFont = False
                     Position = 12
                     SortType = stNumeric
-                    Width = 181
+                    Width = 182
                     Images = ImageList1
                     Transparent = True
                   end
@@ -5242,7 +4423,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object NxDBTextColumn65: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 81
+                    DefaultWidth = 79
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5261,7 +4442,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 79
+                    Width = 78
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
@@ -5491,7 +4672,7 @@
                   end
                   object NxDBImageColumn14: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 194
+                    DefaultWidth = 195
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5508,7 +4689,7 @@
                     ParentFont = False
                     Position = 12
                     SortType = stNumeric
-                    Width = 195
+                    Width = 196
                     Images = ImageList1
                     Transparent = True
                   end
@@ -5616,7 +4797,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object NxDBTextColumn53: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 75
+                    DefaultWidth = 74
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5635,7 +4816,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 74
+                    Width = 73
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
@@ -5868,7 +5049,7 @@
                   end
                   object NxDBImageColumn12: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 180
+                    DefaultWidth = 181
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5885,7 +5066,7 @@
                     ParentFont = False
                     Position = 12
                     SortType = stNumeric
-                    Width = 181
+                    Width = 182
                     Images = ImageList1
                     Transparent = True
                   end
@@ -6039,7 +5220,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollzwischen.panpan
                       Row = 0
                     end
                     item
@@ -6049,78 +5229,10 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited panpan: TPanel
-                    ExplicitWidth = 836
-                    ExplicitHeight = 650
-                    inherited Label45: TLabel
-                      Width = 102
-                      Height = 16
-                      ExplicitWidth = 102
-                      ExplicitHeight = 16
-                    end
-                    inherited Label46: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label47: TLabel
-                      Width = 71
-                      Height = 16
-                      ExplicitWidth = 71
-                      ExplicitHeight = 16
-                    end
-                    inherited Label48: TLabel
-                      Width = 87
-                      Height = 16
-                      ExplicitWidth = 87
-                      ExplicitHeight = 16
-                    end
-                    inherited Label29: TLabel
-                      Width = 42
-                      Height = 16
-                      ExplicitWidth = 42
-                      ExplicitHeight = 16
-                    end
-                    inherited Label2: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label3: TLabel
-                      Width = 74
-                      Height = 16
-                      ExplicitWidth = 74
-                      ExplicitHeight = 16
-                    end
-                    inherited Label4: TLabel
-                      Width = 73
-                      Height = 16
-                      ExplicitWidth = 73
-                      ExplicitHeight = 16
-                    end
-                    inherited Label5: TLabel
-                      Width = 85
-                      Height = 16
-                      ExplicitWidth = 85
-                      ExplicitHeight = 16
-                    end
-                    inherited bsave: TNxButton
-                      Caption = 'Dokument anzeigen'
-                      OnClick = vollzwischenbsaveClick
-                    end
-                    inherited pinfo: TPanel
-                      inherited labelinfo: TLabel
-                        Width = 99
-                        Height = 16
-                        Font.Height = -13
-                        ExplicitWidth = 99
-                        ExplicitHeight = 16
-                      end
-                    end
-                  end
-                  inherited rightparent: TPanel
+                  inherited rightparent: TPanel [0]
+                    Left = 846
+                    Width = 838
+                    Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -6156,7 +5268,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollmont.panpan
                       Row = 0
                     end
                     item
@@ -6166,78 +5277,10 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited panpan: TPanel
-                    ExplicitWidth = 837
-                    ExplicitHeight = 650
-                    inherited Label45: TLabel
-                      Width = 102
-                      Height = 16
-                      ExplicitWidth = 102
-                      ExplicitHeight = 16
-                    end
-                    inherited Label46: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label47: TLabel
-                      Width = 71
-                      Height = 16
-                      ExplicitWidth = 71
-                      ExplicitHeight = 16
-                    end
-                    inherited Label48: TLabel
-                      Width = 87
-                      Height = 16
-                      ExplicitWidth = 87
-                      ExplicitHeight = 16
-                    end
-                    inherited Label29: TLabel
-                      Width = 42
-                      Height = 16
-                      ExplicitWidth = 42
-                      ExplicitHeight = 16
-                    end
-                    inherited Label7: TLabel
-                      Width = 96
-                      Height = 16
-                      ExplicitWidth = 96
-                      ExplicitHeight = 16
-                    end
-                    inherited Label34: TLabel
-                      Width = 85
-                      Height = 16
-                      ExplicitWidth = 85
-                      ExplicitHeight = 16
-                    end
-                    inherited Label26: TLabel
-                      Width = 36
-                      Height = 16
-                      ExplicitWidth = 36
-                      ExplicitHeight = 16
-                    end
-                    inherited Label5: TLabel
-                      Width = 85
-                      Height = 16
-                      ExplicitWidth = 85
-                      ExplicitHeight = 16
-                    end
-                    inherited bsave: TNxButton
-                      Caption = 'Dokument anzeigen'
-                      OnClick = vollzwischenbsaveClick
-                    end
-                    inherited pinfo: TPanel
-                      inherited labelinfo: TLabel
-                        Width = 99
-                        Height = 16
-                        Font.Height = -13
-                        ExplicitWidth = 99
-                        ExplicitHeight = 16
-                      end
-                    end
-                  end
-                  inherited rightparent: TPanel
+                  inherited rightparent: TPanel [0]
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6280,7 +5323,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollenergie.panpan
                       Row = 0
                     end
                     item
@@ -6290,81 +5332,7 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited panpan: TPanel
-                    Width = 836
-                    Height = 650
-                    ExplicitWidth = 836
-                    ExplicitHeight = 650
-                    inherited lfiletype: TLabel
-                      Height = 609
-                    end
-                    inherited Label45: TLabel
-                      Width = 102
-                      Height = 16
-                      ExplicitWidth = 102
-                      ExplicitHeight = 16
-                    end
-                    inherited Label46: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label47: TLabel
-                      Width = 71
-                      Height = 16
-                      ExplicitWidth = 71
-                      ExplicitHeight = 16
-                    end
-                    inherited Label48: TLabel
-                      Width = 87
-                      Height = 16
-                      ExplicitWidth = 87
-                      ExplicitHeight = 16
-                    end
-                    inherited Label29: TLabel
-                      Width = 42
-                      Height = 16
-                      ExplicitWidth = 42
-                      ExplicitHeight = 16
-                    end
-                    inherited bsave: TNxButton
-                      Caption = 'Dokument anzeigen'
-                      OnClick = vollzwischenbsaveClick
-                    end
-                    inherited flipadress: TNxFlipPanel
-                      Font.Height = -13
-                      FullHeight = 90
-                      inherited Label1: TLabel
-                        Width = 38
-                        Height = 16
-                        ExplicitWidth = 38
-                        ExplicitHeight = 16
-                      end
-                      inherited Label2: TLabel
-                        Width = 20
-                        Height = 16
-                        ExplicitWidth = 20
-                        ExplicitHeight = 16
-                      end
-                      inherited Label3: TLabel
-                        Width = 18
-                        Height = 16
-                        ExplicitWidth = 18
-                        ExplicitHeight = 16
-                      end
-                    end
-                    inherited pinfo: TPanel
-                      inherited labelinfo: TLabel
-                        Width = 99
-                        Height = 16
-                        Font.Height = -13
-                        ExplicitWidth = 99
-                        ExplicitHeight = 16
-                      end
-                    end
-                  end
-                  inherited rightparent: TPanel
+                  inherited rightparent: TPanel [0]
                     Left = 846
                     Width = 838
                     Height = 650
@@ -6403,7 +5371,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollanforderung.panpan
                       Row = 0
                     end
                     item
@@ -6413,52 +5380,7 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited panpan: TPanel
-                    Width = 837
-                    Height = 650
-                    ExplicitWidth = 837
-                    ExplicitHeight = 650
-                    inherited Label45: TLabel
-                      Width = 102
-                      Height = 16
-                      ExplicitWidth = 102
-                      ExplicitHeight = 16
-                    end
-                    inherited Label46: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label47: TLabel
-                      Width = 71
-                      Height = 16
-                      ExplicitWidth = 71
-                      ExplicitHeight = 16
-                    end
-                    inherited Label48: TLabel
-                      Width = 87
-                      Height = 16
-                      ExplicitWidth = 87
-                      ExplicitHeight = 16
-                    end
-                    inherited Label29: TLabel
-                      Width = 42
-                      Height = 16
-                      ExplicitWidth = 42
-                      ExplicitHeight = 16
-                    end
-                    inherited Label5: TLabel
-                      Width = 85
-                      Height = 16
-                      ExplicitWidth = 85
-                      ExplicitHeight = 16
-                    end
-                    inherited bsave: TNxButton
-                      Caption = 'Dokument anzeigen'
-                    end
-                  end
-                  inherited rightparent: TPanel
+                  inherited rightparent: TPanel [0]
                     Left = 847
                     Width = 837
                     Height = 650
@@ -6494,7 +5416,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollrekl.panpan
                       Row = 0
                     end
                     item
@@ -6504,78 +5425,10 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited panpan: TPanel
-                    ExplicitWidth = 837
-                    ExplicitHeight = 650
-                    inherited Label45: TLabel
-                      Width = 102
-                      Height = 16
-                      ExplicitWidth = 102
-                      ExplicitHeight = 16
-                    end
-                    inherited Label46: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label47: TLabel
-                      Width = 71
-                      Height = 16
-                      ExplicitWidth = 71
-                      ExplicitHeight = 16
-                    end
-                    inherited Label48: TLabel
-                      Width = 87
-                      Height = 16
-                      ExplicitWidth = 87
-                      ExplicitHeight = 16
-                    end
-                    inherited Label29: TLabel
-                      Width = 42
-                      Height = 16
-                      ExplicitWidth = 42
-                      ExplicitHeight = 16
-                    end
-                    inherited Label7: TLabel
-                      Width = 96
-                      Height = 16
-                      ExplicitWidth = 96
-                      ExplicitHeight = 16
-                    end
-                    inherited Label34: TLabel
-                      Width = 85
-                      Height = 16
-                      ExplicitWidth = 85
-                      ExplicitHeight = 16
-                    end
-                    inherited Label26: TLabel
-                      Width = 36
-                      Height = 16
-                      ExplicitWidth = 36
-                      ExplicitHeight = 16
-                    end
-                    inherited Label5: TLabel
-                      Width = 85
-                      Height = 16
-                      ExplicitWidth = 85
-                      ExplicitHeight = 16
-                    end
-                    inherited bsave: TNxButton
-                      Caption = 'Dokument anzeigen'
-                      OnClick = vollzwischenbsaveClick
-                    end
-                    inherited pinfo: TPanel
-                      inherited labelinfo: TLabel
-                        Width = 99
-                        Height = 16
-                        Font.Height = -13
-                        ExplicitWidth = 99
-                        ExplicitHeight = 16
-                      end
-                    end
-                  end
-                  inherited rightparent: TPanel
+                  inherited rightparent: TPanel [0]
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6611,7 +5464,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollnutzer.panpan
                       Row = 0
                     end
                     item
@@ -6621,59 +5473,7 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited panpan: TPanel
-                    Width = 837
-                    Height = 650
-                    ExplicitWidth = 837
-                    ExplicitHeight = 650
-                    inherited lfiletype: TLabel
-                      Height = 609
-                    end
-                    inherited Label45: TLabel
-                      Width = 102
-                      Height = 16
-                      ExplicitWidth = 102
-                      ExplicitHeight = 16
-                    end
-                    inherited Label46: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label47: TLabel
-                      Width = 71
-                      Height = 16
-                      ExplicitWidth = 71
-                      ExplicitHeight = 16
-                    end
-                    inherited Label48: TLabel
-                      Width = 87
-                      Height = 16
-                      ExplicitWidth = 87
-                      ExplicitHeight = 16
-                    end
-                    inherited Label29: TLabel
-                      Width = 42
-                      Height = 16
-                      ExplicitWidth = 42
-                      ExplicitHeight = 16
-                    end
-                    inherited bsave: TNxButton
-                      Caption = 'Dokument anzeigen'
-                      OnClick = vollzwischenbsaveClick
-                    end
-                    inherited pinfo: TPanel
-                      inherited labelinfo: TLabel
-                        Width = 99
-                        Height = 16
-                        Font.Height = -13
-                        ExplicitWidth = 99
-                        ExplicitHeight = 16
-                      end
-                    end
-                  end
-                  inherited rightparent: TPanel
+                  inherited rightparent: TPanel [0]
                     Left = 847
                     Width = 837
                     Height = 650
@@ -6711,7 +5511,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollvertrag.panpan
                       Row = 0
                     end
                     item
@@ -6721,62 +5520,7 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited panpan: TPanel
-                    Width = 837
-                    Height = 650
-                    ExplicitWidth = 837
-                    ExplicitHeight = 650
-                    inherited lfiletype: TLabel
-                      Height = 609
-                    end
-                    inherited Label45: TLabel
-                      Width = 102
-                      Height = 16
-                      ExplicitWidth = 102
-                      ExplicitHeight = 16
-                    end
-                    inherited Label46: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label47: TLabel
-                      Width = 71
-                      Height = 16
-                      ExplicitWidth = 71
-                      ExplicitHeight = 16
-                    end
-                    inherited Label48: TLabel
-                      Width = 87
-                      Height = 16
-                      ExplicitWidth = 87
-                      ExplicitHeight = 16
-                    end
-                    inherited Label29: TLabel
-                      Width = 42
-                      Height = 16
-                      ExplicitWidth = 42
-                      ExplicitHeight = 16
-                    end
-                    inherited Label5: TLabel
-                      Width = 85
-                      Height = 16
-                      ExplicitWidth = 85
-                      ExplicitHeight = 16
-                    end
-                    inherited Label1: TLabel
-                      Width = 66
-                      Height = 16
-                      ExplicitWidth = 66
-                      ExplicitHeight = 16
-                    end
-                    inherited bsave: TNxButton
-                      Caption = 'Dokument anzeigen'
-                      OnClick = vollzwischenbsaveClick
-                    end
-                  end
-                  inherited rightparent: TPanel
+                  inherited rightparent: TPanel [0]
                     Left = 847
                     Width = 837
                     Height = 650
@@ -6812,7 +5556,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollsonstige.panpan
                       Row = 0
                     end
                     item
@@ -6822,53 +5565,7 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited panpan: TPanel
-                    Width = 837
-                    Height = 650
-                    ExplicitWidth = 837
-                    ExplicitHeight = 650
-                    inherited Label45: TLabel
-                      Width = 102
-                      Height = 16
-                      ExplicitWidth = 102
-                      ExplicitHeight = 16
-                    end
-                    inherited Label46: TLabel
-                      Width = 69
-                      Height = 16
-                      ExplicitWidth = 69
-                      ExplicitHeight = 16
-                    end
-                    inherited Label47: TLabel
-                      Width = 71
-                      Height = 16
-                      ExplicitWidth = 71
-                      ExplicitHeight = 16
-                    end
-                    inherited Label48: TLabel
-                      Width = 87
-                      Height = 16
-                      ExplicitWidth = 87
-                      ExplicitHeight = 16
-                    end
-                    inherited Label29: TLabel
-                      Width = 42
-                      Height = 16
-                      ExplicitWidth = 42
-                      ExplicitHeight = 16
-                    end
-                    inherited Label5: TLabel
-                      Width = 85
-                      Height = 16
-                      ExplicitWidth = 85
-                      ExplicitHeight = 16
-                    end
-                    inherited bsave: TNxButton
-                      Caption = 'Dokument anzeigen'
-                      OnClick = vollzwischenbsaveClick
-                    end
-                  end
-                  inherited rightparent: TPanel
+                  inherited rightparent: TPanel [0]
                     Left = 847
                     Width = 837
                     Height = 650
@@ -6904,7 +5601,6 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = frameangebot.panpan
                       Row = 0
                     end
                     item
@@ -8117,7 +6813,7 @@
     Left = 728
     Top = 688
     Bitmap = {
-      494C010106007400980110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
+      494C0101060074009C0110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       000000000000000000000000000000000000504E4EFF504E4EFF504E4EFF2928
       2883000000000000000000000000000000000000000000000000000000000000

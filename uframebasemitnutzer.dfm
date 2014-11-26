@@ -1,12 +1,17 @@
 inherited framebasenutzer: Tframebasenutzer
-  Width = 1117
-  Height = 490
+  Width = 1079
+  Height = 615
   inherited gridpanel: TGridPanel
-    Width = 1117
-    Height = 490
+    Width = 1079
+    Height = 615
     inherited Panel5: TPanel
-      Width = 552
-      Height = 482
+      Width = 533
+      Height = 607
+      ExplicitWidth = 533
+      ExplicitHeight = 607
+      inherited lfiletype: TLabel
+        Height = 255
+      end
       inherited Label45: TLabel
         Top = 205
         ExplicitTop = 205
@@ -78,24 +83,14 @@ inherited framebasenutzer: Tframebasenutzer
       end
       inherited UpDown1: TUpDown
         Top = 228
-        TabOrder = 11
+        TabOrder = 10
         ExplicitTop = 228
-      end
-      object upd: TUpDown
-        Left = 391
-        Top = 159
-        Width = 58
-        Height = 25
-        Orientation = udHorizontal
-        TabOrder = 12
-        Visible = False
-        OnClick = updClick
       end
     end
     inherited rightparent: TPanel
-      Left = 562
-      Width = 553
-      Height = 482
+      Left = 543
+      Width = 534
+      Height = 607
     end
   end
 end

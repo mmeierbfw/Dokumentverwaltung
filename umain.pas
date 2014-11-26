@@ -1930,7 +1930,10 @@ end;
 procedure Tformmain.frameangebotUpDown3Click(Sender: TObject;
   Button: TUDBtnType);
 begin
-  frameangebot.updClick(Sender, Button);
+//  frameangebot.updClick(Sender, Button);
+//frameangebot.u
+
+
   Nexit(frameangebot.enutzernummer);
 
 end;
@@ -1951,7 +1954,7 @@ end;
 procedure Tformmain.frameauftragUpDown3Click(Sender: TObject;
   Button: TUDBtnType);
 begin
-  frameauf.updClick(Sender, Button);
+//  frameauf.updClick(Sender, Button);
   Nexit(frameauf.enutzernummer);
 
 end;
@@ -2253,7 +2256,7 @@ end;
 procedure Tformmain.framemontageUpDown3Click(Sender: TObject;
   Button: TUDBtnType);
 begin
-  framemontage.updClick(Sender, Button);
+//  framemontage.updClick(Sender, Button);
   Nexit(framemontage.enutzernummer);
 end;
 
@@ -2304,7 +2307,7 @@ end;
 procedure Tformmain.framesonstigesUpDown3Click(Sender: TObject;
   Button: TUDBtnType);
 begin
-  framesonstiges.updClick(Sender, Button);
+//  framesonstiges.updClick(Sender, Button);
   Nexit(framesonstiges.enutzernummer);
 
 end;
@@ -2335,7 +2338,7 @@ end;
 
 procedure Tformmain.framevertUpDown3Click(Sender: TObject; Button: TUDBtnType);
 begin
-  framevert.updClick(Sender, Button);
+//  framevert.updClick(Sender, Button);
   Nexit(framevert.enutzernummer);
 
 end;
@@ -2489,8 +2492,8 @@ end;
 procedure Tformmain.framezwiUpDown3Click(Sender: TObject; Button: TUDBtnType);
 begin
   if not assigned(framezwi) then exit;
-
-  try framezwi.updClick(Sender, Button);
+                                          try
+//  try framezwi.updClick(Sender, Button);
   except
     on e: Exception do begin
       showmessage(e.Message);
