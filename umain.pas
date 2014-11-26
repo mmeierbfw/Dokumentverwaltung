@@ -267,9 +267,8 @@ type
     Panel7: TPanel;
     NxButton6: TNxButton;
     filtersonstiges: Tframebasefilter;
-    framen: Tframeenergie;
+    // framen: Tframeenergie;
     tabvollvertrag: TNxTabSheet;
-    vollenergie: Tframeenergie;
     NxDBTextColumn58: TNxDBTextColumn;
     vollvertrag: Tframebasenutzer1;
     NxDBTextColumn59: TNxDBTextColumn;
@@ -324,6 +323,8 @@ type
     filterangebot: Tframebasefilter;
     tabvollangebot: TNxTabSheet;
     vollangebot: Tframebasenutzer;
+    framen: Tframeenergie;
+    vollenergie: Tframeenergie;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -708,7 +709,7 @@ var
 
 const
   speicherframes: array [0 .. 9] of string = ('framemontage', 'framezwi',
-    'frameangebot', 'frameauftrag', 'framen', 'framekosten', 'framenutzer',
+    'frameangebot', 'frameauf', 'framen', 'framekosten', 'framenutzer',
     'framereklamation', 'framesonstiges', 'framevert');
   panels: array [0 .. 3] of string = ('pz', 'pk', 'pr', 'pm');
 
@@ -747,9 +748,13 @@ begin
   case acol of
     11: Value := '1';
     8: begin
-        if (gridenergie.GetColumnByFieldName(dokcons.pseudoliegenschaft)
-          .field.AsInteger = 1) then Value := '3'
-        else Value                         := '-1';
+        try
+          if (gridenergie.GetColumnByFieldName(dokcons.pseudoliegenschaft)
+            .field.AsInteger = 1) then Value := '3'
+          else Value                         := '-1';
+        except Value                         := '-1';
+
+        end;
       end;
     13: Value := erledigttext((Sender as TNextDBGrid).CellValue[12, ARow]);
     14: Value := setdateityp((Sender as TNextDBGrid).Cells[2, ARow]);
@@ -1495,6 +1500,8 @@ begin
           voll                           := vollauftrag;
           vollauftrag.enutzernummer.Text := dbgrid.GetColumnByFieldName
             (Nutzernummer).field.AsString;
+          vollauftrag.cbselectauftrag.Text := dbgrid.GetColumnByFieldName
+            (auftragstyp).field.AsString;
         end;
       8: begin
           dbgrid                         := gridangebote;
@@ -1578,7 +1585,7 @@ begin
   filter := filterangebot.getfilter;
   setfilter(formdb.queryangebote, filter);
   filldb(formdb.dsangebote, gridangebote);
-end; 
+end;
 
 procedure Tformmain.filtersonstigeseselaeExit(Sender: TObject);
 begin
@@ -1813,19 +1820,20 @@ begin
 
     pagermain.ActivePage := tabspeichern;
 
-    pagermain.ShowTabs       := false;
-    ptabellen.ShowTabs       := false;
-    pagerspeicher.ShowTabs   := false;
-    pagerspeicher.ActivePage := LEER;
-    pvollbilder.ActivePage   := leer2;
-    pvollbilder.ShowTabs     := false;
+    pagermain.ShowTabs         := false;
+    ptabellen.ShowTabs         := false;
+    pagerspeicher.ShowTabs     := false;
+    pagerspeicher.ActivePage   := LEER;
+    pvollbilder.ActivePage     := leer2;
+    pvollbilder.ShowTabs       := false;
+    framen.flipadress.Expanded := false;
   end;
 end;
 
 // ###############################################
 procedure Tformmain.Neexit(Sender: TObject);
 begin
-  frameauftrag.enutzerexit(Sender);
+  frameauf.enutzerexit(Sender);
 
 end;
 
@@ -1886,9 +1894,9 @@ procedure Tformmain.frameauftragUpDown2Click(Sender: TObject;
   Button: TUDBtnType);
 begin
 
-  if frameauftrag.eliegenschaft.Text = '' then exit;
+  if frameauf.eliegenschaft.Text = '' then exit;
 
-  try frameauftrag.liegenschaftupdown(Sender, Button);
+  try frameauf.liegenschaftupdown(Sender, Button);
   except exit;
 
   end;
@@ -2527,7 +2535,7 @@ end;
 
 function Tformmain.getauftragstyp: string;
 begin
-  Result := frameauftrag.cbselectauftrag.Text;
+  Result := frameauf.cbselectauftrag.Text;
 end;
 
 function Tformmain.getAuszugsdatum: string;
@@ -3746,9 +3754,9 @@ begin
           frameangebot.enutzernummer.clear;
         end;
       Auftragsint: begin
-          frameauftrag.enutzernummer.clear;
-          frameauftrag.cbselectauftrag.ItemIndex := -1;
-          frameauftrag.cbselectauftrag.Text      := 'Auftragstyp';
+          frameauf.enutzernummer.clear;
+          frameauf.cbselectauftrag.ItemIndex := -1;
+          frameauf.cbselectauftrag.Text      := 'Auftragstyp';
         end;
     end;
   end;
@@ -4727,20 +4735,20 @@ var
   item: string;
 begin
   try
-    frameauftrag.eid.SetFocus;
+    frameauf.eid.SetFocus;
 
-    resetdate(frameauftrag.dtposteingang);
-    resetdate(frameauftrag.eposteingang);
+    resetdate(frameauf.dtposteingang);
+    resetdate(frameauf.eposteingang);
   except outputdebugstring('kein Focus');
   end;
   list := TStringList.Create;
   if FileExists(getauftragsdaten('Scannerprogramm')) then
       list.LoadFromFile(getauftragsdaten('Scannerprogramm'));
   try
-    frameauftrag.cbselectauftrag.Items.clear;
+    frameauf.cbselectauftrag.Items.clear;
 
     for item in list do begin
-      frameauftrag.cbselectauftrag.Items.add(item);
+      frameauf.cbselectauftrag.Items.add(item);
     end;
   except
 
