@@ -725,8 +725,8 @@
         Width = 1688
         Height = 742
         ParentCustomHint = False
-        ActivePage = tabanzeige
-        ActivePageIndex = 1
+        ActivePage = tabspeichern
+        ActivePageIndex = 0
         Align = alClient
         Color = clWhite
         ParentColor = False
@@ -765,8 +765,8 @@
               Margins.Top = 4
               Margins.Right = 2
               Margins.Bottom = 4
-              ActivePage = TZwischenablesung
-              ActivePageIndex = 1
+              ActivePage = tauftrag
+              ActivePageIndex = 3
               Align = alClient
               ShowHint = True
               TabOrder = 0
@@ -813,7 +813,7 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framemontage.Panel5
+                        Control = framemontage.panpan
                         Row = 0
                       end
                       item
@@ -823,7 +823,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -911,6 +911,9 @@
                       inherited UpDown2: TUpDown
                         OnClick = framemontageUpDown2Click
                       end
+                      inherited upd: TUpDown
+                        OnClick = framemontageUpDown3Click
+                      end
                     end
                     inherited rightparent: TPanel
                       Height = 653
@@ -958,7 +961,7 @@
                       end
                       item
                         Column = 0
-                        Control = framezwi.Panel5
+                        Control = framezwi.panpan
                         Row = 0
                       end>
                     ExplicitWidth = 1686
@@ -971,7 +974,7 @@
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                     end
-                    inherited Panel5: TPanel [1]
+                    inherited panpan: TPanel [1]
                       Width = 837
                       Height = 653
                       ExplicitWidth = 837
@@ -1069,6 +1072,9 @@
                       inherited UpDown2: TUpDown
                         OnClick = framezwiUpDown2Click
                       end
+                      inherited upd: TUpDown
+                        OnClick = framezwiUpDown3Click
+                      end
                     end
                   end
                 end
@@ -1102,7 +1108,7 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = frameangebot.Panel5
+                        Control = frameangebot.panpan
                         Row = 0
                       end
                       item
@@ -1112,7 +1118,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
                       Width = 837
                       Height = 653
                       ExplicitWidth = 837
@@ -1165,7 +1171,8 @@
                       end
                       inherited bsave: TNxButton
                         TabOrder = 6
-                        OnClick = ButtonSave
+                        OnClick = vollzwischenbsaveClick
+                        OnDblClick = ButtonSave
                       end
                       inherited enutzernummer: TfEdit
                         TabOrder = 3
@@ -1215,7 +1222,7 @@
                 OnShow = tauftragShow
                 ExplicitTop = 0
                 ExplicitHeight = 662
-                inline frameauftrag: Tframeauftrag
+                inline frameauf: Tframeauftrag
                   Left = 0
                   Top = 0
                   Width = 1686
@@ -1230,22 +1237,19 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = frameauftrag.Panel5
+                        Control = frameauf.panpan
                         Row = 0
                       end
                       item
                         Column = 1
-                        Control = frameauftrag.rightparent
+                        Control = frameauf.rightparent
                         Row = 0
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
                       ExplicitWidth = 837
                       ExplicitHeight = 653
-                      inherited lfiletype: TLabel
-                        Height = 612
-                      end
                       inherited Label45: TLabel
                         Width = 102
                         Height = 16
@@ -1351,6 +1355,9 @@
                       inherited UpDown2: TUpDown
                         OnClick = frameauftragUpDown2Click
                       end
+                      inherited upd: TUpDown
+                        OnClick = frameauftragUpDown3Click
+                      end
                     end
                     inherited rightparent: TPanel
                       ExplicitLeft = 847
@@ -1390,7 +1397,7 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framen.Panel5
+                        Control = framen.panpan
                         Row = 0
                       end
                       item
@@ -1400,7 +1407,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
                       Width = 837
                       Height = 653
                       ExplicitWidth = 837
@@ -1527,7 +1534,7 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framekosten.Panel5
+                        Control = framekosten.panpan
                         Row = 0
                       end
                       item
@@ -1537,7 +1544,8 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1594,6 +1602,8 @@
                       end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -1631,7 +1641,7 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framenutzer.Panel5
+                        Control = framenutzer.panpan
                         Row = 0
                       end
                       item
@@ -1641,7 +1651,8 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1702,6 +1713,8 @@
                       end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -1739,7 +1752,7 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framereklamation.Panel5
+                        Control = framereklamation.panpan
                         Row = 0
                       end
                       item
@@ -1749,7 +1762,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -2007,7 +2020,7 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framesonstiges.Panel5
+                        Control = framesonstiges.panpan
                         Row = 0
                       end
                       item
@@ -2017,7 +2030,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
                       Width = 837
                       Height = 653
                       ExplicitWidth = 837
@@ -2134,7 +2147,7 @@
                     ControlCollection = <
                       item
                         Column = 0
-                        Control = framevert.Panel5
+                        Control = framevert.panpan
                         Row = 0
                       end
                       item
@@ -2144,7 +2157,7 @@
                       end>
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
-                    inherited Panel5: TPanel
+                    inherited panpan: TPanel
                       Width = 837
                       Height = 653
                       ExplicitWidth = 837
@@ -2205,6 +2218,9 @@
                       end
                       inherited UpDown2: TUpDown
                         OnClick = framevertUpDown2Click
+                      end
+                      inherited upd: TUpDown
+                        OnClick = framevertUpDown3Click
                       end
                     end
                     inherited rightparent: TPanel
@@ -2362,10 +2378,11 @@
             Top = 0
             Width = 1686
             Height = 720
-            ActivePage = tabvertrag
-            ActivePageIndex = 6
+            ActivePage = tabnutzerlisten
+            ActivePageIndex = 2
             Align = alClient
             TabOrder = 0
+            OnExit = ptabellenExit
             Margin = 0
             Options = [pgBoldActiveTab]
             Spacing = 0
@@ -2425,7 +2442,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 65
+                    DefaultWidth = 60
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2444,7 +2461,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 64
+                    Width = 59
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
@@ -2506,7 +2523,7 @@
                     Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
-                    Position = 5
+                    Position = 15
                     SortType = stAlphabetic
                     Visible = False
                     Width = 8
@@ -2534,29 +2551,6 @@
                     Width = 149
                     FieldName = 'Posteingang'
                   end
-                  object zwiimage: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 143
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Dokument anzeigen'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Header.HideArrow = False
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                    ParentFont = False
-                    Position = 10
-                    SortType = stNumeric
-                    Width = 143
-                    Images = ImageList1
-                    Transparent = True
-                  end
                   object zwiabrechnungsende: TNxDBTextColumn
                     DefaultWidth = 125
                     Font.Charset = DEFAULT_CHARSET
@@ -2573,7 +2567,7 @@
                     Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
-                    Position = 6
+                    Position = 5
                     SortType = stDate
                     Width = 125
                     FieldName = 'Abrechnungsende'
@@ -2614,7 +2608,7 @@
                     Header.Font.Style = []
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
-                    Position = 8
+                    Position = 7
                     SortType = stAlphabetic
                     Width = 149
                     WrapKind = wkNone
@@ -2635,35 +2629,10 @@
                     Header.Font.Style = []
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
-                    Position = 9
+                    Position = 8
                     SortType = stAlphabetic
                     Width = 150
                     FieldName = 'ablesedatum'
-                  end
-                  object zwivollbild: TNxDBImageColumn
-                    DefaultValue = '1'
-                    DefaultWidth = 211
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Einzelbildanzeige'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Header.HideArrow = False
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                    ParentFont = False
-                    ParentCellColor = True
-                    Position = 11
-                    SortType = stNumeric
-                    Width = 211
-                    OnSetCell = zwivollbildSetCell
-                    Images = ImageList1
-                    Transparent = True
                   end
                   object zwinotizen: TNxDBMemoColumn
                     DefaultWidth = 114
@@ -2680,7 +2649,7 @@
                     Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
-                    Position = 7
+                    Position = 6
                     SortType = stAlphabetic
                     Visible = False
                     Width = 114
@@ -2700,7 +2669,7 @@
                     Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
-                    Position = 12
+                    Position = 9
                     SortType = stAlphabetic
                     Visible = False
                     FieldName = 'Ablesedatum'
@@ -2718,7 +2687,7 @@
                     Header.Font.Style = []
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
-                    Position = 13
+                    Position = 10
                     SortType = stAlphabetic
                     Visible = False
                     FieldName = 'erledigt'
@@ -2738,13 +2707,13 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 14
+                    Position = 11
                     SortType = stAlphabetic
                     Width = 100
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn33: TNxDBTextColumn
-                    DefaultWidth = 200
+                    DefaultWidth = 203
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2758,10 +2727,58 @@
                     Header.Font.Style = []
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
-                    Position = 15
+                    Position = 12
                     SortType = stAlphabetic
-                    Width = 201
+                    Width = 203
                     FieldName = 'typ'
+                  end
+                  object zwivollbild: TNxDBImageColumn
+                    DefaultValue = '1'
+                    DefaultWidth = 211
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    ParentCellColor = True
+                    Position = 13
+                    SortType = stNumeric
+                    Width = 211
+                    OnSetCell = zwivollbildSetCell
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object zwiimage: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 145
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 14
+                    SortType = stNumeric
+                    Width = 146
+                    Images = ImageList1
+                    Transparent = True
                   end
                 end
                 object Panel1: TPanel
@@ -2865,7 +2882,6 @@
                   SequencedScroll = True
                   object mondokid: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2885,12 +2901,10 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 150
                     FieldName = 'ablagenr'
                   end
                   object monliegenschaft: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2907,12 +2921,11 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 150
                     FieldName = 'Liegenschaft'
                   end
                   object monnutzernummer: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
+                    DefaultWidth = 90
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2929,12 +2942,12 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 90
                     FieldName = 'Nutzernummer'
                   end
                   object mondatei: TNxDBMemoColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2950,12 +2963,12 @@
                     Position = 4
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 150
+                    Width = 120
                     FieldName = 'Dateiname'
                   end
                   object monposteingang: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2972,12 +2985,12 @@
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 120
                     FieldName = 'Posteingang'
                   end
                   object monabrechnungsende: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2994,11 +3007,11 @@
                     ParentFont = False
                     Position = 5
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 120
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn22: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3014,12 +3027,12 @@
                     ParentFont = False
                     Position = 6
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 120
                     FieldName = 'auftragsnr'
                   end
                   object NxDBTextColumn13: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3035,53 +3048,11 @@
                     ParentFont = False
                     Position = 7
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 120
                     FieldName = 'Einbaudatum'
                   end
-                  object monimage: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 150
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Dokument anzeigen'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    ParentFont = False
-                    Position = 8
-                    SortType = stNumeric
-                    Width = 150
-                    Images = ImageList1
-                    Transparent = True
-                  end
-                  object NxDBImageColumn3: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 150
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Einzelbildanzeige'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    ParentFont = False
-                    Position = 9
-                    SortType = stNumeric
-                    Width = 150
-                    Images = ImageList1
-                    Transparent = True
-                  end
                   object NxDBTextColumn14: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3095,14 +3066,14 @@
                     Header.HideArrow = False
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 10
+                    Position = 8
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 150
+                    Width = 120
                     FieldName = 'erledigt'
                   end
                   object NxDBMemoColumn3: TNxDBMemoColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3115,14 +3086,14 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 11
+                    Position = 9
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 150
+                    Width = 120
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn25: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3135,33 +3106,14 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 12
+                    Position = 10
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 150
+                    Width = 120
                     FieldName = 'erledigt'
                   end
-                  object NxDBTextColumn26: TNxDBTextColumn
-                    DefaultWidth = 150
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Erledigt'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 13
-                    SortType = stAlphabetic
-                    Width = 150
-                  end
                   object NxDBTextColumn34: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 90
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3175,9 +3127,70 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 14
+                    Position = 11
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 90
+                  end
+                  object NxDBTextColumn26: TNxDBTextColumn
+                    DefaultWidth = 120
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 12
+                    SortType = stAlphabetic
+                    Width = 120
+                  end
+                  object NxDBImageColumn3: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 120
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    ParentFont = False
+                    Position = 13
+                    SortType = stNumeric
+                    Width = 120
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object monimage: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 120
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    ParentFont = False
+                    Position = 14
+                    SortType = stNumeric
+                    Width = 120
+                    Images = ImageList1
+                    Transparent = True
                   end
                 end
                 object Panel2: TPanel
@@ -3272,7 +3285,7 @@
                   Options = [goHeader, goSelectFullRow]
                   TabOrder = 0
                   TabStop = True
-                  OnApplyCell = gridnutzerlisteApplyCell
+                  OnApplyCell = gridzwiApplyCell
                   OnCellClick = gridzwiCellClick
                   OnCellColoring = gridzwiCellColoring
                   OnCellDblClick = gridzwiCellDblClick
@@ -3405,48 +3418,6 @@
                     Width = 140
                     FieldName = 'Notizen'
                   end
-                  object nutimage: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 200
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Dokument anzeigen'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    ParentFont = False
-                    Position = 6
-                    SortType = stNumeric
-                    Width = 200
-                    Images = ImageList1
-                    Transparent = True
-                  end
-                  object NxDBImageColumn6: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 200
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Einzelbildanzeige'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    ParentFont = False
-                    Position = 7
-                    SortType = stNumeric
-                    Width = 200
-                    Images = ImageList1
-                    Transparent = True
-                  end
                   object NxDBTextColumn27: TNxDBTextColumn
                     DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
@@ -3461,30 +3432,11 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 8
+                    Position = 6
                     SortType = stAlphabetic
                     Visible = False
                     Width = 140
                     FieldName = 'erledigt'
-                  end
-                  object NxDBTextColumn28: TNxDBTextColumn
-                    DefaultWidth = 200
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Erledigt'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 9
-                    SortType = stAlphabetic
-                    Width = 200
                   end
                   object NxDBTextColumn35: TNxDBTextColumn
                     DefaultWidth = 200
@@ -3501,9 +3453,70 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 10
+                    Position = 7
                     SortType = stAlphabetic
                     Width = 200
+                  end
+                  object NxDBTextColumn28: TNxDBTextColumn
+                    DefaultWidth = 200
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 8
+                    SortType = stAlphabetic
+                    Width = 200
+                  end
+                  object NxDBImageColumn6: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 200
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    ParentFont = False
+                    Position = 9
+                    SortType = stNumeric
+                    Width = 200
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object nutimage: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 200
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    ParentFont = False
+                    Position = 10
+                    SortType = stNumeric
+                    Width = 200
+                    Images = ImageList1
+                    Transparent = True
                   end
                 end
                 object Panel3: TPanel
@@ -3604,7 +3617,7 @@
                   OnCellDblClick = gridzwiCellDblClick
                   OnSortColumn = gridzwiSortColumn
                   object NxDBTextColumn1: TNxDBTextColumn
-                    DefaultWidth = 101
+                    DefaultWidth = 96
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3625,7 +3638,7 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 100
+                    Width = 95
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn2: TNxDBTextColumn
@@ -3819,52 +3832,6 @@
                     Width = 8
                     FieldName = 'Notizen'
                   end
-                  object NxDBImageColumn1: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 240
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Dokument anzeigen'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 10
-                    SortType = stNumeric
-                    Width = 240
-                    Images = ImageList1
-                    Transparent = True
-                  end
-                  object NxDBImageColumn5: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 270
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Einzelbildanzeige'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 11
-                    SortType = stNumeric
-                    Width = 271
-                    Images = ImageList1
-                    Transparent = True
-                  end
                   object NxDBTextColumn29: TNxDBTextColumn
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
@@ -3878,27 +3845,10 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 12
+                    Position = 10
                     SortType = stAlphabetic
                     Visible = False
                     FieldName = 'erledigt'
-                  end
-                  object NxDBTextColumn30: TNxDBTextColumn
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Erledigt'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 13
-                    SortType = stAlphabetic
                   end
                   object NxDBTextColumn36: TNxDBTextColumn
                     Font.Charset = DEFAULT_CHARSET
@@ -3914,11 +3864,74 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 14
+                    Position = 11
                     SortType = stAlphabetic
                   end
+                  object NxDBTextColumn30: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 12
+                    SortType = stAlphabetic
+                  end
+                  object NxDBImageColumn5: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 273
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 13
+                    SortType = stNumeric
+                    Width = 273
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object NxDBImageColumn1: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 242
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Header.MultiLine = True
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 14
+                    SortType = stNumeric
+                    Width = 243
+                    Images = ImageList1
+                    Transparent = True
+                  end
                 end
-                object Panel5: TPanel
+                object panel99: TPanel
                   Left = 0
                   Top = 0
                   Width = 1686
@@ -4017,7 +4030,7 @@
                   OnSortColumn = gridzwiSortColumn
                   SequencedScroll = True
                   object NxDBTextColumn3: TNxDBTextColumn
-                    DefaultWidth = 116
+                    DefaultWidth = 111
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4037,7 +4050,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 115
+                    Width = 110
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
@@ -4221,51 +4234,6 @@
                     Visible = False
                     FieldName = 'dateiname'
                   end
-                  object NxDBImageColumn2: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 162
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Dokument anzeigen'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 10
-                    SortType = stNumeric
-                    Width = 162
-                    Images = ImageList1
-                    Transparent = True
-                  end
-                  object NxDBImageColumn4: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 199
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Einzelbildanzeige'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    InplaceEdit = frameauftrag.cbselectauftrag
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 11
-                    SortType = stNumeric
-                    Width = 200
-                    Images = ImageList1
-                    Transparent = True
-                  end
                   object NxDBImageColumn7: TNxDBImageColumn
                     DefaultValue = '0'
                     Font.Charset = DEFAULT_CHARSET
@@ -4280,27 +4248,10 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     ParentFont = False
-                    Position = 12
+                    Position = 10
                     SortType = stNumeric
                     Images = ImageList1
                     Transparent = True
-                  end
-                  object NxDBTextColumn31: TNxDBTextColumn
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Erledigt'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 13
-                    SortType = stAlphabetic
                   end
                   object NxDBTextColumn37: TNxDBTextColumn
                     Font.Charset = DEFAULT_CHARSET
@@ -4316,8 +4267,70 @@
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 14
+                    Position = 11
                     SortType = stAlphabetic
+                  end
+                  object NxDBTextColumn31: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 12
+                    SortType = stAlphabetic
+                  end
+                  object NxDBImageColumn4: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 202
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    InplaceEdit = frameauf.cbselectauftrag
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 13
+                    SortType = stNumeric
+                    Width = 202
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object NxDBImageColumn2: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 164
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 14
+                    SortType = stNumeric
+                    Width = 165
+                    Images = ImageList1
+                    Transparent = True
                   end
                 end
                 object Panel6: TPanel
@@ -4384,9 +4397,1555 @@
                 end
               end
             end
+            object tabvertrag: TNxTabSheet
+              Caption = 'Vertr'#228'ge'
+              PageIndex = 5
+              ParentTabFont = False
+              TabFont.Charset = DEFAULT_CHARSET
+              TabFont.Color = 6908265
+              TabFont.Height = -13
+              TabFont.Name = 'Tahoma'
+              TabFont.Style = []
+              OnShow = tabvertragShow
+              object NxPanel6: TNxPanel
+                Left = 0
+                Top = 0
+                Width = 1686
+                Height = 699
+                Align = alClient
+                Caption = 'NxPanel6'
+                UseDockManager = False
+                TabOrder = 0
+                object gridverträge: TNextDBGrid
+                  Left = 0
+                  Top = 113
+                  Width = 1686
+                  Height = 586
+                  Align = alClient
+                  AutoScroll = True
+                  BiDiMode = bdLeftToRight
+                  Caption = ''
+                  HeaderSize = 23
+                  InactiveSelectionColor = 4227200
+                  InputSize = 23
+                  Options = [goHeader, goSelectFullRow]
+                  RowSize = 23
+                  ParentBiDiMode = False
+                  SlideSize = 30
+                  TabOrder = 0
+                  TabStop = True
+                  OnApplyCell = gridzwiApplyCell
+                  OnCellClick = gridzwiCellClick
+                  OnCellColoring = gridzwiCellColoring
+                  OnCellDblClick = gridzwiCellDblClick
+                  OnClick = gridzwiClick
+                  OnCustomDrawCell = gridzwiCustomDrawCell
+                  OnHorizontalScroll = gridzwiHorizontalScroll
+                  OnSortColumn = gridzwiSortColumn
+                  OnVerticalScroll = gridzwiVerticalScroll
+                  DataAwareOptions = [doAddColumns, doSetColumnWidth]
+                  SequencedScroll = True
+                  OnCellFormating = gridzwiCellFormating
+                  object NxDBTextColumn10: TNxDBTextColumn
+                    AutoEdit = True
+                    DefaultWidth = 0
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Ablagenr'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    MinWidth = 0
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 0
+                    SortType = stNumeric
+                    Width = 0
+                    FieldName = 'ablagenr'
+                    AutoExecute = True
+                  end
+                  object NxDBTextColumn38: TNxDBTextColumn
+                    DefaultWidth = 234
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Liegenschaft'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 1
+                    SortType = stAlphabetic
+                    Width = 233
+                    FieldName = 'Liegenschaft'
+                  end
+                  object NxDBMemoColumn2: TNxDBMemoColumn
+                    DefaultWidth = 8
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dateiname'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 3
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 8
+                    FieldName = 'Dateiname'
+                  end
+                  object NxDBTextColumn40: TNxDBTextColumn
+                    DefaultWidth = 237
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Posteingang'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 2
+                    Sorted = True
+                    SortType = stDate
+                    Width = 237
+                    FieldName = 'Posteingang'
+                  end
+                  object NxDBTextColumn41: TNxDBTextColumn
+                    DefaultWidth = 238
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Abrechnungsende'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 5
+                    SortType = stDate
+                    Width = 238
+                    FieldName = 'Abrechnungsende'
+                  end
+                  object NxDBTextColumn43: TNxDBTextColumn
+                    DefaultWidth = 158
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Vertragsende'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 6
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 158
+                    WrapKind = wkNone
+                    FieldName = 'vertragsende'
+                  end
+                  object NxDBMemoColumn8: TNxDBMemoColumn
+                    DefaultWidth = 114
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 4
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 114
+                    FieldName = 'Notizen'
+                  end
+                  object NxDBTextColumn45: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 7
+                    SortType = stAlphabetic
+                    Visible = False
+                    FieldName = 'Ablesedatum'
+                  end
+                  object NxDBTextColumn46: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 8
+                    SortType = stAlphabetic
+                    Visible = False
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBTextColumn39: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 9
+                    SortType = stAlphabetic
+                    FieldName = 'nutzernummer'
+                  end
+                  object NxDBTextColumn42: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 10
+                    SortType = stAlphabetic
+                    FieldName = 'vertragstyp'
+                  end
+                  object NxDBTextColumn48: TNxDBTextColumn
+                    DefaultWidth = 238
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokumenttyp'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 11
+                    SortType = stAlphabetic
+                    Width = 238
+                    FieldName = 'typ'
+                  end
+                  object NxDBTextColumn47: TNxDBTextColumn
+                    DefaultWidth = 100
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 12
+                    SortType = stAlphabetic
+                    Width = 100
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBImageColumn9: TNxDBImageColumn
+                    DefaultValue = '1'
+                    DefaultWidth = 237
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    ParentCellColor = True
+                    Position = 13
+                    SortType = stNumeric
+                    Width = 237
+                    OnSetCell = zwivollbildSetCell
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object NxDBImageColumn8: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 240
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 14
+                    SortType = stNumeric
+                    Width = 241
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                end
+                inline filtervertrag: Tframebasefilter
+                  Left = 0
+                  Top = 23
+                  Width = 1686
+                  Height = 90
+                  Align = alTop
+                  AutoSize = True
+                  TabOrder = 1
+                  ExplicitTop = 23
+                  ExplicitWidth = 1686
+                  inherited flipwerte: TNxFlipPanel
+                    Width = 1689
+                    ExplicitWidth = 1689
+                    FullHeight = 90
+                    inherited esellg: TfEdit
+                      OnExit = Tframebasefilter1esellgExit
+                    end
+                    inherited eselsb: TfEdit
+                      OnExit = filtervertrageselsbExit
+                    end
+                    inherited eselae: TfEdit
+                      OnExit = filtervertrageselaeExit
+                    end
+                    inherited eseldi: TfEdit
+                      OnExit = filtervertrageseldiExit
+                    end
+                    inherited eselpe: TfEdit
+                      OnExit = filtervertrageselpeExit
+                    end
+                  end
+                end
+                object Panel7: TPanel
+                  Left = 0
+                  Top = 0
+                  Width = 1686
+                  Height = 23
+                  Align = alTop
+                  Color = clWhite
+                  ParentBackground = False
+                  TabOrder = 2
+                  object NxButton6: TNxButton
+                    Left = 1
+                    Top = 1
+                    Width = 138
+                    Height = 21
+                    Align = alLeft
+                    Caption = 'Anzeige verlassen'
+                    TabOrder = 0
+                    OnClick = banzeigeverlassen
+                  end
+                end
+              end
+            end
+            object tabAuftragsAnforderung: TNxTabSheet
+              Caption = 'Auftragsanforderungen'
+              PageIndex = 6
+              ParentTabFont = False
+              TabFont.Charset = DEFAULT_CHARSET
+              TabFont.Color = 6908265
+              TabFont.Height = -13
+              TabFont.Name = 'Tahoma'
+              TabFont.Style = []
+              OnShow = tabAuftragsAnforderungShow
+              object NxPanel7: TNxPanel
+                Left = 0
+                Top = 0
+                Width = 1686
+                Height = 699
+                Align = alClient
+                Caption = 'NxPanel7'
+                UseDockManager = False
+                TabOrder = 0
+                object gridanforderungen: TNextDBGrid
+                  Left = 0
+                  Top = 113
+                  Width = 1686
+                  Height = 586
+                  Align = alClient
+                  AutoScroll = True
+                  BiDiMode = bdLeftToRight
+                  Caption = ''
+                  HeaderSize = 23
+                  InactiveSelectionColor = 4227200
+                  InputSize = 23
+                  Options = [goHeader, goSelectFullRow]
+                  RowSize = 23
+                  ParentBiDiMode = False
+                  SlideSize = 30
+                  TabOrder = 0
+                  TabStop = True
+                  OnApplyCell = gridzwiApplyCell
+                  OnCellClick = gridzwiCellClick
+                  OnCellColoring = gridzwiCellColoring
+                  OnCellDblClick = gridzwiCellDblClick
+                  OnClick = gridzwiClick
+                  OnCustomDrawCell = gridzwiCustomDrawCell
+                  OnHorizontalScroll = gridzwiHorizontalScroll
+                  OnSortColumn = gridzwiSortColumn
+                  OnVerticalScroll = gridzwiVerticalScroll
+                  DataAwareOptions = [doAddColumns, doSetColumnWidth]
+                  SequencedScroll = True
+                  OnCellFormating = gridzwiCellFormating
+                  object NxDBTextColumn49: TNxDBTextColumn
+                    AutoEdit = True
+                    DefaultWidth = 75
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Ablagenr'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    MinWidth = 0
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 0
+                    SortType = stNumeric
+                    Width = 74
+                    FieldName = 'ablagenr'
+                    AutoExecute = True
+                  end
+                  object NxDBTextColumn50: TNxDBTextColumn
+                    DefaultWidth = 185
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Liegenschaft'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 1
+                    SortType = stAlphabetic
+                    Width = 185
+                    FieldName = 'Liegenschaft'
+                  end
+                  object NxDBTextColumn59: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 2
+                    SortType = stAlphabetic
+                    FieldName = 'nutzernummer'
+                  end
+                  object NxDBMemoColumn9: TNxDBMemoColumn
+                    DefaultWidth = 8
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dateiname'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 4
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 8
+                    FieldName = 'Dateiname'
+                  end
+                  object NxDBTextColumn51: TNxDBTextColumn
+                    DefaultWidth = 188
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Posteingang'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 3
+                    Sorted = True
+                    SortType = stDate
+                    Width = 188
+                    FieldName = 'Posteingang'
+                  end
+                  object NxDBTextColumn52: TNxDBTextColumn
+                    DefaultWidth = 159
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Abrechnungsende'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 5
+                    SortType = stDate
+                    Width = 159
+                    FieldName = 'Abrechnungsende'
+                  end
+                  object NxDBTextColumn54: TNxDBTextColumn
+                    DefaultWidth = 190
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Ablesedatum'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 7
+                    SortType = stAlphabetic
+                    Width = 190
+                    FieldName = 'ablesedatum'
+                  end
+                  object NxDBMemoColumn10: TNxDBMemoColumn
+                    DefaultWidth = 114
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 6
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 114
+                    FieldName = 'Notizen'
+                  end
+                  object NxDBTextColumn56: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 8
+                    SortType = stAlphabetic
+                    Visible = False
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBTextColumn58: TNxDBTextColumn
+                    DefaultWidth = 258
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokumenttyp'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 9
+                    SortType = stAlphabetic
+                    Width = 258
+                    FieldName = 'typ'
+                  end
+                  object NxDBTextColumn57: TNxDBTextColumn
+                    DefaultWidth = 100
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 10
+                    SortType = stAlphabetic
+                    Width = 100
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBImageColumn11: TNxDBImageColumn
+                    DefaultValue = '1'
+                    DefaultWidth = 269
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    ParentCellColor = True
+                    Position = 11
+                    SortType = stNumeric
+                    Width = 269
+                    OnSetCell = zwivollbildSetCell
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object NxDBImageColumn10: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 180
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 12
+                    SortType = stNumeric
+                    Width = 181
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                end
+                object Panel8: TPanel
+                  Left = 0
+                  Top = 0
+                  Width = 1686
+                  Height = 23
+                  Align = alTop
+                  Color = clWhite
+                  ParentBackground = False
+                  TabOrder = 1
+                  object NxButton7: TNxButton
+                    Left = 1
+                    Top = 1
+                    Width = 138
+                    Height = 21
+                    Align = alLeft
+                    Caption = 'Anzeige verlassen'
+                    TabOrder = 0
+                    OnClick = banzeigeverlassen
+                  end
+                end
+                inline filterauftrag: Tframebasefilter
+                  Left = 0
+                  Top = 23
+                  Width = 1686
+                  Height = 90
+                  Align = alTop
+                  AutoSize = True
+                  TabOrder = 2
+                  ExplicitTop = 23
+                  ExplicitWidth = 1686
+                  inherited flipwerte: TNxFlipPanel
+                    Width = 1689
+                    ExplicitWidth = 1689
+                    FullHeight = 90
+                    inherited esellg: TfEdit
+                      OnExit = filterauftragesellgExit
+                    end
+                    inherited eselsb: TfEdit
+                      OnExit = filterauftrageselsbExit
+                    end
+                    inherited eselae: TfEdit
+                      OnExit = filterauftrageselaeExit
+                    end
+                    inherited eseldi: TfEdit
+                      OnExit = filterauftrageseldiExit
+                    end
+                    inherited eselpe: TfEdit
+                      OnExit = filterauftrageselpeExit
+                    end
+                  end
+                end
+              end
+            end
+            object tabsonstige: TNxTabSheet
+              Caption = 'Sonstiges'
+              PageIndex = 7
+              ParentTabFont = False
+              TabFont.Charset = DEFAULT_CHARSET
+              TabFont.Color = 6908265
+              TabFont.Height = -13
+              TabFont.Name = 'Tahoma'
+              TabFont.Style = []
+              OnShow = tabsonstigeShow
+              object NxPanel9: TNxPanel
+                Left = 0
+                Top = 0
+                Width = 1686
+                Height = 699
+                Align = alClient
+                Caption = 'NxPanel9'
+                UseDockManager = False
+                TabOrder = 0
+                object gridsonstige: TNextDBGrid
+                  Left = 0
+                  Top = 113
+                  Width = 1686
+                  Height = 586
+                  Align = alClient
+                  AutoScroll = True
+                  BiDiMode = bdLeftToRight
+                  Caption = ''
+                  HeaderSize = 23
+                  InactiveSelectionColor = 4227200
+                  InputSize = 23
+                  Options = [goHeader, goSelectFullRow]
+                  RowSize = 23
+                  ParentBiDiMode = False
+                  SlideSize = 30
+                  TabOrder = 0
+                  TabStop = True
+                  OnApplyCell = gridzwiApplyCell
+                  OnCellClick = gridzwiCellClick
+                  OnCellColoring = gridzwiCellColoring
+                  OnCellDblClick = gridzwiCellDblClick
+                  OnClick = gridzwiClick
+                  OnCustomDrawCell = gridzwiCustomDrawCell
+                  OnHorizontalScroll = gridzwiHorizontalScroll
+                  OnSortColumn = gridzwiSortColumn
+                  OnVerticalScroll = gridzwiVerticalScroll
+                  DataAwareOptions = [doAddColumns, doSetColumnWidth]
+                  SequencedScroll = True
+                  OnCellFormating = gridzwiCellFormating
+                  object NxDBTextColumn65: TNxDBTextColumn
+                    AutoEdit = True
+                    DefaultWidth = 81
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Ablagenr'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    MinWidth = 0
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 0
+                    SortType = stNumeric
+                    Width = 79
+                    FieldName = 'ablagenr'
+                    AutoExecute = True
+                  end
+                  object NxDBTextColumn66: TNxDBTextColumn
+                    DefaultWidth = 201
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Liegenschaft'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 1
+                    SortType = stAlphabetic
+                    Width = 201
+                    FieldName = 'Liegenschaft'
+                  end
+                  object NxDBTextColumn67: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 2
+                    SortType = stAlphabetic
+                    FieldName = 'nutzernummer'
+                  end
+                  object NxDBMemoColumn13: TNxDBMemoColumn
+                    DefaultWidth = 8
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dateiname'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 4
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 8
+                    FieldName = 'Dateiname'
+                  end
+                  object NxDBTextColumn68: TNxDBTextColumn
+                    DefaultWidth = 204
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Posteingang'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 3
+                    Sorted = True
+                    SortType = stDate
+                    Width = 204
+                    FieldName = 'Posteingang'
+                  end
+                  object NxDBTextColumn69: TNxDBTextColumn
+                    DefaultWidth = 172
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Abrechnungsende'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 5
+                    SortType = stDate
+                    Width = 172
+                    FieldName = 'Abrechnungsende'
+                  end
+                  object NxDBMemoColumn14: TNxDBMemoColumn
+                    DefaultWidth = 114
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 6
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 114
+                    FieldName = 'Notizen'
+                  end
+                  object NxDBTextColumn71: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 7
+                    SortType = stAlphabetic
+                    Visible = False
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBTextColumn74: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 8
+                    SortType = stAlphabetic
+                    FieldName = 'nutzernummer'
+                  end
+                  object NxDBTextColumn73: TNxDBTextColumn
+                    DefaultWidth = 281
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokumenttyp'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 9
+                    SortType = stAlphabetic
+                    Width = 281
+                    FieldName = 'typ'
+                  end
+                  object NxDBTextColumn72: TNxDBTextColumn
+                    DefaultWidth = 100
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 10
+                    SortType = stAlphabetic
+                    Width = 100
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBImageColumn15: TNxDBImageColumn
+                    DefaultValue = '1'
+                    DefaultWidth = 292
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    ParentCellColor = True
+                    Position = 11
+                    SortType = stNumeric
+                    Width = 292
+                    OnSetCell = zwivollbildSetCell
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object NxDBImageColumn14: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 194
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 12
+                    SortType = stNumeric
+                    Width = 195
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                end
+                inline filtersonst: Tframebasefilter
+                  Left = 0
+                  Top = 23
+                  Width = 1686
+                  Height = 90
+                  Align = alTop
+                  AutoSize = True
+                  TabOrder = 1
+                  ExplicitTop = 23
+                  ExplicitWidth = 1686
+                  inherited flipwerte: TNxFlipPanel
+                    Width = 1681
+                    ExplicitWidth = 1681
+                    FullHeight = 90
+                    inherited esellg: TfEdit
+                      OnExit = filtersonstesellgExit
+                    end
+                    inherited eselsb: TfEdit
+                      OnExit = filtersonsteselsbExit
+                    end
+                    inherited eselae: TfEdit
+                      OnExit = filtersonsteselaeExit
+                    end
+                    inherited eseldi: TfEdit
+                      OnExit = filtersonsteseldiExit
+                    end
+                    inherited eselpe: TfEdit
+                      OnExit = filtersonsteselpeExit
+                    end
+                  end
+                end
+                object Panel11: TPanel
+                  Left = 0
+                  Top = 0
+                  Width = 1686
+                  Height = 23
+                  Align = alTop
+                  Color = clWhite
+                  ParentBackground = False
+                  TabOrder = 2
+                  object NxButton9: TNxButton
+                    Left = 1
+                    Top = 1
+                    Width = 138
+                    Height = 21
+                    Align = alLeft
+                    Caption = 'Anzeige verlassen'
+                    TabOrder = 0
+                    OnClick = banzeigeverlassen
+                  end
+                end
+              end
+            end
+            object tabangebotsanftrage: TNxTabSheet
+              Caption = 'Angebotsanfragen'
+              PageIndex = 8
+              ParentTabFont = False
+              TabFont.Charset = DEFAULT_CHARSET
+              TabFont.Color = 6908265
+              TabFont.Height = -13
+              TabFont.Name = 'Tahoma'
+              TabFont.Style = []
+              object NxPanel8: TNxPanel
+                Left = 0
+                Top = 0
+                Width = 1686
+                Height = 699
+                Align = alClient
+                Caption = 'NxPanel8'
+                UseDockManager = False
+                TabOrder = 0
+                object gridangebot: TNextDBGrid
+                  Left = 0
+                  Top = 113
+                  Width = 1686
+                  Height = 586
+                  Align = alClient
+                  AutoScroll = True
+                  BiDiMode = bdLeftToRight
+                  Caption = ''
+                  HeaderSize = 23
+                  InactiveSelectionColor = 4227200
+                  InputSize = 23
+                  Options = [goHeader, goSelectFullRow]
+                  RowSize = 23
+                  ParentBiDiMode = False
+                  SlideSize = 30
+                  TabOrder = 0
+                  TabStop = True
+                  OnApplyCell = gridzwiApplyCell
+                  OnCellClick = gridzwiCellClick
+                  OnCellColoring = gridzwiCellColoring
+                  OnCellDblClick = gridzwiCellDblClick
+                  OnClick = gridzwiClick
+                  OnCustomDrawCell = gridzwiCustomDrawCell
+                  OnHorizontalScroll = gridzwiHorizontalScroll
+                  OnSortColumn = gridzwiSortColumn
+                  OnVerticalScroll = gridzwiVerticalScroll
+                  DataAwareOptions = [doAddColumns, doSetColumnWidth]
+                  SequencedScroll = True
+                  OnCellFormating = gridzwiCellFormating
+                  object NxDBTextColumn53: TNxDBTextColumn
+                    AutoEdit = True
+                    DefaultWidth = 75
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Ablagenr'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    MinWidth = 0
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 0
+                    SortType = stNumeric
+                    Width = 74
+                    FieldName = 'ablagenr'
+                    AutoExecute = True
+                  end
+                  object NxDBTextColumn55: TNxDBTextColumn
+                    DefaultWidth = 185
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Liegenschaft'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 1
+                    SortType = stAlphabetic
+                    Width = 185
+                    FieldName = 'Liegenschaft'
+                  end
+                  object NxDBTextColumn60: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 2
+                    SortType = stAlphabetic
+                    FieldName = 'nutzernummer'
+                  end
+                  object NxDBMemoColumn11: TNxDBMemoColumn
+                    DefaultWidth = 8
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dateiname'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 4
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 8
+                    FieldName = 'Dateiname'
+                  end
+                  object NxDBTextColumn61: TNxDBTextColumn
+                    DefaultWidth = 188
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Posteingang'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 3
+                    Sorted = True
+                    SortType = stDate
+                    Width = 188
+                    FieldName = 'Posteingang'
+                  end
+                  object NxDBTextColumn62: TNxDBTextColumn
+                    DefaultWidth = 159
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Abrechnungsende'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 5
+                    SortType = stDate
+                    Width = 159
+                    FieldName = 'Abrechnungsende'
+                  end
+                  object NxDBTextColumn63: TNxDBTextColumn
+                    DefaultWidth = 190
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Ablesedatum'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 7
+                    SortType = stAlphabetic
+                    Width = 190
+                    FieldName = 'ablesedatum'
+                  end
+                  object NxDBMemoColumn12: TNxDBMemoColumn
+                    DefaultWidth = 114
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 6
+                    SortType = stAlphabetic
+                    Visible = False
+                    Width = 114
+                    FieldName = 'Notizen'
+                  end
+                  object NxDBTextColumn64: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 8
+                    SortType = stAlphabetic
+                    Visible = False
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBTextColumn76: TNxDBTextColumn
+                    DefaultWidth = 258
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokumenttyp'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 9
+                    SortType = stAlphabetic
+                    Width = 258
+                    FieldName = 'typ'
+                  end
+                  object NxDBTextColumn75: TNxDBTextColumn
+                    DefaultWidth = 100
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 10
+                    SortType = stAlphabetic
+                    Width = 100
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBImageColumn13: TNxDBImageColumn
+                    DefaultValue = '1'
+                    DefaultWidth = 269
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Einzelbildanzeige'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    ParentCellColor = True
+                    Position = 11
+                    SortType = stNumeric
+                    Width = 269
+                    OnSetCell = zwivollbildSetCell
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                  object NxDBImageColumn12: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 180
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Caption = 'Dokument anzeigen'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Header.HideArrow = False
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
+                    ParentFont = False
+                    Position = 12
+                    SortType = stNumeric
+                    Width = 181
+                    Images = ImageList1
+                    Transparent = True
+                  end
+                end
+                inline filterangebot: Tframebasefilter
+                  Left = 0
+                  Top = 23
+                  Width = 1686
+                  Height = 90
+                  Align = alTop
+                  AutoSize = True
+                  TabOrder = 1
+                  ExplicitTop = 23
+                  ExplicitWidth = 1686
+                  inherited flipwerte: TNxFlipPanel
+                    Width = 1689
+                    ExplicitWidth = 1689
+                    FullHeight = 90
+                    inherited esellg: TfEdit
+                      OnExit = filterangebotesellgExit
+                    end
+                    inherited eselsb: TfEdit
+                      OnExit = filterangeboteselsbExit
+                    end
+                    inherited eselae: TfEdit
+                      OnExit = filterangeboteselaeExit
+                    end
+                    inherited eseldi: TfEdit
+                      OnExit = filterangeboteseldiExit
+                    end
+                    inherited eselpe: TfEdit
+                      OnExit = filterangeboteselpeExit
+                    end
+                  end
+                end
+                object Panel10: TPanel
+                  Left = 0
+                  Top = 0
+                  Width = 1686
+                  Height = 23
+                  Align = alTop
+                  Color = clWhite
+                  ParentBackground = False
+                  TabOrder = 2
+                  object NxButton8: TNxButton
+                    Left = 1
+                    Top = 1
+                    Width = 138
+                    Height = 21
+                    Align = alLeft
+                    Caption = 'Anzeige verlassen'
+                    TabOrder = 0
+                    OnClick = banzeigeverlassen
+                  end
+                end
+              end
+            end
             object leer2: TNxTabSheet
               Caption = ''
-              PageIndex = 5
+              PageIndex = 9
               ParentTabFont = False
               TabFont.Charset = DEFAULT_CHARSET
               TabFont.Color = 6908265
@@ -4395,360 +5954,6 @@
               TabFont.Style = []
               ExplicitTop = 0
               ExplicitHeight = 700
-            end
-            object tabvertrag: TNxTabSheet
-              Caption = 'Vertr'#228'ge'
-              PageIndex = 6
-              ParentTabFont = False
-              TabFont.Charset = DEFAULT_CHARSET
-              TabFont.Color = 6908265
-              TabFont.Height = -13
-              TabFont.Name = 'Tahoma'
-              TabFont.Style = []
-              OnShow = tabvertragShow
-              ExplicitTop = 0
-              ExplicitWidth = 100
-              ExplicitHeight = 100
-              object gridverträge: TNextDBGrid
-                Left = 0
-                Top = 0
-                Width = 1686
-                Height = 699
-                Align = alClient
-                AutoScroll = True
-                BiDiMode = bdLeftToRight
-                Caption = ''
-                HeaderSize = 23
-                InactiveSelectionColor = 4227200
-                InputSize = 23
-                Options = [goHeader, goSelectFullRow]
-                RowSize = 23
-                ParentBiDiMode = False
-                SlideSize = 30
-                TabOrder = 0
-                TabStop = True
-                OnApplyCell = gridzwiApplyCell
-                OnCellClick = gridzwiCellClick
-                OnCellColoring = gridzwiCellColoring
-                OnCellDblClick = gridzwiCellDblClick
-                OnClick = gridzwiClick
-                OnCustomDrawCell = gridzwiCustomDrawCell
-                OnHorizontalScroll = gridzwiHorizontalScroll
-                OnSortColumn = gridzwiSortColumn
-                OnVerticalScroll = gridzwiVerticalScroll
-                DataAwareOptions = [doAddColumns, doSetColumnWidth]
-                SequencedScroll = True
-                OnCellFormating = gridzwiCellFormating
-                object NxDBTextColumn10: TNxDBTextColumn
-                  AutoEdit = True
-                  DefaultWidth = 64
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Color = clWhite
-                  Header.Caption = 'Ablagenr'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  MinWidth = 0
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 0
-                  SortType = stNumeric
-                  Width = 71
-                  FieldName = 'ablagenr'
-                  AutoExecute = True
-                end
-                object NxDBTextColumn38: TNxDBTextColumn
-                  DefaultWidth = 147
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Liegenschaft'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 1
-                  SortType = stAlphabetic
-                  Width = 165
-                  FieldName = 'Liegenschaft'
-                end
-                object NxDBMemoColumn2: TNxDBMemoColumn
-                  DefaultWidth = 8
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Dateiname'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 3
-                  SortType = stAlphabetic
-                  Visible = False
-                  Width = 8
-                  FieldName = 'Dateiname'
-                end
-                object NxDBTextColumn40: TNxDBTextColumn
-                  DefaultWidth = 149
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Posteingang'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 2
-                  Sorted = True
-                  SortType = stDate
-                  Width = 167
-                  FieldName = 'Posteingang'
-                end
-                object NxDBImageColumn8: TNxDBImageColumn
-                  DefaultValue = '0'
-                  DefaultWidth = 143
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Dokument anzeigen'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 8
-                  SortType = stNumeric
-                  Width = 159
-                  Images = ImageList1
-                  Transparent = True
-                end
-                object NxDBTextColumn41: TNxDBTextColumn
-                  DefaultWidth = 125
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Abrechnungsende'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 4
-                  SortType = stDate
-                  Width = 141
-                  FieldName = 'Abrechnungsende'
-                end
-                object NxDBTextColumn43: TNxDBTextColumn
-                  DefaultWidth = 149
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Vertragsende'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 6
-                  SortType = stAlphabetic
-                  Width = 167
-                  WrapKind = wkNone
-                  FieldName = 'vertragsende'
-                end
-                object NxDBTextColumn44: TNxDBTextColumn
-                  DefaultWidth = 150
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Ablesedatum'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 7
-                  SortType = stAlphabetic
-                  Width = 169
-                  FieldName = 'ablesedatum'
-                end
-                object NxDBImageColumn9: TNxDBImageColumn
-                  DefaultValue = '1'
-                  DefaultWidth = 211
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Einzelbildanzeige'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  ParentCellColor = True
-                  Position = 9
-                  SortType = stNumeric
-                  Width = 238
-                  OnSetCell = zwivollbildSetCell
-                  Images = ImageList1
-                  Transparent = True
-                end
-                object NxDBMemoColumn8: TNxDBMemoColumn
-                  DefaultWidth = 114
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 5
-                  SortType = stAlphabetic
-                  Visible = False
-                  Width = 114
-                  FieldName = 'Notizen'
-                end
-                object NxDBTextColumn45: TNxDBTextColumn
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Header.HideArrow = False
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 10
-                  SortType = stAlphabetic
-                  Visible = False
-                  FieldName = 'Ablesedatum'
-                end
-                object NxDBTextColumn46: TNxDBTextColumn
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 11
-                  SortType = stAlphabetic
-                  Visible = False
-                  FieldName = 'erledigt'
-                end
-                object NxDBTextColumn47: TNxDBTextColumn
-                  DefaultWidth = 100
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Erledigt'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                  ParentFont = False
-                  Position = 12
-                  SortType = stAlphabetic
-                  Width = 100
-                  FieldName = 'erledigt'
-                end
-                object NxDBTextColumn48: TNxDBTextColumn
-                  DefaultWidth = 201
-                  Font.Charset = DEFAULT_CHARSET
-                  Font.Color = 6908265
-                  Font.Height = -13
-                  Font.Name = 'Tahoma'
-                  Font.Style = []
-                  Header.Caption = 'Dokumenttyp'
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
-                  ParentFont = False
-                  Position = 13
-                  SortType = stAlphabetic
-                  Width = 227
-                  FieldName = 'typ'
-                end
-                object NxDBTextColumn39: TNxDBTextColumn
-                  Header.Font.Charset = DEFAULT_CHARSET
-                  Header.Font.Color = clWindowText
-                  Header.Font.Height = -11
-                  Header.Font.Name = 'Tahoma'
-                  Header.Font.Style = []
-                  Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                  Position = 14
-                  SortType = stAlphabetic
-                  FieldName = 'nutzernummer'
-                end
-              end
             end
           end
         end
@@ -4768,24 +5973,6 @@
             Height = 41
             Align = alTop
             TabOrder = 0
-            object NxGlyphButton1: TNxGlyphButton
-              Left = 11
-              Top = 12
-              Width = 75
-              Height = 23
-              Caption = 'zur'#252'ck'
-              Margin = 2
-              OnClick = NxGlyphButton1Click
-            end
-            object NxGlyphButton2: TNxGlyphButton
-              Left = 92
-              Top = 12
-              Width = 75
-              Height = 23
-              Caption = 'vor'
-              Margin = 2
-              OnClick = NxGlyphButton2Click
-            end
             object NxGlyphButton3: TNxGlyphButton
               Left = 497
               Top = 12
@@ -4795,16 +5982,28 @@
               Margin = 2
               OnClick = NxGlyphButton3Click
             end
+            object UpDown1: TUpDown
+              AlignWithMargins = True
+              Left = 3
+              Top = 8
+              Width = 451
+              Height = 27
+              AlignButton = udLeft
+              Orientation = udHorizontal
+              TabOrder = 1
+              OnClick = UpDown1Click
+            end
           end
           object pvollbilder: TNxPageControl
             Left = 0
             Top = 41
             Width = 1686
             Height = 679
-            ActivePage = tabvollnutzer
-            ActivePageIndex = 4
+            ActivePage = tabvollangebot
+            ActivePageIndex = 8
             Align = alClient
             TabOrder = 1
+            OnClick = vollzwischenbsaveClick
             Margin = 0
             Spacing = 0
             TabHeight = 17
@@ -4840,7 +6039,7 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollzwischen.Panel5
+                      Control = vollzwischen.panpan
                       Row = 0
                     end
                     item
@@ -4850,12 +6049,9 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited Panel5: TPanel
+                  inherited panpan: TPanel
                     ExplicitWidth = 836
                     ExplicitHeight = 650
-                    inherited lfiletype: TLabel
-                      Height = 609
-                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -4960,7 +6156,7 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollmont.Panel5
+                      Control = vollmont.panpan
                       Row = 0
                     end
                     item
@@ -4970,12 +6166,9 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited Panel5: TPanel
+                  inherited panpan: TPanel
                     ExplicitWidth = 837
                     ExplicitHeight = 650
-                    inherited lfiletype: TLabel
-                      Height = 609
-                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -5087,7 +6280,7 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollenergie.Panel5
+                      Control = vollenergie.panpan
                       Row = 0
                     end
                     item
@@ -5097,7 +6290,9 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited Panel5: TPanel
+                  inherited panpan: TPanel
+                    Width = 836
+                    Height = 650
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -5170,6 +6365,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 846
+                    Width = 838
+                    Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -5180,9 +6378,100 @@
                 end
               end
             end
+            object tabvollanforderung: TNxTabSheet
+              Caption = 'Auftragsanforderungen'
+              PageIndex = 3
+              ParentTabFont = False
+              TabFont.Charset = DEFAULT_CHARSET
+              TabFont.Color = 6908265
+              TabFont.Height = -13
+              TabFont.Name = 'Tahoma'
+              TabFont.Style = []
+              ExplicitTop = 0
+              inline vollanforderung: Tframebasenutzer
+                Left = 0
+                Top = 0
+                Width = 1686
+                Height = 658
+                Align = alClient
+                TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 658
+                inherited gridpanel: TGridPanel
+                  Width = 1686
+                  Height = 658
+                  ControlCollection = <
+                    item
+                      Column = 0
+                      Control = vollanforderung.panpan
+                      Row = 0
+                    end
+                    item
+                      Column = 1
+                      Control = vollanforderung.rightparent
+                      Row = 0
+                    end>
+                  ExplicitWidth = 1686
+                  ExplicitHeight = 658
+                  inherited panpan: TPanel
+                    Width = 837
+                    Height = 650
+                    ExplicitWidth = 837
+                    ExplicitHeight = 650
+                    inherited Label45: TLabel
+                      Width = 102
+                      Height = 16
+                      ExplicitWidth = 102
+                      ExplicitHeight = 16
+                    end
+                    inherited Label46: TLabel
+                      Width = 69
+                      Height = 16
+                      ExplicitWidth = 69
+                      ExplicitHeight = 16
+                    end
+                    inherited Label47: TLabel
+                      Width = 71
+                      Height = 16
+                      ExplicitWidth = 71
+                      ExplicitHeight = 16
+                    end
+                    inherited Label48: TLabel
+                      Width = 87
+                      Height = 16
+                      ExplicitWidth = 87
+                      ExplicitHeight = 16
+                    end
+                    inherited Label29: TLabel
+                      Width = 42
+                      Height = 16
+                      ExplicitWidth = 42
+                      ExplicitHeight = 16
+                    end
+                    inherited Label5: TLabel
+                      Width = 85
+                      Height = 16
+                      ExplicitWidth = 85
+                      ExplicitHeight = 16
+                    end
+                    inherited bsave: TNxButton
+                      Caption = 'Dokument anzeigen'
+                    end
+                  end
+                  inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
+                    ExplicitLeft = 847
+                    ExplicitWidth = 837
+                    ExplicitHeight = 650
+                  end
+                end
+              end
+            end
             object tabvollreklamation: TNxTabSheet
               Caption = 'Vollbild Reklamation'
-              PageIndex = 3
+              PageIndex = 4
               ParentTabFont = False
               TabFont.Charset = DEFAULT_CHARSET
               TabFont.Color = 6908265
@@ -5205,7 +6494,7 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollrekl.Panel5
+                      Control = vollrekl.panpan
                       Row = 0
                     end
                     item
@@ -5215,12 +6504,9 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited Panel5: TPanel
+                  inherited panpan: TPanel
                     ExplicitWidth = 837
                     ExplicitHeight = 650
-                    inherited lfiletype: TLabel
-                      Height = 609
-                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -5302,7 +6588,7 @@
             end
             object tabvollnutzer: TNxTabSheet
               Caption = 'Vollbild Nutzerlisten'
-              PageIndex = 4
+              PageIndex = 5
               ParentTabFont = False
               TabFont.Charset = DEFAULT_CHARSET
               TabFont.Color = 6908265
@@ -5325,7 +6611,7 @@
                   ControlCollection = <
                     item
                       Column = 0
-                      Control = vollnutzer.Panel5
+                      Control = vollnutzer.panpan
                       Row = 0
                     end
                     item
@@ -5335,7 +6621,9 @@
                     end>
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
-                  inherited Panel5: TPanel
+                  inherited panpan: TPanel
+                    Width = 837
+                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
@@ -5371,6 +6659,10 @@
                       ExplicitWidth = 42
                       ExplicitHeight = 16
                     end
+                    inherited bsave: TNxButton
+                      Caption = 'Dokument anzeigen'
+                      OnClick = vollzwischenbsaveClick
+                    end
                     inherited pinfo: TPanel
                       inherited labelinfo: TLabel
                         Width = 99
@@ -5382,6 +6674,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -5389,6 +6684,243 @@
                 end
                 inherited NxButton2: TNxButton
                   Visible = False
+                end
+              end
+            end
+            object tabvollvertrag: TNxTabSheet
+              Caption = 'Vollbild Vertrag'
+              PageIndex = 6
+              ParentTabFont = False
+              TabFont.Charset = DEFAULT_CHARSET
+              TabFont.Color = 6908265
+              TabFont.Height = -13
+              TabFont.Name = 'Tahoma'
+              TabFont.Style = []
+              inline vollvertrag: Tframebasenutzer1
+                Left = 0
+                Top = 0
+                Width = 1686
+                Height = 658
+                Align = alClient
+                TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 658
+                inherited gridpanel: TGridPanel
+                  Width = 1686
+                  Height = 658
+                  ControlCollection = <
+                    item
+                      Column = 0
+                      Control = vollvertrag.panpan
+                      Row = 0
+                    end
+                    item
+                      Column = 1
+                      Control = vollvertrag.rightparent
+                      Row = 0
+                    end>
+                  ExplicitWidth = 1686
+                  ExplicitHeight = 658
+                  inherited panpan: TPanel
+                    Width = 837
+                    Height = 650
+                    ExplicitWidth = 837
+                    ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
+                    inherited Label45: TLabel
+                      Width = 102
+                      Height = 16
+                      ExplicitWidth = 102
+                      ExplicitHeight = 16
+                    end
+                    inherited Label46: TLabel
+                      Width = 69
+                      Height = 16
+                      ExplicitWidth = 69
+                      ExplicitHeight = 16
+                    end
+                    inherited Label47: TLabel
+                      Width = 71
+                      Height = 16
+                      ExplicitWidth = 71
+                      ExplicitHeight = 16
+                    end
+                    inherited Label48: TLabel
+                      Width = 87
+                      Height = 16
+                      ExplicitWidth = 87
+                      ExplicitHeight = 16
+                    end
+                    inherited Label29: TLabel
+                      Width = 42
+                      Height = 16
+                      ExplicitWidth = 42
+                      ExplicitHeight = 16
+                    end
+                    inherited Label5: TLabel
+                      Width = 85
+                      Height = 16
+                      ExplicitWidth = 85
+                      ExplicitHeight = 16
+                    end
+                    inherited Label1: TLabel
+                      Width = 66
+                      Height = 16
+                      ExplicitWidth = 66
+                      ExplicitHeight = 16
+                    end
+                    inherited bsave: TNxButton
+                      Caption = 'Dokument anzeigen'
+                      OnClick = vollzwischenbsaveClick
+                    end
+                  end
+                  inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
+                    ExplicitLeft = 847
+                    ExplicitWidth = 837
+                    ExplicitHeight = 650
+                  end
+                end
+              end
+            end
+            object tabvollsonstige: TNxTabSheet
+              Caption = 'Vollbild Sonstiges'
+              PageIndex = 7
+              ParentTabFont = False
+              TabFont.Charset = DEFAULT_CHARSET
+              TabFont.Color = 6908265
+              TabFont.Height = -13
+              TabFont.Name = 'Tahoma'
+              TabFont.Style = []
+              ExplicitTop = 0
+              inline vollsonstige: Tframebasenutzer
+                Left = 0
+                Top = 0
+                Width = 1686
+                Height = 658
+                Align = alClient
+                TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 658
+                inherited gridpanel: TGridPanel
+                  Width = 1686
+                  Height = 658
+                  ControlCollection = <
+                    item
+                      Column = 0
+                      Control = vollsonstige.panpan
+                      Row = 0
+                    end
+                    item
+                      Column = 1
+                      Control = vollsonstige.rightparent
+                      Row = 0
+                    end>
+                  ExplicitWidth = 1686
+                  ExplicitHeight = 658
+                  inherited panpan: TPanel
+                    Width = 837
+                    Height = 650
+                    ExplicitWidth = 837
+                    ExplicitHeight = 650
+                    inherited Label45: TLabel
+                      Width = 102
+                      Height = 16
+                      ExplicitWidth = 102
+                      ExplicitHeight = 16
+                    end
+                    inherited Label46: TLabel
+                      Width = 69
+                      Height = 16
+                      ExplicitWidth = 69
+                      ExplicitHeight = 16
+                    end
+                    inherited Label47: TLabel
+                      Width = 71
+                      Height = 16
+                      ExplicitWidth = 71
+                      ExplicitHeight = 16
+                    end
+                    inherited Label48: TLabel
+                      Width = 87
+                      Height = 16
+                      ExplicitWidth = 87
+                      ExplicitHeight = 16
+                    end
+                    inherited Label29: TLabel
+                      Width = 42
+                      Height = 16
+                      ExplicitWidth = 42
+                      ExplicitHeight = 16
+                    end
+                    inherited Label5: TLabel
+                      Width = 85
+                      Height = 16
+                      ExplicitWidth = 85
+                      ExplicitHeight = 16
+                    end
+                    inherited bsave: TNxButton
+                      Caption = 'Dokument anzeigen'
+                      OnClick = vollzwischenbsaveClick
+                    end
+                  end
+                  inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
+                    ExplicitLeft = 847
+                    ExplicitWidth = 837
+                    ExplicitHeight = 650
+                  end
+                end
+              end
+            end
+            object tabvollangebot: TNxTabSheet
+              Caption = 'Vollbild Angebotsanfrage'
+              PageIndex = 8
+              ParentTabFont = False
+              TabFont.Charset = DEFAULT_CHARSET
+              TabFont.Color = 6908265
+              TabFont.Height = -13
+              TabFont.Name = 'Tahoma'
+              TabFont.Style = []
+              ExplicitTop = 0
+              inline vollangebot: Tframebasenutzer
+                Left = 0
+                Top = 0
+                Width = 1686
+                Height = 658
+                Align = alClient
+                TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 658
+                inherited gridpanel: TGridPanel
+                  Width = 1686
+                  Height = 658
+                  ControlCollection = <
+                    item
+                      Column = 0
+                      Control = frameangebot.panpan
+                      Row = 0
+                    end
+                    item
+                      Column = 1
+                      Control = frameangebot.rightparent
+                      Row = 0
+                    end>
+                  RowCollection = <
+                    item
+                      Value = 100.000000000000000000
+                    end
+                    item
+                      SizeStyle = ssAuto
+                    end>
+                  ExplicitWidth = 1686
+                  ExplicitHeight = 658
                 end
               end
             end
@@ -5411,20 +6943,6 @@
       Color = 6118749
       ParentBackground = False
       TabOrder = 1
-      object lsonstiges: TLabel
-        AlignWithMargins = True
-        Left = 5
-        Top = 623
-        Width = 289
-        Height = 16
-        Margins.Left = 5
-        Margins.Top = 2
-        Margins.Right = 2
-        Margins.Bottom = 2
-        Align = alBottom
-        Caption = 'Sonstiges'
-        ExplicitWidth = 55
-      end
       object pfilebox: TFlowPanel
         AlignWithMargins = True
         Left = 5
@@ -5851,6 +7369,20 @@
         Padding.Bottom = 10
         ParentBackground = False
         TabOrder = 2
+        object lsonstiges: TLabel
+          AlignWithMargins = True
+          Left = 15
+          Top = 61
+          Width = 259
+          Height = 16
+          Margins.Left = 5
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Align = alBottom
+          Caption = 'Sonstiges'
+          ExplicitWidth = 55
+        end
         object Button9: TButton
           Left = 10
           Top = 10
@@ -6585,7 +8117,7 @@
     Left = 728
     Top = 688
     Bitmap = {
-      494C010106007400840110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
+      494C010106007400980110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       000000000000000000000000000000000000504E4EFF504E4EFF504E4EFF2928
       2883000000000000000000000000000000000000000000000000000000000000

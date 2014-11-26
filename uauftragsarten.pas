@@ -58,18 +58,18 @@ var
 begin
   list := Tstringlist.Create;
   size := ListBox1.Count;
-  formmain.frameauftrag.cbselectauftrag.Items.Clear;
-  formmain.frameauftrag.cbselectauftrag.ClearSelection;
+  formmain.frameauf.cbselectauftrag.Items.Clear;
+  formmain.frameauf.cbselectauftrag.ClearSelection;
 
   for i := 0 to size - 1 do
   begin
     item := ListBox1.Items.Strings[i];
-    formmain.frameauftrag.cbselectauftrag.Items.Add(item);
+    formmain.frameauf.cbselectauftrag.Items.Add(item);
     list.Add(item);
   end;
   DeleteFile(getauftragsdaten('Scannerprogramm'));
   list.SaveToFile(getauftragsdaten('Scannerprogramm'));
-  formmain.frameauftrag.cbselectauftrag.Update;
+  formmain.frameauf.cbselectauftrag.Update;
   self.Hide;
 end;
 

@@ -11,7 +11,6 @@ uses
 type
   Tframebase = class(TFrame)
     gridpanel: TGridPanel;
-    Panel5: TPanel;
     lfiletype: TLabel;
     Label45: TLabel;
     Label46: TLabel;
@@ -65,6 +64,8 @@ procedure Tframebase.eliegenschaftExit(Sender: TObject);
 var
   kn: string;
 begin
+  if eliegenschaft.text = '' then exit;
+  updown2.visible := true;
   with formmain.dokcons do begin
     kn := formmain.getkundennummer;
     if kn = '' then begin
