@@ -171,7 +171,7 @@ type
     framemontage: Tframereklmont;
     framezwi: Tframezwischen;
     frameangebot: Tframebasenutzer;
-    frameauftrag: Tframeauftrag;
+    frameauf: Tframeauftrag;
     framekosten: Tframebase;
     framenutzer: Tframebase;
     framereklamation: Tframereklmont;
@@ -187,8 +187,8 @@ type
     NxDBImageColumn4: TNxDBImageColumn;
     NxDBMemoColumn5: TNxDBMemoColumn;
     NxDBTextColumn19: TNxDBTextColumn;
-    framen: Tframeenergie;
-    vollenergie: Tframeenergie;
+    // framen: Tframeenergie;
+    // vollenergie: Tframeenergie;
     tabvollnutzer: TNxTabSheet;
     vollnutzer: Tframebase;
     NxDBMemoColumn6: TNxDBMemoColumn;
@@ -246,6 +246,84 @@ type
     NxDBTextColumn47: TNxDBTextColumn;
     NxDBTextColumn48: TNxDBTextColumn;
     NxDBTextColumn39: TNxDBTextColumn;
+    tabsonstiges: TNxTabSheet;
+    NxPanel6: TNxPanel;
+    gridsonstiges: TNextDBGrid;
+    NxDBTextColumn42: TNxDBTextColumn;
+    NxDBTextColumn49: TNxDBTextColumn;
+    NxDBMemoColumn9: TNxDBMemoColumn;
+    NxDBTextColumn50: TNxDBTextColumn;
+    NxDBTextColumn51: TNxDBTextColumn;
+    NxDBTextColumn52: TNxDBTextColumn;
+    NxDBTextColumn53: TNxDBTextColumn;
+    NxDBTextColumn54: TNxDBTextColumn;
+    NxDBImageColumn10: TNxDBImageColumn;
+    NxDBMemoColumn10: TNxDBMemoColumn;
+    NxDBImageColumn11: TNxDBImageColumn;
+    NxDBImageColumn12: TNxDBImageColumn;
+    NxDBTextColumn55: TNxDBTextColumn;
+    NxDBTextColumn56: TNxDBTextColumn;
+    NxDBTextColumn57: TNxDBTextColumn;
+    Panel7: TPanel;
+    NxButton6: TNxButton;
+    filtersonstiges: Tframebasefilter;
+    framen: Tframeenergie;
+    tabvollvertrag: TNxTabSheet;
+    vollenergie: Tframeenergie;
+    NxDBTextColumn58: TNxDBTextColumn;
+    vollvertrag: Tframebasenutzer1;
+    NxDBTextColumn59: TNxDBTextColumn;
+    UpDown1: TUpDown;
+    tabvollsonstiges: TNxTabSheet;
+    vollsonstiges: Tframebasenutzer;
+    tabauftragsanforderung: TNxTabSheet;
+    NxPanel7: TNxPanel;
+    gridanforderungen: TNextDBGrid;
+    NxDBTextColumn60: TNxDBTextColumn;
+    NxDBTextColumn61: TNxDBTextColumn;
+    NxDBMemoColumn11: TNxDBMemoColumn;
+    NxDBTextColumn62: TNxDBTextColumn;
+    NxDBTextColumn63: TNxDBTextColumn;
+    NxDBTextColumn64: TNxDBTextColumn;
+    NxDBTextColumn65: TNxDBTextColumn;
+    NxDBTextColumn66: TNxDBTextColumn;
+    NxDBTextColumn67: TNxDBTextColumn;
+    NxDBImageColumn13: TNxDBImageColumn;
+    NxDBMemoColumn12: TNxDBMemoColumn;
+    NxDBTextColumn68: TNxDBTextColumn;
+    NxDBTextColumn69: TNxDBTextColumn;
+    NxDBTextColumn70: TNxDBTextColumn;
+    NxDBImageColumn14: TNxDBImageColumn;
+    NxDBImageColumn15: TNxDBImageColumn;
+    Panel8: TPanel;
+    NxButton7: TNxButton;
+    filterauftragsanf: Tframebasefilter;
+    tabvollauf: TNxTabSheet;
+    vollauftrag: Tframeauftrag;
+    tabangebotsanfrage: TNxTabSheet;
+    NxPanel8: TNxPanel;
+    gridangebote: TNextDBGrid;
+    NxDBTextColumn71: TNxDBTextColumn;
+    NxDBTextColumn72: TNxDBTextColumn;
+    NxDBMemoColumn13: TNxDBMemoColumn;
+    NxDBTextColumn73: TNxDBTextColumn;
+    NxDBTextColumn74: TNxDBTextColumn;
+    NxDBTextColumn75: TNxDBTextColumn;
+    NxDBTextColumn76: TNxDBTextColumn;
+    NxDBTextColumn77: TNxDBTextColumn;
+    NxDBTextColumn78: TNxDBTextColumn;
+    NxDBImageColumn16: TNxDBImageColumn;
+    NxDBMemoColumn14: TNxDBMemoColumn;
+    NxDBTextColumn79: TNxDBTextColumn;
+    NxDBTextColumn80: TNxDBTextColumn;
+    NxDBTextColumn81: TNxDBTextColumn;
+    NxDBImageColumn17: TNxDBImageColumn;
+    NxDBImageColumn18: TNxDBImageColumn;
+    Panel10: TPanel;
+    NxButton8: TNxButton;
+    filterangebot: Tframebasefilter;
+    tabvollangebot: TNxTabSheet;
+    vollangebot: Tframebasenutzer;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -446,6 +524,24 @@ type
     procedure framesonstigesUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure framevertUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure tabvertragShow(Sender: TObject);
+    procedure filtersonstigesesellgExit(Sender: TObject);
+    procedure filtersonstigeseselsbExit(Sender: TObject);
+    procedure filtersonstigeseselpeExit(Sender: TObject);
+    procedure filtersonstigeseselaeExit(Sender: TObject);
+    procedure UpDown1Click(Sender: TObject; Button: TUDBtnType);
+    procedure tabsonstigesShow(Sender: TObject);
+    procedure frameauftragsanfesellgExit(Sender: TObject);
+    procedure frameauftragsanfeselsbExit(Sender: TObject);
+    procedure frameauftragsanfeselpeExit(Sender: TObject);
+    procedure frameauftragsanfeselaeExit(Sender: TObject);
+    procedure frameauftragsanfeseldiExit(Sender: TObject);
+    procedure tabauftragsanforderungShow(Sender: TObject);
+    procedure Panel8Click(Sender: TObject);
+    procedure filterangebotesellgExit(Sender: TObject);
+    procedure filterangeboteselsbExit(Sender: TObject);
+    procedure filterangeboteselpeExit(Sender: TObject);
+    procedure filterangeboteselaeExit(Sender: TObject);
+    procedure filterangeboteseldiExit(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -532,9 +628,11 @@ type
     procedure popup;
     procedure minimizeme;
     procedure showzwischenablesungen;
+    procedure showsonstiges;
     procedure showverträge;
     procedure showmontagen;
     procedure showenergieausweise;
+    procedure showauftragsanforderungen;
     procedure showkostennutzerlisten;
     procedure showreklamation;
     function filldb(ds: TDataSource; dbgrid: TNextDBGrid): Boolean;
@@ -705,29 +803,31 @@ procedure Tformmain.gridzwiApplyCell(Sender: TObject; acol, ARow: Integer;
 var
   filename   : string;
   dateiendung: string;
+  header     : string;
 begin
-  if acol = 10 then
+
+  header := (Sender as TNextDBGrid).Columns[acol].header.Caption;
+  if strcontains('einzelbild', AnsiLowerCase(header)) then
     try Value := '1';
     except
       ;
 
     end;
-  if (acol = 14) then begin
+  if strcontains('Erledigt', header) then
     try Value := erledigttext((Sender as TNextDBGrid).CellValue[14, ARow]);
     except
       on e: Exception do begin
         // showmessage('except 1' + e.Message);
       end;
     end;
-  end;
-  // if (acol = 16) then begin
-  // try Value := setdateityp((Sender as TNextDBGrid).Cells[3, ARow]);
-  // except
-  /// /      on e: Exception do showmessage('exec 2' + e.Message);
-  // end;
-  //
-  // end;
 end;
+// if (acol = 16) then begin
+// try Value := setdateityp((Sender as TNextDBGrid).Cells[3, ARow]);
+// except
+/// /      on e: Exception do showmessage('exec 2' + e.Message);
+// end;
+//
+// end;
 
 procedure Tformmain.gridzwiCellClick(Sender: TObject; acol, ARow: Integer);
 var
@@ -751,6 +851,10 @@ begin
     2: dbgrid := gridnutzerliste;
     3: dbgrid := gridenergie;
     4: dbgrid := gridrek;
+    5: dbgrid := gridverträge;
+    6: dbgrid := gridsonstiges;
+    7: dbgrid := gridanforderungen;
+    8: dbgrid := gridangebote;
   end;
 
   if AnsiStartsText('notizen anz', AnsiLowerCase(test)) then begin
@@ -1341,22 +1445,18 @@ begin
           voll                        := vollnutzer;
         end;
       4: begin
-          dbgrid := gridrek;
-
+          dbgrid                      := gridrek;
           pvollbilder.activepageindex := 3;
           voll                        := vollrekl;
           with vollrekl do begin
             try date := dbgrid.GetColumnByFieldName(auftragsnummer)
                 .field.AsString;
             except date := '';
-
             end;
             eauftragsnummer.Text := date;
-
-            try date := dbgrid.GetColumnByFieldName(Montagedatum)
+            try date             := dbgrid.GetColumnByFieldName(Montagedatum)
                 .field.AsString;
             except date := '00.00.00';
-
             end;
             if date = '00.00.00' then date := '';
 
@@ -1365,7 +1465,6 @@ begin
             try rgerledigt.ItemIndex := dbgrid.GetColumnByFieldName(erledigt)
                 .field.AsInteger;
             except rgerledigt.ItemIndex := 0;
-
             end;
           end;
         end;
@@ -1373,6 +1472,36 @@ begin
           dbgrid                 := gridenergie;
           pvollbilder.ActivePage := tabvollenergie;
           voll                   := vollenergie;
+        end;
+      5: begin
+          dbgrid                         := gridverträge;
+          pvollbilder.ActivePage         := tabvollvertrag;
+          voll                           := vollvertrag;
+          vollvertrag.enutzernummer.Text := dbgrid.GetColumnByFieldName
+            (Nutzernummer).field.AsString;
+          vollvertrag.cbvertrag.Text := dbgrid.GetColumnByFieldName(vertragstyp)
+            .field.AsString;
+        end;
+      6: begin
+          dbgrid                           := gridsonstiges;
+          pvollbilder.ActivePage           := tabvollsonstiges;
+          voll                             := vollsonstiges;
+          vollsonstiges.enutzernummer.Text := dbgrid.GetColumnByFieldName
+            (Nutzernummer).field.AsString;
+        end;
+      7: begin
+          dbgrid                         := gridanforderungen;
+          pvollbilder.ActivePage         := tabvollauf;
+          voll                           := vollauftrag;
+          vollauftrag.enutzernummer.Text := dbgrid.GetColumnByFieldName
+            (Nutzernummer).field.AsString;
+        end;
+      8: begin
+          dbgrid                         := gridangebote;
+          pvollbilder.ActivePage         := tabvollangebot;
+          voll                           := vollangebot;
+          vollangebot.enutzernummer.Text := dbgrid.GetColumnByFieldName
+            (Nutzernummer).field.AsString;
         end
     else begin
         dbgrid                      := gridzwi;
@@ -1406,6 +1535,89 @@ begin
     setliegenschaftsdaten(lg, '');
 
   end;
+end;
+
+procedure Tformmain.filterangeboteselaeExit(Sender: TObject);
+begin
+  filterangebot.eselaeExit(Sender);
+
+  filter := filterangebot.getfilter;
+  setfilter(formdb.queryangebote, filter);
+  filldb(formdb.dsangebote, gridangebote);
+end;
+
+procedure Tformmain.filterangeboteseldiExit(Sender: TObject);
+begin
+  filterangebot.eseldiExit(Sender);
+  filter := filterangebot.getfilter;
+  setfilter(formdb.queryangebote, filter);
+  filldb(formdb.dsangebote, gridangebote);
+end;
+
+procedure Tformmain.filterangebotesellgExit(Sender: TObject);
+begin
+  filterangebot.esellgExit(Sender);
+  filter := filterangebot.getfilter;
+  setfilter(formdb.queryangebote, filter);
+  filldb(formdb.dsangebote, gridangebote);
+end;
+
+procedure Tformmain.filterangeboteselpeExit(Sender: TObject);
+begin
+  filterangebot.eselpeExit(Sender);
+
+  filter := filterangebot.getfilter;
+  setfilter(formdb.queryangebote, filter);
+  filldb(formdb.dsangebote, gridangebote);
+end;
+
+procedure Tformmain.filterangeboteselsbExit(Sender: TObject);
+begin
+  filterangebot.eselsbExit(Sender);
+
+  filter := filterangebot.getfilter;
+  setfilter(formdb.queryangebote, filter);
+  filldb(formdb.dsangebote, gridangebote);
+end; 
+
+procedure Tformmain.filtersonstigeseselaeExit(Sender: TObject);
+begin
+  filtersonstiges.eselaeExit(Sender);
+  filter := filtersonstiges.getfilter;
+  setfilter(formdb.querysonstige, filter);
+  filldb(formdb.dssonstige, gridsonstiges);
+
+end;
+
+procedure Tformmain.filtersonstigesesellgExit(Sender: TObject);
+begin
+  try
+    filterlg := (Sender as tfedit).Text;
+    filtersonstiges.esellgExit(Sender);
+    filter := filtersonstiges.getfilter;
+    setfilter(formdb.querysonstige, filter);
+    filldb(formdb.dssonstige, gridsonstiges);
+  except
+    ;
+  end;
+end;
+
+procedure Tformmain.filtersonstigeseselpeExit(Sender: TObject);
+begin
+  filtersonstiges.eselpeExit(Sender);
+
+  filter := filtersonstiges.getfilter;
+  setfilter(formdb.querysonstige, filter);
+  filldb(formdb.dssonstige, gridsonstiges);
+end;
+
+procedure Tformmain.filtersonstigeseselsbExit(Sender: TObject);
+begin
+  filtersonstiges.eselsbExit(Sender);
+
+  filter := filtersonstiges.getfilter;
+  setfilter(formdb.querysonstige, filter);
+  filldb(formdb.dssonstige, gridsonstiges);
 end;
 
 procedure Tformmain.flipspaltenClick(Sender: TObject);
@@ -1628,6 +1840,46 @@ begin
   end;
   setliegenschaftsdaten;
 
+end;
+
+procedure Tformmain.frameauftragsanfeselaeExit(Sender: TObject);
+begin
+  filterauftragsanf.eselaeExit(Sender);
+  filter := filterauftragsanf.getfilter;
+  setfilter(formdb.queryanforderungen, filter);
+  filldb(formdb.dsanforderungen, gridanforderungen);
+end;
+
+procedure Tformmain.frameauftragsanfeseldiExit(Sender: TObject);
+begin
+  filterauftragsanf.eseldiExit(Sender);
+  filter := filterauftragsanf.getfilter;
+  setfilter(formdb.queryanforderungen, filter);
+  filldb(formdb.dsanforderungen, gridanforderungen);
+end;
+
+procedure Tformmain.frameauftragsanfesellgExit(Sender: TObject);
+begin
+  filterauftragsanf.esellgExit(Sender);
+  filter := filterauftragsanf.getfilter;
+  setfilter(formdb.queryanforderungen, filter);
+  filldb(formdb.dsanforderungen, gridanforderungen);
+end;
+
+procedure Tformmain.frameauftragsanfeselpeExit(Sender: TObject);
+begin
+  filterauftragsanf.eselpeExit(Sender);
+  filter := filterauftragsanf.getfilter;
+  setfilter(formdb.queryanforderungen, filter);
+  filldb(formdb.dsanforderungen, gridanforderungen);
+end;
+
+procedure Tformmain.frameauftragsanfeselsbExit(Sender: TObject);
+begin
+  filterauftragsanf.eselsbExit(Sender);
+  filter := filterauftragsanf.getfilter;
+  setfilter(formdb.queryanforderungen, filter);
+  filldb(formdb.dsanforderungen, gridanforderungen);
 end;
 
 procedure Tformmain.frameauftragUpDown2Click(Sender: TObject;
@@ -2368,6 +2620,10 @@ begin
     2: Result := gridnutzerliste;
     3: Result := gridenergie;
     4: Result := gridrek;
+    5: Result := gridverträge;
+    6: Result := gridsonstiges;
+    7: Result := gridanforderungen;
+    8: Result := gridangebote;
   else Result := gridzwi;
   end;
 end;
@@ -3132,6 +3388,7 @@ procedure Tformmain.NxGlyphButton1Click(Sender: TObject);
 var
   dbgrid: TNextDBGrid;
 begin
+  if selectedRow = 0 then exit;
   dec(selectedRow);
   dbgrid := getdb;
   try
@@ -3217,6 +3474,11 @@ end;
 procedure Tformmain.pagerspeicherExit(Sender: TObject);
 begin
   // fid.Visible := false;
+end;
+
+procedure Tformmain.Panel8Click(Sender: TObject);
+begin
+
 end;
 
 // ###############################################
@@ -4129,6 +4391,21 @@ begin
 
 end;
 
+procedure Tformmain.showsonstiges;
+var
+  list: TStringList;
+begin
+  list := TStringList.Create;
+  list.add('*');
+  formdb.querysonstige.SQL.clear;
+  formdb.querysonstige.SQL.Text := 'SELECT * FROM ' + dokcons.view_sonst +
+    ' WHERE kundennummer = ' + kdnr;
+  formdb.querysonstige.Open;
+  setfilter(formdb.querysonstige, filter);
+  filldb(formdb.dssonstige, gridsonstiges);
+
+end;
+
 // ###############################################
 procedure Tformmain.showupdate;
 begin
@@ -4150,6 +4427,23 @@ begin
   setfilter(formdb.queryvert, filter);
   filldb(formdb.dsvert, gridverträge);
 
+end;
+
+// ####################################
+
+procedure Tformmain.showauftragsanforderungen;
+var
+  list: TStringList;
+begin
+  list := TStringList.Create;
+  list.add('*');
+  filterauftragsanf.esellg.Text := filterlg;
+  formdb.queryanforderungen.SQL.clear;
+  formdb.queryanforderungen.SQL.Text := 'SELECT * FROM ' +
+    dokcons.view_anforderungen + ' WHERE kundennummer = ' + kdnr;
+  formdb.queryanforderungen.Open;
+  setfilter(formdb.queryanforderungen, filter);
+  filldb(formdb.dsanforderungen, gridanforderungen);
 end;
 
 // ###############################################
@@ -4303,6 +4597,13 @@ begin
 end;
 
 // ------------------------------
+procedure Tformmain.tabauftragsanforderungShow(Sender: TObject);
+begin
+  if not assigned(formdb) then exit;
+  formdb.queryanforderungen.Filtered := false;
+  showauftragsanforderungen;
+end;
+
 procedure Tformmain.tabenergieausweisShow(Sender: TObject);
 begin
 
@@ -4347,6 +4648,15 @@ begin
   try showreklamation;
   except
     ;
+  end;
+end;
+
+procedure Tformmain.tabsonstigesShow(Sender: TObject);
+begin
+  if not assigned(formdb) then exit;
+  try showsonstiges;
+  except
+    on e: Exception do showmessage(e.Message);
   end;
 end;
 
@@ -4690,6 +5000,14 @@ begin
 
 end;
 
+procedure Tformmain.UpDown1Click(Sender: TObject; Button: TUDBtnType);
+begin
+  case Button of
+    btNext: NxGlyphButton2Click(NxGlyphButton2);
+    btPrev: NxGlyphButton1Click(NxGlyphButton1);
+  end;
+end;
+
 // ###############################################
 procedure Tformmain.vollzwischenbsaveClick(Sender: TObject);
 var
@@ -4712,11 +5030,15 @@ end;
 procedure Tformmain.vorclick(Sender: TObject);
 var
   dbgrid: TNextDBGrid;
+  nor   : Integer;
 begin
   inc(selectedRow);
   dbgrid := getdb;
+  nor    := dbgrid.RowCount;
   try
+
     dbgrid.selectedRow := selectedRow;
+    if selectedRow >= nor then exit;
     fillvollbild(dbgrid, selectedRow);
   finally
     // dbgrid.Free;

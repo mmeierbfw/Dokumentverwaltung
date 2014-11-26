@@ -159,11 +159,11 @@ var
   val: string;
 begin
   val := combo;
-//  if key = 'ablagenr' then begin
-//    res := 'cast( ' + key + ' as unsigned) ' + val + ' ' + value; exit;
-//  end;
-//  if val = '=' then val := ' LIKE ';
-  res                   := key + val + value;
+  // if key = 'ablagenr' then begin
+  // res := 'cast( ' + key + ' as unsigned) ' + val + ' ' + value; exit;
+  // end;
+  // if val = '=' then val := ' LIKE ';
+  res := key + val + value;
 end;
 
 end.
