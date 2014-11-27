@@ -608,6 +608,8 @@ type
     filter       : string;
     filterlg     : string;
     clicked      : array [0 .. 3] of Boolean;
+    procedure resetfilterlist;
+    procedure resetalleFilter;
     procedure resetdate(tem: TMaskEdit); overload;
     procedure resetdate(tem: tfedit); overload;
     function connectToPipe: Boolean;
@@ -2723,10 +2725,14 @@ end;
 // ###############################################
 procedure Tformmain.framezwifilterblöschenClick(Sender: TObject);
 begin
-  if not assigned(filterlist) then exit;
-  filterlist.Clear;
-  setalleFilter;
-  setallefiltereinstellungen;
+  try
+    if not assigned(filterlist) then exit;
+    // filterlist.Clear;
+    resetfilterlist;
+    resetalleFilter;
+  finally setallefiltereinstellungen;
+
+  end;
 end;
 
 // ###############################################
@@ -3760,6 +3766,71 @@ begin
   framen.eeplz.Text     := '';
 end;
 
+procedure Tformmain.resetalleFilter;
+begin
+  with formdb do begin
+    try
+      queryzwi.Filtered := false;
+      queryzwi.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+
+    end;
+    try
+      querymon.Filtered := false;
+      querymon.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+
+    end;
+    try
+      querynuliste.Filtered := false;
+      querynuliste.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+    try
+      queryen.Filtered := false;
+      queryen.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+    try
+      queryrekl.Filtered := false;
+      queryrekl.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+    try
+      queryvert.Filtered := false;
+      queryvert.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+
+    try
+      querysonstige.Filtered := false;
+      querysonstige.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+
+    end;
+    try
+      queryanforderungen.Filtered := false;
+      queryanforderungen.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+
+    end;
+    try
+      queryangebote.Filtered := false;
+      queryangebote.Refresh;
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+  end;
+end;
+
 // ###############################################
 procedure Tformmain.resetdate(tem: tfedit);
 var
@@ -3770,6 +3841,19 @@ begin
   if (tem.Text = '') then begin
     tem.Text := today;
   end;
+
+end;
+
+procedure Tformmain.resetfilterlist;
+begin
+  if not assigned(filterlist) then
+      filterlist := TDictionary<string, string>.Create;
+  filterlist.Clear;
+  filterlist.Add('liegenschaft', '');
+  filterlist.Add('posteingang', '');
+  filterlist.Add('sachbearbeiter_id', '');
+  filterlist.Add('ablagenr', '');
+  filterlist.Add('abrechnungsende', '');
 
 end;
 
@@ -4461,52 +4545,48 @@ end;
 procedure Tformmain.setalleFilter;
 begin
   with formdb do begin
-    // try setfilter(queryzwi);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    //
-    // end;
-    // try setfilter(querymon);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    //
-    // end;
-    // try setfilter(querynuliste);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    // end;
-    // try setfilter(queryen);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    // end;
-    // try setfilter(queryrekl);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    // end;
-    // try setfilter(queryvert);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    // end;
-    //
-    // try setfilter(querysonstige);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    //
-    // end;
-    // try setfilter(queryanforderungen);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    //
-    // end;
-    // try setfilter(queryangebote);
-    // except
-    // // on e: Exception do showmessage(e.Message);
-    //
-    // end;
-    // end;
+    try setfilter(queryzwi);
+    except
+      // on e: Exception do showmessage(e.Message);
 
+    end;
+    try setfilter(querymon);
+    except
+      // on e: Exception do showmessage(e.Message);
+
+    end;
+    try setfilter(querynuliste);
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+    try setfilter(queryen);
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+    try setfilter(queryrekl);
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+    try setfilter(queryvert);
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
+
+    try setfilter(querysonstige);
+    except
+      // on e: Exception do showmessage(e.Message);
+
+    end;
+    try setfilter(queryanforderungen);
+    except
+      // on e: Exception do showmessage(e.Message);
+
+    end;
+    try setfilter(queryangebote);
+    except
+      // on e: Exception do showmessage(e.Message);
+    end;
   end;
-
 end;
 
 procedure Tformmain.setallefiltereinstellungen;
@@ -4630,24 +4710,34 @@ var
 
 begin
   try
-    if not ptabellen.ShowTabs then exit;
-  except exit;
+    try
+      if not ptabellen.ShowTabs then exit;
+    except exit;
+
+    end;
+    if not assigned(filterlist) then exit;
+    // if not query.op
+
+    try
+      query.Filtered := false;
+      query.filter   := '';
+      for Key in filterlist.Keys.ToArray do begin
+        Value                                  := filterlist.Items[Key];
+        kvset                                  := Key + ' ' + Value;
+        if query.filter = '' then query.filter := kvset
+        else query.filter := query.filter + ' AND ' + kvset;
+      end;
+
+      query.Filtered := true;
+      try query.Refresh;
+      except
+
+      end;
+    except exit;
+    end;
+  finally
 
   end;
-  if not assigned(filterlist) then exit;
-  // if not query.op
-
-  query.Filtered := false;
-  query.filter   := '';
-  for Key in filterlist.Keys.ToArray do begin
-    Value                                  := filterlist.Items[Key];
-    kvset                                  := Key + ' ' + Value;
-    if query.filter = '' then query.filter := kvset
-    else query.filter                      := query.filter + ' AND ' + kvset;
-  end;
-
-  query.Filtered := true;
-  query.Refresh;
 end;
 
 // ###############################################

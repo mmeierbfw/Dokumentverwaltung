@@ -2332,8 +2332,8 @@
             Top = 0
             Width = 1686
             Height = 720
-            ActivePage = tabreklamation
-            ActivePageIndex = 4
+            ActivePage = tabenergieausweis
+            ActivePageIndex = 3
             Align = alClient
             TabOrder = 0
             OnClick = framezwifilterblöschenClick
