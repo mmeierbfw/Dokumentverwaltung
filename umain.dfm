@@ -1387,8 +1387,6 @@
                   Height = 661
                   Align = alClient
                   TabOrder = 0
-                  ExplicitLeft = 8
-                  ExplicitTop = 8
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
@@ -1405,13 +1403,13 @@
                         Control = framen.rightparent
                         Row = 0
                       end>
-                    ExplicitWidth = 1994
-                    ExplicitHeight = 777
+                    ExplicitWidth = 1686
+                    ExplicitHeight = 661
                     inherited Panel5: TPanel
                       Width = 837
                       Height = 653
-                      ExplicitWidth = 991
-                      ExplicitHeight = 769
+                      ExplicitWidth = 837
+                      ExplicitHeight = 653
                       inherited lfiletype: TLabel
                         Height = 612
                       end
@@ -1459,9 +1457,9 @@
                       Left = 847
                       Width = 837
                       Height = 653
-                      ExplicitLeft = 1001
-                      ExplicitWidth = 991
-                      ExplicitHeight = 769
+                      ExplicitLeft = 847
+                      ExplicitWidth = 837
+                      ExplicitHeight = 653
                     end
                   end
                 end
@@ -2393,12 +2391,11 @@
                   OnSortColumn = gridzwiSortColumn
                   OnVerticalScroll = gridzwiVerticalScroll
                   DataAwareOptions = [doAddColumns, doSetColumnWidth]
-                  DataSource = formdb.dszwi
                   SequencedScroll = True
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 61
+                    DefaultWidth = 60
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2417,7 +2414,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 60
+                    Width = 59
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
@@ -2717,7 +2714,7 @@
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn33: TNxDBTextColumn
-                    DefaultWidth = 204
+                    DefaultWidth = 205
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2733,7 +2730,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stAlphabetic
-                    Width = 205
+                    Width = 206
                     FieldName = 'typ'
                   end
                 end
@@ -3583,7 +3580,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsen
                   object NxDBTextColumn1: TNxDBTextColumn
-                    DefaultWidth = 111
+                    DefaultWidth = 110
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3604,7 +3601,7 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 110
+                    Width = 109
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn2: TNxDBTextColumn
@@ -3825,7 +3822,7 @@
                   end
                   object NxDBImageColumn5: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 317
+                    DefaultWidth = 318
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3841,7 +3838,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 318
+                    Width = 319
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3998,7 +3995,7 @@
                   DataSource = formdb.dsrekl
                   SequencedScroll = True
                   object NxDBTextColumn3: TNxDBTextColumn
-                    DefaultWidth = 112
+                    DefaultWidth = 111
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4018,7 +4015,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 111
+                    Width = 110
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
@@ -4226,7 +4223,7 @@
                   end
                   object NxDBImageColumn4: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 203
+                    DefaultWidth = 204
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4243,7 +4240,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 204
+                    Width = 205
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4405,7 +4402,7 @@
                 OnCellFormating = gridzwiCellFormating
                 object NxDBTextColumn10: TNxDBTextColumn
                   AutoEdit = True
-                  DefaultWidth = 64
+                  DefaultWidth = 63
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = 6908265
                   Font.Height = -13
@@ -4424,7 +4421,7 @@
                   ParentFont = False
                   Position = 0
                   SortType = stNumeric
-                  Width = 63
+                  Width = 62
                   FieldName = 'ablagenr'
                   AutoExecute = True
                 end
@@ -4682,7 +4679,7 @@
                   FieldName = 'erledigt'
                 end
                 object NxDBTextColumn48: TNxDBTextColumn
-                  DefaultWidth = 218
+                  DefaultWidth = 219
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = 6908265
                   Font.Height = -13
@@ -4698,7 +4695,7 @@
                   ParentFont = False
                   Position = 13
                   SortType = stAlphabetic
-                  Width = 219
+                  Width = 220
                   FieldName = 'typ'
                 end
                 object NxDBTextColumn39: TNxDBTextColumn
@@ -4776,7 +4773,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dssonstige
                   object NxDBTextColumn42: TNxDBTextColumn
-                    DefaultWidth = 105
+                    DefaultWidth = 104
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4797,7 +4794,7 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 104
+                    Width = 103
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn49: TNxDBTextColumn
@@ -5085,7 +5082,7 @@
                   end
                   object NxDBImageColumn11: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 265
+                    DefaultWidth = 266
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5103,7 +5100,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 266
+                    Width = 267
                     Images = ImageList1
                     Transparent = True
                   end
@@ -5204,7 +5201,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsanforderungen
                   object NxDBTextColumn60: TNxDBTextColumn
-                    DefaultWidth = 105
+                    DefaultWidth = 98
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5225,11 +5222,11 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 98
+                    Width = 97
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn61: TNxDBTextColumn
-                    DefaultWidth = 250
+                    DefaultWidth = 236
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5290,7 +5287,7 @@
                     FieldName = 'nutzernummer'
                   end
                   object NxDBTextColumn63: TNxDBTextColumn
-                    DefaultWidth = 263
+                    DefaultWidth = 248
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5312,7 +5309,7 @@
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn64: TNxDBTextColumn
-                    DefaultWidth = 262
+                    DefaultWidth = 248
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5491,7 +5488,7 @@
                   end
                   object NxDBImageColumn14: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 299
+                    DefaultWidth = 282
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5513,7 +5510,7 @@
                   end
                   object NxDBImageColumn15: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 265
+                    DefaultWidth = 252
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5531,11 +5528,16 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 252
+                    Width = 253
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBTextColumn82: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
                     Header.Caption = 'Auftragstyp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5543,6 +5545,7 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
                     Position = 16
                     SortType = stAlphabetic
                     FieldName = 'auftragstyp'
@@ -5644,10 +5647,8 @@
                   OnCellDblClick = gridzwiCellDblClick
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsangebote
-                  ExplicitLeft = -56
-                  ExplicitTop = 110
                   object NxDBTextColumn71: TNxDBTextColumn
-                    DefaultWidth = 105
+                    DefaultWidth = 104
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5668,7 +5669,7 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 104
+                    Width = 103
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn72: TNxDBTextColumn
@@ -5956,7 +5957,7 @@
                   end
                   object NxDBImageColumn18: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 265
+                    DefaultWidth = 266
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5974,7 +5975,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 266
+                    Width = 267
                     Images = ImageList1
                     Transparent = True
                   end
@@ -6387,8 +6388,6 @@
                 Height = 658
                 Align = alClient
                 TabOrder = 0
-                ExplicitLeft = 8
-                ExplicitTop = 8
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
@@ -6405,13 +6404,13 @@
                       Control = vollenergie.rightparent
                       Row = 0
                     end>
-                  ExplicitWidth = 1994
-                  ExplicitHeight = 777
+                  ExplicitWidth = 1686
+                  ExplicitHeight = 658
                   inherited Panel5: TPanel
                     Width = 837
                     Height = 650
-                    ExplicitWidth = 991
-                    ExplicitHeight = 769
+                    ExplicitWidth = 837
+                    ExplicitHeight = 650
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -6454,9 +6453,9 @@
                     Left = 847
                     Width = 837
                     Height = 650
-                    ExplicitLeft = 1001
-                    ExplicitWidth = 991
-                    ExplicitHeight = 769
+                    ExplicitLeft = 847
+                    ExplicitWidth = 837
+                    ExplicitHeight = 650
                   end
                 end
               end
@@ -7543,9 +7542,6 @@
           TabOrder = 0
           VerticalAlignment = taAlignTop
           Visible = False
-          ExplicitLeft = 15
-          ExplicitTop = 12
-          ExplicitWidth = 256
           object iupdate: TImage
             Left = 10
             Top = 10
@@ -8280,7 +8276,7 @@
     Left = 728
     Top = 688
     Bitmap = {
-      494C010106007400940110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
+      494C010106007400980110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       000000000000000000000000000000000000504E4EFF504E4EFF504E4EFF2928
       2883000000000000000000000000000000000000000000000000000000000000

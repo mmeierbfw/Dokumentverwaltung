@@ -827,7 +827,7 @@ begin
     try Value := erledigttext((Sender as TNextDBGrid).CellValue[14, ARow]);
     except
       on e: Exception do begin
-        // showmessage('except 1' + e.Message);
+         showmessage('except 1' + e.Message);
       end;
     end;
 end;
@@ -5029,6 +5029,7 @@ begin
 
     end;
   end;
+  filldb(formdb.dszwi, gridzwi);
   // setfilter(formdb.queryzwi);
 
 end;
