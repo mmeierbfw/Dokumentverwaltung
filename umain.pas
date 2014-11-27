@@ -18,7 +18,8 @@ uses
   NxCustomGrid, NxDBGrid, Data.DB, ZAbstractRODataset, ZAbstractDataset,
   ZDataset, NxDBColumns, NxColumns, Vcl.ImgList, uframebase, uframereklmont,
   uframezwischenab, uframezwischen, uframebasemitnutzer, uframeauftrag,
-  uframeenergie, uframefilter, usettings, uframevertrag;
+  uframeenergie, uframefilter, usettings, uframevertrag, Vcl.Grids, uutilsglobal,
+  Vcl.DBGrids;
 
 type
 
@@ -222,23 +223,6 @@ type
     NxDBTextColumn35: TNxDBTextColumn;
     NxDBTextColumn36: TNxDBTextColumn;
     NxDBTextColumn37: TNxDBTextColumn;
-    tabvertrag: TNxTabSheet;
-    gridverträge: TNextDBGrid;
-    NxDBTextColumn10: TNxDBTextColumn;
-    NxDBTextColumn38: TNxDBTextColumn;
-    NxDBMemoColumn2: TNxDBMemoColumn;
-    NxDBTextColumn40: TNxDBTextColumn;
-    NxDBImageColumn8: TNxDBImageColumn;
-    NxDBTextColumn41: TNxDBTextColumn;
-    NxDBTextColumn43: TNxDBTextColumn;
-    NxDBTextColumn44: TNxDBTextColumn;
-    NxDBImageColumn9: TNxDBImageColumn;
-    NxDBMemoColumn8: TNxDBMemoColumn;
-    NxDBTextColumn45: TNxDBTextColumn;
-    NxDBTextColumn46: TNxDBTextColumn;
-    NxDBTextColumn47: TNxDBTextColumn;
-    NxDBTextColumn48: TNxDBTextColumn;
-    NxDBTextColumn39: TNxDBTextColumn;
     tabsonstiges: TNxTabSheet;
     NxPanel6: TNxPanel;
     gridsonstiges: TNextDBGrid;
@@ -264,7 +248,6 @@ type
     tabvollvertrag: TNxTabSheet;
     NxDBTextColumn58: TNxDBTextColumn;
     vollvertrag: Tframebasenutzer1;
-    NxDBTextColumn59: TNxDBTextColumn;
     UpDown1: TUpDown;
     tabvollsonstiges: TNxTabSheet;
     vollsonstiges: Tframebasenutzer;
@@ -326,6 +309,26 @@ type
     lprogress: TLabel;
     piupdate: TPanel;
     iupdate: TImage;
+    tabvertrag: TNxTabSheet;
+    NxPanel9: TNxPanel;
+    gridverträge: TNextDBGrid;
+    NxDBTextColumn10: TNxDBTextColumn;
+    NxDBTextColumn38: TNxDBTextColumn;
+    NxDBMemoColumn2: TNxDBMemoColumn;
+    NxDBTextColumn40: TNxDBTextColumn;
+    NxDBTextColumn41: TNxDBTextColumn;
+    NxDBTextColumn43: TNxDBTextColumn;
+    NxDBTextColumn44: TNxDBTextColumn;
+    NxDBMemoColumn8: TNxDBMemoColumn;
+    NxDBTextColumn45: TNxDBTextColumn;
+    NxDBTextColumn46: TNxDBTextColumn;
+    NxDBTextColumn39: TNxDBTextColumn;
+    NxDBTextColumn59: TNxDBTextColumn;
+    NxDBTextColumn48: TNxDBTextColumn;
+    NxDBTextColumn47: TNxDBTextColumn;
+    NxDBImageColumn9: TNxDBImageColumn;
+    NxDBImageColumn8: TNxDBImageColumn;
+    framebasefilter1: Tframebasefilter;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -546,6 +549,11 @@ type
     procedure filtersonstigeseseldiExit(Sender: TObject);
     procedure framefilterreklamationeselsbExit(Sender: TObject);
     procedure ptabellenChange(Sender: TObject);
+    procedure framebasefilter1esellgExit(Sender: TObject);
+    procedure framebasefilter1eselsbExit(Sender: TObject);
+    procedure framebasefilter1eselpeExit(Sender: TObject);
+    procedure framebasefilter1eselaeExit(Sender: TObject);
+    procedure framebasefilter1eseldiExit(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -1029,6 +1037,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.queryangebote.Open;
     setfilter(formdb.queryangebote);
+    SetGridColumnWidths(gridangebote);
     // filldb(formdb.dsangebote, gridangebote);
   except
     // on e: Exception do showmessage(e.Message);
@@ -1053,6 +1062,7 @@ begin
     formdb.queryen.Open;
 
     setfilter(formdb.queryen);
+    SetGridColumnWidths(gridenergie);
   except
     // on e: Exception do showmessage(e.Message);
 
@@ -2091,6 +2101,108 @@ begin
 
   end;
   setliegenschaftsdaten;
+end;
+
+procedure Tformmain.framebasefilter1eselaeExit(Sender: TObject);
+var
+  filterlg: string;
+begin
+  try
+    if (Sender as tfedit).Text = '' then exit;
+
+    filterlg := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' + framebasefilter1.cselae.Text,
+      filterlg);
+    setfilter(formdb.queryvert);
+
+  except
+    on e: Exception do showmessage(e.Message);
+
+  end;
+
+end;
+
+procedure Tformmain.framebasefilter1eseldiExit(Sender: TObject);
+var
+  filterlg: string;
+begin
+  try
+    if (Sender as tfedit).Text = '' then exit;
+
+    filterlg := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' + framebasefilter1.cseldi.Text,
+      filterlg);
+    setfilter(formdb.queryvert);
+
+  except
+    on e: Exception do showmessage(e.Message);
+
+  end;
+
+end;
+procedure Tformmain.framebasefilter1esellgExit(Sender: TObject);
+var
+  filterlg: string;
+begin
+  try
+    if (Sender as tfedit).Text = '' then exit;
+
+    filterlg := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' + framebasefilter1.csellg.Text,
+      filterlg);
+    setfilter(formdb.queryvert);
+
+  except
+    on e: Exception do showmessage(e.Message);
+
+  end;
+
+end;
+procedure Tformmain.framebasefilter1eselpeExit(Sender: TObject);
+var
+  filterlg: string;
+begin
+  try
+    if (Sender as tfedit).Text = '' then exit;
+
+    filterlg := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingang' + framebasefilter1.cselpe.Text,
+      filterlg);
+    setfilter(formdb.queryvert);
+
+  except
+    on e: Exception do showmessage(e.Message);
+
+  end;
+
+end;
+procedure Tformmain.framebasefilter1eselsbExit(Sender: TObject);
+var
+  filterlg: string;
+begin
+  try
+    if (Sender as tfedit).Text = '' then exit;
+
+    filterlg := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter_id' + framebasefilter1.cselsb.Text,
+      filterlg);
+    setfilter(formdb.queryvert);
+
+  except
+    on e: Exception do showmessage(e.Message);
+
+  end;
+
 end;
 
 procedure Tformmain.frameenergiecbpseudoChange(Sender: TObject);
@@ -5032,7 +5144,9 @@ begin
       formdb.querymon.Open;
       setfilter(formdb.querymon);
     end;
+    SetGridColumnWidths(gridmon);
   except
+
     // on e: Exception do showmessage(e.Message);
   end;
 end;
@@ -5065,6 +5179,7 @@ begin
 
       end;
       setfilter(formdb.querynuliste);
+      SetGridColumnWidths(gridnutzerliste);
       // filldb(formdb.dsnuliste, gridnutzerliste);
     end;
   except
@@ -5086,9 +5201,9 @@ begin
     list.Add('*');
 
     formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = '
-      + kn + ' order by  liegenschaft desc ', list);
+      + kn, list);
     setfilter(formdb.queryrekl);
-    // filldb(formdb.dsrekl, gridrek);
+    SetGridColumnWidths(gridrek);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5099,6 +5214,7 @@ var
   list: TStringList;
 begin
   try
+
     setallefiltereinstellungen;
     list := TStringList.Create;
     list.Add('*');
@@ -5107,6 +5223,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.querysonstige.Open;
     setfilter(formdb.querysonstige);
+    SetGridColumnWidths(gridsonstiges);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5132,6 +5249,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.queryvert.Open;
     setfilter(formdb.queryvert);
+    SetGridColumnWidths(gridverträge);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5153,6 +5271,7 @@ begin
       dokcons.view_anforderungen + ' WHERE kundennummer = ' + kdnr;
     formdb.queryanforderungen.Open;
     setfilter(formdb.queryanforderungen);
+    SetGridColumnWidths(gridanforderungen);
   except
     // on e: Exception do showmessage(e.Message);
   end; // filldb(formdb.dsanforderungen, gridanforderungen);
@@ -5189,6 +5308,7 @@ begin
   end;
   // filldb(formdb.dszwi, gridzwi);
   setfilter(formdb.queryzwi);
+  SetGridColumnWidths(gridzwi);
 
 end;
 
@@ -5413,6 +5533,7 @@ begin
   // if not assigned(ptabellen) then exit;
 
   showzwischenablesungen;
+  SetGridColumnWidths(gridzwi  );
   // try showzwischenablesungen;
   // except
   // on e: Exception do begin
