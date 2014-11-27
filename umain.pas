@@ -53,8 +53,6 @@ type
     bentfernen: TNxButton;
     lsachbearbeiter: TLabel;
     lkundennummer: TLabel;
-    piupdate: TPanel;
-    iupdate: TImage;
     lpverarbeitungsart: TLabel;
     lhochruntergeladen: TLabel;
     Timer2: TTimer;
@@ -326,6 +324,8 @@ type
     framen: Tframeenergie;
     vollenergie: Tframeenergie;
     NxDBTextColumn82: TNxDBTextColumn;
+    piupdate: TPanel;
+    iupdate: TImage;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;

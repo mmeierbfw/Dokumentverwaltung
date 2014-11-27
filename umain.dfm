@@ -7358,9 +7358,9 @@
         Visible = False
         object IStatusok: TImage
           Left = 0
-          Top = 0
+          Top = 56
           Width = 286
-          Height = 65
+          Height = 9
           Align = alClient
           Center = True
           Picture.Data = {
@@ -7413,13 +7413,15 @@
             B9E578E53FC16F4860A1388B184DA63C86E87CD919B6A6F54CF14D97FDA6046E
             55DC15B8E3027F002001C730A1EBF65B0000000049454E44AE426082}
           Transparent = True
+          ExplicitTop = 0
           ExplicitWidth = 219
+          ExplicitHeight = 65
         end
         object iSTAtusfalse: TImage
           Left = 0
-          Top = 0
+          Top = 56
           Width = 286
-          Height = 65
+          Height = 9
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
@@ -7509,6 +7511,8 @@
             426082}
           Visible = False
           ExplicitLeft = 5
+          ExplicitTop = 0
+          ExplicitHeight = 65
         end
         object lprogress: TLabel
           Left = 3
@@ -7516,77 +7520,11 @@
           Width = 4
           Height = 16
         end
-      end
-      object psonstiges: TPanel
-        AlignWithMargins = True
-        Left = 5
-        Top = 643
-        Width = 286
-        Height = 89
-        Margins.Left = 5
-        Margins.Top = 2
-        Margins.Right = 5
-        Margins.Bottom = 10
-        Align = alBottom
-        AutoSize = True
-        BevelOuter = bvNone
-        Color = 14933977
-        Locked = True
-        Padding.Left = 10
-        Padding.Top = 10
-        Padding.Right = 10
-        Padding.Bottom = 10
-        ParentBackground = False
-        TabOrder = 2
-        object Button9: TButton
-          Left = 10
-          Top = 66
-          Width = 266
-          Height = 23
-          Align = alTop
-          Caption = 'Updates pr'#252'fen'
-          TabOrder = 0
-          TabStop = False
-          OnClick = Button9Click
-          ExplicitTop = 10
-        end
-        object Button10: TButton
-          Left = 10
-          Top = 89
-          Width = 266
-          Height = 23
-          Margins.Left = 2
-          Margins.Top = 2
-          Margins.Right = 2
-          Margins.Bottom = 2
-          Align = alTop
-          Caption = 'Dokumente speichern'
-          TabOrder = 1
-          TabStop = False
-          OnClick = dokanzeigeClick
-          ExplicitTop = 33
-        end
-        object Button1: TButton
-          Left = 10
-          Top = 112
-          Width = 266
-          Height = 23
-          Margins.Left = 2
-          Margins.Top = 2
-          Margins.Right = 2
-          Margins.Bottom = 2
-          Align = alTop
-          Caption = 'Dokumente anzeigen'
-          TabOrder = 2
-          TabStop = False
-          OnClick = Button1Click
-          ExplicitTop = 56
-        end
         object piupdate: TPanel
           AlignWithMargins = True
-          Left = 15
-          Top = 12
-          Width = 256
+          Left = 5
+          Top = 2
+          Width = 276
           Height = 52
           Margins.Left = 5
           Margins.Top = 2
@@ -7602,13 +7540,16 @@
           Padding.Right = 10
           Padding.Bottom = 10
           ParentBackground = False
-          TabOrder = 3
+          TabOrder = 0
           VerticalAlignment = taAlignTop
           Visible = False
+          ExplicitLeft = 15
+          ExplicitTop = 12
+          ExplicitWidth = 256
           object iupdate: TImage
             Left = 10
             Top = 10
-            Width = 236
+            Width = 256
             Height = 32
             Hint = 'neue Version verf'#252'gbar'
             Margins.Left = 2
@@ -8173,6 +8114,69 @@
             OnClick = iupdateClick
             ExplicitWidth = 32
           end
+        end
+      end
+      object psonstiges: TPanel
+        AlignWithMargins = True
+        Left = 5
+        Top = 643
+        Width = 286
+        Height = 89
+        Margins.Left = 5
+        Margins.Top = 2
+        Margins.Right = 5
+        Margins.Bottom = 10
+        Align = alBottom
+        AutoSize = True
+        BevelOuter = bvNone
+        Color = 14933977
+        Locked = True
+        Padding.Left = 10
+        Padding.Top = 10
+        Padding.Right = 10
+        Padding.Bottom = 10
+        ParentBackground = False
+        TabOrder = 2
+        object Button9: TButton
+          Left = 10
+          Top = 10
+          Width = 266
+          Height = 23
+          Align = alTop
+          Caption = 'Updates pr'#252'fen'
+          TabOrder = 0
+          TabStop = False
+          OnClick = Button9Click
+        end
+        object Button10: TButton
+          Left = 10
+          Top = 33
+          Width = 266
+          Height = 23
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Dokumente speichern'
+          TabOrder = 1
+          TabStop = False
+          OnClick = dokanzeigeClick
+        end
+        object Button1: TButton
+          Left = 10
+          Top = 56
+          Width = 266
+          Height = 23
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Dokumente anzeigen'
+          TabOrder = 2
+          TabStop = False
+          OnClick = Button1Click
         end
       end
       object pverarbeitungsstatus: TPanel
