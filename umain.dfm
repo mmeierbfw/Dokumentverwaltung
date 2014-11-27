@@ -2320,8 +2320,8 @@
             Top = 0
             Width = 1686
             Height = 720
-            ActivePage = tabvertrag
-            ActivePageIndex = 5
+            ActivePage = tabzwischen
+            ActivePageIndex = 0
             Align = alClient
             TabOrder = 0
             OnClick = framezwifilterblöschenClick
@@ -2768,7 +2768,11 @@
                     ExplicitWidth = 1686
                     FullHeight = 18
                     inherited esellg: TfEdit
+                      Left = 145
+                      Top = 27
                       OnExit = framezwifilteresellgExit
+                      ExplicitLeft = 145
+                      ExplicitTop = 27
                     end
                     inherited eselsb: TfEdit
                       OnExit = framezwifiltereselsbExit
@@ -4037,7 +4041,7 @@
                   RowSize = 25
                   TabOrder = 0
                   TabStop = True
-                  OnApplyCell = gridrekApplyCell
+                  OnApplyCell = gridzwiApplyCell
                   OnCellClick = gridzwiCellClick
                   OnCellColoring = gridzwiCellColoring
                   OnCellDblClick = gridzwiCellDblClick
@@ -4064,7 +4068,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 109
+                    Width = 114
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
@@ -4085,7 +4089,7 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 162
+                    Width = 170
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBTextColumn7: TNxDBTextColumn
@@ -4106,7 +4110,7 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 160
+                    Width = 168
                     FieldName = 'Nutzernummer'
                   end
                   object NxDBTextColumn8: TNxDBTextColumn
@@ -4127,7 +4131,7 @@
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
-                    Width = 162
+                    Width = 170
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn9: TNxDBTextColumn
@@ -4148,7 +4152,7 @@
                     ParentFont = False
                     Position = 4
                     SortType = stAlphabetic
-                    Width = 158
+                    Width = 166
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn19: TNxDBTextColumn
@@ -4169,7 +4173,7 @@
                     ParentFont = False
                     Position = 5
                     SortType = stAlphabetic
-                    Width = 162
+                    Width = 170
                     FieldName = 'auftragsnr'
                   end
                   object NxDBMemoColumn5: TNxDBMemoColumn
@@ -4210,7 +4214,7 @@
                     ParentFont = False
                     Position = 7
                     SortType = stAlphabetic
-                    Width = 163
+                    Width = 171
                     FieldName = 'einbaudatum'
                   end
                   object NxDBTextColumn21: TNxDBTextColumn
@@ -4253,27 +4257,6 @@
                     Visible = False
                     FieldName = 'dateiname'
                   end
-                  object NxDBImageColumn7: TNxDBImageColumn
-                    DefaultValue = '0'
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Color = clWhite
-                    Header.Caption = 'Notizen anzeigen'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 10
-                    SortType = stNumeric
-                    Images = ImageList1
-                    Transparent = True
-                  end
                   object NxDBTextColumn37: TNxDBTextColumn
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
@@ -4289,9 +4272,9 @@
                     Header.Font.Style = []
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 11
+                    Position = 10
                     SortType = stAlphabetic
-                    Width = 81
+                    Width = 85
                   end
                   object NxDBTextColumn31: TNxDBTextColumn
                     Font.Charset = DEFAULT_CHARSET
@@ -4308,8 +4291,9 @@
                     Header.Font.Style = []
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 12
+                    Position = 11
                     SortType = stAlphabetic
+                    Width = 84
                   end
                   object NxDBImageColumn4: TNxDBImageColumn
                     DefaultValue = '0'
@@ -4329,9 +4313,9 @@
                     InplaceEdit = frameauf.cbselectauftrag
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 13
+                    Position = 12
                     SortType = stNumeric
-                    Width = 205
+                    Width = 215
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4352,9 +4336,9 @@
                     Header.Font.Style = []
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
-                    Position = 14
+                    Position = 13
                     SortType = stNumeric
-                    Width = 162
+                    Width = 171
                     Images = ImageList1
                     Transparent = True
                   end

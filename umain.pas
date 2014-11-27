@@ -18,8 +18,8 @@ uses
   NxCustomGrid, NxDBGrid, Data.DB, ZAbstractRODataset, ZAbstractDataset,
   ZDataset, NxDBColumns, NxColumns, Vcl.ImgList, uframebase, uframereklmont,
   uframezwischenab, uframezwischen, uframebasemitnutzer, uframeauftrag,
-  uframeenergie, uframefilter, usettings, uframevertrag, Vcl.Grids, uutilsglobal,
-  Vcl.DBGrids;
+  uframeenergie, uframefilter, usettings, uframevertrag, Vcl.Grids,
+  uutilsglobal, Vcl.DBGrids;
 
 type
 
@@ -206,7 +206,6 @@ type
     NxDBTextColumn22: TNxDBTextColumn;
     NxDBTextColumn25: TNxDBTextColumn;
     NxDBTextColumn18: TNxDBImageColumn;
-    NxDBImageColumn7: TNxDBImageColumn;
     framevert: Tframebasenutzer1;
     NxDBTextColumn12: TNxDBTextColumn;
     NxDBTextColumn23: TNxDBTextColumn;
@@ -667,6 +666,10 @@ type
     procedure sortrekl(acol: Integer; Ascending: Boolean);
     procedure sortmontagen(acol: Integer; ascbool: Boolean);
     procedure sortenergie(acol: Integer; ascbool: Boolean);
+    procedure sortsonstiges(acol: Integer; ascbool: Boolean);
+    procedure sortvertrag(acol: Integer; ascbool: Boolean);
+    procedure sortangebot(acol: Integer; ascbool: Boolean);
+    procedure sortauftragsanforderung(acol: Integer; ascbool: Boolean);
     function getzwivalues: TStringList;
     procedure setfilter(query: tzquery);
     procedure setalleFilter;
@@ -975,6 +978,14 @@ begin
   if ptabellen.ActivePage = tabenergieausweis then sortenergie(acol, Ascending);
   if ptabellen.ActivePage = tabnutzerlisten then sortnutzer(acol, Ascending);
   if ptabellen.ActivePage = tabreklamation then sortrekl(acol, Ascending);
+  if ptabellen.ActivePage = tabenergieausweis then sortenergie(acol, Ascending);
+  if ptabellen.ActivePage = tabauftragsanforderung then
+      sortauftragsanforderung(acol, Ascending);
+  if ptabellen.ActivePage = tabangebotsanfrage then
+      sortangebot(acol, Ascending);
+  if ptabellen.ActivePage = tabsonstiges then sortsonstiges(acol, Ascending);
+  if ptabellen.ActivePage = tabvertrag then sortvertrag(acol, Ascending);
+
 end;
 
 procedure Tformmain.gridzwiVerticalScroll(Sender: TObject; Position: Integer);
@@ -1486,9 +1497,9 @@ begin
           end;
         end;
       2: begin
-          dbgrid                      := gridnutzerliste;
-          pvollbilder.activepageindex := 4;
-          voll                        := vollnutzer;
+          dbgrid                 := gridnutzerliste;
+          pvollbilder.ActivePage := tabvollnutzer;
+          voll                   := vollnutzer;
         end;
       4: begin
           dbgrid                      := gridrek;
@@ -1592,8 +1603,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('abrechnungsende' +
       filterangebot.cselae.Text, filter);
     setfilter(formdb.queryangebote);
@@ -1611,8 +1620,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('ablagenr' + filterangebot.cseldi.Text, filter);
     setfilter(formdb.queryangebote);
 
@@ -1629,8 +1636,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('liegenschaft' +
       filterangebot.csellg.Text, filter);
     setfilter(formdb.queryangebote);
@@ -1648,8 +1653,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('posteingang' + filterangebot.cselpe.Text, filter);
     setfilter(formdb.queryangebote);
 
@@ -1666,8 +1669,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('sachbearbeiter_id' +
       filterangebot.cselsb.Text, filter);
     setfilter(formdb.queryangebote);
@@ -1685,8 +1686,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('abrechnungsende' +
       filtersonstiges.cselae.Text, filter);
     setfilter(formdb.querysonstige);
@@ -1704,8 +1703,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('ablagenr' + filtersonstiges.cseldi.Text, filter);
     setfilter(formdb.querysonstige);
 
@@ -1722,8 +1719,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('liegenschaft' +
       filtersonstiges.csellg.Text, filter);
     setfilter(formdb.querysonstige);
@@ -1741,8 +1736,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('posteingang' +
       filtersonstiges.cselpe.Text, filter);
     setfilter(formdb.querysonstige);
@@ -1760,8 +1753,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('sachbearbeiter_id' +
       filtersonstiges.cselsb.Text, filter);
     setfilter(formdb.querysonstige);
@@ -1822,7 +1813,7 @@ begin
   try ftpcollectorlist.LoadFromFile(getnotsentlist);
   except showmessage('not sent list error');
   end;
-
+  filterlist := TDictionary<string, string>.Create;
 end;
 
 procedure Tformmain.FormDestroy(Sender: TObject);
@@ -2002,8 +1993,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('abrechnungsende' +
       filterauftragsanf.cselae.Text, filter);
     setfilter(formdb.queryanforderungen);
@@ -2021,8 +2010,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('ablagenr' +
       filterauftragsanf.cseldi.Text, filter);
     setfilter(formdb.queryanforderungen);
@@ -2040,8 +2027,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('liegenschaft' +
       filterauftragsanf.csellg.Text, filter);
     setfilter(formdb.queryanforderungen);
@@ -2059,8 +2044,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('posteingang' +
       filterauftragsanf.cselpe.Text, filter);
     setfilter(formdb.queryanforderungen);
@@ -2078,8 +2061,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('sachbearbeiter_id' +
       filterauftragsanf.cselsb.Text, filter);
     setfilter(formdb.queryanforderungen);
@@ -2111,8 +2092,6 @@ begin
     if (Sender as tfedit).Text = '' then exit;
 
     filterlg := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('abrechnungsende' + framebasefilter1.cselae.Text,
       filterlg);
     setfilter(formdb.queryvert);
@@ -2132,8 +2111,6 @@ begin
     if (Sender as tfedit).Text = '' then exit;
 
     filterlg := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('ablagenr' + framebasefilter1.cseldi.Text,
       filterlg);
     setfilter(formdb.queryvert);
@@ -2144,6 +2121,7 @@ begin
   end;
 
 end;
+
 procedure Tformmain.framebasefilter1esellgExit(Sender: TObject);
 var
   filterlg: string;
@@ -2152,8 +2130,6 @@ begin
     if (Sender as tfedit).Text = '' then exit;
 
     filterlg := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('liegenschaft' + framebasefilter1.csellg.Text,
       filterlg);
     setfilter(formdb.queryvert);
@@ -2164,6 +2140,7 @@ begin
   end;
 
 end;
+
 procedure Tformmain.framebasefilter1eselpeExit(Sender: TObject);
 var
   filterlg: string;
@@ -2172,8 +2149,6 @@ begin
     if (Sender as tfedit).Text = '' then exit;
 
     filterlg := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('posteingang' + framebasefilter1.cselpe.Text,
       filterlg);
     setfilter(formdb.queryvert);
@@ -2184,6 +2159,7 @@ begin
   end;
 
 end;
+
 procedure Tformmain.framebasefilter1eselsbExit(Sender: TObject);
 var
   filterlg: string;
@@ -2192,8 +2168,6 @@ begin
     if (Sender as tfedit).Text = '' then exit;
 
     filterlg := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('sachbearbeiter_id' + framebasefilter1.cselsb.Text,
       filterlg);
     setfilter(formdb.queryvert);
@@ -2247,8 +2221,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('abrechnungsende' +
       frameenfilter.cselae.Text, filter);
     setfilter(formdb.queryen);
@@ -2266,8 +2238,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('ablagenr' + frameenfilter.cselae.Text, filter);
     setfilter(formdb.queryen);
 
@@ -2284,8 +2254,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('liegenschaft' +
       frameenfilter.csellg.Text, filter);
     setfilter(formdb.queryen);
@@ -2303,8 +2271,6 @@ begin
   try
     if (Sender as tfedit).Text = '' then exit;
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('posteingang' + frameenfilter.cselpe.Text, filter);
     setfilter(formdb.queryen);
 
@@ -2321,8 +2287,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('sachbearbeiter_id' +
       frameenfilter.cselsb.Text, filter);
     setfilter(formdb.queryen);
@@ -2353,8 +2317,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('abrechnungsende' +
       framefilterreklamation.cselae.Text, filter);
     setfilter(formdb.queryrekl);
@@ -2372,8 +2334,6 @@ begin
   if (Sender as tfedit).Text = '' then exit;
   try
     filter := (Sender as tfedit).Text;
-    if not assigned(filterlist) then
-        filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('ablagenr' + framefilterreklamation.cseldi.
       Text, filter);
     setfilter(formdb.queryrekl);
@@ -2895,19 +2855,15 @@ var
 begin
   try
     if (Sender as tfedit).Text = '' then exit;
-
     filterlg := (Sender as tfedit).Text;
     if not assigned(filterlist) then
         filterlist := TDictionary<string, string>.Create;
     filterlist.AddOrSetValue('liegenschaft' + framezwifilter.csellg.Text,
       filterlg);
     setfilter(formdb.queryzwi);
-
   except
     on e: Exception do showmessage(e.Message);
-
   end;
-
 end;
 
 procedure Tformmain.framezwifiltereselpeExit(Sender: TObject);
@@ -3245,12 +3201,12 @@ end;
 
 function Tformmain.getfilesizeex(const afilename: string): int64;
 var
-  f: TSearchRec;
+  F: TSearchRec;
 begin
   Result := -1;
-  if FindFirst(afilename, faAnyFile, f) = 0 then begin
-    try Result := f.FindData.nFileSizeLow or (f.FindData.nFileSizeHigh shl 32);
-    finally findClose(f);
+  if FindFirst(afilename, faAnyFile, F) = 0 then begin
+    try Result := F.FindData.nFileSizeLow or (F.FindData.nFileSizeHigh shl 32);
+    finally findClose(F);
     end;
   end;
 end;
@@ -4725,7 +4681,6 @@ begin
     for Key in filterlist.Keys.ToArray do begin
       Value := filterlist.Items[Key];
       if strcontains('liegenschaft', Key) then begin
-
         filtersonstiges.esellg.Text        := Value;
         framefilterreklamation.esellg.Text := Value;
         framezwifilter.esellg.Text         := Value;
@@ -4828,33 +4783,31 @@ var
 
 begin
   try
-    try
-      if not ptabellen.ShowTabs then exit;
-    except exit;
+    if not ptabellen.ShowTabs then exit;
+  except exit;
+  end;
+  if not assigned(filterlist) then exit;
+  // if not query.op
+
+  try
+    query.Filtered := false;
+    query.filter   := '';
+    for Key in filterlist.Keys.ToArray do begin
+
+      Value := filterlist.Items[Key];
+      if Value = '' then continue;
+
+      kvset                                  := Key + ' ' + Value;
+      if query.filter = '' then query.filter := kvset
+      else query.filter                      := query.filter + ' AND ' + kvset;
+    end;
+
+    query.Filtered := true;
+    try query.Refresh;
+    except
 
     end;
-    if not assigned(filterlist) then exit;
-    // if not query.op
-
-    try
-      query.Filtered := false;
-      query.filter   := '';
-      for Key in filterlist.Keys.ToArray do begin
-        Value                                  := filterlist.Items[Key];
-        kvset                                  := Key + ' ' + Value;
-        if query.filter = '' then query.filter := kvset
-        else query.filter := query.filter + ' AND ' + kvset;
-      end;
-
-      query.Filtered := true;
-      try query.Refresh;
-      except
-
-      end;
-    except exit;
-    end;
-  finally
-
+  except exit;
   end;
 end;
 
@@ -5129,12 +5082,14 @@ end;
 // ###############################################
 procedure Tformmain.showmontagen;
 var
-  query: string;
-  list : TStringList;
+  query : string;
+  list  : TStringList;
+  helper: string;
 begin
   try
-    setallefiltereinstellungen;
     with dokcons do begin
+    
+    setallefiltereinstellungen;
       list := TStringList.Create;
       list.Add('*');
 
@@ -5313,6 +5268,50 @@ begin
 end;
 
 // ###############################################
+procedure Tformmain.sortangebot(acol: Integer; ascbool: Boolean);
+
+var
+  QueryString: string;
+  asc        : string;
+begin
+  QueryString := 'SELECT * FROM ' + dokcons.view_ang;
+  // Query statement
+  if gridangebote.Columns[acol].FieldName = '' then exit;
+
+  if ascbool then asc := 'ASC'
+  else asc            := 'DESC';
+  if acol = 0 then
+      QueryString := QueryString + ' ORDER BY cast(' + gridangebote.Columns
+      [acol].FieldName + ' as unsigned) ' + asc
+  else QueryString := QueryString + ' ORDER BY ' + gridangebote.Columns[acol]
+      .FieldName + ' ' + asc;
+  formdb.queryangebote.sql.Clear;
+  formdb.queryangebote.sql.Text := QueryString;
+  formdb.queryangebote.Open;
+end;
+
+procedure Tformmain.sortauftragsanforderung(acol: Integer; ascbool: Boolean);
+
+var
+  QueryString: string;
+  asc        : string;
+begin
+  QueryString := 'SELECT * FROM ' + dokcons.view_anforderungen;
+  // Query statement
+  if gridanforderungen.Columns[acol].FieldName = '' then exit;
+
+  if ascbool then asc := 'ASC'
+  else asc            := 'DESC';
+  if acol = 0 then
+      QueryString := QueryString + ' ORDER BY cast(' + gridanforderungen.Columns
+      [acol].FieldName + ' as unsigned) ' + asc
+  else QueryString := QueryString + ' ORDER BY ' + gridanforderungen.Columns
+      [acol].FieldName + ' ' + asc;
+  formdb.queryanforderungen.sql.Clear;
+  formdb.queryanforderungen.sql.Text := QueryString;
+  formdb.queryanforderungen.Open;
+end;
+
 procedure Tformmain.sortenergie(acol: Integer; ascbool: Boolean);
 
 var
@@ -5414,6 +5413,56 @@ begin
   formdb.queryrekl.sql.Clear;
   formdb.queryrekl.sql.Text := QueryString;
   formdb.queryrekl.Open;
+end;
+
+procedure Tformmain.sortsonstiges(acol: Integer; ascbool: Boolean);
+var
+  QueryString: string;
+  asc        : string;
+begin
+
+  QueryString := 'SELECT * FROM ' + dokcons.view_sonst; // Query statement
+  if gridsonstiges.Columns[acol].FieldName = '' then exit;
+
+  if ascbool then asc := ' ASC'
+  else asc            := ' DESC';
+  if acol = 0 then
+  // die ablagenummer muss numerisch sortiert sein..
+  begin
+    QueryString := QueryString + ' ORDER BY cast(' + gridsonstiges.Columns[acol]
+      .FieldName + ' as unsigned) ' + asc;
+  end
+  else QueryString := QueryString + ' ORDER BY ' + gridsonstiges.Columns[acol]
+      .FieldName + ' ' + asc;
+
+  formdb.querysonstige.sql.Clear;
+  formdb.querysonstige.sql.Text := QueryString;
+  formdb.querysonstige.Open;
+end;
+
+procedure Tformmain.sortvertrag(acol: Integer; ascbool: Boolean);
+var
+  QueryString: string;
+  asc        : string;
+begin
+
+  QueryString := 'SELECT * FROM ' + dokcons.view_ver; // Query statement
+  if gridverträge.Columns[acol].FieldName = '' then exit;
+
+  if ascbool then asc := ' ASC'
+  else asc            := ' DESC';
+  if acol = 0 then
+  // die ablagenummer muss numerisch sortiert sein..
+  begin
+    QueryString := QueryString + ' ORDER BY cast(' + gridverträge.Columns[acol]
+      .FieldName + ' as unsigned) ' + asc;
+  end
+  else QueryString := QueryString + ' ORDER BY ' + gridverträge.Columns[acol]
+      .FieldName + ' ' + asc;
+
+  formdb.queryvert.sql.Clear;
+  formdb.queryvert.sql.Text := QueryString;
+  formdb.queryvert.Open;
 end;
 
 // ###############################################
@@ -5533,7 +5582,7 @@ begin
   // if not assigned(ptabellen) then exit;
 
   showzwischenablesungen;
-  SetGridColumnWidths(gridzwi  );
+  SetGridColumnWidths(gridzwi);
   // try showzwischenablesungen;
   // except
   // on e: Exception do begin
