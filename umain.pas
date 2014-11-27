@@ -325,6 +325,7 @@ type
     vollangebot: Tframebasenutzer;
     framen: Tframeenergie;
     vollenergie: Tframeenergie;
+    NxDBTextColumn82: TNxDBTextColumn;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -543,6 +544,7 @@ type
     procedure filterangeboteselpeExit(Sender: TObject);
     procedure filterangeboteselaeExit(Sender: TObject);
     procedure filterangeboteseldiExit(Sender: TObject);
+    procedure tabangebotsanfrageShow(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -634,6 +636,7 @@ type
     procedure showmontagen;
     procedure showenergieausweise;
     procedure showauftragsanforderungen;
+    procedure showangebote;
     procedure showkostennutzerlisten;
     procedure showreklamation;
     function filldb(ds: TDataSource; dbgrid: TNextDBGrid): Boolean;
@@ -1005,6 +1008,24 @@ begin
   Einstellungen.Show;
 end;
 
+// ###################################
+procedure Tformmain.showangebote;
+var
+  list: TStringList;
+begin
+  filterangebot.esellg.Text := filterlg;
+  list                      := TStringList.Create;
+  list.Add('*');
+  formdb.queryangebote.sql.Clear;
+  formdb.queryangebote.sql.Text := 'SELECT * FROM ' + dokcons.view_ang +
+    ' WHERE kundennummer = ' + kdnr;
+  formdb.queryangebote.Open;
+  setfilter(formdb.queryangebote, filter);
+  filldb(formdb.dsangebote, gridangebote);
+
+end;
+
+// ##########################
 procedure Tformmain.showenergieausweise;
 
 var
@@ -1012,13 +1033,13 @@ var
 begin
   frameenfilter.esellg.Text := filterlg;
   list                      := TStringList.Create;
-  list.add('*');
+  list.Add('*');
   // list.add(dateiname);
   // list.add(Posteingang);
   // list.add('Dokumentid');
 
-  formdb.queryen.SQL.clear;
-  formdb.queryen.SQL.Text := 'SELECT * FROM ' + dokcons.view_en +
+  formdb.queryen.sql.Clear;
+  formdb.queryen.sql.Text := 'SELECT * FROM ' + dokcons.view_en +
     ' WHERE kundennummer = ' + kdnr;
   formdb.queryen.Open;
 
@@ -1055,7 +1076,7 @@ end;
 
 procedure Tformmain.addtolist(item: string);
 begin
-  ftpcollectorlist.add(item);
+  ftpcollectorlist.Add(item);
 end;
 
 procedure Tformmain.BentfernenClick(Sender: TObject);
@@ -2152,7 +2173,7 @@ begin
     auftragsnr := (frame as Tframereklmont).eauftragsnummer.Text;
     showmessage(auftragsnr);
     dict := TStringList.Create;
-    dict.add('*');
+    dict.Add('*');
     with formdb do begin
       formdb.doquery(queryaufträge, 'aufträge', ' WHERE ' + auftragsnummer + '='
         + quotedstr(auftragsnr), dict);
@@ -2670,7 +2691,7 @@ var
 begin
   Result := TStringList.Create;
   for item in kundennummern do begin
-    Result.add(Format('%.2d', [item]));
+    Result.Add(Format('%.2d', [item]));
   end;
 end;
 
@@ -2980,7 +3001,7 @@ end;
 function Tformmain.getzwivalues: TStringList;
 begin
   Result := TStringList.Create;
-  Result.add('*');
+  Result.Add('*');
   // Result.Add('Dokumentid');
   // Result.Add(Nutzernummer);
   // Result.Add(Nutzername);
@@ -3249,8 +3270,8 @@ begin
   with frame do begin
     if not assigned(listposteingang) then listposteingang := TStringList.Create;
     if not assigned(listpostausgang) then listpostausgang := TStringList.Create;
-    listposteingang.clear;
-    listpostausgang.clear;
+    listposteingang.Clear;
+    listpostausgang.Clear;
 
     if not(scanvz = '') then append(scanvz, listposteingang, lbeingang);
     if not(postausgverz = '') then
@@ -3341,6 +3362,7 @@ begin
 end;
 
 // ###############################################
+
 procedure Tformmain.showauftrag(Sender: TObject);
 begin
   formauftragsart.Show;
@@ -3712,49 +3734,49 @@ begin
     frame.eliegenschaft.Text     := '';
     frame.menotizen.Text         := '';
     frame.dtabrechnungsende.Text := '__.__.__';
-    frame.eabrechnungsende.clear;
-    frame.menotizen.clear;
+    frame.eabrechnungsende.Clear;
+    frame.menotizen.Clear;
     Tag := gettag(pagerspeicher.ActivePage);
     case Tag of
       ZwischenablsgINT: begin
           framezwi.enutzernummer.Text := '';
           framezwi.enutzername.Text   := '';
-          framezwi.enutzername.clear;
-          framezwi.enutzernummer.clear;
-          framezwi.eauszug.clear;
-          framezwi.eablesedatum.clear;
+          framezwi.enutzername.Clear;
+          framezwi.enutzernummer.Clear;
+          framezwi.eauszug.Clear;
+          framezwi.eablesedatum.Clear;
 
         end;
       MontageINT: begin
-          framemontage.eauftragsnummer.clear;
+          framemontage.eauftragsnummer.Clear;
           framemontage.dtmontage.Text := '__.__.__';
-          framemontage.emontage.clear;
+          framemontage.emontage.Clear;
           framemontage.rgerledigt.ItemIndex := 0;
         end;
       ReklamationINT: begin
-          framereklamation.eauftragsnummer.clear;
+          framereklamation.eauftragsnummer.Clear;
           framereklamation.dtmontage.Text := '__.__.__';
-          framereklamation.emontage.clear;
+          framereklamation.emontage.Clear;
           framereklamation.rgerledigt.ItemIndex := 0;;
           // framereklamation.eauftragsnummer.Clear;
         end;
       EnergieausweisINT: begin
           framen.cbpseudo.Checked := false;
-          framen.eestrasse.clear;
-          framen.eeplz.clear;
-          framen.eeort.clear;
+          framen.eestrasse.Clear;
+          framen.eeplz.Clear;
+          framen.eeort.Clear;
         end;
       SonstigesInt: begin
-          framesonstiges.enutzernummer.clear;
+          framesonstiges.enutzernummer.Clear;
         end;
       Vertragsint: begin
-          framevert.enutzernummer.clear;
+          framevert.enutzernummer.Clear;
         end;
       Angebotsint: begin
-          frameangebot.enutzernummer.clear;
+          frameangebot.enutzernummer.Clear;
         end;
       Auftragsint: begin
-          frameauf.enutzernummer.clear;
+          frameauf.enutzernummer.Clear;
           frameauf.cbselectauftrag.ItemIndex := -1;
           frameauf.cbselectauftrag.Text      := 'Auftragstyp';
         end;
@@ -3794,8 +3816,8 @@ end;
 procedure Tformmain.resetlisten;
 begin
   try
-    selectedlb.clear;
-    selectedlist.clear;
+    selectedlb.Clear;
+    selectedlist.Clear;
   except outputdebugstring('keine Liste ausgewählt');
 
   end;
@@ -3960,7 +3982,7 @@ begin
     end;
     for i := 0 to size - 1 do begin
       if selectedlb.Selected[i] then
-          filenamelist.add(IncludeTrailingPathDelimiter(selecteddir) +
+          filenamelist.Add(IncludeTrailingPathDelimiter(selecteddir) +
           selectedlist[i]);
     end;
     pimage.Visible       := false;
@@ -4139,11 +4161,11 @@ begin
   pdatenrechts.Show;
   pliedaten.Visible := false;
   list              := TStringList.Create;
-  list.add('PLZ');
-  list.add('Ort');
-  list.add('strasse');
-  list.add('Databr');
-  list.add('vermerke');
+  list.Add('PLZ');
+  list.Add('Ort');
+  list.Add('strasse');
+  list.Add('Databr');
+  list.Add('vermerke');
   database    := 'DANLSUC';
   wherestring := ' WHERE lienr =  ' + liegg;
   dic         := formdb.get(database, wherestring, list);
@@ -4218,11 +4240,11 @@ begin
   pdatenrechts.Show;
   pliedaten.Visible := false;
   list              := TStringList.Create;
-  list.add('PLZ');
-  list.add('Ort');
-  list.add('strasse');
-  list.add('Databr');
-  list.add('vermerke');
+  list.Add('PLZ');
+  list.Add('Ort');
+  list.Add('strasse');
+  list.Add('Databr');
+  list.Add('vermerke');
   database    := 'DANLSUC';
   wherestring := ' WHERE lienr =  ' + frame.eliegenschaft.Text;
   dic         := formdb.get(database, wherestring, list);
@@ -4336,10 +4358,10 @@ begin
   framemonfilter.esellg.Text := filterlg;
   with dokcons do begin
     list := TStringList.Create;
-    list.add('*');
+    list.Add('*');
 
-    formdb.querymon.SQL.clear;
-    formdb.querymon.SQL.Text := 'SELECT * FROM ' + view_mon +
+    formdb.querymon.sql.Clear;
+    formdb.querymon.sql.Text := 'SELECT * FROM ' + view_mon +
       ' WHERE kundennummer = ' + kn;
     // formdb.querymon.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
     // ' WHERE kundennummer = ' + kdnr;
@@ -4365,11 +4387,11 @@ begin
   framemonnut.esellg.Text := filterlg;
   with dokcons do begin
     list := TStringList.Create;
-    list.add('*');
+    list.Add('*');
     // formdb.doquery(formdb.querynuliste, view_kosnut, ' WHERE kundennummer = ' + kn
     // + ' order by ablagenr desc ;', list);
-    formdb.querynuliste.SQL.clear;
-    formdb.querynuliste.SQL.Text := 'SELECT *  FROM ' + view_kos +
+    formdb.querynuliste.sql.Clear;
+    formdb.querynuliste.sql.Text := 'SELECT *  FROM ' + view_kos +
       ' WHERE kundennummer = ' + quotedstr(kn);
     try formdb.querynuliste.Open;
     except
@@ -4390,7 +4412,7 @@ var
 begin
   framefilterreklamation.esellg.Text := filterlg;
   list                               := TStringList.Create;
-  list.add('*');
+  list.Add('*');
 
   formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = ' +
     kn + ' order by  liegenschaft desc ', list);
@@ -4404,9 +4426,9 @@ var
   list: TStringList;
 begin
   list := TStringList.Create;
-  list.add('*');
-  formdb.querysonstige.SQL.clear;
-  formdb.querysonstige.SQL.Text := 'SELECT * FROM ' + dokcons.view_sonst +
+  list.Add('*');
+  formdb.querysonstige.sql.Clear;
+  formdb.querysonstige.sql.Text := 'SELECT * FROM ' + dokcons.view_sonst +
     ' WHERE kundennummer = ' + kdnr;
   formdb.querysonstige.Open;
   setfilter(formdb.querysonstige, filter);
@@ -4426,10 +4448,10 @@ var
 begin
   if not assigned(formdb) then formdb := Tformdb.Create(self);
   list                                := TStringList.Create;
-  list.add('*');
+  list.Add('*');
   { TODO : filter muss rein! }
-  formdb.queryvert.SQL.clear;
-  formdb.queryvert.SQL.Text := 'SELECT * FROM ' + dokcons.view_ver +
+  formdb.queryvert.sql.Clear;
+  formdb.queryvert.sql.Text := 'SELECT * FROM ' + dokcons.view_ver +
     ' WHERE kundennummer = ' + kdnr;
   formdb.queryvert.Open;
   setfilter(formdb.queryvert, filter);
@@ -4444,10 +4466,10 @@ var
   list: TStringList;
 begin
   list := TStringList.Create;
-  list.add('*');
+  list.Add('*');
   filterauftragsanf.esellg.Text := filterlg;
-  formdb.queryanforderungen.SQL.clear;
-  formdb.queryanforderungen.SQL.Text := 'SELECT * FROM ' +
+  formdb.queryanforderungen.sql.Clear;
+  formdb.queryanforderungen.sql.Text := 'SELECT * FROM ' +
     dokcons.view_anforderungen + ' WHERE kundennummer = ' + kdnr;
   formdb.queryanforderungen.Open;
   setfilter(formdb.queryanforderungen, filter);
@@ -4461,10 +4483,10 @@ var
 begin
   if not assigned(formdb) then formdb := Tformdb.Create(self);
   list                                := TStringList.Create;
-  list.add('*');
+  list.Add('*');
   framezwifilter.esellg.Text := filterlg;
-  formdb.queryzwi.SQL.clear;
-  formdb.queryzwi.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
+  formdb.queryzwi.sql.Clear;
+  formdb.queryzwi.sql.Text := 'SELECT * FROM ' + dokcons.view_zwi +
     ' WHERE kundennummer = ' + kdnr;
   // formdb.queryzwi.SQL.Text := 'SELECT * FROM scandokumente.zwischenablesung';
   formdb.queryzwi.Open;
@@ -4490,8 +4512,8 @@ begin
       .FieldName + ' as unsigned) ' + asc
   else QueryString := QueryString + ' ORDER BY ' + gridenergie.Columns[acol]
       .FieldName + ' ' + asc;
-  formdb.queryen.SQL.clear;
-  formdb.queryen.SQL.Text := QueryString;
+  formdb.queryen.sql.Clear;
+  formdb.queryen.sql.Text := QueryString;
   formdb.queryen.Open;
 end;
 
@@ -4513,8 +4535,8 @@ begin
   else QueryString := QueryString + ' ORDER BY ' + gridmon.Columns[acol]
       .FieldName + ' ' + asc;
 
-  formdb.querymon.SQL.clear;
-  formdb.querymon.SQL.Text := QueryString;
+  formdb.querymon.sql.Clear;
+  formdb.querymon.sql.Text := QueryString;
   formdb.querymon.Open;
 end;
 
@@ -4547,8 +4569,8 @@ begin
   else QueryString := QueryString + ' ORDER BY ' + gridnutzerliste.Columns[acol]
       .FieldName + asc;
 
-  formdb.querynuliste.SQL.clear;
-  formdb.querynuliste.SQL.Text := QueryString;
+  formdb.querynuliste.sql.Clear;
+  formdb.querynuliste.sql.Text := QueryString;
   formdb.querynuliste.Open;
 
 end;
@@ -4571,8 +4593,8 @@ begin
       .FieldName + ' as unsigned) ' + asc
   else QueryString := QueryString + ' ORDER BY ' + gridrek.Columns[acol]
       .FieldName + ' ' + asc;
-  formdb.queryrekl.SQL.clear;
-  formdb.queryrekl.SQL.Text := QueryString;
+  formdb.queryrekl.sql.Clear;
+  formdb.queryrekl.sql.Text := QueryString;
   formdb.queryrekl.Open;
 end;
 
@@ -4599,12 +4621,19 @@ begin
   else QueryString := QueryString + ' ORDER BY ' + gridzwi.Columns[acol]
       .FieldName + ' ' + asc;
 
-  formdb.queryzwi.SQL.clear;
-  formdb.queryzwi.SQL.Text := QueryString;
+  formdb.queryzwi.sql.Clear;
+  formdb.queryzwi.sql.Text := QueryString;
   formdb.queryzwi.Open;
 end;
 
 // ------------------------------
+procedure Tformmain.tabangebotsanfrageShow(Sender: TObject);
+begin
+  if not assigned(formdb) then exit;
+  formdb.queryangebote.Filtered := false;
+  showangebote;
+end;
+
 procedure Tformmain.tabauftragsanforderungShow(Sender: TObject);
 begin
   if not assigned(formdb) then exit;
@@ -4745,10 +4774,10 @@ begin
   if FileExists(getauftragsdaten('Scannerprogramm')) then
       list.LoadFromFile(getauftragsdaten('Scannerprogramm'));
   try
-    frameauf.cbselectauftrag.Items.clear;
+    frameauf.cbselectauftrag.Items.Clear;
 
     for item in list do begin
-      frameauf.cbselectauftrag.Items.add(item);
+      frameauf.cbselectauftrag.Items.Add(item);
     end;
   except
 
@@ -4817,8 +4846,13 @@ end;
 
 // ###############################################
 procedure Tformmain.Timer2Timer(Sender: TObject);
+var
+  update: Boolean;
 begin
-  try piupdate.Visible := worker.checkUpdate;
+  try
+    update                          := worker.checkUpdate;
+    if update then piupdate.Visible := true;
+    pimage.hide;
   except
 
   end;
@@ -5028,6 +5062,10 @@ begin
     4: dbgrid := gridnutzerliste;
     2: dbgrid := gridenergie;
     3: dbgrid := gridrek;
+    5: dbgrid := gridverträge;
+    6: dbgrid := gridsonstiges;
+    7: dbgrid := gridanforderungen;
+    8: dbgrid := gridangebote;
 
   end;
   Dateiname := pchar(dbgrid.GetColumnByFieldName('Dateiname').field.AsString);

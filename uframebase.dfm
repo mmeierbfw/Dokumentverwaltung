@@ -1,8 +1,8 @@
 object framebase: Tframebase
   Left = 0
   Top = 0
-  Width = 1117
-  Height = 747
+  Width = 1021
+  Height = 530
   Align = alClient
   TabOrder = 0
   ExplicitWidth = 451
@@ -10,8 +10,8 @@ object framebase: Tframebase
   object gridpanel: TGridPanel
     Left = 0
     Top = 0
-    Width = 1117
-    Height = 747
+    Width = 1021
+    Height = 530
     HelpType = htKeyword
     Align = alClient
     BevelOuter = bvNone
@@ -46,8 +46,8 @@ object framebase: Tframebase
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 552
-      Height = 739
+      Width = 504
+      Height = 522
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
@@ -65,7 +65,7 @@ object framebase: Tframebase
         Left = 13
         Top = 13
         Width = 5
-        Height = 609
+        Height = 255
         Margins.Left = 13
         Margins.Top = 13
         Align = alLeft
@@ -357,10 +357,10 @@ object framebase: Tframebase
     end
     object rightparent: TPanel
       AlignWithMargins = True
-      Left = 562
+      Left = 514
       Top = 4
-      Width = 553
-      Height = 739
+      Width = 505
+      Height = 522
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2

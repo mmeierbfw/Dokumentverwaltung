@@ -1,14 +1,19 @@
 inherited frameauftrag: Tframeauftrag
-  Width = 951
-  Height = 588
+  Width = 1036
+  Height = 552
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   inherited gridpanel: TGridPanel
-    Width = 951
-    Height = 588
+    Width = 1036
+    Height = 552
+    ExplicitWidth = 451
+    ExplicitHeight = 304
     inherited Panel5: TPanel
-      Width = 469
-      Height = 580
-      ExplicitWidth = 219
-      ExplicitHeight = 296
+      ExplicitWidth = 512
+      ExplicitHeight = 544
+      inherited lfiletype: TLabel
+        Height = 609
+      end
       inherited Label29: TLabel
         Top = 343
         ExplicitTop = 343
@@ -49,7 +54,7 @@ inherited frameauftrag: Tframeauftrag
         TabOrder = 11
       end
       inherited eabrechnungsende: TfEdit
-        TabOrder = 10
+        TabOrder = 13
       end
       inherited UpDown1: TUpDown
         Top = 229
@@ -58,9 +63,9 @@ inherited frameauftrag: Tframeauftrag
       end
     end
     inherited rightparent: TPanel
-      Left = 479
-      Width = 470
-      Height = 580
+      ExplicitLeft = 229
+      ExplicitWidth = 220
+      ExplicitHeight = 296
     end
   end
 end

@@ -825,7 +825,7 @@
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
                       Height = 653
-                      ExplicitWidth = 553
+                      ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
                         Height = 612
@@ -915,6 +915,7 @@
                     inherited rightparent: TPanel
                       Height = 653
                       ExplicitLeft = 847
+                      ExplicitWidth = 837
                       ExplicitHeight = 653
                     end
                   end
@@ -1112,6 +1113,7 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1190,6 +1192,8 @@
                       end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -1237,6 +1241,7 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1350,6 +1355,8 @@
                       end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -1380,8 +1387,8 @@
                   Height = 661
                   Align = alClient
                   TabOrder = 0
-                  ExplicitLeft = 560
-                  ExplicitTop = 312
+                  ExplicitLeft = 8
+                  ExplicitTop = 8
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
@@ -1398,9 +1405,13 @@
                         Control = framen.rightparent
                         Row = 0
                       end>
+                    ExplicitWidth = 1994
+                    ExplicitHeight = 777
                     inherited Panel5: TPanel
                       Width = 837
                       Height = 653
+                      ExplicitWidth = 991
+                      ExplicitHeight = 769
                       inherited lfiletype: TLabel
                         Height = 612
                       end
@@ -1443,14 +1454,14 @@
                       inherited flipadress: TNxFlipPanel
                         FullHeight = 90
                       end
-                      inherited UpDown2: TUpDown
-                        OnClick = framenUpDown2Click
-                      end
                     end
                     inherited rightparent: TPanel
                       Left = 847
                       Width = 837
                       Height = 653
+                      ExplicitLeft = 1001
+                      ExplicitWidth = 991
+                      ExplicitHeight = 769
                     end
                   end
                 end
@@ -1715,7 +1726,7 @@
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
                       Height = 653
-                      ExplicitWidth = 553
+                      ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
                         Height = 612
@@ -1797,6 +1808,7 @@
                     inherited rightparent: TPanel
                       Height = 653
                       ExplicitLeft = 847
+                      ExplicitWidth = 837
                       ExplicitHeight = 653
                     end
                   end
@@ -1981,6 +1993,7 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
+                      Width = 837
                       Height = 653
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -2059,6 +2072,8 @@
                       end
                     end
                     inherited rightparent: TPanel
+                      Left = 847
+                      Width = 837
                       Height = 653
                       ExplicitLeft = 847
                       ExplicitWidth = 837
@@ -2385,7 +2400,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 62
+                    DefaultWidth = 61
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2404,7 +2419,7 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 61
+                    Width = 60
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
@@ -2704,7 +2719,7 @@
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn33: TNxDBTextColumn
-                    DefaultWidth = 203
+                    DefaultWidth = 204
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2720,7 +2735,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stAlphabetic
-                    Width = 204
+                    Width = 205
                     FieldName = 'typ'
                   end
                 end
@@ -3564,7 +3579,7 @@
                   OnCellDblClick = gridzwiCellDblClick
                   OnSortColumn = gridzwiSortColumn
                   object NxDBTextColumn1: TNxDBTextColumn
-                    DefaultWidth = 98
+                    DefaultWidth = 111
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3585,11 +3600,11 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 111
+                    Width = 110
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn2: TNxDBTextColumn
-                    DefaultWidth = 229
+                    DefaultWidth = 265
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3633,7 +3648,7 @@
                     FieldName = 'Dateiname'
                   end
                   object NxDBTextColumn4: TNxDBTextColumn
-                    DefaultWidth = 240
+                    DefaultWidth = 277
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3655,7 +3670,7 @@
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn5: TNxDBTextColumn
-                    DefaultWidth = 240
+                    DefaultWidth = 277
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3782,7 +3797,7 @@
                   end
                   object NxDBImageColumn1: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 240
+                    DefaultWidth = 277
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3806,7 +3821,7 @@
                   end
                   object NxDBImageColumn5: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 273
+                    DefaultWidth = 317
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3822,7 +3837,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 317
+                    Width = 318
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3978,7 +3993,7 @@
                   OnSortColumn = gridzwiSortColumn
                   SequencedScroll = True
                   object NxDBTextColumn3: TNxDBTextColumn
-                    DefaultWidth = 113
+                    DefaultWidth = 112
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3998,7 +4013,7 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 112
+                    Width = 111
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
@@ -4206,7 +4221,7 @@
                   end
                   object NxDBImageColumn4: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 202
+                    DefaultWidth = 203
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4223,7 +4238,7 @@
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
-                    Width = 203
+                    Width = 204
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4387,7 +4402,7 @@
                 OnCellFormating = gridzwiCellFormating
                 object NxDBTextColumn10: TNxDBTextColumn
                   AutoEdit = True
-                  DefaultWidth = 65
+                  DefaultWidth = 64
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = 6908265
                   Font.Height = -13
@@ -4406,7 +4421,7 @@
                   ParentFont = False
                   Position = 0
                   SortType = stNumeric
-                  Width = 64
+                  Width = 63
                   FieldName = 'ablagenr'
                   AutoExecute = True
                 end
@@ -4664,7 +4679,7 @@
                   FieldName = 'erledigt'
                 end
                 object NxDBTextColumn48: TNxDBTextColumn
-                  DefaultWidth = 217
+                  DefaultWidth = 218
                   Font.Charset = DEFAULT_CHARSET
                   Font.Color = 6908265
                   Font.Height = -13
@@ -4680,7 +4695,7 @@
                   ParentFont = False
                   Position = 13
                   SortType = stAlphabetic
-                  Width = 218
+                  Width = 219
                   FieldName = 'typ'
                 end
                 object NxDBTextColumn39: TNxDBTextColumn
@@ -4757,7 +4772,7 @@
                   OnCellDblClick = gridzwiCellDblClick
                   OnSortColumn = gridzwiSortColumn
                   object NxDBTextColumn42: TNxDBTextColumn
-                    DefaultWidth = 106
+                    DefaultWidth = 105
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4778,7 +4793,7 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 105
+                    Width = 104
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn49: TNxDBTextColumn
@@ -5066,7 +5081,7 @@
                   end
                   object NxDBImageColumn11: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 264
+                    DefaultWidth = 265
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5084,7 +5099,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 265
+                    Width = 266
                     Images = ImageList1
                     Transparent = True
                   end
@@ -5178,7 +5193,7 @@
                   OnCellDblClick = gridzwiCellDblClick
                   OnSortColumn = gridzwiSortColumn
                   object NxDBTextColumn60: TNxDBTextColumn
-                    DefaultWidth = 106
+                    DefaultWidth = 105
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5199,7 +5214,7 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 105
+                    Width = 98
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn61: TNxDBTextColumn
@@ -5221,7 +5236,7 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 250
+                    Width = 236
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn11: TNxDBMemoColumn
@@ -5282,7 +5297,7 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 263
+                    Width = 248
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn64: TNxDBTextColumn
@@ -5305,7 +5320,7 @@
                     Position = 5
                     Sorted = True
                     SortType = stAlphabetic
-                    Width = 262
+                    Width = 248
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn65: TNxDBTextColumn
@@ -5481,13 +5496,13 @@
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 299
+                    Width = 282
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBImageColumn15: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 264
+                    DefaultWidth = 265
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5505,9 +5520,21 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 265
+                    Width = 252
                     Images = ImageList1
                     Transparent = True
+                  end
+                  object NxDBTextColumn82: TNxDBTextColumn
+                    Header.Caption = 'Auftragstyp'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Position = 16
+                    SortType = stAlphabetic
+                    FieldName = 'auftragstyp'
                   end
                 end
                 object Panel8: TPanel
@@ -5574,6 +5601,7 @@
               TabFont.Height = -13
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
+              OnShow = tabangebotsanfrageShow
               object NxPanel8: TNxPanel
                 Left = 0
                 Top = 0
@@ -5601,8 +5629,10 @@
                   OnCellColoring = gridzwiCellColoring
                   OnCellDblClick = gridzwiCellDblClick
                   OnSortColumn = gridzwiSortColumn
+                  ExplicitLeft = -56
+                  ExplicitTop = 110
                   object NxDBTextColumn71: TNxDBTextColumn
-                    DefaultWidth = 106
+                    DefaultWidth = 105
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5623,7 +5653,7 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 105
+                    Width = 104
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn72: TNxDBTextColumn
@@ -5911,7 +5941,7 @@
                   end
                   object NxDBImageColumn18: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 264
+                    DefaultWidth = 265
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5929,7 +5959,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 265
+                    Width = 266
                     Images = ImageList1
                     Transparent = True
                   end
@@ -6063,8 +6093,8 @@
             Top = 41
             Width = 1686
             Height = 679
-            ActivePage = tabvollenergie
-            ActivePageIndex = 2
+            ActivePage = tabvollauf
+            ActivePageIndex = 7
             Align = alClient
             TabOrder = 1
             Margin = 0
@@ -6118,7 +6148,7 @@
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 255
+                      Height = 609
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6194,6 +6224,7 @@
                     Height = 650
                     ExplicitLeft = 846
                     ExplicitWidth = 838
+                    ExplicitHeight = 650
                   end
                 end
                 inherited NxButton2: TNxButton
@@ -6240,7 +6271,7 @@
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 611
+                      Height = 609
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6313,6 +6344,7 @@
                   inherited rightparent: TPanel
                     ExplicitLeft = 847
                     ExplicitWidth = 837
+                    ExplicitHeight = 650
                   end
                 end
                 inherited NxButton2: TNxButton
@@ -6337,8 +6369,8 @@
                 Height = 658
                 Align = alClient
                 TabOrder = 0
-                ExplicitLeft = 528
-                ExplicitTop = 312
+                ExplicitLeft = 8
+                ExplicitTop = 8
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
@@ -6355,9 +6387,13 @@
                       Control = vollenergie.rightparent
                       Row = 0
                     end>
+                  ExplicitWidth = 1994
+                  ExplicitHeight = 777
                   inherited Panel5: TPanel
                     Width = 837
                     Height = 650
+                    ExplicitWidth = 991
+                    ExplicitHeight = 769
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -6400,6 +6436,9 @@
                     Left = 847
                     Width = 837
                     Height = 650
+                    ExplicitLeft = 1001
+                    ExplicitWidth = 991
+                    ExplicitHeight = 769
                   end
                 end
               end
@@ -6542,6 +6581,9 @@
                   inherited Panel5: TPanel
                     ExplicitWidth = 837
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -6661,6 +6703,9 @@
                     Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -6751,8 +6796,13 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 837
+                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -6794,6 +6844,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6837,6 +6890,8 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 837
+                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited Label45: TLabel
@@ -6881,12 +6936,29 @@
                       ExplicitWidth = 65
                       ExplicitHeight = 16
                     end
+                    inherited bsave: TNxButton
+                      Caption = 'Dokument anzeigen'
+                      OnClick = vollzwischenbsaveClick
+                    end
                     inherited cbselectauftrag: TNxComboBox
+                      Left = 244
+                      Width = 141
                       Height = 24
+                      ExplicitLeft = 244
+                      ExplicitWidth = 141
                       ExplicitHeight = 24
+                    end
+                    inherited NxButton1: TNxButton
+                      Left = 244
+                      Width = 141
+                      ExplicitLeft = 244
+                      ExplicitWidth = 141
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6930,8 +7002,13 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 837
+                    Height = 650
                     ExplicitWidth = 837
                     ExplicitHeight = 650
+                    inherited lfiletype: TLabel
+                      Height = 609
+                    end
                     inherited Label45: TLabel
                       Width = 102
                       Height = 16
@@ -6974,6 +7051,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 847
+                    Width = 837
+                    Height = 650
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -8175,7 +8255,7 @@
     Left = 728
     Top = 688
     Bitmap = {
-      494C010106007400900110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
+      494C010106007400940110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       000000000000000000000000000000000000504E4EFF504E4EFF504E4EFF2928
       2883000000000000000000000000000000000000000000000000000000000000
