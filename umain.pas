@@ -483,7 +483,6 @@ type
     procedure framemonnutbanwendenClick(Sender: TObject);
     procedure framemonnutblöschenClick(Sender: TObject);
     procedure framefilterreklamationesellgExit(Sender: TObject);
-    procedure framefilterreklamationeselsbExit(Sender: TObject);
     procedure framefilterreklamationeselpeExit(Sender: TObject);
     procedure framefilterreklamationeselaeExit(Sender: TObject);
     procedure framefilterreklamationeseldiExit(Sender: TObject);
@@ -521,7 +520,6 @@ type
     procedure framezwiUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure frameangebotUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure framenUpDown2Click(Sender: TObject; Button: TUDBtnType);
-    procedure framekostenUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure framenutzerUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure framesonstigesUpDown2Click(Sender: TObject; Button: TUDBtnType);
     procedure framevertUpDown2Click(Sender: TObject; Button: TUDBtnType);
@@ -545,6 +543,7 @@ type
     procedure filterangeboteselaeExit(Sender: TObject);
     procedure filterangeboteseldiExit(Sender: TObject);
     procedure tabangebotsanfrageShow(Sender: TObject);
+    procedure filtersonstigeseseldiExit(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -597,6 +596,7 @@ type
     telefonieren                               : Boolean;
     minimized                                  : Boolean;
     selectedRow                                : Integer;
+    filterlist                                 : TDictionary<string, string>;
     // frame: Tframebase;
     laufendeid   : string;
     passwort     : string;
@@ -656,7 +656,9 @@ type
     procedure sortmontagen(acol: Integer; ascbool: Boolean);
     procedure sortenergie(acol: Integer; ascbool: Boolean);
     function getzwivalues: TStringList;
-    procedure setfilter(query: tzquery; filter: string);
+    procedure setfilter(query: tzquery);
+    procedure setalleFilter;
+    procedure setallefiltereinstellungen;
     procedure disablecontrols(parent: TPanel);
     { Private-Deklarationen }
   public
@@ -1013,16 +1015,20 @@ procedure Tformmain.showangebote;
 var
   list: TStringList;
 begin
-  filterangebot.esellg.Text := filterlg;
-  list                      := TStringList.Create;
-  list.Add('*');
-  formdb.queryangebote.sql.Clear;
-  formdb.queryangebote.sql.Text := 'SELECT * FROM ' + dokcons.view_ang +
-    ' WHERE kundennummer = ' + kdnr;
-  formdb.queryangebote.Open;
-  setfilter(formdb.queryangebote, filter);
-  filldb(formdb.dsangebote, gridangebote);
-
+  try
+    setallefiltereinstellungen;
+    filterangebot.esellg.Text := filterlg;
+    list                      := TStringList.Create;
+    list.Add('*');
+    formdb.queryangebote.sql.Clear;
+    formdb.queryangebote.sql.Text := 'SELECT * FROM ' + dokcons.view_ang +
+      ' WHERE kundennummer = ' + kdnr;
+    formdb.queryangebote.Open;
+    setfilter(formdb.queryangebote);
+    // filldb(formdb.dsangebote, gridangebote);
+  except
+    // on e: Exception do showmessage(e.Message);
+  end;
 end;
 
 // ##########################
@@ -1031,23 +1037,22 @@ procedure Tformmain.showenergieausweise;
 var
   list: TStringList;
 begin
-  frameenfilter.esellg.Text := filterlg;
-  list                      := TStringList.Create;
-  list.Add('*');
-  // list.add(dateiname);
-  // list.add(Posteingang);
-  // list.add('Dokumentid');
+  try
+    setallefiltereinstellungen;
+    frameenfilter.esellg.Text := filterlg;
+    list                      := TStringList.Create;
+    list.Add('*');
 
-  formdb.queryen.sql.Clear;
-  formdb.queryen.sql.Text := 'SELECT * FROM ' + dokcons.view_en +
-    ' WHERE kundennummer = ' + kdnr;
-  formdb.queryen.Open;
+    formdb.queryen.sql.Clear;
+    formdb.queryen.sql.Text := 'SELECT * FROM ' + dokcons.view_en +
+      ' WHERE kundennummer = ' + kdnr;
+    formdb.queryen.Open;
 
-  setfilter(formdb.queryen, filter);
-  filldb(formdb.dsen, gridenergie);
-  // formdb.doquery(formdb.queryen, table_en, ' WHERE kundennummer = ' + kn +
-  // ' order by Dokumentid desc ;', list);
-  // filldb(formdb.dsen);
+    setfilter(formdb.queryen);
+  except
+    // on e: Exception do showmessage(e.Message);
+
+  end;
 
 end;
 
@@ -1114,6 +1119,7 @@ begin
   pagermain.ActivePage := tabanzeige;
   ptabellen.ActivePage := leer2;
   ptabellen.ShowTabs   := true;
+
 end;
 
 procedure Tformmain.Button2Click(Sender: TObject);
@@ -1560,92 +1566,196 @@ begin
 
     disablecontrols(voll.Panel5);
     voll.bsave.Enabled := true;
-    setliegenschaftsdaten(lg, '');
+    setliegenschaftsdaten(lg, nn);
 
   end;
 end;
 
 procedure Tformmain.filterangeboteselaeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterangebot.eselaeExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' +
+      filterangebot.cselae.Text, filter);
+    setfilter(formdb.queryangebote);
 
-  filter := filterangebot.getfilter;
-  setfilter(formdb.queryangebote, filter);
-  filldb(formdb.dsangebote, gridangebote);
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.filterangeboteseldiExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterangebot.eseldiExit(Sender);
-  filter := filterangebot.getfilter;
-  setfilter(formdb.queryangebote, filter);
-  filldb(formdb.dsangebote, gridangebote);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' + filterangebot.cseldi.Text, filter);
+    setfilter(formdb.queryangebote);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.filterangebotesellgExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterangebot.esellgExit(Sender);
-  filter := filterangebot.getfilter;
-  setfilter(formdb.queryangebote, filter);
-  filldb(formdb.dsangebote, gridangebote);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' +
+      filterangebot.csellg.Text, filter);
+    setfilter(formdb.queryangebote);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.filterangeboteselpeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterangebot.eselpeExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingang' + filterangebot.cselpe.Text, filter);
+    setfilter(formdb.queryangebote);
 
-  filter := filterangebot.getfilter;
-  setfilter(formdb.queryangebote, filter);
-  filldb(formdb.dsangebote, gridangebote);
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.filterangeboteselsbExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterangebot.eselsbExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter' +
+      filterangebot.cselsb.Text, filter);
+    setfilter(formdb.queryangebote);
 
-  filter := filterangebot.getfilter;
-  setfilter(formdb.queryangebote, filter);
-  filldb(formdb.dsangebote, gridangebote);
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.filtersonstigeseselaeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filtersonstiges.eselaeExit(Sender);
-  filter := filtersonstiges.getfilter;
-  setfilter(formdb.querysonstige, filter);
-  filldb(formdb.dssonstige, gridsonstiges);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' +
+      filtersonstiges.cselae.Text, filter);
+    setfilter(formdb.querysonstige);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
+end;
+
+procedure Tformmain.filtersonstigeseseldiExit(Sender: TObject);
+var
+  filter: string;
+begin
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' + filtersonstiges.cseldi.Text, filter);
+    setfilter(formdb.querysonstige);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
 
 end;
 
 procedure Tformmain.filtersonstigesesellgExit(Sender: TObject);
+var
+  filter: string;
 begin
+  if (Sender as tfedit).Text = '' then exit;
   try
-    filterlg := (Sender as tfedit).Text;
-    filtersonstiges.esellgExit(Sender);
-    filter := filtersonstiges.getfilter;
-    setfilter(formdb.querysonstige, filter);
-    filldb(formdb.dssonstige, gridsonstiges);
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' +
+      filtersonstiges.csellg.Text, filter);
+    setfilter(formdb.querysonstige);
+
   except
-    ;
+    on e: Exception do showmessage(e.Message);
   end;
+
 end;
 
 procedure Tformmain.filtersonstigeseselpeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filtersonstiges.eselpeExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingang' +
+      filtersonstiges.cselpe.Text, filter);
+    setfilter(formdb.querysonstige);
 
-  filter := filtersonstiges.getfilter;
-  setfilter(formdb.querysonstige, filter);
-  filldb(formdb.dssonstige, gridsonstiges);
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.filtersonstigeseselsbExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filtersonstiges.eselsbExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter' +
+      filtersonstiges.cselsb.Text, filter);
+    setfilter(formdb.querysonstige);
 
-  filter := filtersonstiges.getfilter;
-  setfilter(formdb.querysonstige, filter);
-  filldb(formdb.dssonstige, gridsonstiges);
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.flipspaltenClick(Sender: TObject);
@@ -1872,43 +1982,98 @@ begin
 end;
 
 procedure Tformmain.frameauftragsanfeselaeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterauftragsanf.eselaeExit(Sender);
-  filter := filterauftragsanf.getfilter;
-  setfilter(formdb.queryanforderungen, filter);
-  filldb(formdb.dsanforderungen, gridanforderungen);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' +
+      filterauftragsanf.cselae.Text, filter);
+    setfilter(formdb.queryanforderungen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.frameauftragsanfeseldiExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterauftragsanf.eseldiExit(Sender);
-  filter := filterauftragsanf.getfilter;
-  setfilter(formdb.queryanforderungen, filter);
-  filldb(formdb.dsanforderungen, gridanforderungen);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' +
+      filterauftragsanf.cseldi.Text, filter);
+    setfilter(formdb.queryanforderungen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.frameauftragsanfesellgExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterauftragsanf.esellgExit(Sender);
-  filter := filterauftragsanf.getfilter;
-  setfilter(formdb.queryanforderungen, filter);
-  filldb(formdb.dsanforderungen, gridanforderungen);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' +
+      filterauftragsanf.csellg.Text, filter);
+    setfilter(formdb.queryanforderungen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.frameauftragsanfeselpeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterauftragsanf.eselpeExit(Sender);
-  filter := filterauftragsanf.getfilter;
-  setfilter(formdb.queryanforderungen, filter);
-  filldb(formdb.dsanforderungen, gridanforderungen);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingang' +
+      filterauftragsanf.cselpe.Text, filter);
+    setfilter(formdb.queryanforderungen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.frameauftragsanfeselsbExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterauftragsanf.eselsbExit(Sender);
-  filter := filterauftragsanf.getfilter;
-  setfilter(formdb.queryanforderungen, filter);
-  filldb(formdb.dsanforderungen, gridanforderungen);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter' +
+      filterauftragsanf.cselsb.Text, filter);
+    setfilter(formdb.queryanforderungen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.frameauftragUpDown2Click(Sender: TObject;
@@ -1960,35 +2125,96 @@ begin
 end;
 
 procedure Tformmain.frameenfiltereselaeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  frameenfilter.eselaeExit(Sender);
-  setfilter(formdb.queryen, frameenfilter.getfilter);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' +
+      frameenfilter.cselae.Text, filter);
+    setfilter(formdb.queryen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.frameenfiltereseldiExit(Sender: TObject);
+var
+  filter: string;
 begin
-  frameenfilter.eseldiExit(Sender);
-  setfilter(formdb.queryen, frameenfilter.getfilter);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' + frameenfilter.cselae.Text, filter);
+    setfilter(formdb.queryen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
 
 end;
 
 procedure Tformmain.frameenfilteresellgExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterlg := (Sender as tfedit).Text;
-  frameenfilter.esellgExit(Sender);
-  setfilter(formdb.queryen, frameenfilter.getfilter);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' +
+      frameenfilter.csellg.Text, filter);
+    setfilter(formdb.queryen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.frameenfiltereselpeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  frameenfilter.eselpeExit(Sender);
-  setfilter(formdb.queryen, frameenfilter.getfilter);
+  try
+    if (Sender as tfedit).Text = '' then exit;
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingang' + frameenfilter.cselpe.Text, filter);
+    setfilter(formdb.queryen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.frameenfiltereselsbExit(Sender: TObject);
+var
+  filter: string;
 begin
-  frameenfilter.eselsbExit(Sender);
-  setfilter(formdb.queryen, frameenfilter.getfilter);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter' +
+      frameenfilter.cselsb.Text, filter);
+    setfilter(formdb.queryen);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.framefilterreklamationbanwendenClick(Sender: TObject);
@@ -2005,46 +2231,77 @@ begin
 end;
 
 procedure Tformmain.framefilterreklamationeselaeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  framefilterreklamation.eselaeExit(Sender);
-  setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' +
+      framefilterreklamation.cselae.Text, filter);
+    setfilter(formdb.queryrekl);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.framefilterreklamationeseldiExit(Sender: TObject);
+var
+  filter: string;
 begin
-  framefilterreklamation.eseldiExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' + framefilterreklamation.cseldi.
+      Text, filter);
+    setfilter(formdb.queryrekl);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
 
 end;
 
 procedure Tformmain.framefilterreklamationesellgExit(Sender: TObject);
+var
+  filter: string;
 begin
-  filterlg := (Sender as tfedit).Text;
-  framefilterreklamation.esellgExit(Sender);
-  setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' +
+      framefilterreklamation.csellg.Text, filter);
+    setfilter(formdb.queryrekl);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
 end;
 
 procedure Tformmain.framefilterreklamationeselpeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  framefilterreklamation.eselpeExit(Sender);
-  setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
-end;
-
-procedure Tformmain.framefilterreklamationeselsbExit(Sender: TObject);
-begin
-  framefilterreklamation.eselsbExit(Sender);
-  setfilter(formdb.queryrekl, framefilterreklamation.getfilter);
-end;
-
-procedure Tformmain.framekostenUpDown2Click(Sender: TObject;
-  Button: TUDBtnType);
-begin
-  if framekosten.eliegenschaft.Text = '' then exit;
-
+  if (Sender as tfedit).Text = '' then exit;
   try
-    framekosten.liegenschaftupdown(Sender, Button);
-    setliegenschaftsdaten;
-  except exit;
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingang' +
+      framefilterreklamation.cselpe.Text, filter);
+    setfilter(formdb.queryrekl);
 
+  except
+    on e: Exception do showmessage(e.Message);
   end;
 
 end;
@@ -2062,57 +2319,102 @@ begin
 end;
 
 procedure Tformmain.framemonfiltereselaeExit(Sender: TObject);
-begin
-  try
-    framemonfilter.eselaeExit(Sender);
-    setfilter(formdb.querymon, framemonfilter.getfilter);
-  except
 
+var
+  filter: string;
+begin
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' +
+      framemonfilter.cselae.Text, filter);
+    setfilter(formdb.querymon);
+
+  except
+    on e: Exception do showmessage(e.Message);
   end;
+
 end;
 
 procedure Tformmain.framemonfiltereseldiExit(Sender: TObject);
+
+var
+  filter: string;
 begin
+  if (Sender as tfedit).Text = '' then exit;
   try
-    framemonfilter.eseldiExit(Sender);
-    setfilter(formdb.querymon, framemonfilter.getfilter);
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' + framemonfilter.cseldi.Text, filter);
+    setfilter(formdb.querymon);
+
   except
+    on e: Exception do showmessage(e.Message);
   end;
+
 end;
 
 procedure Tformmain.framemonfilteresellgExit(Sender: TObject);
+
+var
+  filter: string;
 begin
+  if (Sender as tfedit).Text = '' then exit;
   try
-    filterlg := (Sender as tfedit).Text;
-    framemonfilter.esellgExit(Sender);
-    filter := framemonfilter.getfilter;
-    setfilter(formdb.querymon, filter);
-    filldb(formdb.dszwi, gridzwi);
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' +
+      framemonfilter.csellg.Text, filter);
+    setfilter(formdb.querymon);
+
   except
-    ;
+    on e: Exception do showmessage(e.Message);
   end;
+
 end;
 
 procedure Tformmain.framemonfiltereselpeExit(Sender: TObject);
+
+var
+  filter: string;
 begin
+  if (Sender as tfedit).Text = '' then exit;
   try
-    framemonfilter.eselpeExit(Sender);
-    setfilter(formdb.querymon, framemonfilter.getfilter);
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingang' +
+      framemonfilter.cselpe.Text, filter);
+    setfilter(formdb.querymon);
 
   except
-    ;
+    on e: Exception do showmessage(e.Message);
   end;
+
 end;
 
 procedure Tformmain.framemonfiltereselsbExit(Sender: TObject);
+
+var
+  filter: string;
 begin
   try
-    framemonfilter.eselsbExit(Sender);
-    setfilter(formdb.querymon, framemonfilter.getfilter);
+    if (Sender as tfedit).Text = '' then exit;
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter' +
+      framemonfilter.cselsb.Text, filter);
+    setfilter(formdb.querymon);
 
   except
-    ;
+    on e: Exception do showmessage(e.Message);
   end;
+
 end;
 
 procedure Tformmain.framemonnutbanwendenClick(Sender: TObject);
@@ -2129,33 +2431,95 @@ begin
 end;
 
 procedure Tformmain.framemonnuteselaeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  framemonnut.eselaeExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' +
+      framemonnut.cselae.Text, filter);
+    setfilter(formdb.querynuliste);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
 
 end;
 
 procedure Tformmain.framemonnuteseldiExit(Sender: TObject);
+var
+  filter: string;
 begin
-  framemonnut.eseldiExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' + framemonnut.cselae.Text, filter);
+    setfilter(formdb.querynuliste);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
 
 end;
 
 procedure Tformmain.framemonnutesellgExit(Sender: TObject);
+
+var
+  filter: string;
 begin
-  filterlg := (Sender as tfedit).Text;
-  framemonnut.esellgExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' + framemonnut.csellg.Text, filter);
+    setfilter(formdb.querynuliste);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
 
 end;
 
 procedure Tformmain.framemonnuteselpeExit(Sender: TObject);
+var
+  filter: string;
 begin
-  framemonnut.eselpeExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingan' + framemonnut.cselpe.Text, filter);
+    setfilter(formdb.querynuliste);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
 
 end;
 
 procedure Tformmain.framemonnuteselsbExit(Sender: TObject);
+var
+  filter: string;
 begin
-  framemonnut.eselsbExit(Sender);
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter' +
+      framemonnut.cselsb.Text, filter);
+    setfilter(formdb.querynuliste);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
 
 end;
 
@@ -2338,48 +2702,64 @@ end;
 // ###############################################
 procedure Tformmain.framezwifilterblöschenClick(Sender: TObject);
 begin
-  filterlg := '';
-  framezwifilter.blöschenClick(Sender);
-  formdb.queryzwi.Filtered := false;
+  filterlist.Clear;
+  setalleFilter;
 end;
 
 // ###############################################
 procedure Tformmain.framezwifiltereselaeExit(Sender: TObject);
+
 var
   filter: string;
 begin
+  if (Sender as tfedit).Text = '' then exit;
   try
-    framezwifilter.eselaeExit(Sender);
-    filter := framezwifilter.getfilter;
-    setfilter(formdb.queryzwi, filter);
-  except
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('abrechnungsende' +
+      framezwifilter.cselae.Text, filter);
+    setfilter(formdb.queryzwi);
 
+  except
+    on e: Exception do showmessage(e.Message);
   end;
 
 end;
+// #####################
 
 procedure Tformmain.framezwifiltereseldiExit(Sender: TObject);
+
 var
   filter: string;
 begin
+  if (Sender as tfedit).Text = '' then exit;
   try
-    framezwifilter.eseldiExit(Sender);
-    filter := framezwifilter.getfilter;
-    setfilter(formdb.queryzwi, filter);
-  except
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('ablagenr' + framezwifilter.cseldi.Text, filter);
+    setfilter(formdb.queryzwi);
 
+  except
+    on e: Exception do showmessage(e.Message);
   end;
 
 end;
 
 procedure Tformmain.framezwifilteresellgExit(Sender: TObject);
+var
+  filterlg: string;
 begin
   try
+    if (Sender as tfedit).Text = '' then exit;
+
     filterlg := (Sender as tfedit).Text;
-    framezwifilter.esellgExit(Sender);
-    filter := framezwifilter.getfilter;
-    // setfilter(formdb.queryzwi, filter);
-    showzwischenablesungen;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('liegenschaft' + framezwifilter.csellg.Text,
+      filterlg);
+    setfilter(formdb.queryzwi);
 
   except
     on e: Exception do showmessage(e.Message);
@@ -2389,34 +2769,43 @@ begin
 end;
 
 procedure Tformmain.framezwifiltereselpeExit(Sender: TObject);
+
 var
   filter: string;
 begin
+  if (Sender as tfedit).Text = '' then exit;
   try
-    framezwifilter.eselpeExit(Sender);
-    filter := framezwifilter.getfilter;
-    setfilter(formdb.queryzwi, filter);
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('posteingang' +
+      framezwifilter.cselpe.Text, filter);
+    setfilter(formdb.queryzwi);
+
   except
-    on e: Exception do begin
-      showmessage(e.Message);
-    end;
+    on e: Exception do showmessage(e.Message);
   end;
+
 end;
 
 procedure Tformmain.framezwifiltereselsbExit(Sender: TObject);
+
 var
   filter: string;
 begin
+  if (Sender as tfedit).Text = '' then exit;
   try
-    framezwifilter.eselsbExit(Sender);
-    filter := framezwifilter.getfilter;
-    setfilter(formdb.queryzwi, filter);
-  except
-    on e: Exception do begin
-      showmessage(e.Message);
-    end;
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter' +
+      framezwifilter.cselsb.Text, filter);
+    setfilter(formdb.queryzwi);
 
+  except
+    on e: Exception do showmessage(e.Message);
   end;
+
 end;
 
 procedure Tformmain.framezwiUpDown2Click(Sender: TObject; Button: TUDBtnType);
@@ -4046,6 +4435,104 @@ begin
 end;
 
 // ###############################################
+procedure Tformmain.setalleFilter;
+begin
+  with formdb do begin
+    setfilter(queryzwi);
+    setfilter(querymon);
+    setfilter(querynuliste);
+    setfilter(queryen);
+    setfilter(queryrekl);
+    setfilter(queryvert);
+    setfilter(querysonstige);
+    setfilter(queryanforderungen);
+    setfilter(queryangebote);
+  end;
+
+end;
+
+procedure Tformmain.setallefiltereinstellungen;
+var
+  Key, Value: string;
+begin
+  if not assigned(filterlist) then exit;
+  if not assigned(framezwifilter) then exit;
+  if not assigned(filtersonstiges) then exit;
+  if not assigned(filterauftragsanf) then exit;
+  if not assigned(filterangebot) then exit;
+  if not assigned(framefilterreklamation) then exit;
+  if not assigned(framemonfilter) then exit;
+  if not assigned(frameenfilter) then exit;
+  if not assigned(framemonnut) then exit;
+
+  try
+    for Key in filterlist.Keys.ToArray do begin
+      Value := filterlist.Items[Key];
+      if strcontains('liegenschaft', Key) then begin
+
+        filtersonstiges.esellg.Text        := Value;
+        framefilterreklamation.esellg.Text := Value;
+        framezwifilter.esellg.Text         := Value;
+        framemonfilter.esellg.Text         := Value;
+        framemonnut.esellg.Text            := Value;
+        frameenfilter.esellg.Text          := Value;
+        filterauftragsanf.esellg.Text      := Value;
+        filterangebot.esellg.Text          := Value;
+        // Vertrag fehlt
+      end;
+      if strcontains('sachbearbeiter', Key) then begin
+
+        filtersonstiges.eselsb.Text        := Value;
+        framefilterreklamation.eselsb.Text := Value;
+        framezwifilter.eselsb.Text         := Value;
+        framemonfilter.eselsb.Text         := Value;
+        framemonnut.eselsb.Text            := Value;
+        frameenfilter.eselsb.Text          := Value;
+        filterauftragsanf.eselsb.Text      := Value;
+        filterangebot.eselsb.Text          := Value;
+      end;
+      if strcontains('posteingang', Key) then begin
+
+        filtersonstiges.eselpe.Text        := Value;
+        framefilterreklamation.eselpe.Text := Value;
+        framezwifilter.eselpe.Text         := Value;
+        framemonfilter.eselpe.Text         := Value;
+        framemonnut.eselpe.Text            := Value;
+        frameenfilter.eselpe.Text          := Value;
+        filterauftragsanf.eselpe.Text      := Value;
+        filterangebot.eselpe.Text          := Value;
+      end;
+      if strcontains('abrechnungsende', Key) then begin
+
+        filtersonstiges.eselae.Text        := Value;
+        framefilterreklamation.eselae.Text := Value;
+        framezwifilter.eselae.Text         := Value;
+        framemonfilter.eselae.Text         := Value;
+        framemonnut.eselae.Text            := Value;
+        frameenfilter.eselae.Text          := Value;
+        filterauftragsanf.eselae.Text      := Value;
+        filterangebot.eselae.Text          := Value;
+      end;
+      // filtersonstiges.eselae.Text := Value;
+      if strcontains('ablagenr', Key) then begin
+        filtersonstiges.eseldi.Text        := Value;
+        framefilterreklamation.eseldi.Text := Value;
+        framezwifilter.eseldi.Text         := Value;
+        framemonfilter.eseldi.Text         := Value;
+        framemonnut.eseldi.Text            := Value;
+        frameenfilter.eseldi.Text          := Value;
+        filterauftragsanf.eseldi.Text      := Value;
+        filterangebot.eseldi.Text          := Value;
+
+      end;
+    end;
+  except
+    on e: Exception do showmessage(e.Message);
+
+  end;
+
+end;
+
 function Tformmain.setdateityp(str: string): string;
 var
   Dateiname, endung: string;
@@ -4078,11 +4565,28 @@ begin
 end;
 
 // ###############################################
-procedure Tformmain.setfilter(query: tzquery; filter: string);
+procedure Tformmain.setfilter(query: tzquery);
+var
+  Key, Value: string;
+  kvset     : string;
+
 begin
+  try
+    if not ptabellen.ShowTabs then exit;
+  except exit;
+
+  end;
+  if not assigned(filterlist) then exit;
   query.Filtered := false;
-  query.filter   := filter;
+  for Key in filterlist.Keys.ToArray do begin
+    Value                                  := filterlist.Items[Key];
+    kvset                                  := Key + ' ' + Value;
+    if query.filter = '' then query.filter := kvset
+    else query.filter                      := query.filter + ' AND ' + kvset;
+  end;
+
   query.Filtered := true;
+  query.Refresh;
 end;
 
 // ###############################################
@@ -4138,9 +4642,13 @@ begin
   case ptabellen.activepageindex of
     0: voll := vollzwischen;
     1: voll := vollmont;
-    // 2: voll   := vollnutzer;
+    2: voll := vollnutzer;
     3: voll := vollenergie;
     4: voll := vollrekl;
+    5: voll := vollvertrag;
+    6: voll := vollsonstiges;
+    7: voll := vollauftrag;
+    8: voll := vollangebot;
   else voll := vollzwischen;
   end;
 
@@ -4166,7 +4674,7 @@ begin
   list.Add('strasse');
   list.Add('Databr');
   list.Add('vermerke');
-  database    := 'DANLSUC';
+  database    := 'neuescandokumente.DANLSUC';
   wherestring := ' WHERE lienr =  ' + liegg;
   dic         := formdb.get(database, wherestring, list);
   if dic.Count = 0 then begin
@@ -4355,19 +4863,21 @@ var
   query: string;
   list : TStringList;
 begin
-  framemonfilter.esellg.Text := filterlg;
-  with dokcons do begin
-    list := TStringList.Create;
-    list.Add('*');
+  try
+    // sleep(100);
+    setallefiltereinstellungen;
+    with dokcons do begin
+      list := TStringList.Create;
+      list.Add('*');
 
-    formdb.querymon.sql.Clear;
-    formdb.querymon.sql.Text := 'SELECT * FROM ' + view_mon +
-      ' WHERE kundennummer = ' + kn;
-    // formdb.querymon.SQL.Text := 'SELECT * FROM ' + dokcons.view_zwi +
-    // ' WHERE kundennummer = ' + kdnr;
-    formdb.querymon.Open;
-    setfilter(formdb.querymon, filter);
-    filldb(formdb.dsmon, gridmon);
+      formdb.querymon.sql.Clear;
+      formdb.querymon.sql.Text := 'SELECT * FROM ' + view_mon +
+        ' WHERE kundennummer = ' + kn;
+      formdb.querymon.Open;
+      setfilter(formdb.querymon);
+    end;
+  except
+    // on e: Exception do showmessage(e.Message);
   end;
 end;
 
@@ -4384,22 +4894,25 @@ var
   query: string;
   list : TStringList;
 begin
-  framemonnut.esellg.Text := filterlg;
-  with dokcons do begin
-    list := TStringList.Create;
-    list.Add('*');
-    // formdb.doquery(formdb.querynuliste, view_kosnut, ' WHERE kundennummer = ' + kn
-    // + ' order by ablagenr desc ;', list);
-    formdb.querynuliste.sql.Clear;
-    formdb.querynuliste.sql.Text := 'SELECT *  FROM ' + view_kos +
-      ' WHERE kundennummer = ' + quotedstr(kn);
-    try formdb.querynuliste.Open;
-    except
-      on e: Exception do showmessage(e.Message);
+  try
+    setallefiltereinstellungen;
+    framemonnut.esellg.Text := filterlg;
+    with dokcons do begin
+      list := TStringList.Create;
+      list.Add('*');
+      formdb.querynuliste.sql.Clear;
+      formdb.querynuliste.sql.Text := 'SELECT *  FROM ' + view_kos +
+        ' WHERE kundennummer = ' + quotedstr(kn);
+      try formdb.querynuliste.Open;
+      except
+        on e: Exception do showmessage(e.Message);
 
+      end;
+      setfilter(formdb.querynuliste);
+      // filldb(formdb.dsnuliste, gridnutzerliste);
     end;
-    setfilter(formdb.querynuliste, filter);
-    filldb(formdb.dsnuliste, gridnutzerliste);
+  except
+    // on e: Exception do showmessage(e.Message);
   end;
 end;
 
@@ -4410,30 +4923,37 @@ var
   query: string;
   list : TStringList;
 begin
-  framefilterreklamation.esellg.Text := filterlg;
-  list                               := TStringList.Create;
-  list.Add('*');
+  try
+    setallefiltereinstellungen;
+    framefilterreklamation.esellg.Text := filterlg;
+    list                               := TStringList.Create;
+    list.Add('*');
 
-  formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = ' +
-    kn + ' order by  liegenschaft desc ', list);
-  setfilter(formdb.queryrekl, filter);
-  filldb(formdb.dsrekl, gridrek);
-
+    formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = '
+      + kn + ' order by  liegenschaft desc ', list);
+    setfilter(formdb.queryrekl);
+    // filldb(formdb.dsrekl, gridrek);
+  except
+    // on e: Exception do showmessage(e.Message);
+  end;
 end;
 
 procedure Tformmain.showsonstiges;
 var
   list: TStringList;
 begin
-  list := TStringList.Create;
-  list.Add('*');
-  formdb.querysonstige.sql.Clear;
-  formdb.querysonstige.sql.Text := 'SELECT * FROM ' + dokcons.view_sonst +
-    ' WHERE kundennummer = ' + kdnr;
-  formdb.querysonstige.Open;
-  setfilter(formdb.querysonstige, filter);
-  filldb(formdb.dssonstige, gridsonstiges);
-
+  try
+    setallefiltereinstellungen;
+    list := TStringList.Create;
+    list.Add('*');
+    formdb.querysonstige.sql.Clear;
+    formdb.querysonstige.sql.Text := 'SELECT * FROM ' + dokcons.view_sonst +
+      ' WHERE kundennummer = ' + kdnr;
+    formdb.querysonstige.Open;
+    setfilter(formdb.querysonstige);
+  except
+    // on e: Exception do showmessage(e.Message);
+  end;
 end;
 
 // ###############################################
@@ -4446,17 +4966,19 @@ procedure Tformmain.showverträge;
 var
   list: TStringList;
 begin
-  if not assigned(formdb) then formdb := Tformdb.Create(self);
-  list                                := TStringList.Create;
-  list.Add('*');
-  { TODO : filter muss rein! }
-  formdb.queryvert.sql.Clear;
-  formdb.queryvert.sql.Text := 'SELECT * FROM ' + dokcons.view_ver +
-    ' WHERE kundennummer = ' + kdnr;
-  formdb.queryvert.Open;
-  setfilter(formdb.queryvert, filter);
-  filldb(formdb.dsvert, gridverträge);
-
+  try
+    setallefiltereinstellungen;
+    if not assigned(formdb) then formdb := Tformdb.Create(self);
+    list                                := TStringList.Create;
+    list.Add('*');
+    formdb.queryvert.sql.Clear;
+    formdb.queryvert.sql.Text := 'SELECT * FROM ' + dokcons.view_ver +
+      ' WHERE kundennummer = ' + kdnr;
+    formdb.queryvert.Open;
+    setfilter(formdb.queryvert);
+  except
+    // on e: Exception do showmessage(e.Message);
+  end;
 end;
 
 // ####################################
@@ -4465,15 +4987,19 @@ procedure Tformmain.showauftragsanforderungen;
 var
   list: TStringList;
 begin
-  list := TStringList.Create;
-  list.Add('*');
-  filterauftragsanf.esellg.Text := filterlg;
-  formdb.queryanforderungen.sql.Clear;
-  formdb.queryanforderungen.sql.Text := 'SELECT * FROM ' +
-    dokcons.view_anforderungen + ' WHERE kundennummer = ' + kdnr;
-  formdb.queryanforderungen.Open;
-  setfilter(formdb.queryanforderungen, filter);
-  filldb(formdb.dsanforderungen, gridanforderungen);
+  try
+    setallefiltereinstellungen;
+    list := TStringList.Create;
+    list.Add('*');
+    filterauftragsanf.esellg.Text := filterlg;
+    formdb.queryanforderungen.sql.Clear;
+    formdb.queryanforderungen.sql.Text := 'SELECT * FROM ' +
+      dokcons.view_anforderungen + ' WHERE kundennummer = ' + kdnr;
+    formdb.queryanforderungen.Open;
+    setfilter(formdb.queryanforderungen);
+  except
+    // on e: Exception do showmessage(e.Message);
+  end; // filldb(formdb.dsanforderungen, gridanforderungen);
 end;
 
 // ###############################################
@@ -4481,17 +5007,30 @@ procedure Tformmain.showzwischenablesungen;
 var
   list: TStringList;
 begin
-  if not assigned(formdb) then formdb := Tformdb.Create(self);
-  list                                := TStringList.Create;
+  // try setallefiltereinstellungen;
+  // except
+  // on e: Exception do begin
+  // showmessage(e.Message);
+  // exit;
+  // end;
+  // end;
+  if not assigned(formdb) then exit;
+  // formdb := Tformdb.Create(self);
+  list := TStringList.Create;
   list.Add('*');
-  framezwifilter.esellg.Text := filterlg;
   formdb.queryzwi.sql.Clear;
   formdb.queryzwi.sql.Text := 'SELECT * FROM ' + dokcons.view_zwi +
     ' WHERE kundennummer = ' + kdnr;
-  // formdb.queryzwi.SQL.Text := 'SELECT * FROM scandokumente.zwischenablesung';
-  formdb.queryzwi.Open;
-  setfilter(formdb.queryzwi, filter);
-  filldb(formdb.dszwi, gridzwi);
+  try formdb.queryzwi.Open;
+  except
+    on e: Exception do begin
+      showmessage('mysql problem: ' + e.Message);
+      exit;
+
+    end;
+  end;
+  // setfilter(formdb.queryzwi);
+
 end;
 
 // ###############################################
@@ -4660,7 +5199,7 @@ begin
 
   try showmontagen;
   except
-    ;
+    // on e: Exception do showmessage(e.Message);
 
   end;
 end;
@@ -4712,13 +5251,16 @@ end;
 procedure Tformmain.tabzwischenShow(Sender: TObject);
 begin
   if not assigned(formdb) then exit;
-  try showzwischenablesungen;
-  except
-    on e: Exception do begin
-      showmessage(e.Message);
-    end;
+  // if not assigned(ptabellen) then exit;
 
-  end;
+  showzwischenablesungen;
+  // try showzwischenablesungen;
+  // except
+  // on e: Exception do begin
+  // // showmessage(e.Message);
+  // end;
+  //
+  // end;
 end;
 // ------------------------------
 
@@ -4829,7 +5371,7 @@ begin
     framezwifilter.esellgExit(Sender);
 
     filter := framezwifilter.getfilter;
-    setfilter(formdb.queryzwi, filter);
+    // setfilter(formdb.queryzwi, filter);
 
   except
     ;
@@ -4852,7 +5394,7 @@ begin
   try
     update                          := worker.checkUpdate;
     if update then piupdate.Visible := true;
-    pimage.hide;
+    // pimage.hide;
   except
 
   end;
