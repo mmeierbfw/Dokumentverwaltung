@@ -544,6 +544,7 @@ type
     procedure filterangeboteseldiExit(Sender: TObject);
     procedure tabangebotsanfrageShow(Sender: TObject);
     procedure filtersonstigeseseldiExit(Sender: TObject);
+    procedure framefilterreklamationeselsbExit(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -827,7 +828,7 @@ begin
     try Value := erledigttext((Sender as TNextDBGrid).CellValue[14, ARow]);
     except
       on e: Exception do begin
-         showmessage('except 1' + e.Message);
+        showmessage('except 1' + e.Message);
       end;
     end;
 end;
@@ -883,7 +884,7 @@ procedure Tformmain.gridzwiCellColoring(Sender: TObject; acol, ARow: Integer;
 begin
   if (((ARow mod 2) = 0) and (not(csselected in CellState))) then
       CellColor := dokcons.hellgrau;
-  // if acol = 8 then
+  // // if acol = 8 then
 
 end;
 
@@ -946,7 +947,7 @@ end;
 
 procedure Tformmain.gridzwiHorizontalScroll(Sender: TObject; Position: Integer);
 begin
-  outputdebugstring('hor');
+  // outputdebugstring('hor');
 end;
 
 procedure Tformmain.gridzwiSortColumn(Sender: TObject; acol: Integer;
@@ -967,11 +968,11 @@ end;
 
 procedure Tformmain.gridzwiVerticalScroll(Sender: TObject; Position: Integer);
 begin
-  try outputdebugstring('ver');
-  except
-    on e: Exception do showmessage(e.Message);
-
-  end;
+  // try outputdebugstring('ver');
+  // except
+  // on e: Exception do showmessage(e.Message);
+  //
+  // end;
 end;
 
 // -------------------------------------------------
@@ -1654,7 +1655,7 @@ begin
     filter := (Sender as tfedit).Text;
     if not assigned(filterlist) then
         filterlist := TDictionary<string, string>.Create;
-    filterlist.AddOrSetValue('sachbearbeiter' +
+    filterlist.AddOrSetValue('sachbearbeiter_id' +
       filterangebot.cselsb.Text, filter);
     setfilter(formdb.queryangebote);
 
@@ -1748,7 +1749,7 @@ begin
     filter := (Sender as tfedit).Text;
     if not assigned(filterlist) then
         filterlist := TDictionary<string, string>.Create;
-    filterlist.AddOrSetValue('sachbearbeiter' +
+    filterlist.AddOrSetValue('sachbearbeiter_id' +
       filtersonstiges.cselsb.Text, filter);
     setfilter(formdb.querysonstige);
 
@@ -2066,7 +2067,7 @@ begin
     filter := (Sender as tfedit).Text;
     if not assigned(filterlist) then
         filterlist := TDictionary<string, string>.Create;
-    filterlist.AddOrSetValue('sachbearbeiter' +
+    filterlist.AddOrSetValue('sachbearbeiter_id' +
       filterauftragsanf.cselsb.Text, filter);
     setfilter(formdb.queryanforderungen);
 
@@ -2207,7 +2208,7 @@ begin
     filter := (Sender as tfedit).Text;
     if not assigned(filterlist) then
         filterlist := TDictionary<string, string>.Create;
-    filterlist.AddOrSetValue('sachbearbeiter' +
+    filterlist.AddOrSetValue('sachbearbeiter_id' +
       frameenfilter.cselsb.Text, filter);
     setfilter(formdb.queryen);
 
@@ -2299,6 +2300,26 @@ begin
     filterlist.AddOrSetValue('posteingang' +
       framefilterreklamation.cselpe.Text, filter);
     setfilter(formdb.queryrekl);
+
+  except
+    on e: Exception do showmessage(e.Message);
+  end;
+
+end;
+
+procedure Tformmain.framefilterreklamationeselsbExit(Sender: TObject);
+
+var
+  filter: string;
+begin
+  if (Sender as tfedit).Text = '' then exit;
+  try
+    filter := (Sender as tfedit).Text;
+    if not assigned(filterlist) then
+        filterlist := TDictionary<string, string>.Create;
+    filterlist.AddOrSetValue('sachbearbeiter_id' +
+      framemonfilter.cselsb.Text, filter);
+    setfilter(formdb.querymon);
 
   except
     on e: Exception do showmessage(e.Message);
@@ -2407,7 +2428,7 @@ begin
     filter := (Sender as tfedit).Text;
     if not assigned(filterlist) then
         filterlist := TDictionary<string, string>.Create;
-    filterlist.AddOrSetValue('sachbearbeiter' +
+    filterlist.AddOrSetValue('sachbearbeiter_id' +
       framemonfilter.cselsb.Text, filter);
     setfilter(formdb.querymon);
 
@@ -2513,7 +2534,7 @@ begin
     filter := (Sender as tfedit).Text;
     if not assigned(filterlist) then
         filterlist := TDictionary<string, string>.Create;
-    filterlist.AddOrSetValue('sachbearbeiter' +
+    filterlist.AddOrSetValue('sachbearbeiter_id' +
       framemonnut.cselsb.Text, filter);
     setfilter(formdb.querynuliste);
 
@@ -2702,8 +2723,10 @@ end;
 // ###############################################
 procedure Tformmain.framezwifilterblöschenClick(Sender: TObject);
 begin
+  if not assigned(filterlist) then exit;
   filterlist.Clear;
   setalleFilter;
+  setallefiltereinstellungen;
 end;
 
 // ###############################################
@@ -2798,7 +2821,7 @@ begin
     filter := (Sender as tfedit).Text;
     if not assigned(filterlist) then
         filterlist := TDictionary<string, string>.Create;
-    filterlist.AddOrSetValue('sachbearbeiter' +
+    filterlist.AddOrSetValue('sachbearbeiter_id' +
       framezwifilter.cselsb.Text, filter);
     setfilter(formdb.queryzwi);
 
@@ -4438,15 +4461,50 @@ end;
 procedure Tformmain.setalleFilter;
 begin
   with formdb do begin
-    setfilter(queryzwi);
-    setfilter(querymon);
-    setfilter(querynuliste);
-    setfilter(queryen);
-    setfilter(queryrekl);
-    setfilter(queryvert);
-    setfilter(querysonstige);
-    setfilter(queryanforderungen);
-    setfilter(queryangebote);
+    // try setfilter(queryzwi);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    //
+    // end;
+    // try setfilter(querymon);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    //
+    // end;
+    // try setfilter(querynuliste);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    // end;
+    // try setfilter(queryen);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    // end;
+    // try setfilter(queryrekl);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    // end;
+    // try setfilter(queryvert);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    // end;
+    //
+    // try setfilter(querysonstige);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    //
+    // end;
+    // try setfilter(queryanforderungen);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    //
+    // end;
+    // try setfilter(queryangebote);
+    // except
+    // // on e: Exception do showmessage(e.Message);
+    //
+    // end;
+    // end;
+
   end;
 
 end;
@@ -4577,7 +4635,10 @@ begin
 
   end;
   if not assigned(filterlist) then exit;
+  // if not query.op
+
   query.Filtered := false;
+  query.filter   := '';
   for Key in filterlist.Keys.ToArray do begin
     Value                                  := filterlist.Items[Key];
     kvset                                  := Key + ' ' + Value;
@@ -4864,7 +4925,6 @@ var
   list : TStringList;
 begin
   try
-    // sleep(100);
     setallefiltereinstellungen;
     with dokcons do begin
       list := TStringList.Create;
@@ -5007,7 +5067,8 @@ procedure Tformmain.showzwischenablesungen;
 var
   list: TStringList;
 begin
-  // try setallefiltereinstellungen;
+  // setallefiltereinstellungen;
+  setallefiltereinstellungen;
   // except
   // on e: Exception do begin
   // showmessage(e.Message);
@@ -5015,6 +5076,7 @@ begin
   // end;
   // end;
   if not assigned(formdb) then exit;
+  // sleep(1000);
   // formdb := Tformdb.Create(self);
   list := TStringList.Create;
   list.Add('*');
@@ -5029,8 +5091,8 @@ begin
 
     end;
   end;
-  filldb(formdb.dszwi, gridzwi);
-  // setfilter(formdb.queryzwi);
+  // filldb(formdb.dszwi, gridzwi);
+  setfilter(formdb.queryzwi);
 
 end;
 

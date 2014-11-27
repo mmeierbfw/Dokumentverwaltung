@@ -2332,8 +2332,8 @@
             Top = 0
             Width = 1686
             Height = 720
-            ActivePage = tabzwischen
-            ActivePageIndex = 0
+            ActivePage = tabreklamation
+            ActivePageIndex = 4
             Align = alClient
             TabOrder = 0
             OnClick = framezwifilterblöschenClick
@@ -2391,6 +2391,7 @@
                   OnSortColumn = gridzwiSortColumn
                   OnVerticalScroll = gridzwiVerticalScroll
                   DataAwareOptions = [doAddColumns, doSetColumnWidth]
+                  DataSource = formdb.dszwi
                   SequencedScroll = True
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
@@ -4340,6 +4341,9 @@
                     inherited esellg: TfEdit
                       OnExit = framefilterreklamationesellgExit
                     end
+                    inherited eselsb: TfEdit
+                      OnExit = framefilterreklamationeselsbExit
+                    end
                     inherited eselae: TfEdit
                       OnExit = framefilterreklamationeselaeExit
                     end
@@ -6112,8 +6116,8 @@
             Top = 41
             Width = 1686
             Height = 679
-            ActivePage = tabvollauf
-            ActivePageIndex = 7
+            ActivePage = tabvollzwischen
+            ActivePageIndex = 0
             Align = alClient
             TabOrder = 1
             Margin = 0
