@@ -32,16 +32,11 @@ type
     Timer1: TTimer;
     pleft: TPanel;
     pfilebox: TFlowPanel;
-    pimage: TPanel;
-    IStatusok: TImage;
-    iSTAtusfalse: TImage;
-    lprogress: TLabel;
     psonstiges: TPanel;
     Button9: TButton;
     Button10: TButton;
     pverarbeitungsstatus: TPanel;
     Gauge1: TGauge;
-    lsonstiges: TLabel;
     pausg: TPanel;
     lbausgang: TListBox;
     lausgangsordner: TLabel;
@@ -324,6 +319,11 @@ type
     framen: Tframeenergie;
     vollenergie: Tframeenergie;
     NxDBTextColumn82: TNxDBTextColumn;
+    lsonstiges: TLabel;
+    pimage: TPanel;
+    IStatusok: TImage;
+    iSTAtusfalse: TImage;
+    lprogress: TLabel;
     piupdate: TPanel;
     iupdate: TImage;
     // vollenergie: Tframeenergie;
@@ -545,6 +545,7 @@ type
     procedure tabangebotsanfrageShow(Sender: TObject);
     procedure filtersonstigeseseldiExit(Sender: TObject);
     procedure framefilterreklamationeselsbExit(Sender: TObject);
+    procedure ptabellenChange(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -4030,6 +4031,11 @@ begin
 
   framen.flipadress.Expanded := (Sender as TNxCheckBox).Checked;
   framen.eestrasse.SetFocus;
+end;
+
+procedure Tformmain.ptabellenChange(Sender: TObject);
+begin
+
 end;
 
 // ###############################################

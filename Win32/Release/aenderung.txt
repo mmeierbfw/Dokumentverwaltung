@@ -1,3 +1,6 @@
+Änderungen 1.8.6.2
+- Filter eingestellt für die Ansichten
+
 Änderungen 1.8.6.1
 - alle Ansichten (noch recht unsortiert) implementiert
 - 

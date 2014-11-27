@@ -1,13 +1,14 @@
 inherited frameenergie: Tframeenergie
-  Width = 1232
-  Height = 550
+  Width = 1125
+  Height = 620
   inherited gridpanel: TGridPanel
-    Width = 1232
-    Height = 550
+    Width = 1125
+    Height = 620
     inherited Panel5: TPanel
-      inherited lfiletype: TLabel
-        Height = 501
-      end
+      Width = 556
+      Height = 612
+      ExplicitWidth = 219
+      ExplicitHeight = 296
       inherited Label45: TLabel
         Left = 14
         Top = 318
@@ -198,6 +199,11 @@ inherited frameenergie: Tframeenergie
         ExplicitLeft = 322
         ExplicitTop = 342
       end
+    end
+    inherited rightparent: TPanel
+      Left = 566
+      Width = 557
+      Height = 612
     end
   end
 end

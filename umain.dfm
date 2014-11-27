@@ -2332,11 +2332,12 @@
             Top = 0
             Width = 1686
             Height = 720
-            ActivePage = tabenergieausweis
-            ActivePageIndex = 3
+            ActivePage = tabangebotsanfrage
+            ActivePageIndex = 8
             Align = alClient
             TabOrder = 0
             OnClick = framezwifilterblöschenClick
+            OnChange = ptabellenChange
             Margin = 0
             Options = [pgBoldActiveTab]
             Spacing = 0
@@ -2409,7 +2410,6 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     MinWidth = 0
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
@@ -2426,13 +2426,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Liegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 1
@@ -2447,13 +2447,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Nutzernummer'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 2
@@ -2468,13 +2468,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dateiname'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 5
@@ -2490,13 +2490,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Posteingang'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 4
@@ -2513,13 +2513,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dokument anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 10
@@ -2535,13 +2535,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Abrechnungsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 6
@@ -2556,13 +2556,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Nutzername'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 3
@@ -2577,6 +2577,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Vertragsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -2598,6 +2599,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Ablesedatum'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -2619,13 +2621,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Einzelbildanzeige'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     ParentCellColor = True
@@ -2643,12 +2645,12 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 7
@@ -2663,12 +2665,12 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 12
@@ -2682,6 +2684,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -2701,6 +2704,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Erledigt'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -2721,6 +2725,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dokumenttyp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -2852,7 +2857,7 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 0
@@ -2870,13 +2875,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Liegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 1
@@ -2892,13 +2898,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Nutzernummer'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 2
@@ -2914,11 +2921,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
@@ -2935,13 +2944,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Posteingang'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
@@ -2957,13 +2967,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Abrechnungsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 5
@@ -2978,12 +2989,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Auftragsnummer'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 6
@@ -2999,12 +3012,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Montagedatum'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 7
@@ -3020,12 +3035,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dokument anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     ParentFont = False
                     Position = 8
                     SortType = stNumeric
@@ -3041,12 +3058,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Einzelbildanzeige'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     ParentFont = False
                     Position = 9
                     SortType = stNumeric
@@ -3061,12 +3080,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 10
@@ -3082,11 +3102,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 11
@@ -3102,11 +3124,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 12
@@ -3122,12 +3146,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Erledigt'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 13
@@ -3141,12 +3167,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dateityp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 14
@@ -3266,7 +3294,7 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 0
@@ -3283,13 +3311,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Liegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 1
@@ -3304,11 +3333,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
@@ -3324,13 +3355,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Posteingang'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 2
@@ -3345,13 +3377,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Abrechnungsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
@@ -3366,11 +3399,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 5
@@ -3387,12 +3422,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dokument anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     ParentFont = False
                     Position = 6
                     SortType = stNumeric
@@ -3408,12 +3445,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Einzelbildanzeige'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     ParentFont = False
                     Position = 7
                     SortType = stNumeric
@@ -3428,11 +3467,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 8
@@ -3448,12 +3489,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Erledigt'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 9
@@ -3467,12 +3510,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dateityp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Header.MultiLine = True
                     Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 10
@@ -3574,12 +3619,14 @@
                   Options = [goHeader, goSelectFullRow]
                   TabOrder = 0
                   TabStop = True
-                  OnApplyCell = gridenergieApplyCell
+                  OnApplyCell = gridzwiApplyCell
                   OnCellClick = gridzwiCellClick
                   OnCellColoring = gridzwiCellColoring
                   OnCellDblClick = gridzwiCellDblClick
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsen
+                  ExplicitLeft = 16
+                  ExplicitTop = 181
                   object NxDBTextColumn1: TNxDBTextColumn
                     DefaultWidth = 110
                     Font.Charset = DEFAULT_CHARSET
@@ -3594,8 +3641,6 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     MinWidth = 0
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
@@ -3612,14 +3657,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Liegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 1
@@ -3634,13 +3678,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Dateiname'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
@@ -3656,14 +3700,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Posteingang'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 2
@@ -3678,15 +3721,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Abrechnungsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
                     Sorted = True
@@ -3701,6 +3743,8 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Strasse'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -3712,7 +3756,7 @@
                     SortType = stAlphabetic
                     Visible = False
                     Width = 8
-                    FieldName = 'Strasse'
+                    FieldName = 'strasse'
                   end
                   object NxDBTextColumn16: TNxDBTextColumn
                     DefaultWidth = 8
@@ -3721,6 +3765,8 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Ort'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -3732,7 +3778,7 @@
                     SortType = stAlphabetic
                     Visible = False
                     Width = 8
-                    FieldName = 'Ort'
+                    FieldName = 'ort'
                   end
                   object NxDBTextColumn17: TNxDBTextColumn
                     DefaultWidth = 8
@@ -3741,6 +3787,8 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'PLZ'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -3752,7 +3800,7 @@
                     SortType = stAlphabetic
                     Visible = False
                     Width = 8
-                    FieldName = 'PLZ'
+                    FieldName = 'plz'
                   end
                   object NxDBTextColumn18: TNxDBImageColumn
                     DefaultValue = '0'
@@ -3762,6 +3810,8 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Pseudoliegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -3784,6 +3834,8 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Notizen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -3797,58 +3849,52 @@
                     Width = 8
                     FieldName = 'Notizen'
                   end
-                  object NxDBImageColumn1: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 277
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Dokument anzeigen'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 10
-                    SortType = stNumeric
-                    Width = 277
-                    Images = ImageList1
-                    Transparent = True
-                  end
-                  object NxDBImageColumn5: TNxDBImageColumn
-                    DefaultValue = '0'
-                    DefaultWidth = 318
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = 6908265
-                    Font.Height = -13
-                    Font.Name = 'Tahoma'
-                    Font.Style = []
-                    Header.Caption = 'Einzelbildanzeige'
-                    Header.Font.Charset = DEFAULT_CHARSET
-                    Header.Font.Color = clWindowText
-                    Header.Font.Height = -11
-                    Header.Font.Name = 'Tahoma'
-                    Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
-                    ParentFont = False
-                    Position = 11
-                    SortType = stNumeric
-                    Width = 319
-                    Images = ImageList1
-                    Transparent = True
-                  end
                   object NxDBTextColumn29: TNxDBTextColumn
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'erledigt'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 10
+                    SortType = stAlphabetic
+                    Visible = False
+                    FieldName = 'erledigt'
+                  end
+                  object NxDBTextColumn36: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Dateityp'
+                    Header.Font.Charset = DEFAULT_CHARSET
+                    Header.Font.Color = clWindowText
+                    Header.Font.Height = -11
+                    Header.Font.Name = 'Tahoma'
+                    Header.Font.Style = []
+                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    ParentFont = False
+                    Position = 11
+                    SortType = stAlphabetic
+                  end
+                  object NxDBTextColumn30: TNxDBTextColumn
+                    Font.Charset = DEFAULT_CHARSET
+                    Font.Color = 6908265
+                    Font.Height = -13
+                    Font.Name = 'Tahoma'
+                    Font.Style = []
+                    Header.Color = clWhite
+                    Header.Caption = 'Erledigt'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -3858,42 +3904,52 @@
                     ParentFont = False
                     Position = 12
                     SortType = stAlphabetic
-                    Visible = False
-                    FieldName = 'erledigt'
                   end
-                  object NxDBTextColumn30: TNxDBTextColumn
+                  object NxDBImageColumn5: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
-                    Header.Caption = 'Erledigt'
+                    Header.Color = clWhite
+                    Header.Caption = 'Einzelbildanzeige'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 13
-                    SortType = stAlphabetic
+                    SortType = stNumeric
+                    Width = 120
+                    Images = ImageList1
+                    Transparent = True
                   end
-                  object NxDBTextColumn36: TNxDBTextColumn
+                  object NxDBImageColumn1: TNxDBImageColumn
+                    DefaultValue = '0'
+                    DefaultWidth = 120
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
-                    Header.Caption = 'Dateityp'
+                    Header.Color = clWhite
+                    Header.Caption = 'Dokument anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 14
-                    SortType = stAlphabetic
+                    SortType = stNumeric
+                    Width = 476
+                    Images = ImageList1
+                    Transparent = True
                   end
                 end
                 object Panel5: TPanel
@@ -4009,8 +4065,7 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 0
                     Sorted = True
@@ -4026,14 +4081,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Liegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
@@ -4047,14 +4102,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Nutzernummer'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
@@ -4068,14 +4123,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Posteingang'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
@@ -4089,14 +4144,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Abrechnungsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
                     SortType = stAlphabetic
@@ -4110,13 +4165,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Auftragsnummer'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 5
                     SortType = stAlphabetic
@@ -4130,12 +4186,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 6
                     SortType = stAlphabetic
@@ -4150,12 +4207,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 7
                     SortType = stAlphabetic
@@ -4169,12 +4227,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 8
                     SortType = stAlphabetic
@@ -4188,12 +4247,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 9
                     SortType = stAlphabetic
@@ -4208,13 +4268,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dokument anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 10
                     SortType = stNumeric
@@ -4230,6 +4291,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Einzelbildanzeige'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -4237,7 +4299,7 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     InplaceEdit = frameauf.cbselectauftrag
-                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 11
                     SortType = stNumeric
@@ -4252,12 +4314,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Notizen anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 12
                     SortType = stNumeric
@@ -4270,13 +4334,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Erledigt'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 13
                     SortType = stAlphabetic
@@ -4287,13 +4352,14 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dateityp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coFixedSize, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 14
                     SortType = stAlphabetic
@@ -4419,7 +4485,6 @@
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   MinWidth = 0
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
@@ -4436,13 +4501,13 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Liegenschaft'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
                   Position = 1
@@ -4457,13 +4522,13 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Dateiname'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
                   Position = 3
@@ -4479,13 +4544,13 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Posteingang'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
                   Position = 2
@@ -4502,13 +4567,13 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Dokument anzeigen'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
                   Position = 8
@@ -4524,13 +4589,13 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Abrechnungsende'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
                   Position = 4
@@ -4545,6 +4610,7 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Vertragsende'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
@@ -4566,6 +4632,7 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Ablesedatum'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
@@ -4587,13 +4654,13 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Einzelbildanzeige'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
                   ParentCellColor = True
@@ -4611,12 +4678,12 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
                   Position = 5
@@ -4631,12 +4698,12 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
                   Header.Font.Name = 'Tahoma'
                   Header.Font.Style = []
-                  Header.HideArrow = False
                   Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                   ParentFont = False
                   Position = 10
@@ -4650,6 +4717,7 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
@@ -4669,6 +4737,7 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Erledigt'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
@@ -4689,6 +4758,7 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Caption = 'Dokumenttyp'
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
@@ -4708,6 +4778,7 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
@@ -4725,6 +4796,7 @@
                   Font.Height = -13
                   Font.Name = 'Tahoma'
                   Font.Style = []
+                  Header.Color = clWhite
                   Header.Font.Charset = DEFAULT_CHARSET
                   Header.Font.Color = clWindowText
                   Header.Font.Height = -11
@@ -4790,8 +4862,6 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     MinWidth = 0
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
@@ -4808,14 +4878,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Liegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 1
@@ -4830,13 +4899,12 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
@@ -4851,6 +4919,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -4869,14 +4938,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Posteingang'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 2
@@ -4891,14 +4959,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Abrechnungsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 5
@@ -4914,6 +4981,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -4934,6 +5002,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -4954,6 +5023,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -4975,6 +5045,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -4997,6 +5068,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5016,6 +5088,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5034,6 +5107,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Erledigt'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5051,6 +5125,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dateityp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5070,6 +5145,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Einzelbildanzeige'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5092,14 +5168,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dokument anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 15
@@ -5218,8 +5293,6 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     MinWidth = 0
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
@@ -5236,14 +5309,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Liegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 1
@@ -5258,13 +5330,12 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
@@ -5279,6 +5350,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5297,14 +5369,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Posteingang'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 2
@@ -5319,14 +5390,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Abrechnungsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 5
@@ -5342,6 +5412,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5362,6 +5433,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5382,6 +5454,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5403,6 +5476,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5425,6 +5499,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5444,6 +5519,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5462,6 +5538,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Erledigt'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5479,6 +5556,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dateityp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5498,6 +5576,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Einzelbildanzeige'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5520,14 +5599,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dokument anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
-                    Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 15
@@ -5542,6 +5620,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Auftragstyp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5665,7 +5744,6 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Header.MultiLine = True
                     MinWidth = 0
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
@@ -5683,13 +5761,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Liegenschaft'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
@@ -5705,12 +5783,12 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
@@ -5726,6 +5804,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5744,13 +5823,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Posteingang'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
@@ -5766,6 +5845,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Abrechnungsende'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5789,6 +5869,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5809,6 +5890,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5829,6 +5911,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5850,6 +5933,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5872,6 +5956,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5891,6 +5976,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
@@ -5909,6 +5995,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Erledigt'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5926,6 +6013,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dateityp'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5945,6 +6033,7 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Einzelbildanzeige'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
@@ -5967,13 +6056,13 @@
                     Font.Height = -13
                     Font.Name = 'Tahoma'
                     Font.Style = []
+                    Header.Color = clWhite
                     Header.Caption = 'Dokument anzeigen'
                     Header.Font.Charset = DEFAULT_CHARSET
                     Header.Font.Color = clWindowText
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Header.HideArrow = False
                     Header.MultiLine = True
                     Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
@@ -7101,26 +7190,12 @@
       Color = 6118749
       ParentBackground = False
       TabOrder = 1
-      object lsonstiges: TLabel
-        AlignWithMargins = True
-        Left = 5
-        Top = 623
-        Width = 289
-        Height = 16
-        Margins.Left = 5
-        Margins.Top = 2
-        Margins.Right = 2
-        Margins.Bottom = 2
-        Align = alBottom
-        Caption = 'Sonstiges'
-        ExplicitWidth = 55
-      end
       object pfilebox: TFlowPanel
         AlignWithMargins = True
         Left = 5
         Top = 5
         Width = 286
-        Height = 532
+        Height = 452
         Margins.Left = 5
         Margins.Top = 5
         Margins.Right = 5
@@ -7221,7 +7296,7 @@
           Left = 13
           Top = 121
           Width = 261
-          Height = 185
+          Height = 145
           Hint = 'Sammelordner f'#252'r alle Dokumenteing'#228'nge. Per Doppelklick '#228'nderbar'
           Margins.Bottom = 25
           BevelOuter = bvNone
@@ -7254,9 +7329,9 @@
           object lbeingang: TListBox
             AlignWithMargins = True
             Left = 3
-            Top = 32
+            Top = 26
             Width = 255
-            Height = 150
+            Height = 116
             Align = alBottom
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -7275,14 +7350,15 @@
             OnClick = lbeingangClick
             OnDblClick = lbeingangDblClick
             OnMouseDown = lbausgangMouseDown
+            ExplicitTop = 37
           end
         end
         object pausg: TPanel
           AlignWithMargins = True
           Left = 13
-          Top = 334
+          Top = 294
           Width = 261
-          Height = 185
+          Height = 145
           Hint = 'Sammelordner f'#252'r alle Dokumentausg'#228'nge. Per Doppelklick '#228'nderbar'
           Align = alBottom
           BevelOuter = bvNone
@@ -7315,9 +7391,9 @@
           object lbausgang: TListBox
             AlignWithMargins = True
             Left = 3
-            Top = 32
+            Top = 26
             Width = 255
-            Height = 150
+            Height = 116
             Align = alBottom
             BevelInner = bvNone
             BevelOuter = bvNone
@@ -7338,13 +7414,154 @@
             OnClick = lbeingangClick
             OnDblClick = lbeingangDblClick
             OnMouseDown = lbausgangMouseDown
+            ExplicitTop = 32
           end
+        end
+      end
+      object psonstiges: TPanel
+        AlignWithMargins = True
+        Left = 5
+        Top = 612
+        Width = 286
+        Height = 120
+        Margins.Left = 5
+        Margins.Top = 2
+        Margins.Right = 5
+        Margins.Bottom = 10
+        Align = alBottom
+        AutoSize = True
+        BevelOuter = bvNone
+        Color = 14933977
+        Locked = True
+        Padding.Left = 10
+        Padding.Top = 10
+        Padding.Right = 10
+        Padding.Bottom = 10
+        ParentBackground = False
+        TabOrder = 1
+        ExplicitWidth = 285
+        object lsonstiges: TLabel
+          AlignWithMargins = True
+          Left = 15
+          Top = 12
+          Width = 259
+          Height = 19
+          Margins.Left = 5
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 10
+          Align = alTop
+          Caption = 'Sonstiges'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = 6908265
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentFont = False
+          ExplicitWidth = 67
+        end
+        object Button9: TButton
+          Left = 10
+          Top = 41
+          Width = 266
+          Height = 23
+          Align = alTop
+          Caption = 'Updates pr'#252'fen'
+          TabOrder = 0
+          TabStop = False
+          OnClick = Button9Click
+          ExplicitTop = 10
+        end
+        object Button10: TButton
+          Left = 10
+          Top = 64
+          Width = 266
+          Height = 23
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Dokumente speichern'
+          TabOrder = 1
+          TabStop = False
+          OnClick = dokanzeigeClick
+          ExplicitTop = 33
+        end
+        object Button1: TButton
+          Left = 10
+          Top = 87
+          Width = 266
+          Height = 23
+          Margins.Left = 2
+          Margins.Top = 2
+          Margins.Right = 2
+          Margins.Bottom = 2
+          Align = alTop
+          Caption = 'Dokumente anzeigen'
+          TabOrder = 2
+          TabStop = False
+          OnClick = Button1Click
+          ExplicitTop = 56
+        end
+      end
+      object pverarbeitungsstatus: TPanel
+        AlignWithMargins = True
+        Left = 5
+        Top = 532
+        Width = 286
+        Height = 76
+        Margins.Left = 5
+        Margins.Top = 2
+        Margins.Right = 5
+        Margins.Bottom = 2
+        Align = alTop
+        BevelOuter = bvNone
+        Color = 14933977
+        Padding.Left = 10
+        Padding.Top = 5
+        Padding.Right = 10
+        Padding.Bottom = 10
+        ParentBackground = False
+        TabOrder = 2
+        Visible = False
+        ExplicitTop = 541
+        object Gauge1: TGauge
+          Left = 10
+          Top = 21
+          Width = 266
+          Height = 31
+          Align = alTop
+          BackColor = 15856113
+          BorderStyle = bsNone
+          ForeColor = 10252872
+          Progress = 0
+          ExplicitTop = 10
+          ExplicitWidth = 263
+        end
+        object lpverarbeitungsart: TLabel
+          Left = 10
+          Top = 5
+          Width = 266
+          Height = 16
+          Align = alTop
+          Caption = 'Datei zu'
+          ExplicitWidth = 46
+        end
+        object lhochruntergeladen: TLabel
+          Left = 10
+          Top = 50
+          Width = 266
+          Height = 16
+          Align = alBottom
+          Caption = 'hochgeladen'
+          ExplicitWidth = 72
         end
       end
       object pimage: TPanel
         AlignWithMargins = True
         Left = 5
-        Top = 623
+        Top = 463
         Width = 286
         Height = 65
         Margins.Left = 5
@@ -7356,9 +7573,12 @@
         Caption = 'erfolgreich gespeichert'
         Color = 14933977
         ParentBackground = False
-        TabOrder = 1
+        TabOrder = 3
         VerticalAlignment = taAlignBottom
         Visible = False
+        ExplicitLeft = 15
+        ExplicitTop = 11
+        ExplicitWidth = 256
         object IStatusok: TImage
           Left = 0
           Top = 56
@@ -8114,121 +8334,6 @@
             OnClick = iupdateClick
             ExplicitWidth = 32
           end
-        end
-      end
-      object psonstiges: TPanel
-        AlignWithMargins = True
-        Left = 5
-        Top = 643
-        Width = 286
-        Height = 89
-        Margins.Left = 5
-        Margins.Top = 2
-        Margins.Right = 5
-        Margins.Bottom = 10
-        Align = alBottom
-        AutoSize = True
-        BevelOuter = bvNone
-        Color = 14933977
-        Locked = True
-        Padding.Left = 10
-        Padding.Top = 10
-        Padding.Right = 10
-        Padding.Bottom = 10
-        ParentBackground = False
-        TabOrder = 2
-        object Button9: TButton
-          Left = 10
-          Top = 10
-          Width = 266
-          Height = 23
-          Align = alTop
-          Caption = 'Updates pr'#252'fen'
-          TabOrder = 0
-          TabStop = False
-          OnClick = Button9Click
-        end
-        object Button10: TButton
-          Left = 10
-          Top = 33
-          Width = 266
-          Height = 23
-          Margins.Left = 2
-          Margins.Top = 2
-          Margins.Right = 2
-          Margins.Bottom = 2
-          Align = alTop
-          Caption = 'Dokumente speichern'
-          TabOrder = 1
-          TabStop = False
-          OnClick = dokanzeigeClick
-        end
-        object Button1: TButton
-          Left = 10
-          Top = 56
-          Width = 266
-          Height = 23
-          Margins.Left = 2
-          Margins.Top = 2
-          Margins.Right = 2
-          Margins.Bottom = 2
-          Align = alTop
-          Caption = 'Dokumente anzeigen'
-          TabOrder = 2
-          TabStop = False
-          OnClick = Button1Click
-        end
-      end
-      object pverarbeitungsstatus: TPanel
-        AlignWithMargins = True
-        Left = 5
-        Top = 541
-        Width = 286
-        Height = 76
-        Margins.Left = 5
-        Margins.Top = 2
-        Margins.Right = 5
-        Margins.Bottom = 2
-        Align = alTop
-        BevelOuter = bvNone
-        Color = 14933977
-        Padding.Left = 10
-        Padding.Top = 5
-        Padding.Right = 10
-        Padding.Bottom = 10
-        ParentBackground = False
-        TabOrder = 3
-        Visible = False
-        object Gauge1: TGauge
-          Left = 10
-          Top = 21
-          Width = 266
-          Height = 31
-          Align = alTop
-          BackColor = 15856113
-          BorderStyle = bsNone
-          ForeColor = 10252872
-          Progress = 0
-          ExplicitTop = 10
-          ExplicitWidth = 263
-        end
-        object lpverarbeitungsart: TLabel
-          Left = 10
-          Top = 5
-          Width = 266
-          Height = 16
-          Align = alTop
-          Caption = 'Datei zu'
-          ExplicitWidth = 46
-        end
-        object lhochruntergeladen: TLabel
-          Left = 10
-          Top = 50
-          Width = 266
-          Height = 16
-          Align = alBottom
-          Caption = 'hochgeladen'
-          ExplicitWidth = 72
         end
       end
     end
