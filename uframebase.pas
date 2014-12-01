@@ -174,7 +174,7 @@ var
   datestr: string;
 begin
   datestr           := DateToStr(now);
-  datestr           := formatedatefrom4jto2j(datestr);
+  datestr           := formatdatefrom4jto2j(datestr);
   eposteingang.text := datestr;
 end;
 
@@ -196,7 +196,7 @@ begin
       end;
   end;
   abrdat                := EncodeDate(jahr, monat, tag);
-  eabrechnungsende.text := formatedatefrom4jto2j(DateToStr(abrdat));
+  eabrechnungsende.text := formatdatefrom4jto2j(DateToStr(abrdat));
 end;
 
 end.

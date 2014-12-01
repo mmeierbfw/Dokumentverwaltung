@@ -38,11 +38,13 @@
       FFFF604830FFFFF0F0FFFFF0E0FFE0D0C0FF604830FFC0B0A0FFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFF8FFFFFFF0F0FFF0F0E0FF604830FFC0B0A040C0B0
       A0FFC0B0A0FFC0A8A0FFC0A8A0FFC0A8A0FFC0A890FFC0A090FF60483040}
+    HeaderColor = 16711384
     HeaderFont.Charset = DEFAULT_CHARSET
     HeaderFont.Color = 6908265
     HeaderFont.Height = -13
     HeaderFont.Name = 'Tahoma'
     HeaderFont.Style = []
+    HeaderStyle = hsTransparent
     ParentHeaderFont = False
     FullHeight = 90
     object lliegenschaft: TLabel

@@ -482,7 +482,12 @@ begin
 
   table := gettable(doctype);
   with formmain.dokcons do begin
-    Result := formdb.insertquery(doctype, table, dict);
+    try Result := formdb.insertquery(doctype, table, dict);
+    except
+      formmain.connectwithplink;
+      Result := formdb.insertquery(doctype, table, dict);
+
+    end;
   end;
 
 end;
@@ -552,34 +557,17 @@ var
   lastminute: TStringList;
 begin
 
-  // stream := TFileStream.Create(getcollectorlistfile, fmOpenReadWrite);
   collectdir := getCollectorfolder('Scannerprogramm');
   abspath    := includetrailingpathdelimiter(collectdir) +
     extractfilename(newfilename);
-  if copyfile(pchar(originaldocument), pchar(abspath), true) then
-      DeleteFile(originaldocument);
+  if copyfile(pchar(originaldocument), pchar(abspath), true) then begin
+    // DeleteFile(originaldocument);
+  end;
 
   str := pchar('SET ' + abspath + '^' + newfilename);
   formmain.npc.Send(str);
-  // if not isexerunning('ftpcollectorui.exe') then formmain.connecttocollector;
-  // ftpcollectorlist := formmain.getcollectorlist;
   Result := true;
-  // lastminute := TStringList.Create;
-  // listfiledir(getCollectorfolder, lastminute);
-  // for elem in lastminute do begin
-  // createrescue(elem);
-  // end;
-  // if not filled(ftpcollectorlist) then exit;
-  // for elem in ftpcollectorlist do begin
-  // formmain.npc.Send(elem);
 end;
-
-// FillChar(buf, BufSize, #0);
-// move(str[0], buf[0], Length(str) * SizeOf(char));
-// WriteFile(pipe, buf[0], Length(str) * sizeof(char), written ,nil);
-// CloseHandle(pipe);
-
-// end;
 
 function TWorker.onlydigital: boolean;
 var

@@ -635,7 +635,7 @@ type
     function noDokIdNeeded: Boolean;
     function getdate(em: tfedit): string;
     function getfittingabrechnungsende(abrdat: string): string;
-    function connectwithplink: Boolean;
+
     procedure downloadupdate;
     procedure WMGetDlgCode(var msg: TWMGetDlgCode); message WM_GETDLGCODE;
     procedure CMDialogKey(var Message: TCMDialogKey); message CM_DIALOGKEY;
@@ -718,7 +718,7 @@ type
     function getdb: TNextDBGrid;
     function setkundennummern(kdnn: TList<Integer>): Boolean;
     function getVertragstyp(): string;
-
+    function connectwithplink: Boolean;
   published
     property intern  : Boolean read Fintern write Fintern;
     property isTernes: Boolean read FisTernes write FisTernes;
@@ -1460,20 +1460,20 @@ begin
 
             date := dbgrid.GetColumnByFieldName(vertragsbeginn).field.AsString;
 
-            date                           := formatedatefrom4jto2j(date);
+            date                           := formatdatefrom4jto2j(date);
             if date = '00.00.00' then date := '';
 
             dtauszug.Text := date;
-            date          := formatedatefrom4jto2j
+            date          := formatdatefrom4jto2j
               (dbgrid.GetColumnByFieldName(vertragsbeginn).field.AsString);
             if date = '00.00.00' then date := '';
 
             eauszug.Text := date;
-            date         := formatedatefrom4jto2j
+            date         := formatdatefrom4jto2j
               (dbgrid.GetColumnByFieldName(Ablesedatum).field.AsString);
             if date = '00.00.00' then date := '';
             dtablesedatum.Text             := date;
-            date                           := formatedatefrom4jto2j
+            date                           := formatdatefrom4jto2j
               (dbgrid.GetColumnByFieldName(Ablesedatum).field.AsString);
             if date = '00.00.00' then date := '';
 
@@ -1575,12 +1575,12 @@ begin
       eliegenschaft.Text := dbgrid.GetColumnByFieldName(liegenschaft)
         .field.AsString;
 
-      date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(Posteingang)
+      date := formatdatefrom4jto2j(dbgrid.GetColumnByFieldName(Posteingang)
         .field.AsString);
       if date = '00.00.00' then date := '';
 
       eposteingang.Text := date;
-      date := formatedatefrom4jto2j(dbgrid.GetColumnByFieldName(abrechnungsende)
+      date := formatdatefrom4jto2j(dbgrid.GetColumnByFieldName(abrechnungsende)
         .field.AsString);
       if date = '00.00.00' then date := '';
       dtabrechnungsende.Text         := date;
@@ -1773,8 +1773,8 @@ procedure Tformmain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   // minimizeme;
   // Action := caNone;
-
   Killprocess(procidbfw);
+  Killprocess(formdb.getplinkpid);
   Killprocess(procidplinkmysql);
   // KillTask('plink.exe');
   if isexerunning('plink.exe') then KillTask('plink.exe');
@@ -1795,7 +1795,7 @@ procedure Tformmain.FormCreate(Sender: TObject);
 var
   list: TStringList;
 begin
-  connectwithplink;
+//  connectwithplink;
   connectToPipe;
   list := TStringList.Create;
 
@@ -2622,21 +2622,21 @@ end;
 // ###############################################
 procedure Tformmain.framemontageeauftragsnummerExit(Sender: TObject);
 var
-  auftragsnr: string;
-  tmp       : string;
-  dict      : TStringList;
+  auftragsnrtmp: string;
+  tmp          : string;
+  dict         : TStringList;
 
   frame: Tframebase;
 begin
   with dokcons do begin
-    frame      := getframe as Tframereklmont;
-    auftragsnr := (frame as Tframereklmont).eauftragsnummer.Text;
-    showmessage(auftragsnr);
+    frame         := getframe as Tframereklmont;
+    auftragsnrtmp := (frame as Tframereklmont).eauftragsnummer.Text;
+    showmessage(auftragsnrtmp);
     dict := TStringList.Create;
     dict.Add('*');
     with formdb do begin
       formdb.doquery(queryaufträge, 'aufträge', ' WHERE ' + auftragsnummer + '='
-        + quotedstr(auftragsnr), dict);
+        + quotedstr(auftragsnrtmp), dict);
       tmp := queryaufträge.FieldByName(liegenschaft).AsString;
       if not(tmp = '') then frame.eliegenschaft.Text := tmp;
       tmp := queryaufträge.FieldByName(Nutzernummer).AsString;
@@ -4300,7 +4300,7 @@ begin
     pdatenrechts.Visible         := false;
     telefonieren                 := false;
     frame.dtposteingang.Text     := formatDateTimeOhneTrenner(now);
-    frame.eposteingang.Text      := formatedatefrom4jto2j(DateToStr(now));
+    frame.eposteingang.Text      := formatdatefrom4jto2j(DateToStr(now));
     frame.eliegenschaft.Text     := '';
     frame.menotizen.Text         := '';
     frame.dtabrechnungsende.Text := '__.__.__';
@@ -5088,8 +5088,8 @@ var
 begin
   try
     with dokcons do begin
-    
-    setallefiltereinstellungen;
+
+      setallefiltereinstellungen;
       list := TStringList.Create;
       list.Add('*');
 
