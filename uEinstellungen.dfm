@@ -609,7 +609,7 @@ object Einstellungen: TEinstellungen
     end
     object Label2: TLabel
       Left = 312
-      Top = 108
+      Top = 112
       Width = 96
       Height = 18
       Caption = 'Sachbearbeiter'
@@ -630,7 +630,7 @@ object Einstellungen: TEinstellungen
     end
     object Label5: TLabel
       Left = 315
-      Top = 148
+      Top = 147
       Width = 58
       Height = 18
       Caption = 'Passwort'
@@ -641,7 +641,7 @@ object Einstellungen: TEinstellungen
       Width = 51
       Height = 26
       Caption = '...'
-      TabOrder = 0
+      TabOrder = 3
       OnClick = bscanordnerClick
     end
     object bpostausgangsordner: TButton
@@ -650,7 +650,7 @@ object Einstellungen: TEinstellungen
       Width = 51
       Height = 26
       Caption = '...'
-      TabOrder = 1
+      TabOrder = 5
       OnClick = bscanordnerClick
     end
     object Button2: TButton
@@ -669,7 +669,7 @@ object Einstellungen: TEinstellungen
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 9
       OnClick = Bsave
     end
     object Button3: TButton
@@ -688,7 +688,7 @@ object Einstellungen: TEinstellungen
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 10
       OnClick = Babbrechen
     end
     object shownumber: TCheckBox
@@ -698,7 +698,7 @@ object Einstellungen: TEinstellungen
       Height = 17
       Alignment = taLeftJustify
       Caption = 'Ablagenummer anzeigen'
-      TabOrder = 4
+      TabOrder = 7
     end
     object ekundennummer: TfEdit
       Left = 120
@@ -714,7 +714,7 @@ object Einstellungen: TEinstellungen
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 5
+      TabOrder = 11
       Visible = False
       TabOnEnter = False
       FontColorOnEnter = 36607
@@ -723,7 +723,7 @@ object Einstellungen: TEinstellungen
     end
     object esachbearbeiter: TfEdit
       Left = 422
-      Top = 107
+      Top = 112
       Width = 50
       Height = 23
       AutoSize = False
@@ -735,7 +735,7 @@ object Einstellungen: TEinstellungen
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 6
+      TabOrder = 1
       TabOnEnter = False
       FontColorOnEnter = 10252872
       ColorFocused = 10252872
@@ -755,7 +755,7 @@ object Einstellungen: TEinstellungen
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 4
       TabOnEnter = False
       FontColorOnEnter = 10252872
       ColorFocused = 10252872
@@ -775,7 +775,7 @@ object Einstellungen: TEinstellungen
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 6
       TabOnEnter = False
       FontColorOnEnter = 10252872
       ColorFocused = 10252872
@@ -788,7 +788,7 @@ object Einstellungen: TEinstellungen
       Height = 17
       Alignment = taLeftJustify
       Caption = 'Ablagenummern nach Ordner unterteilen'
-      TabOrder = 9
+      TabOrder = 8
     end
     object epasswort: TfEdit
       Left = 379
@@ -804,7 +804,7 @@ object Einstellungen: TEinstellungen
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 10
+      TabOrder = 2
       TabOnEnter = False
       FontColorOnEnter = 10252872
       ColorFocused = 10252872
@@ -828,7 +828,7 @@ object Einstellungen: TEinstellungen
       Font.Style = []
       ParentFont = False
       Sorted = True
-      TabOrder = 11
+      TabOrder = 0
       Visible = False
       TabOnEnter = False
       FontColorOnEnter = 10252872

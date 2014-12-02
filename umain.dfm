@@ -2,10 +2,9 @@
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
   Caption = 'Dokumentverwaltung'
-  ClientHeight = 777
-  ClientWidth = 1994
+  ClientHeight = 767
+  ClientWidth = 1984
   Color = 16706255
   Font.Charset = DEFAULT_CHARSET
   Font.Color = 6908265
@@ -33,8 +32,8 @@
   object prahmen: TPanel
     Left = 0
     Top = 0
-    Width = 1994
-    Height = 777
+    Width = 1984
+    Height = 767
     Margins.Left = 15
     Margins.Top = 15
     Margins.Right = 15
@@ -44,6 +43,8 @@
     Color = 14933977
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 1994
+    ExplicitHeight = 777
     object iueber: TImage
       Left = 840
       Top = -1
@@ -707,8 +708,8 @@
       AlignWithMargins = True
       Left = 297
       Top = 32
-      Width = 1688
-      Height = 742
+      Width = 1678
+      Height = 732
       Margins.Left = 0
       Margins.Top = 31
       Margins.Right = 8
@@ -719,11 +720,13 @@
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
+      ExplicitWidth = 1688
+      ExplicitHeight = 742
       object pagermain: TNxPageControl
         Left = 0
         Top = 0
-        Width = 1688
-        Height = 742
+        Width = 1678
+        Height = 732
         ParentCustomHint = False
         ActivePage = tabanzeige
         ActivePageIndex = 1
@@ -736,6 +739,8 @@
         Options = [pgBoldActiveTab, pgPageBorder, pgTopBorder]
         Spacing = 0
         TabHeight = 17
+        ExplicitWidth = 1688
+        ExplicitHeight = 742
         object tabspeichern: TNxTabSheet
           Caption = 'Dokumente speichern'
           PageIndex = 0
@@ -746,21 +751,25 @@
           TabFont.Name = 'Tahoma'
           TabFont.Style = []
           TabWidth = 455
+          ExplicitWidth = 1686
+          ExplicitHeight = 720
           object Panel4: TPanel
             Left = 0
             Top = 0
-            Width = 1686
-            Height = 720
+            Width = 1676
+            Height = 710
             Align = alClient
             BevelOuter = bvNone
             Color = clWhite
             ParentBackground = False
             TabOrder = 0
+            ExplicitWidth = 1686
+            ExplicitHeight = 720
             object pagerspeicher: TNxPageControl
               Left = 0
               Top = 35
-              Width = 1686
-              Height = 685
+              Width = 1676
+              Height = 675
               Margins.Left = 4
               Margins.Top = 4
               Margins.Right = 2
@@ -783,6 +792,8 @@
               TabHeight = 23
               TabStyle = tsDexter
               TopIndent = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 685
               object TMontage: TNxTabSheet
                 ActiveTabColor = clAqua
                 Caption = 'Montage'
@@ -797,19 +808,20 @@
                 OnHide = hidecontrol
                 OnShow = TMontageShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline framemontage: Tframereklmont
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -824,11 +836,12 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -913,7 +926,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -936,19 +951,20 @@
                 OnPaint = TZwischenablesungPaint
                 OnShow = TZwischenablesungShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline framezwi: Tframezwischen
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     Caption = '^'
                     ControlCollection = <
                       item
@@ -964,20 +980,20 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited rightparent: TPanel [0]
-                      Left = 847
-                      Width = 837
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                     end
                     inherited Panel5: TPanel [1]
-                      Width = 837
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -1060,14 +1076,14 @@
                           ExplicitHeight = 16
                         end
                       end
+                      inherited UpDown2: TUpDown
+                        OnClick = framezwiUpDown2Click
+                      end
                       inherited eauszug: TfEdit
                         OnExit = dateexit
                       end
                       inherited eablesedatum: TfEdit
                         OnExit = dateexit
-                      end
-                      inherited UpDown2: TUpDown
-                        OnClick = framezwiUpDown2Click
                       end
                     end
                   end
@@ -1086,19 +1102,20 @@
                 TabWidth = 130
                 OnShow = TangebotsanfragenShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline frameangebot: Tframebasenutzer
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -1113,12 +1130,12 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -1192,9 +1209,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1214,19 +1231,20 @@
                 TabWidth = 130
                 OnShow = tauftragShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline frameauf: Tframeauftrag
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -1241,11 +1259,11 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Height = 653
-                      ExplicitWidth = 837
+                      Width = 832
+                      Height = 643
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -1293,7 +1311,7 @@
                         TabOrder = 13
                       end
                       inherited dtposteingang: tfmaskedit
-                        TabOrder = 9
+                        TabOrder = 12
                       end
                       inherited eliegenschaft: TfEdit
                         TabOrder = 2
@@ -1328,7 +1346,7 @@
                         Left = 244
                         Width = 141
                         Enabled = False
-                        TabOrder = 11
+                        TabOrder = 10
                         ExplicitLeft = 244
                         ExplicitWidth = 141
                       end
@@ -1354,9 +1372,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Height = 653
-                      ExplicitLeft = 847
-                      ExplicitWidth = 837
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitHeight = 653
                     end
                   end
@@ -1376,19 +1394,20 @@
                 TabWidth = 130
                 OnShow = TenergieausweisShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline framen: Tframeenergie
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -1403,11 +1422,12 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -1450,7 +1470,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1472,19 +1494,20 @@
                 OnHide = hidecontrol
                 OnShow = TKostenermittlungShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline framekosten: Tframebase
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -1499,11 +1522,12 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -1552,7 +1576,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1573,19 +1599,20 @@
                 TabWidth = 130
                 OnShow = tNutzerlisteShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline framenutzer: Tframebase
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -1600,11 +1627,12 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -1660,7 +1688,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1681,19 +1711,20 @@
                 TabWidth = 130
                 OnShow = treklamaionShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline framereklamation: Tframereklmont
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -1708,11 +1739,12 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -1789,7 +1821,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -1799,8 +1833,8 @@
                 object pdatenrechts: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Margins.Left = 2
                   Margins.Top = 4
                   Margins.Right = 4
@@ -1811,6 +1845,8 @@
                   ParentBackground = False
                   TabOrder = 1
                   Visible = False
+                  ExplicitWidth = 1686
+                  ExplicitHeight = 661
                   object lliegenschaftsdaten: TLabel
                     Left = 67
                     Top = 14
@@ -1831,8 +1867,8 @@
                     AlignWithMargins = True
                     Left = 8
                     Top = 64
-                    Width = 1670
-                    Height = 587
+                    Width = 1660
+                    Height = 577
                     Margins.Left = 8
                     Margins.Top = 64
                     Margins.Right = 8
@@ -1843,6 +1879,8 @@
                     ParentBackground = False
                     TabOrder = 0
                     Visible = False
+                    ExplicitWidth = 1670
+                    ExplicitHeight = 587
                     object estrasse: TLabel
                       Left = 7
                       Top = 0
@@ -1911,8 +1949,8 @@
                       AlignWithMargins = True
                       Left = 10
                       Top = 90
-                      Width = 1650
-                      Height = 487
+                      Width = 1640
+                      Height = 477
                       Margins.Left = 10
                       Margins.Top = 90
                       Margins.Right = 10
@@ -1932,6 +1970,8 @@
                       ScrollBars = ssVertical
                       TabOrder = 0
                       WantReturns = False
+                      ExplicitWidth = 1650
+                      ExplicitHeight = 487
                     end
                   end
                 end
@@ -1949,19 +1989,20 @@
                 TabWidth = 130
                 OnShow = tsonstigesShow
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
                 inline framesonstiges: Tframebasenutzer
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -1976,12 +2017,12 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -2055,9 +2096,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -2077,18 +2118,20 @@
                 TabFont.Style = []
                 TabWidth = 130
                 OnShow = TVerträgeShow
+                ExplicitWidth = 1686
+                ExplicitHeight = 661
                 inline framevert: Tframebasenutzer1
                   Left = 0
                   Top = 0
-                  Width = 1686
-                  Height = 661
+                  Width = 1676
+                  Height = 651
                   Align = alClient
                   TabOrder = 0
                   ExplicitWidth = 1686
                   ExplicitHeight = 661
                   inherited gridpanel: TGridPanel
-                    Width = 1686
-                    Height = 661
+                    Width = 1676
+                    Height = 651
                     ControlCollection = <
                       item
                         Column = 0
@@ -2103,12 +2146,12 @@
                     ExplicitWidth = 1686
                     ExplicitHeight = 661
                     inherited Panel5: TPanel
-                      Width = 837
-                      Height = 653
+                      Width = 832
+                      Height = 643
                       ExplicitWidth = 837
                       ExplicitHeight = 653
                       inherited lfiletype: TLabel
-                        Height = 612
+                        Height = 602
                       end
                       inherited Label45: TLabel
                         Width = 102
@@ -2166,9 +2209,9 @@
                       end
                     end
                     inherited rightparent: TPanel
-                      Left = 847
-                      Width = 837
-                      Height = 653
+                      Left = 842
+                      Width = 832
+                      Height = 643
                       ExplicitLeft = 847
                       ExplicitWidth = 837
                       ExplicitHeight = 653
@@ -2189,6 +2232,7 @@
                 TabFont.Style = []
                 TabWidth = 15
                 ExplicitTop = 0
+                ExplicitWidth = 1686
                 ExplicitHeight = 662
               end
             end
@@ -2196,7 +2240,7 @@
               AlignWithMargins = True
               Left = 2
               Top = 2
-              Width = 1682
+              Width = 1672
               Height = 33
               Margins.Left = 2
               Margins.Top = 2
@@ -2208,8 +2252,9 @@
               Color = clWhite
               ParentBackground = False
               TabOrder = 1
+              ExplicitWidth = 1682
               object ComboBox1: TComboBox
-                Left = 1458
+                Left = 1448
                 Top = 0
                 Width = 224
                 Height = 24
@@ -2238,6 +2283,7 @@
                   'VERTRAG'
                   'ANGEBOTSANFRAGE'
                   'AUFTRAGSANFRAGE')
+                ExplicitLeft = 1458
               end
               object pz: TPanel
                 Left = 0
@@ -2315,21 +2361,26 @@
           TabFont.Name = 'Tahoma'
           TabFont.Style = []
           TabWidth = 455
+          ExplicitWidth = 1686
+          ExplicitHeight = 720
           object ptabellen: TNxPageControl
             Left = 0
             Top = 0
-            Width = 1686
-            Height = 720
-            ActivePage = tabzwischen
-            ActivePageIndex = 0
+            Width = 1676
+            Height = 710
+            ActivePage = tabangebotsanfrage
+            ActivePageIndex = 8
             Align = alClient
             TabOrder = 0
             OnClick = framezwifilterblöschenClick
             OnChange = ptabellenChange
             Margin = 0
-            Options = [pgBoldActiveTab]
-            Spacing = 0
+            Options = [pgAlwaysShowTabsRect, pgBoldActiveTab, pgConstantScroll, pgPageBorder, pgScrollButtons, pgTopBorder]
+            ScrollMethod = smTab
+            Spacing = 2
             TabHeight = 17
+            ExplicitWidth = 1686
+            ExplicitHeight = 720
             object tabzwischen: TNxTabSheet
               Caption = 'Zwischenablesungen'
               PageIndex = 0
@@ -2340,11 +2391,13 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabzwischenShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel1: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 BorderPen.Color = 14933977
                 Color = clWhite
@@ -2352,11 +2405,13 @@
                 FullRepaint = True
                 ParentColor = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridzwi: TNextDBGrid
                   Left = 0
                   Top = 113
-                  Width = 1686
-                  Height = 586
+                  Width = 1676
+                  Height = 576
                   Align = alClient
                   AutoScroll = True
                   BiDiMode = bdLeftToRight
@@ -2385,7 +2440,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object zwidokid: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 148
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2403,12 +2458,12 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 147
+                    Width = 140
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
                   object zwilg: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2425,11 +2480,11 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object zwinutzernummer: TNxDBTextColumn
-                    DefaultWidth = 149
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2446,11 +2501,11 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 149
+                    Width = 140
                     FieldName = 'Nutzernummer'
                   end
                   object zwidatei: TNxDBMemoColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2468,11 +2523,11 @@
                     Position = 11
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 10
+                    Width = 140
                     FieldName = 'Dateiname'
                   end
                   object zwiposteingang: TNxDBTextColumn
-                    DefaultWidth = 165
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2490,11 +2545,11 @@
                     Position = 4
                     Sorted = True
                     SortType = stDate
-                    Width = 165
+                    Width = 139
                     FieldName = 'Posteingang'
                   end
                   object zwiabrechnungsende: TNxDBTextColumn
-                    DefaultWidth = 163
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2511,11 +2566,11 @@
                     ParentFont = False
                     Position = 5
                     SortType = stDate
-                    Width = 163
+                    Width = 140
                     FieldName = 'Abrechnungsende'
                   end
                   object zwiname: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2532,11 +2587,11 @@
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 140
                     FieldName = 'Nutzername'
                   end
                   object NxDBTextColumn24: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2553,12 +2608,12 @@
                     ParentFont = False
                     Position = 7
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 280
                     WrapKind = wkNone
                     FieldName = 'vertragsende'
                   end
                   object NxDBTextColumn32: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2575,11 +2630,11 @@
                     ParentFont = False
                     Position = 8
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 281
                     FieldName = 'ablesedatum'
                   end
                   object zwinotizen: TNxDBMemoColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2596,11 +2651,11 @@
                     Position = 6
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 10
+                    Width = 140
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn11: TNxDBTextColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2617,11 +2672,11 @@
                     Position = 9
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 10
+                    Width = 140
                     FieldName = 'Ablesedatum'
                   end
                   object NxDBTextColumn12: TNxDBTextColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2638,11 +2693,11 @@
                     Position = 10
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 10
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn33: TNxDBTextColumn
-                    DefaultWidth = 149
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2659,11 +2714,11 @@
                     ParentFont = False
                     Position = 12
                     SortType = stAlphabetic
-                    Width = 149
+                    Width = 140
                     FieldName = 'typ'
                   end
                   object NxDBTextColumn23: TNxDBTextColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2676,16 +2731,16 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 13
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object zwivollbild: TNxDBImageColumn
                     DefaultValue = '1'
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2703,14 +2758,14 @@
                     ParentCellColor = True
                     Position = 14
                     SortType = stNumeric
-                    Width = 150
+                    Width = 140
                     OnSetCell = zwivollbildSetCell
                     Images = ImageList1
                     Transparent = True
                   end
                   object zwiimage: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2727,7 +2782,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 151
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -2735,12 +2790,13 @@
                 object Panel1: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 23
                   Align = alTop
                   Color = clWhite
                   ParentBackground = False
                   TabOrder = 1
+                  ExplicitWidth = 1686
                   object NxButton1: TNxButton
                     Left = 1
                     Top = 1
@@ -2755,7 +2811,7 @@
                 inline framezwifilter: Tframebasefilter
                   Left = 0
                   Top = 23
-                  Width = 1686
+                  Width = 1676
                   Height = 90
                   Align = alTop
                   AutoSize = True
@@ -2763,7 +2819,7 @@
                   ExplicitTop = 23
                   ExplicitWidth = 1686
                   inherited flipwerte: TNxFlipPanel
-                    Width = 1686
+                    Width = 1676
                     Align = alTop
                     ExplicitWidth = 1686
                     FullHeight = 18
@@ -2782,6 +2838,9 @@
                     end
                     inherited eseldi: TfEdit
                       OnExit = framezwifiltereseldiExit
+                    end
+                    inherited cselae: TfComboBox
+                      OnChange = framezwifiltercselaeChange
                     end
                     inherited banwenden: TNxButton
                       OnClick = framezwifilterbanwendenClick
@@ -2808,11 +2867,13 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabmontagenShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel2: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 BorderPen.Color = 14933977
                 Color = clWhite
@@ -2820,11 +2881,13 @@
                 FullRepaint = True
                 ParentColor = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridmon: TNextDBGrid
                   Left = 0
                   Top = 113
-                  Width = 1686
-                  Height = 586
+                  Width = 1676
+                  Height = 576
                   Align = alClient
                   Caption = ''
                   Options = [goHeader, goSelectFullRow]
@@ -2840,7 +2903,7 @@
                   SequencedScroll = True
                   object mondokid: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2854,18 +2917,18 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 0
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 10
+                    Width = 140
                     FieldName = 'ablagenr'
                   end
                   object monliegenschaft: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2879,16 +2942,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object monnutzernummer: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2902,16 +2965,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                     FieldName = 'Nutzernummer'
                   end
                   object mondatei: TNxDBMemoColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2924,17 +2987,17 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 10
+                    Width = 140
                     FieldName = 'Dateiname'
                   end
                   object monposteingang: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2948,16 +3011,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                     FieldName = 'Posteingang'
                   end
                   object monabrechnungsende: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2971,15 +3034,15 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 5
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn22: TNxDBTextColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -2993,16 +3056,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 6
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                     FieldName = 'auftragsnr'
                   end
                   object NxDBTextColumn13: TNxDBTextColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3016,15 +3079,15 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 7
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                     FieldName = 'Einbaudatum'
                   end
                   object NxDBTextColumn14: TNxDBTextColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3037,16 +3100,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 8
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 10
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBMemoColumn3: TNxDBMemoColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3059,16 +3122,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 9
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 10
+                    Width = 140
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn25: TNxDBTextColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3081,16 +3144,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 10
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 10
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn34: TNxDBTextColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3104,14 +3167,14 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 11
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                   end
                   object NxDBTextColumn26: TNxDBTextColumn
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3125,15 +3188,15 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 12
                     SortType = stAlphabetic
-                    Width = 10
+                    Width = 140
                   end
                   object NxDBImageColumn3: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3147,16 +3210,17 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 13
                     SortType = stNumeric
-                    Width = 10
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
                   object monimage: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 10
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3170,10 +3234,11 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 10
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3181,12 +3246,13 @@
                 object Panel2: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 23
                   Align = alTop
                   Color = clWhite
                   ParentBackground = False
                   TabOrder = 1
+                  ExplicitWidth = 1686
                   object NxButton2: TNxButton
                     Left = 1
                     Top = 1
@@ -3201,7 +3267,7 @@
                 inline framemonfilter: Tframebasefilter
                   Left = 0
                   Top = 23
-                  Width = 1686
+                  Width = 1676
                   Height = 90
                   Align = alTop
                   AutoSize = True
@@ -3209,7 +3275,7 @@
                   ExplicitTop = 23
                   ExplicitWidth = 1686
                   inherited flipwerte: TNxFlipPanel
-                    Width = 1686
+                    Width = 1676
                     Align = alTop
                     ExplicitWidth = 1686
                     FullHeight = 18
@@ -3248,11 +3314,13 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabnutzerlistenShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel3: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 BorderPen.Color = 14933977
                 Color = clWhite
@@ -3260,11 +3328,13 @@
                 FullRepaint = True
                 ParentColor = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridnutzerliste: TNextDBGrid
                   Left = 0
                   Top = 113
-                  Width = 1686
-                  Height = 586
+                  Width = 1676
+                  Height = 576
                   Align = alClient
                   Caption = ''
                   Options = [goHeader, goSelectFullRow]
@@ -3278,7 +3348,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsnuliste
                   object nutdokid: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3292,17 +3362,17 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 0
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 150
+                    Width = 140
                     FieldName = 'ablagenr'
                   end
                   object nutliegenschaft: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3316,15 +3386,15 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object nutdatei: TNxDBMemoColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3337,16 +3407,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 150
+                    Width = 140
                     FieldName = 'Dateiname'
                   end
                   object nutposteingang: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3360,15 +3430,15 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 140
                     FieldName = 'Posteingang'
                   end
                   object nutabrechnungsende: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3382,15 +3452,15 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 140
                     FieldName = 'abrechnungsende'
                   end
                   object NxDBMemoColumn6: TNxDBMemoColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3403,16 +3473,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 5
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 150
+                    Width = 140
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn27: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3425,16 +3495,16 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 6
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 150
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn35: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3448,14 +3518,14 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 7
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 140
                   end
                   object NxDBTextColumn28: TNxDBTextColumn
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3469,15 +3539,15 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 8
                     SortType = stAlphabetic
-                    Width = 150
+                    Width = 140
                   end
                   object NxDBImageColumn6: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 150
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3491,10 +3561,11 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 9
                     SortType = stNumeric
-                    Width = 150
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3514,6 +3585,7 @@
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
                     Header.MultiLine = True
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 10
                     SortType = stNumeric
@@ -3525,12 +3597,13 @@
                 object Panel3: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 23
                   Align = alTop
                   Color = clWhite
                   ParentBackground = False
                   TabOrder = 1
+                  ExplicitWidth = 1686
                   object NxButton3: TNxButton
                     Left = 1
                     Top = 1
@@ -3545,7 +3618,7 @@
                 inline framemonnut: Tframebasefilter
                   Left = 0
                   Top = 23
-                  Width = 1686
+                  Width = 1676
                   Height = 90
                   Align = alTop
                   AutoSize = True
@@ -3553,7 +3626,7 @@
                   ExplicitTop = 23
                   ExplicitWidth = 1686
                   inherited flipwerte: TNxFlipPanel
-                    Width = 1686
+                    Width = 1676
                     Align = alTop
                     ExplicitWidth = 1686
                     FullHeight = 18
@@ -3594,11 +3667,13 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabenergieausweisShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel4: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 BorderPen.Color = 14933977
                 Color = clWhite
@@ -3606,11 +3681,13 @@
                 FullRepaint = True
                 ParentColor = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridenergie: TNextDBGrid
                   Left = 0
                   Top = 113
-                  Width = 1686
-                  Height = 586
+                  Width = 1676
+                  Height = 576
                   Align = alClient
                   Caption = ''
                   Options = [goHeader, goSelectFullRow]
@@ -3624,7 +3701,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsen
                   object NxDBTextColumn1: TNxDBTextColumn
-                    DefaultWidth = 107
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3643,11 +3720,11 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 106
+                    Width = 140
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn2: TNxDBTextColumn
-                    DefaultWidth = 265
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3664,11 +3741,11 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 265
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn1: TNxDBMemoColumn
-                    DefaultWidth = 8
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3686,11 +3763,11 @@
                     Position = 3
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 8
+                    Width = 140
                     FieldName = 'Dateiname'
                   end
                   object NxDBTextColumn4: TNxDBTextColumn
-                    DefaultWidth = 277
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3707,11 +3784,11 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 277
+                    Width = 140
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn5: TNxDBTextColumn
-                    DefaultWidth = 277
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3724,16 +3801,16 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 4
                     Sorted = True
                     SortType = stAlphabetic
-                    Width = 277
+                    Width = 140
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn15: TNxDBTextColumn
-                    DefaultWidth = 8
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3751,11 +3828,11 @@
                     Position = 5
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 8
+                    Width = 140
                     FieldName = 'strasse'
                   end
                   object NxDBTextColumn16: TNxDBTextColumn
-                    DefaultWidth = 8
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3773,11 +3850,11 @@
                     Position = 6
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 8
+                    Width = 140
                     FieldName = 'ort'
                   end
                   object NxDBTextColumn17: TNxDBTextColumn
-                    DefaultWidth = 8
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3795,12 +3872,12 @@
                     Position = 7
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 8
+                    Width = 140
                     FieldName = 'plz'
                   end
                   object NxDBTextColumn18: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 204
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3818,13 +3895,13 @@
                     Position = 8
                     SortType = stNumeric
                     Visible = False
-                    Width = 204
+                    Width = 140
                     FieldName = 'pseudoliegenschaft'
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBMemoColumn4: TNxDBMemoColumn
-                    DefaultWidth = 8
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3842,10 +3919,11 @@
                     Position = 9
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 8
+                    Width = 140
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn29: TNxDBTextColumn
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3858,14 +3936,16 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 10
                     SortType = stAlphabetic
                     Visible = False
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn36: TNxDBTextColumn
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3878,12 +3958,14 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 11
                     SortType = stAlphabetic
+                    Width = 140
                   end
                   object NxDBTextColumn30: TNxDBTextColumn
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3896,14 +3978,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 12
                     SortType = stAlphabetic
+                    Width = 140
                   end
                   object NxDBImageColumn5: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 120
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3920,13 +4003,13 @@
                     ParentFont = False
                     Position = 13
                     SortType = stNumeric
-                    Width = 120
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBImageColumn1: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 478
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -3943,7 +4026,7 @@
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 479
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -3951,12 +4034,13 @@
                 object Panel5: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 23
                   Align = alTop
                   Color = clWhite
                   ParentBackground = False
                   TabOrder = 1
+                  ExplicitWidth = 1686
                   object NxButton4: TNxButton
                     Left = 1
                     Top = 1
@@ -3971,7 +4055,7 @@
                 inline frameenfilter: Tframebasefilter
                   Left = 0
                   Top = 23
-                  Width = 1686
+                  Width = 1676
                   Height = 90
                   Align = alTop
                   AutoSize = True
@@ -3979,7 +4063,7 @@
                   ExplicitTop = 23
                   ExplicitWidth = 1686
                   inherited flipwerte: TNxFlipPanel
-                    Width = 1686
+                    Width = 1676
                     Align = alTop
                     ExplicitWidth = 1686
                     FullHeight = 18
@@ -4018,11 +4102,13 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabreklamationShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel5: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 BorderPen.Color = 14933977
                 Color = clWhite
@@ -4030,11 +4116,13 @@
                 FullRepaint = True
                 ParentColor = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridrek: TNextDBGrid
                   Left = 0
                   Top = 109
-                  Width = 1686
-                  Height = 590
+                  Width = 1676
+                  Height = 580
                   Align = alClient
                   Caption = ''
                   Options = [goHeader, goSelectFullRow]
@@ -4049,7 +4137,7 @@
                   DataSource = formdb.dsrekl
                   SequencedScroll = True
                   object NxDBTextColumn3: TNxDBTextColumn
-                    DefaultWidth = 113
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4068,11 +4156,11 @@
                     Sorted = True
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 112
+                    Width = 140
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn6: TNxDBTextColumn
-                    DefaultWidth = 170
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4089,11 +4177,11 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 170
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBTextColumn7: TNxDBTextColumn
-                    DefaultWidth = 168
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4110,11 +4198,11 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 168
+                    Width = 140
                     FieldName = 'Nutzernummer'
                   end
                   object NxDBTextColumn8: TNxDBTextColumn
-                    DefaultWidth = 170
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4131,11 +4219,11 @@
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
-                    Width = 170
+                    Width = 140
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn9: TNxDBTextColumn
-                    DefaultWidth = 166
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4152,11 +4240,11 @@
                     ParentFont = False
                     Position = 4
                     SortType = stAlphabetic
-                    Width = 166
+                    Width = 140
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn19: TNxDBTextColumn
-                    DefaultWidth = 170
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4173,11 +4261,11 @@
                     ParentFont = False
                     Position = 5
                     SortType = stAlphabetic
-                    Width = 170
+                    Width = 140
                     FieldName = 'auftragsnr'
                   end
                   object NxDBMemoColumn5: TNxDBMemoColumn
-                    DefaultWidth = 152
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4194,11 +4282,11 @@
                     Position = 6
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 152
+                    Width = 140
                     FieldName = 'notizen'
                   end
                   object NxDBTextColumn20: TNxDBTextColumn
-                    DefaultWidth = 171
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4214,11 +4302,11 @@
                     ParentFont = False
                     Position = 7
                     SortType = stAlphabetic
-                    Width = 171
+                    Width = 140
                     FieldName = 'einbaudatum'
                   end
                   object NxDBTextColumn21: TNxDBTextColumn
-                    DefaultWidth = 92
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4235,10 +4323,11 @@
                     Position = 8
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 92
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBMemoColumn7: TNxDBMemoColumn
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4255,10 +4344,11 @@
                     Position = 9
                     SortType = stAlphabetic
                     Visible = False
+                    Width = 140
                     FieldName = 'dateiname'
                   end
                   object NxDBTextColumn37: TNxDBTextColumn
-                    DefaultWidth = 85
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4275,10 +4365,10 @@
                     ParentFont = False
                     Position = 10
                     SortType = stAlphabetic
-                    Width = 85
+                    Width = 140
                   end
                   object NxDBTextColumn31: TNxDBTextColumn
-                    DefaultWidth = 84
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4295,11 +4385,11 @@
                     ParentFont = False
                     Position = 11
                     SortType = stAlphabetic
-                    Width = 84
+                    Width = 140
                   end
                   object NxDBImageColumn4: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 215
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4317,13 +4407,13 @@
                     ParentFont = False
                     Position = 12
                     SortType = stNumeric
-                    Width = 215
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBImageColumn2: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 172
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4340,7 +4430,7 @@
                     ParentFont = False
                     Position = 13
                     SortType = stNumeric
-                    Width = 173
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4348,12 +4438,13 @@
                 object Panel6: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 23
                   Align = alTop
                   Color = clWhite
                   ParentBackground = False
                   TabOrder = 1
+                  ExplicitWidth = 1686
                   object NxButton5: TNxButton
                     Left = 1
                     Top = 1
@@ -4368,7 +4459,7 @@
                 inline framefilterreklamation: Tframebasefilter
                   Left = 0
                   Top = 23
-                  Width = 1686
+                  Width = 1676
                   Height = 86
                   Align = alTop
                   AutoSize = True
@@ -4419,20 +4510,24 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabvertragShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel9: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 Caption = 'NxPanel9'
                 UseDockManager = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridverträge: TNextDBGrid
                   Left = 0
                   Top = 90
-                  Width = 1686
-                  Height = 609
+                  Width = 1676
+                  Height = 599
                   Align = alClient
                   AutoScroll = True
                   BiDiMode = bdLeftToRight
@@ -4461,7 +4556,7 @@
                   OnCellFormating = gridzwiCellFormating
                   object NxDBTextColumn10: TNxDBTextColumn
                     AutoEdit = True
-                    DefaultWidth = 60
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4479,12 +4574,12 @@
                     ParentFont = False
                     Position = 0
                     SortType = stNumeric
-                    Width = 59
+                    Width = 140
                     FieldName = 'ablagenr'
                     AutoExecute = True
                   end
                   object NxDBTextColumn38: TNxDBTextColumn
-                    DefaultWidth = 156
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4501,11 +4596,11 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 156
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn2: TNxDBMemoColumn
-                    DefaultWidth = 8
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4523,11 +4618,11 @@
                     Position = 3
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 8
+                    Width = 140
                     FieldName = 'Dateiname'
                   end
                   object NxDBTextColumn40: TNxDBTextColumn
-                    DefaultWidth = 158
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4545,11 +4640,11 @@
                     Position = 2
                     Sorted = True
                     SortType = stDate
-                    Width = 158
+                    Width = 140
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn41: TNxDBTextColumn
-                    DefaultWidth = 134
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4566,11 +4661,11 @@
                     ParentFont = False
                     Position = 5
                     SortType = stDate
-                    Width = 134
+                    Width = 186
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn43: TNxDBTextColumn
-                    DefaultWidth = 158
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4587,12 +4682,12 @@
                     ParentFont = False
                     Position = 6
                     SortType = stAlphabetic
-                    Width = 158
+                    Width = 187
                     WrapKind = wkNone
                     FieldName = 'vertragsende'
                   end
                   object NxDBTextColumn44: TNxDBTextColumn
-                    DefaultWidth = 160
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4609,11 +4704,11 @@
                     ParentFont = False
                     Position = 7
                     SortType = stAlphabetic
-                    Width = 160
+                    Width = 187
                     FieldName = 'ablesedatum'
                   end
                   object NxDBMemoColumn8: TNxDBMemoColumn
-                    DefaultWidth = 114
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4630,10 +4725,11 @@
                     Position = 4
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 114
+                    Width = 140
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn45: TNxDBTextColumn
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4650,9 +4746,11 @@
                     Position = 8
                     SortType = stAlphabetic
                     Visible = False
+                    Width = 140
                     FieldName = 'Ablesedatum'
                   end
                   object NxDBTextColumn46: TNxDBTextColumn
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4669,9 +4767,11 @@
                     Position = 9
                     SortType = stAlphabetic
                     Visible = False
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn39: TNxDBTextColumn
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4683,13 +4783,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 10
                     SortType = stAlphabetic
+                    Width = 140
                     FieldName = 'nutzernummer'
                   end
                   object NxDBTextColumn59: TNxDBTextColumn
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4701,14 +4803,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 11
                     SortType = stAlphabetic
+                    Width = 140
                     FieldName = 'vertragstyp'
                   end
                   object NxDBTextColumn48: TNxDBTextColumn
-                    DefaultWidth = 221
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4725,11 +4828,11 @@
                     ParentFont = False
                     Position = 12
                     SortType = stAlphabetic
-                    Width = 221
+                    Width = 140
                     FieldName = 'typ'
                   end
                   object NxDBTextColumn47: TNxDBTextColumn
-                    DefaultWidth = 100
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4742,16 +4845,16 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing]
                     ParentFont = False
                     Position = 13
                     SortType = stAlphabetic
-                    Width = 100
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBImageColumn9: TNxDBImageColumn
                     DefaultValue = '1'
-                    DefaultWidth = 226
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4769,14 +4872,14 @@
                     ParentCellColor = True
                     Position = 14
                     SortType = stNumeric
-                    Width = 226
+                    Width = 140
                     OnSetCell = zwivollbildSetCell
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBImageColumn8: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 151
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4793,7 +4896,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 152
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -4801,14 +4904,14 @@
                 inline framebasefilter1: Tframebasefilter
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 90
                   Align = alTop
                   AutoSize = True
                   TabOrder = 1
                   ExplicitWidth = 1686
                   inherited flipwerte: TNxFlipPanel
-                    Width = 1686
+                    Width = 1676
                     Align = alTop
                     ExplicitWidth = 1686
                     FullHeight = 18
@@ -4844,11 +4947,13 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabsonstigesShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel6: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 BorderPen.Color = 14933977
                 Color = clWhite
@@ -4856,11 +4961,13 @@
                 FullRepaint = True
                 ParentColor = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridsonstiges: TNextDBGrid
                   Left = 0
                   Top = 113
-                  Width = 1686
-                  Height = 586
+                  Width = 1676
+                  Height = 576
                   Align = alClient
                   Caption = ''
                   Options = [goHeader, goSelectFullRow]
@@ -4874,7 +4981,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dssonstige
                   object NxDBTextColumn42: TNxDBTextColumn
-                    DefaultWidth = 215
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4893,11 +5000,11 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 214
+                    Width = 140
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn49: TNxDBTextColumn
-                    DefaultWidth = 216
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4914,11 +5021,11 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 216
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn9: TNxDBMemoColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4935,11 +5042,11 @@
                     Position = 4
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Dateiname'
                   end
                   object NxDBTextColumn58: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4951,15 +5058,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 151
                     FieldName = 'nutzernummer'
                   end
                   object NxDBTextColumn50: TNxDBTextColumn
-                    DefaultWidth = 215
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4976,11 +5083,11 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 215
+                    Width = 140
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn51: TNxDBTextColumn
-                    DefaultWidth = 216
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -4998,11 +5105,11 @@
                     Position = 5
                     Sorted = True
                     SortType = stAlphabetic
-                    Width = 216
+                    Width = 140
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn52: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5019,11 +5126,11 @@
                     Position = 6
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Strasse'
                   end
                   object NxDBTextColumn53: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5040,11 +5147,11 @@
                     Position = 7
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Ort'
                   end
                   object NxDBTextColumn54: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5061,12 +5168,12 @@
                     Position = 8
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'PLZ'
                   end
                   object NxDBImageColumn10: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5083,13 +5190,13 @@
                     Position = 9
                     SortType = stNumeric
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'pseudoliegenschaft'
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBMemoColumn10: TNxDBMemoColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5106,11 +5213,11 @@
                     Position = 10
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn55: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5122,16 +5229,16 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 11
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn57: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5144,14 +5251,14 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 12
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 140
                   end
                   object NxDBTextColumn56: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5164,15 +5271,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 13
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 140
                   end
                   object NxDBImageColumn12: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 216
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5189,13 +5296,13 @@
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 216
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBImageColumn11: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 216
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5212,7 +5319,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 217
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -5220,12 +5327,13 @@
                 object Panel7: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 23
                   Align = alTop
                   Color = clWhite
                   ParentBackground = False
                   TabOrder = 1
+                  ExplicitWidth = 1686
                   object NxButton6: TNxButton
                     Left = 1
                     Top = 1
@@ -5240,7 +5348,7 @@
                 inline filtersonstiges: Tframebasefilter
                   Left = 0
                   Top = 23
-                  Width = 1686
+                  Width = 1676
                   Height = 90
                   Align = alTop
                   AutoSize = True
@@ -5248,7 +5356,7 @@
                   ExplicitTop = 23
                   ExplicitWidth = 1686
                   inherited flipwerte: TNxFlipPanel
-                    Width = 1686
+                    Width = 1676
                     Align = alTop
                     ExplicitWidth = 1686
                     FullHeight = 18
@@ -5284,11 +5392,13 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabauftragsanforderungShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel7: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 BorderPen.Color = 14933977
                 Color = clWhite
@@ -5296,11 +5406,13 @@
                 FullRepaint = True
                 ParentColor = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridanforderungen: TNextDBGrid
                   Left = 0
                   Top = 113
-                  Width = 1686
-                  Height = 586
+                  Width = 1676
+                  Height = 576
                   Align = alClient
                   Caption = ''
                   Options = [goHeader, goSelectFullRow]
@@ -5314,7 +5426,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsanforderungen
                   object NxDBTextColumn60: TNxDBTextColumn
-                    DefaultWidth = 193
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5333,11 +5445,11 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 192
+                    Width = 140
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn61: TNxDBTextColumn
-                    DefaultWidth = 194
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5354,11 +5466,11 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 194
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn11: TNxDBMemoColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5375,11 +5487,11 @@
                     Position = 4
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Dateiname'
                   end
                   object NxDBTextColumn62: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5391,15 +5503,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 147
                     FieldName = 'nutzernummer'
                   end
                   object NxDBTextColumn63: TNxDBTextColumn
-                    DefaultWidth = 194
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5416,11 +5528,11 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 194
+                    Width = 140
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn64: TNxDBTextColumn
-                    DefaultWidth = 194
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5438,11 +5550,11 @@
                     Position = 5
                     Sorted = True
                     SortType = stAlphabetic
-                    Width = 194
+                    Width = 140
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn65: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5459,11 +5571,11 @@
                     Position = 6
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Strasse'
                   end
                   object NxDBTextColumn66: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5480,11 +5592,11 @@
                     Position = 7
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Ort'
                   end
                   object NxDBTextColumn67: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5501,12 +5613,12 @@
                     Position = 8
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'PLZ'
                   end
                   object NxDBImageColumn13: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5523,13 +5635,13 @@
                     Position = 9
                     SortType = stNumeric
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'pseudoliegenschaft'
                     Images = ImageList1
                     Transparent = False
                   end
                   object NxDBMemoColumn12: TNxDBMemoColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5546,11 +5658,11 @@
                     Position = 10
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn68: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5562,16 +5674,16 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 11
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn82: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5584,15 +5696,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 12
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 140
                     FieldName = 'auftragstyp'
                   end
                   object NxDBTextColumn70: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5605,14 +5717,14 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 13
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 140
                   end
                   object NxDBTextColumn69: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5625,15 +5737,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 14
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 140
                   end
                   object NxDBImageColumn14: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 194
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5650,13 +5762,13 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 194
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBImageColumn15: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 195
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5673,7 +5785,7 @@
                     ParentFont = False
                     Position = 16
                     SortType = stNumeric
-                    Width = 196
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -5681,13 +5793,14 @@
                 object Panel8: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 23
                   Align = alTop
                   Color = clWhite
                   ParentBackground = False
                   TabOrder = 1
                   OnClick = Panel8Click
+                  ExplicitWidth = 1686
                   object NxButton7: TNxButton
                     Left = 1
                     Top = 1
@@ -5702,7 +5815,7 @@
                 inline filterauftragsanf: Tframebasefilter
                   Left = 0
                   Top = 23
-                  Width = 1686
+                  Width = 1676
                   Height = 90
                   Align = alTop
                   AutoSize = True
@@ -5710,7 +5823,7 @@
                   ExplicitTop = 23
                   ExplicitWidth = 1686
                   inherited flipwerte: TNxFlipPanel
-                    Width = 1686
+                    Width = 1676
                     Align = alTop
                     ExplicitWidth = 1686
                     FullHeight = 18
@@ -5746,11 +5859,13 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               OnShow = tabangebotsanfrageShow
+              ExplicitWidth = 1686
+              ExplicitHeight = 699
               object NxPanel8: TNxPanel
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 699
+                Width = 1676
+                Height = 689
                 Align = alClient
                 BorderPen.Color = 14933977
                 Color = clWhite
@@ -5758,11 +5873,13 @@
                 FullRepaint = True
                 ParentColor = False
                 TabOrder = 0
+                ExplicitWidth = 1686
+                ExplicitHeight = 699
                 object gridangebote: TNextDBGrid
                   Left = 0
                   Top = 113
-                  Width = 1686
-                  Height = 586
+                  Width = 1676
+                  Height = 576
                   Align = alClient
                   Caption = ''
                   Options = [goHeader, goSelectFullRow]
@@ -5776,7 +5893,7 @@
                   OnSortColumn = gridzwiSortColumn
                   DataSource = formdb.dsangebote
                   object NxDBTextColumn71: TNxDBTextColumn
-                    DefaultWidth = 215
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5796,11 +5913,11 @@
                     Position = 0
                     SortKind = skDescending
                     SortType = stNumeric
-                    Width = 214
+                    Width = 140
                     FieldName = 'ablagenr'
                   end
                   object NxDBTextColumn72: TNxDBTextColumn
-                    DefaultWidth = 216
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5818,11 +5935,11 @@
                     ParentFont = False
                     Position = 1
                     SortType = stAlphabetic
-                    Width = 216
+                    Width = 140
                     FieldName = 'Liegenschaft'
                   end
                   object NxDBMemoColumn13: TNxDBMemoColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5840,11 +5957,11 @@
                     Position = 4
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Dateiname'
                   end
                   object NxDBTextColumn73: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5856,15 +5973,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 3
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 151
                     FieldName = 'nutzernummer'
                   end
                   object NxDBTextColumn74: TNxDBTextColumn
-                    DefaultWidth = 215
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5882,11 +5999,11 @@
                     ParentFont = False
                     Position = 2
                     SortType = stAlphabetic
-                    Width = 215
+                    Width = 140
                     FieldName = 'Posteingang'
                   end
                   object NxDBTextColumn75: TNxDBTextColumn
-                    DefaultWidth = 216
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5906,11 +6023,11 @@
                     Position = 5
                     Sorted = True
                     SortType = stAlphabetic
-                    Width = 216
+                    Width = 140
                     FieldName = 'Abrechnungsende'
                   end
                   object NxDBTextColumn76: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5927,11 +6044,11 @@
                     Position = 6
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Strasse'
                   end
                   object NxDBTextColumn77: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5948,11 +6065,11 @@
                     Position = 7
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Ort'
                   end
                   object NxDBTextColumn78: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5969,12 +6086,12 @@
                     Position = 8
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'PLZ'
                   end
                   object NxDBImageColumn16: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -5991,13 +6108,13 @@
                     Position = 9
                     SortType = stNumeric
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'pseudoliegenschaft'
                     Images = ImageList1
                     Transparent = False
                   end
                   object NxDBMemoColumn14: TNxDBMemoColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -6014,11 +6131,11 @@
                     Position = 10
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'Notizen'
                   end
                   object NxDBTextColumn79: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -6030,16 +6147,16 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 11
                     SortType = stAlphabetic
                     Visible = False
-                    Width = 130
+                    Width = 140
                     FieldName = 'erledigt'
                   end
                   object NxDBTextColumn81: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -6052,14 +6169,14 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 12
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 140
                   end
                   object NxDBTextColumn80: TNxDBTextColumn
-                    DefaultWidth = 130
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -6072,15 +6189,15 @@
                     Header.Font.Height = -11
                     Header.Font.Name = 'Tahoma'
                     Header.Font.Style = []
-                    Options = [coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
+                    Options = [coAutoSize, coCanClick, coCanInput, coCanSort, coPublicUsing, coShowTextFitHint]
                     ParentFont = False
                     Position = 13
                     SortType = stAlphabetic
-                    Width = 130
+                    Width = 140
                   end
                   object NxDBImageColumn17: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 216
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -6097,13 +6214,13 @@
                     ParentFont = False
                     Position = 14
                     SortType = stNumeric
-                    Width = 216
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
                   object NxDBImageColumn18: TNxDBImageColumn
                     DefaultValue = '0'
-                    DefaultWidth = 216
+                    DefaultWidth = 140
                     Font.Charset = DEFAULT_CHARSET
                     Font.Color = 6908265
                     Font.Height = -13
@@ -6121,7 +6238,7 @@
                     ParentFont = False
                     Position = 15
                     SortType = stNumeric
-                    Width = 217
+                    Width = 140
                     Images = ImageList1
                     Transparent = True
                   end
@@ -6129,13 +6246,14 @@
                 object Panel10: TPanel
                   Left = 0
                   Top = 0
-                  Width = 1686
+                  Width = 1676
                   Height = 23
                   Align = alTop
                   Color = clWhite
                   ParentBackground = False
                   TabOrder = 1
                   OnClick = Panel8Click
+                  ExplicitWidth = 1686
                   object NxButton8: TNxButton
                     Left = 1
                     Top = 1
@@ -6150,7 +6268,7 @@
                 inline filterangebot: Tframebasefilter
                   Left = 0
                   Top = 23
-                  Width = 1686
+                  Width = 1676
                   Height = 90
                   Align = alTop
                   AutoSize = True
@@ -6158,7 +6276,7 @@
                   ExplicitTop = 23
                   ExplicitWidth = 1686
                   inherited flipwerte: TNxFlipPanel
-                    Width = 1686
+                    Width = 1676
                     Align = alTop
                     ExplicitWidth = 1686
                     FullHeight = 18
@@ -6194,6 +6312,7 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
               ExplicitHeight = 700
             end
           end
@@ -6207,13 +6326,16 @@
           TabFont.Height = -13
           TabFont.Name = 'Tahoma'
           TabFont.Style = []
+          ExplicitWidth = 1686
+          ExplicitHeight = 720
           object Panel9: TPanel
             Left = 0
             Top = 0
-            Width = 1686
+            Width = 1676
             Height = 41
             Align = alTop
             TabOrder = 0
+            ExplicitLeft = 2
             object NxGlyphButton1: TNxGlyphButton
               Left = 11
               Top = 12
@@ -6256,15 +6378,17 @@
           object pvollbilder: TNxPageControl
             Left = 0
             Top = 41
-            Width = 1686
-            Height = 679
-            ActivePage = tabvollzwischen
-            ActivePageIndex = 0
+            Width = 1676
+            Height = 669
+            ActivePage = tabvollangebot
+            ActivePageIndex = 8
             Align = alClient
             TabOrder = 1
             Margin = 0
             Spacing = 0
             TabHeight = 17
+            ExplicitWidth = 1686
+            ExplicitHeight = 679
             object tabvollzwischen: TNxTabSheet
               Caption = 'Vollbild Zwischenablesung'
               PageIndex = 0
@@ -6275,18 +6399,20 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollzwischen: Tframezwischen
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ColumnCollection = <
                     item
                       Value = 49.992977960806520000
@@ -6308,10 +6434,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 831
+                    Height = 640
                     ExplicitWidth = 836
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6382,6 +6510,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 841
+                    Width = 833
+                    Height = 640
                     ExplicitLeft = 846
                     ExplicitWidth = 838
                     ExplicitHeight = 650
@@ -6402,18 +6533,20 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollmont: Tframereklmont
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ControlCollection = <
                     item
                       Column = 0
@@ -6428,10 +6561,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 832
+                    Height = 640
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6502,6 +6637,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 842
+                    Width = 832
+                    Height = 640
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6522,18 +6660,20 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollenergie: Tframeenergie
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ControlCollection = <
                     item
                       Column = 0
@@ -6548,10 +6688,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 832
+                    Height = 640
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6592,6 +6734,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 842
+                    Width = 832
+                    Height = 640
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6608,18 +6753,20 @@
               TabFont.Height = -13
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollvertrag: Tframebasenutzer1
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ControlCollection = <
                     item
                       Column = 0
@@ -6634,12 +6781,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 837
-                    Height = 650
+                    Width = 832
+                    Height = 640
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6689,9 +6836,9 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    Left = 847
-                    Width = 837
-                    Height = 650
+                    Left = 842
+                    Width = 832
+                    Height = 640
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6709,18 +6856,20 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollrekl: Tframereklmont
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ControlCollection = <
                     item
                       Column = 0
@@ -6735,10 +6884,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 832
+                    Height = 640
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6809,6 +6960,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 842
+                    Width = 832
+                    Height = 640
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6829,18 +6983,20 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollnutzer: Tframebase
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ControlCollection = <
                     item
                       Column = 0
@@ -6855,10 +7011,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
+                    Width = 832
+                    Height = 640
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6901,6 +7059,9 @@
                     end
                   end
                   inherited rightparent: TPanel
+                    Left = 842
+                    Width = 832
+                    Height = 640
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -6921,18 +7082,20 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollsonstiges: Tframebasenutzer
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ControlCollection = <
                     item
                       Column = 0
@@ -6947,12 +7110,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 837
-                    Height = 650
+                    Width = 832
+                    Height = 640
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -6993,11 +7156,15 @@
                     inherited bsave: TNxButton
                       Caption = 'Dokument anzeigen'
                     end
+                    inherited UpDown1: TUpDown
+                      Top = 229
+                      ExplicitTop = 229
+                    end
                   end
                   inherited rightparent: TPanel
-                    Left = 847
-                    Width = 837
-                    Height = 650
+                    Left = 842
+                    Width = 832
+                    Height = 640
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -7015,18 +7182,20 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollauftrag: Tframeauftrag
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ControlCollection = <
                     item
                       Column = 0
@@ -7041,10 +7210,11 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    ExplicitWidth = 837
+                    Width = 832
+                    Height = 640
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -7108,8 +7278,9 @@
                     end
                   end
                   inherited rightparent: TPanel
-                    ExplicitLeft = 847
-                    ExplicitWidth = 837
+                    Left = 842
+                    Width = 832
+                    Height = 640
                     ExplicitHeight = 650
                   end
                 end
@@ -7125,18 +7296,20 @@
               TabFont.Name = 'Tahoma'
               TabFont.Style = []
               ExplicitTop = 0
+              ExplicitWidth = 1686
+              ExplicitHeight = 658
               inline vollangebot: Tframebasenutzer
                 Left = 0
                 Top = 0
-                Width = 1686
-                Height = 658
+                Width = 1676
+                Height = 648
                 Align = alClient
                 TabOrder = 0
                 ExplicitWidth = 1686
                 ExplicitHeight = 658
                 inherited gridpanel: TGridPanel
-                  Width = 1686
-                  Height = 658
+                  Width = 1676
+                  Height = 648
                   ControlCollection = <
                     item
                       Column = 0
@@ -7151,12 +7324,12 @@
                   ExplicitWidth = 1686
                   ExplicitHeight = 658
                   inherited Panel5: TPanel
-                    Width = 837
-                    Height = 650
+                    Width = 832
+                    Height = 640
                     ExplicitWidth = 837
                     ExplicitHeight = 650
                     inherited lfiletype: TLabel
-                      Height = 609
+                      Height = 599
                     end
                     inherited Label45: TLabel
                       Width = 102
@@ -7198,11 +7371,15 @@
                       Caption = 'Dokument anzeigen'
                       OnClick = vollzwischenbsaveClick
                     end
+                    inherited UpDown1: TUpDown
+                      Top = 228
+                      ExplicitTop = 228
+                    end
                   end
                   inherited rightparent: TPanel
-                    Left = 847
-                    Width = 837
-                    Height = 650
+                    Left = 842
+                    Width = 832
+                    Height = 640
                     ExplicitLeft = 847
                     ExplicitWidth = 837
                     ExplicitHeight = 650
@@ -7219,7 +7396,7 @@
       Left = 1
       Top = 32
       Width = 296
-      Height = 742
+      Height = 732
       Margins.Left = 0
       Margins.Top = 31
       Margins.Right = 0
@@ -7229,6 +7406,7 @@
       Color = 6118749
       ParentBackground = False
       TabOrder = 1
+      ExplicitHeight = 742
       object pfilebox: TFlowPanel
         AlignWithMargins = True
         Left = 5
@@ -7458,7 +7636,7 @@
       object psonstiges: TPanel
         AlignWithMargins = True
         Left = 5
-        Top = 612
+        Top = 602
         Width = 286
         Height = 120
         Margins.Left = 5
@@ -7476,6 +7654,7 @@
         Padding.Bottom = 10
         ParentBackground = False
         TabOrder = 1
+        ExplicitTop = 612
         object lsonstiges: TLabel
           AlignWithMargins = True
           Left = 15
@@ -7610,9 +7789,9 @@
         Visible = False
         object IStatusok: TImage
           Left = 0
-          Top = 56
+          Top = 0
           Width = 286
-          Height = 9
+          Height = 65
           Align = alClient
           Center = True
           Picture.Data = {
@@ -7665,15 +7844,13 @@
             B9E578E53FC16F4860A1388B184DA63C86E87CD919B6A6F54CF14D97FDA6046E
             55DC15B8E3027F002001C730A1EBF65B0000000049454E44AE426082}
           Transparent = True
-          ExplicitTop = 0
           ExplicitWidth = 219
-          ExplicitHeight = 65
         end
         object iSTAtusfalse: TImage
           Left = 0
-          Top = 56
+          Top = 0
           Width = 286
-          Height = 9
+          Height = 65
           Margins.Left = 2
           Margins.Top = 2
           Margins.Right = 2
@@ -7763,8 +7940,6 @@
             426082}
           Visible = False
           ExplicitLeft = 5
-          ExplicitTop = 0
-          ExplicitHeight = 65
         end
         object lprogress: TLabel
           Left = 3
@@ -7772,597 +7947,598 @@
           Width = 4
           Height = 16
         end
-        object piupdate: TPanel
-          AlignWithMargins = True
-          Left = 5
-          Top = 2
-          Width = 276
-          Height = 52
-          Margins.Left = 5
+      end
+      object piupdate: TPanel
+        AlignWithMargins = True
+        Left = 5
+        Top = 546
+        Width = 286
+        Height = 52
+        Margins.Left = 5
+        Margins.Top = 2
+        Margins.Right = 5
+        Margins.Bottom = 2
+        Align = alBottom
+        AutoSize = True
+        BevelOuter = bvNone
+        Caption = 'Update gefunden'
+        Color = 14933977
+        Padding.Left = 10
+        Padding.Top = 10
+        Padding.Right = 10
+        Padding.Bottom = 10
+        ParentBackground = False
+        TabOrder = 4
+        VerticalAlignment = taAlignTop
+        Visible = False
+        ExplicitTop = 556
+        object iupdate: TImage
+          Left = 10
+          Top = 10
+          Width = 266
+          Height = 32
+          Hint = 'neue Version verf'#252'gbar'
+          Margins.Left = 2
           Margins.Top = 2
-          Margins.Right = 5
+          Margins.Right = 2
           Margins.Bottom = 2
-          Align = alTop
+          Align = alBottom
           AutoSize = True
-          BevelOuter = bvNone
-          Caption = 'Update gefunden'
-          Color = 14933977
-          Padding.Left = 10
-          Padding.Top = 10
-          Padding.Right = 10
-          Padding.Bottom = 10
-          ParentBackground = False
-          TabOrder = 0
-          VerticalAlignment = taAlignTop
-          Visible = False
-          object iupdate: TImage
-            Left = 10
-            Top = 10
-            Width = 256
-            Height = 32
-            Hint = 'neue Version verf'#252'gbar'
-            Margins.Left = 2
-            Margins.Top = 2
-            Margins.Right = 2
-            Margins.Bottom = 2
-            Align = alBottom
-            AutoSize = True
-            Center = True
-            ParentShowHint = False
-            Picture.Data = {
-              055449636F6E0000010004001010000001002000680400004600000018180000
-              0100200088090000AE0400002020000001002000A8100000360E000030300000
-              01002000A8250000DE1E00002800000010000000200000000100200000000000
-              4004000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              1E82D6351E82D611000000000000000000000000000000000000000000000000
-              1E82D62F1E82D61500000000000000000000000000000000000000001E82D635
-              227FDCFF1F81D8FF1E82D67D0000000000000000000000001E82D6131E82D67D
-              227FDBFF2081D8FF1E82D615000000000000000000000000000000001E82D639
-              2882DCFF4683F1FF2A82DEFF1E82D6971E82D6251E82D65F1F82D6FF3482E4FF
-              4583F0FF1E82D6DD00000000000000000000000000000000000000001E82D605
-              1F82D6FF6195F4FF509EF8FF468DE8FF2183D7FF2785DAFF5692EFFF43A2F9FF
-              488EE9FF1E82D699000000000000000000000000000000000000000000000000
-              1E82D6A7609CECFF3DB2FBFF53AFFAFF73A3F2FF7FA8F6FF48B0FAFF5DAEF9FF
-              4290E2FF1E82D65D000000000000000000000000000000000000000000000000
-              1E82D669539BE4FF6CBEFAFF19BCFBFF30BDFBFF1FBCFBFF1BBCFBFFA1BFFAFF
-              2786D9FF1E82D61500000000000000000000000000000000000000001E82D617
-              1E82D695569EE3FF88CEFBFF1BC1FAFF1BC1FAFF1BC1FAFF2FC3FAFFAECAF7FF
-              2686D8FF1E82D671000000000000000000000000000000001E82D6531E82D6BD
-              7CB4E9FFDAE6FDFF4DCFFAFF1EC7F9FF1EC7F9FF1EC7F9FF1EC7F9FF85D8FBFF
-              BFD8F7FF3B91DCFF1E82D68B00000000000000001E82D61B328DDAFFB9D7F3FF
-              9CE5FCFF4BD5FAFF32D0F9FF21CDF9FF21CDF9FF21CDF9FF21CDF9FF21CDF9FF
-              7CDFFBFFE8F1FCFF66AAE4FF1E82D665000000002686D7FF90C1EBFFCFE5F6FF
-              D2E6F7FFD2E6F7FFECF5FCFFA5EDFCFF24D3F8FF50DCF9FFAAEEFCFFFFFFFFFF
-              D5E7F7FFD2E6F7FFD2E6F7FF70B0E5FF1E82D65F1E82D6191E82D6831E82D6CB
-              1E82D6CF1E82D6CF1E82D6EDDAEAF8FF4ADEF8FFABF0FCFF75B3E6FF1E82D6FF
-              1E82D6D11E82D6CF1E82D6CF1E82D66500000000000000000000000000000000
-              00000000000000001E82D67785BBE9FF9DF0FBFFF7FBFEFF2988D8FF1E82D60F
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000001E82D61D368FDAFFFCFEFFFFAAD0F0FF1E82D6A100000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000001E82D6BDC2DDF4FF58A2E1FF1E82D64500000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000001E82D653539FE0FF1E82D6530000000000000000
-              0000000000000000000000000000000000000000FFFF0000E7E70000C3830000
-              C0070000C0070000E0070000E0070000C0070000800300000001000000000000
-              00010000F81F0000F83F0000FC3F0000FC7F0000280000001800000030000000
-              0100200000000000600900000000000000000000000000000000000000000000
-              000000000000000000000000000000001B7FD5013F9EE40556BBF90559BEF905
-              58B1EC052C8BDA04197DD501197ED4012E8DDB0458B2EC0556BCFA0555BBF805
-              409DE205187DD401000000000000000000000000000000000000000000000000
-              000000000000000000000000000000001D81D51750AEED2959BBF72942A1E529
-              1F83D71E197ED5050000000000000000197ED5082184D71D42A2E6295DBFF629
-              49A9EA291E81D614000000000000000000000000000000000000000000000000
-              0000000000000001000000050C3457112171AF503E91C4622B83C7541A78CA27
-              1C80D504000000000000000000000000000000000E3F6904166BB22C2B80BF5E
-              3C8EC0631F6CA9510A3052120000000300000001000000000000000000000000
-              00000000000000020000000908345A270E5D9EA10D5D9FAD0E508B3E00000005
-              0000000000000000000000000000000000000000000000040000000D0853946F
-              095BA0C71261A1A20D395E260000000700000001000000000000000000000000
-              000000000000000100000004004F935A2B87C8DC2E8BCBDD055AA1BE00549C5D
-              00559E040000000000000000000000000000000000549C3900549C861973B6CC
-              42A1DEEE01539994000000090000000200000000000000000000000000000000
-              00000000000000000000000000559E3C247DBFCF47B0F1FF58B4ECF82D86C7D4
-              01579FB900559E4F0000000000559E2600559E73136BB0C448A3DFEA4CB2F2FF
-              4BA6E1ED00559E8A000000000000000000000000000000000000000000000000
-              00000000000000000000000000559E181066ABC05FBBF3FF27A2F1FF48B1F2FF
-              5BB2E9F3287FBFCF00559E9A1066ABC0479ED9E35BB9F3FF3AAAF2FF3CABF2FF
-              4198D4DF00559E67000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559EAB6CBDEFF922A1F1FF1B9EF1FF
-              33A8F2FF57B8F3FF64B5E9F270C1F2FC44B0F2FF1B9EF1FF1B9EF1FF54B7F3FF
-              3185C3D100559E43000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559E8864B0E3EC38ADF2FF1DA2F1FF
-              1DA2F1FF1DA2F1FF2EA9F2FF20A3F1FF1DA2F1FF1DA2F1FF1DA2F1FF70C3F4FF
-              196CAFC300559E1E000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559E63559FD4DE53B9F4FF20A6F2FF
-              20A6F2FF20A6F2FF20A6F2FF20A6F2FF20A6F2FF20A6F2FF25A8F2FF87CCF3FC
-              02579FB900559E04000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559E453D88C2CF72C7F5FF24AAF2FF
-              24AAF2FF24AAF2FF24AAF2FF24AAF2FF24AAF2FF24AAF2FF40B4F3FF7DBDE7EE
-              00559E8E00000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000559E4A0D5FA5BC88C2E9EF47BAF4FF27AFF3FF
-              27AFF3FF27AFF3FF27AFF3FF27AFF3FF27AFF3FF27AFF3FF2AB0F3FFA1D8F7FD
-              3E87C0CE00559E6C000000000000000000000000000000000000000000000000
-              000000000000000000559E4F1364A8BE94CAECF26FCAF6FF2AB3F3FF2AB3F3FF
-              2AB3F3FF2AB3F3FF2AB3F3FF2AB3F3FF2AB3F3FF2AB3F3FF2AB3F3FF4FBFF5FF
-              ACDDF8FE4A90C5D100559E6C0000000000000000000000000000000000000000
-              0000000000559E561969ABC0A0D0EEF373CDF7FF2EB8F4FF2EB8F4FF2EB8F4FF
-              2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF
-              4EC1F5FFB5E0F8FE5496C9D400559E6D00559E04000000000000000000000000
-              00559E5A1D6BACC0ACD7F1F675D1F7FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF
-              31BDF4FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF
-              31BDF4FF4DC5F5FF88D6F8FF609DCDD600559E6D00559E0E0000000000559E1E
-              2772B0C3B8DDF4F7AAE1FAFF99DDF9FF8DD9F9FF74D3F8FF6DD1F7FF49C8F6FF
-              34C1F5FF34C1F5FF34C1F5FF34C1F5FF34C1F5FF3DC3F5FF61CEF7FF6FD2F7FF
-              84D7F8FF8DD9F9FFA9E1FAFFB0E3FAFF71A8D3DA00559E5A0000000000000000
-              00559E5A1363A7BD357CB6C65190C2CF649DCBD485B5DAE08EBCDEE3BADCF1F5
-              88DBF8FF38C7F5FF38C7F5FF38C7F5FF4CCCF6FFC8E6F7FB9EC8E5E98CBADDE3
-              6FA6D0D9649DCBD4387EB7C72C75B2C400559E6D00559E0E0000000000000000
-              0000000000559E0F00559E2600559E3C00559E4C00559E6A00559E731161A5BC
-              D1EAF9FC42CDF6FF3BCBF6FF3BCBF6FF90DEF9FF74A7D1D900559E8100559E70
-              00559E5600559E4C00559E2900559E2000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E67
-              8CB7DADF8ADFF9FF3ECFF6FF47D1F6FFD6EBF9FB0E5FA4BB00559E0B00000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E1B
-              236EADC0E3F3FCFD45D4F7FF93E4FAFF8BB6D8DE00559E630000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E77A6C8E2E58BE4FAFFE9F5FDFD1D69AABF00559E160000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E2B3378B2C4D7F5FDFFA3C4DFE300559E70000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000559E84BED6E9EA3176B1C300559E23000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000559E381B67A9BE00559E3800000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000000000F8001F00
-              F8181F00C03C0300C07C0300C03C0700F0101F00F0001F00F8001F00F8001F00
-              F8001F00F8003F00F0001F00E0000F00C0000300800001000000010080000100
-              C0000700FF00FF00FF01FF00FF81FF00FF83FF00FFC3FF00FFC7FF0028000000
-              2000000040000000010020000000000080100000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              1D81D60F51ADEA1550B7F81558BAF6155BB6EF152B8DDB151D81D60C1D81D601
-              00000000000000001D81D60A2386D81551ADEA1559BAF6154CB6F91561BBF115
-              1E82D61500000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000000000000001D81D603
-              2184D8345CBAF13456B9F53445A5E7342084D7341D81D6170000000000000000
-              0000000000000000000000001D81D6101D81D625399BE2345CBBF13458B9F434
-              2F92DE341D81D60F000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000000000000000001D81D620
-              3195E05854B6EF583093DF581D81D6371D81D612000000000000000000000000
-              000000000000000000000000000000001D81D6021D81D632278BDB584EB0ED58
-              3FA2E6581D81D635000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000010000000300000007186BB142
-              2E87C9871F77BD88186BB14E0000000700000002000000000000000000000000
-              000000000000000000000000000000010000000200000007186BB1421B73BD88
-              3086C4891A71B88906192A0F0000000600000002000000010000000000000000
-              0000000000000000000000000000000000000001000000060000000E02366232
-              0756999F064275580000001B0000000E00000004000000010000000000000000
-              00000000000000000000000000000001000000050000000D0000001405437851
-              07569AB205417554000000180000000D00000004000000010000000000000000
-              000000000000000000000000000000000000000100000002000000060050946D
-              3190D0E0166FB2CC0050957B004A892E00000002000000000000000000000000
-              0000000000000000000000000000000100000002003C6F11005197690C62A8C4
-              3898D8E701559CBD00182D0E0000000500000001000000010000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E5D
-              328ECEDB48B0F1FF3C9AD8E40A60A7BE00559E6300559E040000000000000000
-              0000000000000000000000000000000000559E520358A1BA308CCCD954B5EEFC
-              45A4E0ED00559E8A000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E32
-              1E76B9CA4BB2F1FF3AAAF1FF5AB7EEFB2F89C9D601579FB900559E4A00000000
-              000000000000000000559E3000559E7D1F78BACB53AFE9F43FACF1FF3AA9F1FF
-              3791D0DC00559E5F000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E0B
-              065CA3BB64BDF2FE199BF1FF25A1F1FF44AFF2FF56AFE7F21C73B6C800559E74
-              00559E2800559E641065ABC04AA2DDE850B5F2FF30A6F2FF189BF1FF4FB4F2FF
-              237ABCCC00559E36000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E955CB1E6F12BA5F1FF1A9EF1FF1A9EF1FF38ABF2FF5ABAF3FF4CA1DAE4
-              1064AAC03C91CDD969BEF0FC41AFF2FF1A9EF1FF1A9EF1FF1B9EF1FF6CC1F2FE
-              095EA5BC00559E0C000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E6A4C9DD6E043B0F2FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF47B2F2FF
-              6CC1F4FF4CB4F3FF27A4F1FF1CA0F1FF1CA0F1FF1CA0F1FF2DA7F2FF65B5E8F2
-              00559E9700000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E403586C2D05EBCF4FF1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF
-              1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF46B3F3FF54A2D8E2
-              00559E6E00000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E151366AAC07ECAF5FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF
-              21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF63BFF4FF3C8AC4D2
-              00559E4500000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000559EA284C5EDF631AFF3FF23AAF2FF23AAF2FF23AAF2FF23AAF2FF
-              23AAF2FF23AAF2FF23AAF2FF23AAF2FF23AAF2FF23AAF2FF84CDF5FF186AADC1
-              00559E1900000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E2B00559E9181BFE8EF40B6F4FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF
-              26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF2AAEF3FF98D3F5FC0A5DA4BB
-              00559E4D00000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E40
-              0559A1BA73B2DEE571CAF6FF28B1F3FF28B1F3FF28B1F3FF28B1F3FF28B1F3FF
-              28B1F3FF28B1F3FF28B1F3FF28B1F3FF28B1F3FF28B1F3FF6BC8F6FF8EC8ECF2
-              1668ABC000559E57000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E521062A6BD
-              8BC3E7ED73CCF6FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF
-              2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF69C8F5FF
-              9BD1F0F72674B2C500559E640000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E5C1B6AACC09ECFEFF4
-              72CDF7FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF
-              2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF
-              64C9F6FFACDAF6FC3E85BECC00559E6900000000000000000000000000000000
-              0000000000000000000000000000000000559E67317BB6C7ADD9F3F870CEF6FF
-              30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
-              30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
-              30BBF4FF5AC8F6FFB6E0F8FD5495C8D300559E6D00559E160000000000000000
-              000000000000000000559E0400559E6C4A8DC2CFBAE2F8FC68CEF7FF33BFF5FF
-              33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF
-              33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF
-              33BFF5FF33BFF5FF51C8F6FF8AD7F8FF74ACD6DE00559E7900559E2C00000000
-              000000000000000000559E50649FCED6C4E7FAFE9FDEF9FF8CD9F9FF8AD9F9FF
-              6FD2F7FF6FD2F7FF57CCF6FF52CAF6FF41C5F5FF35C2F5FF35C2F5FF35C2F5FF
-              35C2F5FF35C2F5FF35C2F5FF35C2F5FF3AC3F5FF52CAF6FF52CAF6FF6CD1F7FF
-              6FD2F7FF82D7F8FF8CD9F9FF98DCF9FFA9E1FAFF8EBEE1E6065AA1BA00559E06
-              000000000000000000559E181F6CACC0347BB6C64587BDCB629CCBD4649ECCD5
-              89B9DDE389B9DDE3A7CFEAEEADD3EDF1C0E1F6F986DAF8FF38C7F5FF38C7F5FF
-              38C7F5FF38C7F5FF38C7F5FF6AD3F7FFC8E7F9FCADD3EDF1ADD3EDF18EBCDFE4
-              89B9DDE370A7D2D9629CCBD44F8FC2CF347BB6C62B75B2C400559E2C00000000
-              00000000000000000000000000559E1800559E2600559E3300559E4C00559E4D
-              00559E7000559E7000559E8E00559E951161A5BCCCE8F9FC41CCF6FF3ACAF6FF
-              3ACAF6FF3ACAF6FF3ACAF6FFACE4FBFF4184BBCA00559E9500559E9500559E74
-              00559E7000559E5900559E4C00559E3C00559E2600559E200000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559E6C8DB9DCE180DCF9FF3DCDF6FF
-              3DCDF6FF3DCDF6FF5AD3F7FFBEDCF1F300559E9B000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559E1F2B74B1C3C5EDFCFF3FD0F6FF
-              3FD0F6FF3FD0F6FF9EE4FAFF6AA0CCD400559E4F000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E85B1D1E8EB71DDF9FF
-              41D3F7FF4BD5F7FFDAEDF9FB0B5CA2BB00559E08000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E39548FC0CDB7EDFBFF
-              43D6F7FF8FE5FAFF90B9DADE00559E6600000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E0404589FB9D4E7F4F5
-              5FDDF8FFEBF7FDFE2871AEC100559E1900000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E537CAAD0D7
-              A7EDFBFFB7D3E7E900559E810000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E0C1362A5BC
-              EDF5FBFC4F8BBDCA00559E350000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E64
-              7AA8CED500559E64000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E4D00000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000FE0180FFFC07C07FFC0FE07FE00FC007E007C007E00FC007FC07E07F
-              FC03807FFC00007FFE00007FFE0000FFFE0000FFFE0000FFFF0000FFFE0000FF
-              FC00007FF800003FF000001FE0000007800000038000000180000003C0000007
-              FFE00FFFFFE00FFFFFF00FFFFFF01FFFFFF01FFFFFF83FFFFFF83FFFFFFC7FFF
-              FFFEFFFF28000000300000006000000001002000000000008025000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000197ED4022286D706419EE309
-              53B3F00955BBF90952BAFA095CBEF8095FBBF20951AAE8093A96DF092586D907
-              197ED504197ED5011C80D601197ED4021A7FD5042788D9083B98DF0953ADE909
-              5DBBF30957BBF9094EB9FB094FB7F80960BAF1093E9AE109177CD3071C80D601
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000187CD40B2588D8194EAAE81C
-              58B9F51C51B8F91C57B8F51C59B5EF1C49A6E71C298BDA1A197ED513197ED509
-              1D81D6010000000000000000000000001B80D6031A7ED50D177CD4172F90DC1A
-              4BA8E81B55B3F01C52B8F71C53B9F91C64C1F61C44A1E51C1B7FD5191D81D606
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000187CD5172789DA2D54B2EC2E
-              61C1F82E57BAF62E4FAFED2E3899E12E2386D82E1F82D71D1D81D60B1D81D602
-              000000000000000000000000000000001D81D6011D81D6041C81D60F1D81D61B
-              2689D928389AE22E52B2ED2E61C0F52E5EBFF72E44A6E92E2689DA2A1F83D711
-              1B7FD50300000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000001D81D6011C80D50A1F83D82E3295E04759BAF047
-              57B8F1473EA1E7473193DE402184D732187DD4231B80D50F1D81D60100000000
-              0000000000000000000000000000000000000000000000001D81D603197ED50D
-              1A7FD51B2286D8333295DE4545A7E74756B8F2474DB0EE473496E0432084D828
-              1A7ED50C00000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000001
-              0000000200000004000000060B2D4B0E135A972A2073B5543085BF6C3F92C56C
-              3488C36A1F77BE5C1770BB3C166CB71E1767AA05000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000001
-              08203504166CB6231670BD4A2179C062378DC86B3C90C36D3082BB6C1B6AAB5D
-              115189300000000D000000080000000500000002000000010000000100000000
-              0000000000000000000000000000000000000000000000000000000000000001
-              0000000200000006000000090A2A46151357923A2170AE6E2B7CB6872373B087
-              1C6CAD7A1662A34C114A7A1A0C33550A0A2A4603000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000100000002
-              000000040C31510D135891291869AD591C6FB3852979B5872D7CB4881B69A988
-              13589352000000140000000E0000000800000004000000010000000100000000
-              0000000000000000000000000000000000000000000000000000000000000001
-              00000003000000070000000B051626160E3F6A2E17609B661D67A2821459936E
-              114F84520D3C652C0000000F0000000800000002000000010000000000000000
-              0000000000000000000000000000000000000000000000000000000100000002
-              000000050000000A05132113114B7C331257935A1963A07C1E69A488145B9574
-              1044724100000019000000120000000A00000005000000010000000100000000
-              0000000000000000000000000000000000000000000000000000000000000001
-              0000000200000005000000080000000E0015271803579EC703559AAF03488360
-              00000018000000120000000B0000000600000002000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000100000002
-              00000004000000070000000B00000010000000140753947804569CBA03569CC4
-              0013231B000000120000000D0000000700000003000000010000000100000000
-              0000000000000000000000000000000000000000000000000000000000000001
-              00000001000000030000000500000008003C70230D64A9C63EA2E1F0156EB2CD
-              0051968B00498841000000070000000300000001000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000001
-              000000020000000400000007004D904C005299961B77BAD141A6E4F302569DBF
-              001A32130000000A000000070000000400000002000000010000000100000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559EAF4DB2EDFB43AFF1FF
-              3EA0DEEA136BB1C500559E7700559E2B00000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000559E3800559E841671B5C843A5E3EF3FACF1FF46A9E6F200559E9A
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E8E45A6E2EE249EF0FF
-              2FA4F0FF4AB2F1FF3C9BD9E51067ADC200559E6E00559E220000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E2B
-              00559E77146DB2C541A1DEEA47B0F1FF2CA2F0FF2CA2F0FF3D9CDAE600559E79
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E6E3B97D6E232A6F1FF
-              1698F0FF1698F0FF34A7F1FF58B7F1FD3B97D6E20B62A8BF00559E6700559E16
-              000000000000000000000000000000000000000000559E2200559E6E1167ADC2
-              3F9CDAE54CB3F2FF31A5F1FF1698F0FF1698F0FF3AAAF1FF2F8BCCD900559E56
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E4C2D86C7D442ADF1FF
-              1799F0FF1799F0FF1799F0FF199AF0FF3AAAF1FF5CB9F0FC3993D1DE075DA5BC
-              00559E6300559E0C0000000000559E1900559E670C62A8BF3E99D6E25DBAF1FE
-              37A8F1FF1799F0FF1799F0FF1799F0FF1799F0FF4BB2F1FF1F78BACB00559E33
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E291A71B4C753B7F2FF
-              189BF1FF189BF1FF189BF1FF189BF1FF189BF1FF1C9DF1FF40AEF2FF5FB9EEFB
-              368FCDD9055AA2BB00559E6C085DA5BC3D96D3DE61BCF0FC3DACF1FF199BF1FF
-              189BF1FF189BF1FF189BF1FF189BF1FF189BF1FF5CBBF2FF0D62A8BF00559E13
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E0B075CA3BB68BFF2FE
-              1A9DF1FF199DF1FF199DF1FF199DF1FF199DF1FF199DF1FF199DF1FF22A1F1FF
-              45B0F2FF62B9EDF8449BD6E164BBEFFB43B0F2FF1D9FF1FF199DF1FF199DF1FF
-              199DF1FF199DF1FF199DF1FF199DF1FF20A0F1FF63BAEEF900559EAB00000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E9F63B6EAF5
-              27A3F1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF
-              1B9EF1FF23A1F1FF3FADF2FF20A0F1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF
-              1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF32A8F2FF57ABE1EC00559E8800000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E7D56A8DEE8
-              39ACF2FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF
-              1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF
-              1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF44B1F2FF4A9CD5DF00559E6700000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E5D4697D0DB
-              4DB5F3FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF
-              1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF
-              1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF59BAF3FF3688C4D200559E4500000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E3A3082BFCE
-              63BEF4FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF
-              1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF
-              1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF6FC3F4FF1F71B3C500559E2500000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E181468ABC0
-              7BCAF5FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF
-              21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF
-              21A7F2FF21A7F2FF21A7F2FF23A8F2FF85CCF4FD0459A1BA00559E0600000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559EAF
-              88CBF2FB28ABF2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF
-              22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF
-              22A9F2FF22A9F2FF22A9F2FF35B0F3FF7BBFEAF200559E9A0000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E8E
-              7ABBE6EE3FB4F3FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF
-              24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF
-              24ABF2FF24ABF2FF24ABF2FF4DB9F3FF69ADDCE500559E770000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E6C3E89C2CF
-              99D4F6FD29AEF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF
-              26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF
-              26ADF3FF26ADF3FF26ADF3FF2DAFF3FF94D0F3FB2D7BB8C900559E6700000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E6C458EC4D1A1D8F7FE
-              47BAF4FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF
-              27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF
-              27B0F3FF27B0F3FF27B0F3FF27B0F3FF52BEF5FF9ED6F6FC3480BBCA00559E67
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559E6D4B92C7D3A5DAF7FE46BBF4FF
-              29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF
-              29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF
-              29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF52BFF5FFA2D8F6FC3A84BDCC
-              00559E6900000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000559E0400559E6D5296CAD47BCEF6FF46BCF4FF2BB4F3FF
-              2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF
-              2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF
-              2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF52C0F5FFA8DBF7FD
-              4088C0CE00559E69000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000559E0E00559E6D599ACDD67CCFF7FF46BEF5FF2DB7F4FF2DB7F4FF
-              2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF
-              2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF
-              2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF52C2F5FF
-              ADDCF8FD468CC2CF00559E6C0000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E1500559E6D65A3D2DA7DD0F7FF44BFF5FF2EB9F4FF2EB9F4FF2EB9F4FF
-              2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF
-              2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF
-              2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF
-              51C3F5FFB3DFF8FE4D91C5D100559E6C00000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E19
-              00559E6D6EA8D5DD81D2F7FF3FBFF5FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
-              30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
-              30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
-              30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
-              30BBF4FF50C4F5FFB8E1F8FE5696C9D400559E6D00559E040000000000000000
-              00000000000000000000000000000000000000000000000000559E1F00559E6D
-              75AED8DE84D5F8FF3CC1F5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF
-              32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF
-              32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF
-              32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF
-              32BEF5FF32BEF5FF4EC5F6FF87D6F8FF5F9DCDD600559E6D00559E0900000000
-              000000000000000000000000000000000000000000559E2300559E707FB3DBE1
-              88D7F8FF3BC2F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF
-              34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF
-              34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF
-              34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF
-              34C0F5FF34C0F5FF34C0F5FF4BC7F6FF88D7F8FF68A2D0D900559E6D00559E0E
-              000000000000000000000000000000000000000000559E7085B7DDE3A9E1FAFF
-              9ADDF9FF8CD9F9FF71D2F7FF63CFF7FF52CAF6FF38C3F5FF35C2F5FF35C2F5FF
-              35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF
-              35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF
-              35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF3EC4F5FF
-              52CAF6FF66D0F7FF74D3F8FF8CD9F9FF9DDEF9FFABE1FAFF6FA7D3DA00559E5A
-              000000000000000000000000000000000000000000559E2303579FB9347BB6C6
-              4C8DC1CE619CCBD486B7DCE297C4E4E8ABD3EDF1C8E8FAFDC1E8FBFFADE3FAFF
-              96DDF9FF8ADAF8FF72D4F7FF5FD0F7FF3EC8F5FF37C5F5FF37C5F5FF37C5F5FF
-              37C5F5FF37C5F5FF37C5F5FF37C5F5FF37C5F5FF37C5F5FF37C5F5FF37C5F5FF
-              41C9F5FF62D1F7FF72D4F7FF8DDBF9FF9ADEF9FFADE3FAFFC5E9FBFFC1E4F7FB
-              ABD3EDF192C0E2E782B4DAE0619CCBD44789BECC3079B4C500559E6D00559E0E
-              00000000000000000000000000000000000000000000000000559E0400559E26
-              00559E3A00559E4C00559E6E00559E8000559E9500559EB51061A5BC357CB6C6
-              5995C7D16BA2CFD78BBADDE3A3CBE8ECC9E6F8FC49CCF7FF39C8F6FF39C8F6FF
-              39C8F6FF39C8F6FF39C8F6FF39C8F6FF39C8F6FF39C8F6FF39C8F6FF5CD0F7FF
-              C4E3F6FA9FC9E6EA8BBADDE3669FCCD55391C3CF357CB6C60A5CA2BB00559EAF
-              00559E9500559E7B00559E6A00559E4C00559E3600559E250000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E0C00559E26
-              00559E4300559E5200559E7000559E8877AAD4DA8BDDF9FF3ACAF6FF3ACAF6FF
-              3ACAF6FF3ACAF6FF3ACAF6FF3ACAF6FF3ACAF6FF3ACAF6FF3ACAF6FF9DE1FAFF
-              5A96C7D100559E8400559E7000559E4D00559E3F00559E2600559E0800000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000559E0E1161A5BCCFE8F8FB45CEF6FF3CCCF6FF
-              3CCCF6FF3CCCF6FF3CCCF6FF3CCCF6FF3CCCF6FF3CCCF6FF59D3F7FFC2E0F3F6
-              03579FB900559E04000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559E6385B3D8DE8DDFF9FF3DCEF6FF
-              3DCEF6FF3DCEF6FF3DCEF6FF3DCEF6FF3DCEF6FF3DCEF6FF9CE2FAFF699FCCD4
-              00559E5600000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000559E161766A8BEDAEEFBFC45D1F6FF
-              3FD0F6FF3FD0F6FF3FD0F6FF3FD0F6FF3FD0F6FF55D5F7FFCEE6F6F7075AA1BA
-              00559E0600000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E6A91BBDBE08EE2FAFF
-              40D2F7FF40D2F7FF40D2F7FF40D2F7FF40D2F7FF9AE5FAFF77A9D1D800559E5A
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000000000000000000000559E1E1F6BABC0E2F3FCFD
-              46D5F7FF42D4F7FF42D4F7FF42D4F7FF51D7F8FFD8ECF7F90E5FA4BB00559E0B
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E73A0C3E0E3
-              8DE4FAFF43D6F7FF43D6F7FF43D6F7FF9BE7FAFF86B1D5DB00559E5F00000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00000000000000000000000000000000000000000000000000559E262B73B0C2
-              EBF7FDFE46D8F7FF44D8F7FF4EDAF7FFE3F1FAFB1362A5BC00559E1100000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E79
-              ABCBE3E68BE6FAFF45D9F7FF9BE9FBFF91B8D9DE00559E630000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000559E2C
-              367AB4C5D5F5FDFF4CDCF8FFEDF6FCFC1A67A8BE00559E160000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E81B9D4E7E998EBFBFF9DBFDCE000559E6A000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              00559E354282B8C7F4F9FDFD266FADC000559E1E000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000559E696E9FCAD200559E6900000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000559E450000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              0000000000000000000000000000000000000000000000000000000000000000
-              000000000000000000000000FFC0000007FF0000FFC0038007FF0000FFC00780
-              03FF0000FF000FE003FF0000F0003FF0000F0000F0003FE0000F0000F0001FE0
-              000F0000F0003FE0000F0000F0003FF0000F0000FFC07FFC07FF0000FFC01FF0
-              07FF0000FFC007C007FF0000FFC0010007FF0000FFC0000007FF0000FFC00000
-              0FFF0000FFE000000FFF0000FFE000000FFF0000FFE000000FFF0000FFE00000
-              0FFF0000FFE000000FFF0000FFF000001FFF0000FFF000001FFF0000FFE00000
-              0FFF0000FFC0000007FF0000FF80000003FF0000FE00000001FF0000FC000000
-              00FF0000F8000000007F0000F0000000001F0000E0000000000F0000C0000000
-              00070000C000000000070000C000000000070000E0000000001F0000FFE00000
-              0FFF0000FFFF0001FFFF0000FFFF8003FFFF0000FFFF8003FFFF0000FFFFC007
-              FFFF0000FFFFC007FFFF0000FFFFE00FFFFF0000FFFFE00FFFFF0000FFFFF01F
-              FFFF0000FFFFF01FFFFF0000FFFFF83FFFFF0000FFFFF83FFFFF0000FFFFFC7F
-              FFFF0000FFFFFEFFFFFF0000}
-            ShowHint = True
-            OnClick = iupdateClick
-            ExplicitWidth = 32
-          end
+          Center = True
+          ParentShowHint = False
+          Picture.Data = {
+            055449636F6E0000010004001010000001002000680400004600000018180000
+            0100200088090000AE0400002020000001002000A8100000360E000030300000
+            01002000A8250000DE1E00002800000010000000200000000100200000000000
+            4004000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            1E82D6351E82D611000000000000000000000000000000000000000000000000
+            1E82D62F1E82D61500000000000000000000000000000000000000001E82D635
+            227FDCFF1F81D8FF1E82D67D0000000000000000000000001E82D6131E82D67D
+            227FDBFF2081D8FF1E82D615000000000000000000000000000000001E82D639
+            2882DCFF4683F1FF2A82DEFF1E82D6971E82D6251E82D65F1F82D6FF3482E4FF
+            4583F0FF1E82D6DD00000000000000000000000000000000000000001E82D605
+            1F82D6FF6195F4FF509EF8FF468DE8FF2183D7FF2785DAFF5692EFFF43A2F9FF
+            488EE9FF1E82D699000000000000000000000000000000000000000000000000
+            1E82D6A7609CECFF3DB2FBFF53AFFAFF73A3F2FF7FA8F6FF48B0FAFF5DAEF9FF
+            4290E2FF1E82D65D000000000000000000000000000000000000000000000000
+            1E82D669539BE4FF6CBEFAFF19BCFBFF30BDFBFF1FBCFBFF1BBCFBFFA1BFFAFF
+            2786D9FF1E82D61500000000000000000000000000000000000000001E82D617
+            1E82D695569EE3FF88CEFBFF1BC1FAFF1BC1FAFF1BC1FAFF2FC3FAFFAECAF7FF
+            2686D8FF1E82D671000000000000000000000000000000001E82D6531E82D6BD
+            7CB4E9FFDAE6FDFF4DCFFAFF1EC7F9FF1EC7F9FF1EC7F9FF1EC7F9FF85D8FBFF
+            BFD8F7FF3B91DCFF1E82D68B00000000000000001E82D61B328DDAFFB9D7F3FF
+            9CE5FCFF4BD5FAFF32D0F9FF21CDF9FF21CDF9FF21CDF9FF21CDF9FF21CDF9FF
+            7CDFFBFFE8F1FCFF66AAE4FF1E82D665000000002686D7FF90C1EBFFCFE5F6FF
+            D2E6F7FFD2E6F7FFECF5FCFFA5EDFCFF24D3F8FF50DCF9FFAAEEFCFFFFFFFFFF
+            D5E7F7FFD2E6F7FFD2E6F7FF70B0E5FF1E82D65F1E82D6191E82D6831E82D6CB
+            1E82D6CF1E82D6CF1E82D6EDDAEAF8FF4ADEF8FFABF0FCFF75B3E6FF1E82D6FF
+            1E82D6D11E82D6CF1E82D6CF1E82D66500000000000000000000000000000000
+            00000000000000001E82D67785BBE9FF9DF0FBFFF7FBFEFF2988D8FF1E82D60F
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000001E82D61D368FDAFFFCFEFFFFAAD0F0FF1E82D6A100000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000001E82D6BDC2DDF4FF58A2E1FF1E82D64500000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000001E82D653539FE0FF1E82D6530000000000000000
+            0000000000000000000000000000000000000000FFFF0000E7E70000C3830000
+            C0070000C0070000E0070000E0070000C0070000800300000001000000000000
+            00010000F81F0000F83F0000FC3F0000FC7F0000280000001800000030000000
+            0100200000000000600900000000000000000000000000000000000000000000
+            000000000000000000000000000000001B7FD5013F9EE40556BBF90559BEF905
+            58B1EC052C8BDA04197DD501197ED4012E8DDB0458B2EC0556BCFA0555BBF805
+            409DE205187DD401000000000000000000000000000000000000000000000000
+            000000000000000000000000000000001D81D51750AEED2959BBF72942A1E529
+            1F83D71E197ED5050000000000000000197ED5082184D71D42A2E6295DBFF629
+            49A9EA291E81D614000000000000000000000000000000000000000000000000
+            0000000000000001000000050C3457112171AF503E91C4622B83C7541A78CA27
+            1C80D504000000000000000000000000000000000E3F6904166BB22C2B80BF5E
+            3C8EC0631F6CA9510A3052120000000300000001000000000000000000000000
+            00000000000000020000000908345A270E5D9EA10D5D9FAD0E508B3E00000005
+            0000000000000000000000000000000000000000000000040000000D0853946F
+            095BA0C71261A1A20D395E260000000700000001000000000000000000000000
+            000000000000000100000004004F935A2B87C8DC2E8BCBDD055AA1BE00549C5D
+            00559E040000000000000000000000000000000000549C3900549C861973B6CC
+            42A1DEEE01539994000000090000000200000000000000000000000000000000
+            00000000000000000000000000559E3C247DBFCF47B0F1FF58B4ECF82D86C7D4
+            01579FB900559E4F0000000000559E2600559E73136BB0C448A3DFEA4CB2F2FF
+            4BA6E1ED00559E8A000000000000000000000000000000000000000000000000
+            00000000000000000000000000559E181066ABC05FBBF3FF27A2F1FF48B1F2FF
+            5BB2E9F3287FBFCF00559E9A1066ABC0479ED9E35BB9F3FF3AAAF2FF3CABF2FF
+            4198D4DF00559E67000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559EAB6CBDEFF922A1F1FF1B9EF1FF
+            33A8F2FF57B8F3FF64B5E9F270C1F2FC44B0F2FF1B9EF1FF1B9EF1FF54B7F3FF
+            3185C3D100559E43000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559E8864B0E3EC38ADF2FF1DA2F1FF
+            1DA2F1FF1DA2F1FF2EA9F2FF20A3F1FF1DA2F1FF1DA2F1FF1DA2F1FF70C3F4FF
+            196CAFC300559E1E000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559E63559FD4DE53B9F4FF20A6F2FF
+            20A6F2FF20A6F2FF20A6F2FF20A6F2FF20A6F2FF20A6F2FF25A8F2FF87CCF3FC
+            02579FB900559E04000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559E453D88C2CF72C7F5FF24AAF2FF
+            24AAF2FF24AAF2FF24AAF2FF24AAF2FF24AAF2FF24AAF2FF40B4F3FF7DBDE7EE
+            00559E8E00000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000559E4A0D5FA5BC88C2E9EF47BAF4FF27AFF3FF
+            27AFF3FF27AFF3FF27AFF3FF27AFF3FF27AFF3FF27AFF3FF2AB0F3FFA1D8F7FD
+            3E87C0CE00559E6C000000000000000000000000000000000000000000000000
+            000000000000000000559E4F1364A8BE94CAECF26FCAF6FF2AB3F3FF2AB3F3FF
+            2AB3F3FF2AB3F3FF2AB3F3FF2AB3F3FF2AB3F3FF2AB3F3FF2AB3F3FF4FBFF5FF
+            ACDDF8FE4A90C5D100559E6C0000000000000000000000000000000000000000
+            0000000000559E561969ABC0A0D0EEF373CDF7FF2EB8F4FF2EB8F4FF2EB8F4FF
+            2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF
+            4EC1F5FFB5E0F8FE5496C9D400559E6D00559E04000000000000000000000000
+            00559E5A1D6BACC0ACD7F1F675D1F7FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF
+            31BDF4FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF31BDF4FF
+            31BDF4FF4DC5F5FF88D6F8FF609DCDD600559E6D00559E0E0000000000559E1E
+            2772B0C3B8DDF4F7AAE1FAFF99DDF9FF8DD9F9FF74D3F8FF6DD1F7FF49C8F6FF
+            34C1F5FF34C1F5FF34C1F5FF34C1F5FF34C1F5FF3DC3F5FF61CEF7FF6FD2F7FF
+            84D7F8FF8DD9F9FFA9E1FAFFB0E3FAFF71A8D3DA00559E5A0000000000000000
+            00559E5A1363A7BD357CB6C65190C2CF649DCBD485B5DAE08EBCDEE3BADCF1F5
+            88DBF8FF38C7F5FF38C7F5FF38C7F5FF4CCCF6FFC8E6F7FB9EC8E5E98CBADDE3
+            6FA6D0D9649DCBD4387EB7C72C75B2C400559E6D00559E0E0000000000000000
+            0000000000559E0F00559E2600559E3C00559E4C00559E6A00559E731161A5BC
+            D1EAF9FC42CDF6FF3BCBF6FF3BCBF6FF90DEF9FF74A7D1D900559E8100559E70
+            00559E5600559E4C00559E2900559E2000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E67
+            8CB7DADF8ADFF9FF3ECFF6FF47D1F6FFD6EBF9FB0E5FA4BB00559E0B00000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E1B
+            236EADC0E3F3FCFD45D4F7FF93E4FAFF8BB6D8DE00559E630000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E77A6C8E2E58BE4FAFFE9F5FDFD1D69AABF00559E160000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E2B3378B2C4D7F5FDFFA3C4DFE300559E70000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000559E84BED6E9EA3176B1C300559E23000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000559E381B67A9BE00559E3800000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000000000F8001F00
+            F8181F00C03C0300C07C0300C03C0700F0101F00F0001F00F8001F00F8001F00
+            F8001F00F8003F00F0001F00E0000F00C0000300800001000000010080000100
+            C0000700FF00FF00FF01FF00FF81FF00FF83FF00FFC3FF00FFC7FF0028000000
+            2000000040000000010020000000000080100000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            1D81D60F51ADEA1550B7F81558BAF6155BB6EF152B8DDB151D81D60C1D81D601
+            00000000000000001D81D60A2386D81551ADEA1559BAF6154CB6F91561BBF115
+            1E82D61500000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000000000000000001D81D603
+            2184D8345CBAF13456B9F53445A5E7342084D7341D81D6170000000000000000
+            0000000000000000000000001D81D6101D81D625399BE2345CBBF13458B9F434
+            2F92DE341D81D60F000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000000000000000001D81D620
+            3195E05854B6EF583093DF581D81D6371D81D612000000000000000000000000
+            000000000000000000000000000000001D81D6021D81D632278BDB584EB0ED58
+            3FA2E6581D81D635000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000010000000300000007186BB142
+            2E87C9871F77BD88186BB14E0000000700000002000000000000000000000000
+            000000000000000000000000000000010000000200000007186BB1421B73BD88
+            3086C4891A71B88906192A0F0000000600000002000000010000000000000000
+            0000000000000000000000000000000000000001000000060000000E02366232
+            0756999F064275580000001B0000000E00000004000000010000000000000000
+            00000000000000000000000000000001000000050000000D0000001405437851
+            07569AB205417554000000180000000D00000004000000010000000000000000
+            000000000000000000000000000000000000000100000002000000060050946D
+            3190D0E0166FB2CC0050957B004A892E00000002000000000000000000000000
+            0000000000000000000000000000000100000002003C6F11005197690C62A8C4
+            3898D8E701559CBD00182D0E0000000500000001000000010000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E5D
+            328ECEDB48B0F1FF3C9AD8E40A60A7BE00559E6300559E040000000000000000
+            0000000000000000000000000000000000559E520358A1BA308CCCD954B5EEFC
+            45A4E0ED00559E8A000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E32
+            1E76B9CA4BB2F1FF3AAAF1FF5AB7EEFB2F89C9D601579FB900559E4A00000000
+            000000000000000000559E3000559E7D1F78BACB53AFE9F43FACF1FF3AA9F1FF
+            3791D0DC00559E5F000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E0B
+            065CA3BB64BDF2FE199BF1FF25A1F1FF44AFF2FF56AFE7F21C73B6C800559E74
+            00559E2800559E641065ABC04AA2DDE850B5F2FF30A6F2FF189BF1FF4FB4F2FF
+            237ABCCC00559E36000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E955CB1E6F12BA5F1FF1A9EF1FF1A9EF1FF38ABF2FF5ABAF3FF4CA1DAE4
+            1064AAC03C91CDD969BEF0FC41AFF2FF1A9EF1FF1A9EF1FF1B9EF1FF6CC1F2FE
+            095EA5BC00559E0C000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E6A4C9DD6E043B0F2FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF47B2F2FF
+            6CC1F4FF4CB4F3FF27A4F1FF1CA0F1FF1CA0F1FF1CA0F1FF2DA7F2FF65B5E8F2
+            00559E9700000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E403586C2D05EBCF4FF1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF
+            1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF1EA3F2FF46B3F3FF54A2D8E2
+            00559E6E00000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E151366AAC07ECAF5FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF
+            21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF63BFF4FF3C8AC4D2
+            00559E4500000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000559EA284C5EDF631AFF3FF23AAF2FF23AAF2FF23AAF2FF23AAF2FF
+            23AAF2FF23AAF2FF23AAF2FF23AAF2FF23AAF2FF23AAF2FF84CDF5FF186AADC1
+            00559E1900000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E2B00559E9181BFE8EF40B6F4FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF
+            26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF2AAEF3FF98D3F5FC0A5DA4BB
+            00559E4D00000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E40
+            0559A1BA73B2DEE571CAF6FF28B1F3FF28B1F3FF28B1F3FF28B1F3FF28B1F3FF
+            28B1F3FF28B1F3FF28B1F3FF28B1F3FF28B1F3FF28B1F3FF6BC8F6FF8EC8ECF2
+            1668ABC000559E57000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E521062A6BD
+            8BC3E7ED73CCF6FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF
+            2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF69C8F5FF
+            9BD1F0F72674B2C500559E640000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E5C1B6AACC09ECFEFF4
+            72CDF7FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF
+            2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF2EB8F4FF
+            64C9F6FFACDAF6FC3E85BECC00559E6900000000000000000000000000000000
+            0000000000000000000000000000000000559E67317BB6C7ADD9F3F870CEF6FF
+            30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
+            30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
+            30BBF4FF5AC8F6FFB6E0F8FD5495C8D300559E6D00559E160000000000000000
+            000000000000000000559E0400559E6C4A8DC2CFBAE2F8FC68CEF7FF33BFF5FF
+            33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF
+            33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF33BFF5FF
+            33BFF5FF33BFF5FF51C8F6FF8AD7F8FF74ACD6DE00559E7900559E2C00000000
+            000000000000000000559E50649FCED6C4E7FAFE9FDEF9FF8CD9F9FF8AD9F9FF
+            6FD2F7FF6FD2F7FF57CCF6FF52CAF6FF41C5F5FF35C2F5FF35C2F5FF35C2F5FF
+            35C2F5FF35C2F5FF35C2F5FF35C2F5FF3AC3F5FF52CAF6FF52CAF6FF6CD1F7FF
+            6FD2F7FF82D7F8FF8CD9F9FF98DCF9FFA9E1FAFF8EBEE1E6065AA1BA00559E06
+            000000000000000000559E181F6CACC0347BB6C64587BDCB629CCBD4649ECCD5
+            89B9DDE389B9DDE3A7CFEAEEADD3EDF1C0E1F6F986DAF8FF38C7F5FF38C7F5FF
+            38C7F5FF38C7F5FF38C7F5FF6AD3F7FFC8E7F9FCADD3EDF1ADD3EDF18EBCDFE4
+            89B9DDE370A7D2D9629CCBD44F8FC2CF347BB6C62B75B2C400559E2C00000000
+            00000000000000000000000000559E1800559E2600559E3300559E4C00559E4D
+            00559E7000559E7000559E8E00559E951161A5BCCCE8F9FC41CCF6FF3ACAF6FF
+            3ACAF6FF3ACAF6FF3ACAF6FFACE4FBFF4184BBCA00559E9500559E9500559E74
+            00559E7000559E5900559E4C00559E3C00559E2600559E200000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559E6C8DB9DCE180DCF9FF3DCDF6FF
+            3DCDF6FF3DCDF6FF5AD3F7FFBEDCF1F300559E9B000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559E1F2B74B1C3C5EDFCFF3FD0F6FF
+            3FD0F6FF3FD0F6FF9EE4FAFF6AA0CCD400559E4F000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E85B1D1E8EB71DDF9FF
+            41D3F7FF4BD5F7FFDAEDF9FB0B5CA2BB00559E08000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E39548FC0CDB7EDFBFF
+            43D6F7FF8FE5FAFF90B9DADE00559E6600000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E0404589FB9D4E7F4F5
+            5FDDF8FFEBF7FDFE2871AEC100559E1900000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E537CAAD0D7
+            A7EDFBFFB7D3E7E900559E810000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E0C1362A5BC
+            EDF5FBFC4F8BBDCA00559E350000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E64
+            7AA8CED500559E64000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E4D00000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000FE0180FFFC07C07FFC0FE07FE00FC007E007C007E00FC007FC07E07F
+            FC03807FFC00007FFE00007FFE0000FFFE0000FFFE0000FFFF0000FFFE0000FF
+            FC00007FF800003FF000001FE0000007800000038000000180000003C0000007
+            FFE00FFFFFE00FFFFFF00FFFFFF01FFFFFF01FFFFFF83FFFFFF83FFFFFFC7FFF
+            FFFEFFFF28000000300000006000000001002000000000008025000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000197ED4022286D706419EE309
+            53B3F00955BBF90952BAFA095CBEF8095FBBF20951AAE8093A96DF092586D907
+            197ED504197ED5011C80D601197ED4021A7FD5042788D9083B98DF0953ADE909
+            5DBBF30957BBF9094EB9FB094FB7F80960BAF1093E9AE109177CD3071C80D601
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000187CD40B2588D8194EAAE81C
+            58B9F51C51B8F91C57B8F51C59B5EF1C49A6E71C298BDA1A197ED513197ED509
+            1D81D6010000000000000000000000001B80D6031A7ED50D177CD4172F90DC1A
+            4BA8E81B55B3F01C52B8F71C53B9F91C64C1F61C44A1E51C1B7FD5191D81D606
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000187CD5172789DA2D54B2EC2E
+            61C1F82E57BAF62E4FAFED2E3899E12E2386D82E1F82D71D1D81D60B1D81D602
+            000000000000000000000000000000001D81D6011D81D6041C81D60F1D81D61B
+            2689D928389AE22E52B2ED2E61C0F52E5EBFF72E44A6E92E2689DA2A1F83D711
+            1B7FD50300000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000001D81D6011C80D50A1F83D82E3295E04759BAF047
+            57B8F1473EA1E7473193DE402184D732187DD4231B80D50F1D81D60100000000
+            0000000000000000000000000000000000000000000000001D81D603197ED50D
+            1A7FD51B2286D8333295DE4545A7E74756B8F2474DB0EE473496E0432084D828
+            1A7ED50C00000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000001
+            0000000200000004000000060B2D4B0E135A972A2073B5543085BF6C3F92C56C
+            3488C36A1F77BE5C1770BB3C166CB71E1767AA05000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000001
+            08203504166CB6231670BD4A2179C062378DC86B3C90C36D3082BB6C1B6AAB5D
+            115189300000000D000000080000000500000002000000010000000100000000
+            0000000000000000000000000000000000000000000000000000000000000001
+            0000000200000006000000090A2A46151357923A2170AE6E2B7CB6872373B087
+            1C6CAD7A1662A34C114A7A1A0C33550A0A2A4603000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000100000002
+            000000040C31510D135891291869AD591C6FB3852979B5872D7CB4881B69A988
+            13589352000000140000000E0000000800000004000000010000000100000000
+            0000000000000000000000000000000000000000000000000000000000000001
+            00000003000000070000000B051626160E3F6A2E17609B661D67A2821459936E
+            114F84520D3C652C0000000F0000000800000002000000010000000000000000
+            0000000000000000000000000000000000000000000000000000000100000002
+            000000050000000A05132113114B7C331257935A1963A07C1E69A488145B9574
+            1044724100000019000000120000000A00000005000000010000000100000000
+            0000000000000000000000000000000000000000000000000000000000000001
+            0000000200000005000000080000000E0015271803579EC703559AAF03488360
+            00000018000000120000000B0000000600000002000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000100000002
+            00000004000000070000000B00000010000000140753947804569CBA03569CC4
+            0013231B000000120000000D0000000700000003000000010000000100000000
+            0000000000000000000000000000000000000000000000000000000000000001
+            00000001000000030000000500000008003C70230D64A9C63EA2E1F0156EB2CD
+            0051968B00498841000000070000000300000001000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000001
+            000000020000000400000007004D904C005299961B77BAD141A6E4F302569DBF
+            001A32130000000A000000070000000400000002000000010000000100000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559EAF4DB2EDFB43AFF1FF
+            3EA0DEEA136BB1C500559E7700559E2B00000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000559E3800559E841671B5C843A5E3EF3FACF1FF46A9E6F200559E9A
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E8E45A6E2EE249EF0FF
+            2FA4F0FF4AB2F1FF3C9BD9E51067ADC200559E6E00559E220000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E2B
+            00559E77146DB2C541A1DEEA47B0F1FF2CA2F0FF2CA2F0FF3D9CDAE600559E79
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E6E3B97D6E232A6F1FF
+            1698F0FF1698F0FF34A7F1FF58B7F1FD3B97D6E20B62A8BF00559E6700559E16
+            000000000000000000000000000000000000000000559E2200559E6E1167ADC2
+            3F9CDAE54CB3F2FF31A5F1FF1698F0FF1698F0FF3AAAF1FF2F8BCCD900559E56
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E4C2D86C7D442ADF1FF
+            1799F0FF1799F0FF1799F0FF199AF0FF3AAAF1FF5CB9F0FC3993D1DE075DA5BC
+            00559E6300559E0C0000000000559E1900559E670C62A8BF3E99D6E25DBAF1FE
+            37A8F1FF1799F0FF1799F0FF1799F0FF1799F0FF4BB2F1FF1F78BACB00559E33
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E291A71B4C753B7F2FF
+            189BF1FF189BF1FF189BF1FF189BF1FF189BF1FF1C9DF1FF40AEF2FF5FB9EEFB
+            368FCDD9055AA2BB00559E6C085DA5BC3D96D3DE61BCF0FC3DACF1FF199BF1FF
+            189BF1FF189BF1FF189BF1FF189BF1FF189BF1FF5CBBF2FF0D62A8BF00559E13
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E0B075CA3BB68BFF2FE
+            1A9DF1FF199DF1FF199DF1FF199DF1FF199DF1FF199DF1FF199DF1FF22A1F1FF
+            45B0F2FF62B9EDF8449BD6E164BBEFFB43B0F2FF1D9FF1FF199DF1FF199DF1FF
+            199DF1FF199DF1FF199DF1FF199DF1FF20A0F1FF63BAEEF900559EAB00000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E9F63B6EAF5
+            27A3F1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF
+            1B9EF1FF23A1F1FF3FADF2FF20A0F1FF1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF
+            1B9EF1FF1B9EF1FF1B9EF1FF1B9EF1FF32A8F2FF57ABE1EC00559E8800000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E7D56A8DEE8
+            39ACF2FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF
+            1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF
+            1CA0F1FF1CA0F1FF1CA0F1FF1CA0F1FF44B1F2FF4A9CD5DF00559E6700000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E5D4697D0DB
+            4DB5F3FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF
+            1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF
+            1EA2F1FF1EA2F1FF1EA2F1FF1EA2F1FF59BAF3FF3688C4D200559E4500000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E3A3082BFCE
+            63BEF4FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF
+            1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF
+            1FA4F2FF1FA4F2FF1FA4F2FF1FA4F2FF6FC3F4FF1F71B3C500559E2500000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E181468ABC0
+            7BCAF5FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF
+            21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF21A7F2FF
+            21A7F2FF21A7F2FF21A7F2FF23A8F2FF85CCF4FD0459A1BA00559E0600000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559EAF
+            88CBF2FB28ABF2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF
+            22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF22A9F2FF
+            22A9F2FF22A9F2FF22A9F2FF35B0F3FF7BBFEAF200559E9A0000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E8E
+            7ABBE6EE3FB4F3FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF
+            24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF24ABF2FF
+            24ABF2FF24ABF2FF24ABF2FF4DB9F3FF69ADDCE500559E770000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E6C3E89C2CF
+            99D4F6FD29AEF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF
+            26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF26ADF3FF
+            26ADF3FF26ADF3FF26ADF3FF2DAFF3FF94D0F3FB2D7BB8C900559E6700000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E6C458EC4D1A1D8F7FE
+            47BAF4FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF
+            27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF27B0F3FF
+            27B0F3FF27B0F3FF27B0F3FF27B0F3FF52BEF5FF9ED6F6FC3480BBCA00559E67
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559E6D4B92C7D3A5DAF7FE46BBF4FF
+            29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF
+            29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF
+            29B2F3FF29B2F3FF29B2F3FF29B2F3FF29B2F3FF52BFF5FFA2D8F6FC3A84BDCC
+            00559E6900000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000559E0400559E6D5296CAD47BCEF6FF46BCF4FF2BB4F3FF
+            2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF
+            2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF
+            2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF2BB4F3FF52C0F5FFA8DBF7FD
+            4088C0CE00559E69000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000559E0E00559E6D599ACDD67CCFF7FF46BEF5FF2DB7F4FF2DB7F4FF
+            2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF
+            2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF
+            2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF2DB7F4FF52C2F5FF
+            ADDCF8FD468CC2CF00559E6C0000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E1500559E6D65A3D2DA7DD0F7FF44BFF5FF2EB9F4FF2EB9F4FF2EB9F4FF
+            2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF
+            2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF
+            2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF2EB9F4FF
+            51C3F5FFB3DFF8FE4D91C5D100559E6C00000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E19
+            00559E6D6EA8D5DD81D2F7FF3FBFF5FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
+            30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
+            30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
+            30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF30BBF4FF
+            30BBF4FF50C4F5FFB8E1F8FE5696C9D400559E6D00559E040000000000000000
+            00000000000000000000000000000000000000000000000000559E1F00559E6D
+            75AED8DE84D5F8FF3CC1F5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF
+            32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF
+            32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF
+            32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF32BEF5FF
+            32BEF5FF32BEF5FF4EC5F6FF87D6F8FF5F9DCDD600559E6D00559E0900000000
+            000000000000000000000000000000000000000000559E2300559E707FB3DBE1
+            88D7F8FF3BC2F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF
+            34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF
+            34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF
+            34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF34C0F5FF
+            34C0F5FF34C0F5FF34C0F5FF4BC7F6FF88D7F8FF68A2D0D900559E6D00559E0E
+            000000000000000000000000000000000000000000559E7085B7DDE3A9E1FAFF
+            9ADDF9FF8CD9F9FF71D2F7FF63CFF7FF52CAF6FF38C3F5FF35C2F5FF35C2F5FF
+            35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF
+            35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF
+            35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF35C2F5FF3EC4F5FF
+            52CAF6FF66D0F7FF74D3F8FF8CD9F9FF9DDEF9FFABE1FAFF6FA7D3DA00559E5A
+            000000000000000000000000000000000000000000559E2303579FB9347BB6C6
+            4C8DC1CE619CCBD486B7DCE297C4E4E8ABD3EDF1C8E8FAFDC1E8FBFFADE3FAFF
+            96DDF9FF8ADAF8FF72D4F7FF5FD0F7FF3EC8F5FF37C5F5FF37C5F5FF37C5F5FF
+            37C5F5FF37C5F5FF37C5F5FF37C5F5FF37C5F5FF37C5F5FF37C5F5FF37C5F5FF
+            41C9F5FF62D1F7FF72D4F7FF8DDBF9FF9ADEF9FFADE3FAFFC5E9FBFFC1E4F7FB
+            ABD3EDF192C0E2E782B4DAE0619CCBD44789BECC3079B4C500559E6D00559E0E
+            00000000000000000000000000000000000000000000000000559E0400559E26
+            00559E3A00559E4C00559E6E00559E8000559E9500559EB51061A5BC357CB6C6
+            5995C7D16BA2CFD78BBADDE3A3CBE8ECC9E6F8FC49CCF7FF39C8F6FF39C8F6FF
+            39C8F6FF39C8F6FF39C8F6FF39C8F6FF39C8F6FF39C8F6FF39C8F6FF5CD0F7FF
+            C4E3F6FA9FC9E6EA8BBADDE3669FCCD55391C3CF357CB6C60A5CA2BB00559EAF
+            00559E9500559E7B00559E6A00559E4C00559E3600559E250000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E0C00559E26
+            00559E4300559E5200559E7000559E8877AAD4DA8BDDF9FF3ACAF6FF3ACAF6FF
+            3ACAF6FF3ACAF6FF3ACAF6FF3ACAF6FF3ACAF6FF3ACAF6FF3ACAF6FF9DE1FAFF
+            5A96C7D100559E8400559E7000559E4D00559E3F00559E2600559E0800000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000559E0E1161A5BCCFE8F8FB45CEF6FF3CCCF6FF
+            3CCCF6FF3CCCF6FF3CCCF6FF3CCCF6FF3CCCF6FF3CCCF6FF59D3F7FFC2E0F3F6
+            03579FB900559E04000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559E6385B3D8DE8DDFF9FF3DCEF6FF
+            3DCEF6FF3DCEF6FF3DCEF6FF3DCEF6FF3DCEF6FF3DCEF6FF9CE2FAFF699FCCD4
+            00559E5600000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000559E161766A8BEDAEEFBFC45D1F6FF
+            3FD0F6FF3FD0F6FF3FD0F6FF3FD0F6FF3FD0F6FF55D5F7FFCEE6F6F7075AA1BA
+            00559E0600000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E6A91BBDBE08EE2FAFF
+            40D2F7FF40D2F7FF40D2F7FF40D2F7FF40D2F7FF9AE5FAFF77A9D1D800559E5A
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000000000000000000000559E1E1F6BABC0E2F3FCFD
+            46D5F7FF42D4F7FF42D4F7FF42D4F7FF51D7F8FFD8ECF7F90E5FA4BB00559E0B
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E73A0C3E0E3
+            8DE4FAFF43D6F7FF43D6F7FF43D6F7FF9BE7FAFF86B1D5DB00559E5F00000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000559E262B73B0C2
+            EBF7FDFE46D8F7FF44D8F7FF4EDAF7FFE3F1FAFB1362A5BC00559E1100000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E79
+            ABCBE3E68BE6FAFF45D9F7FF9BE9FBFF91B8D9DE00559E630000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000559E2C
+            367AB4C5D5F5FDFF4CDCF8FFEDF6FCFC1A67A8BE00559E160000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E81B9D4E7E998EBFBFF9DBFDCE000559E6A000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00559E354282B8C7F4F9FDFD266FADC000559E1E000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000559E696E9FCAD200559E6900000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000559E450000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            000000000000000000000000FFC0000007FF0000FFC0038007FF0000FFC00780
+            03FF0000FF000FE003FF0000F0003FF0000F0000F0003FE0000F0000F0001FE0
+            000F0000F0003FE0000F0000F0003FF0000F0000FFC07FFC07FF0000FFC01FF0
+            07FF0000FFC007C007FF0000FFC0010007FF0000FFC0000007FF0000FFC00000
+            0FFF0000FFE000000FFF0000FFE000000FFF0000FFE000000FFF0000FFE00000
+            0FFF0000FFE000000FFF0000FFF000001FFF0000FFF000001FFF0000FFE00000
+            0FFF0000FFC0000007FF0000FF80000003FF0000FE00000001FF0000FC000000
+            00FF0000F8000000007F0000F0000000001F0000E0000000000F0000C0000000
+            00070000C000000000070000C000000000070000E0000000001F0000FFE00000
+            0FFF0000FFFF0001FFFF0000FFFF8003FFFF0000FFFF8003FFFF0000FFFFC007
+            FFFF0000FFFFC007FFFF0000FFFFE00FFFFF0000FFFFE00FFFFF0000FFFFF01F
+            FFFF0000FFFFF01FFFFF0000FFFFF83FFFFF0000FFFFF83FFFFF0000FFFFFC7F
+            FFFF0000FFFFFEFFFFFF0000}
+          ShowHint = True
+          OnClick = iupdateClick
+          ExplicitWidth = 32
         end
       end
     end
@@ -8392,8 +8568,8 @@
     PipeServer = '.'
     SendTimeout = 20000
     OnError = npcError
-    Left = 32
-    Top = 640
+    Left = 48
+    Top = 616
   end
   object Timer3: TTimer
     Interval = 60000
@@ -8414,7 +8590,7 @@
     Left = 728
     Top = 688
     Bitmap = {
-      494C010106007400A40110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
+      494C010106007400BC0110001000D8FEFE00FF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       000000000000000000000000000000000000504E4EFF504E4EFF504E4EFF2928
       2883000000000000000000000000000000000000000000000000000000000000

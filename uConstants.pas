@@ -195,15 +195,12 @@ type
     emailverarbeitung = 1;
     bildverarbeitung  = 2;
     scandokument      = 3;
-    // fmypath = showspecialFolder(CSIDL_LOCAL_APPDATA) + '\ScannerProgramm' ;
-    // ShellAufruf = '/C plink.exe -ssh ' + serverhostname + ' -l ' + serveruser +' -L '
-    // + serverlocalhostPort;
-    ShellAufruf = '/C plink.exe -ssh linuxdb';
+    ShellAufruf       = '/C plink.exe -ssh linuxdb';
 
     scannerverzeichnis = 'scanner\';
 
     keinedokumentetext = 'Keine Dokumente im Sammelverzeichnis';
-    programmname       = 'ScannerProgramm';
+    programmname       = 'Dokumentverwaltung';
 
     editmaskdatum                           = '00/00/00;';
     dokumentarten: array [0 .. 5] of string = (zwischenablesung, sonstiges,

@@ -181,7 +181,7 @@ type
     NxDBImageColumn4: TNxDBImageColumn;
     NxDBMemoColumn5: TNxDBMemoColumn;
     NxDBTextColumn19: TNxDBTextColumn;
-    // framen: Tframeenergie;
+    // framen: Tframeenergie;                          tabange
     // vollenergie: Tframeenergie;
     tabvollnutzer: TNxTabSheet;
     vollnutzer: Tframebase;
@@ -306,8 +306,6 @@ type
     IStatusok: TImage;
     iSTAtusfalse: TImage;
     lprogress: TLabel;
-    piupdate: TPanel;
-    iupdate: TImage;
     tabvertrag: TNxTabSheet;
     NxPanel9: TNxPanel;
     gridverträge: TNextDBGrid;
@@ -328,6 +326,8 @@ type
     NxDBImageColumn9: TNxDBImageColumn;
     NxDBImageColumn8: TNxDBImageColumn;
     framebasefilter1: Tframebasefilter;
+    piupdate: TPanel;
+    iupdate: TImage;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -553,6 +553,7 @@ type
     procedure framebasefilter1eselpeExit(Sender: TObject);
     procedure framebasefilter1eselaeExit(Sender: TObject);
     procedure framebasefilter1eseldiExit(Sender: TObject);
+    procedure framezwifiltercselaeChange(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -1015,7 +1016,7 @@ begin
   for Dateiname in dateilist do begin
     if Dateiname = '' then continue;
     tmp     := ReplaceStr(Dateiname, '/', '\\');
-    tmpfile := gettmpfile('Scannerprogramm', ExtractFileName(tmp));
+    tmpfile := gettmpfile(dokcons.programmname, ExtractFileName(tmp));
     if not FileExists(tmpfile) then begin
       formftp.getFile(tmp, tmpfile);
     end;
@@ -1048,7 +1049,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.queryangebote.Open;
     setfilter(formdb.queryangebote);
-    SetGridColumnWidths(gridangebote);
+//    SetGridColumnWidths(gridangebote);
     // filldb(formdb.dsangebote, gridangebote);
   except
     // on e: Exception do showmessage(e.Message);
@@ -1073,7 +1074,7 @@ begin
     formdb.queryen.Open;
 
     setfilter(formdb.queryen);
-    SetGridColumnWidths(gridenergie);
+//    SetGridColumnWidths(gridenergie);
   except
     // on e: Exception do showmessage(e.Message);
 
@@ -1795,12 +1796,12 @@ procedure Tformmain.FormCreate(Sender: TObject);
 var
   list: TStringList;
 begin
-//  connectwithplink;
+  // connectwithplink;
   connectToPipe;
   list := TStringList.Create;
 
   dokcons := tconst.Create;
-  try ListFileDir(getCollectorfolder('Scannerprogramm'), list);
+  try ListFileDir(getCollectorfolder(dokcons.programmname), list);
   except
     showmessage('collectorfolder');
     ;
@@ -1880,6 +1881,15 @@ var
   path: string;
   anz : string;
 begin
+  pagermain.ActivePage := tabspeichern;
+
+  pagermain.ShowTabs         := false;
+  ptabellen.ShowTabs         := false;
+  pagerspeicher.ShowTabs     := false;
+  pagerspeicher.ActivePage   := LEER;
+  pvollbilder.ActivePage     := leer2;
+  pvollbilder.ShowTabs       := false;
+  framen.flipadress.Expanded := false;
   with dokcons do begin
     listposteingang        := TStringList.Create;
     listpostausgang        := TStringList.Create;
@@ -1888,11 +1898,11 @@ begin
     formmain.Width         := 1500;
     iueber.Left            := 1500 - 40;
     ieinstellungen.Left    := 1500 - 80;
-    path                   := getLocalFolder('Scannerprogramm');
+    path                   := getLocalFolder(dokcons.programmname);
     procidbfw              := -1;
     // piupdate.Visible := worker.checkUpdate;
     try
-      if not FileExists(getinifile('Scannerprogramm', inidatei)) then begin
+      if not FileExists(getinifile(dokcons.programmname, inidatei)) then begin
         if not assigned(Einstellungen) then
             Einstellungen := TEinstellungen.Create(self);
         showeinstellungen;
@@ -1905,21 +1915,21 @@ begin
       exit;
     end;
     setzwitab;
-    scanvz := readfromini(getinifile('Scannerprogramm', inidatei), 'Section',
+    scanvz := readfromini(getinifile(dokcons.programmname, inidatei), 'Section',
       'Verzeichnis', default_value);
-    kn := readfromini(getinifile('Scannerprogramm', inidatei), 'Section',
+    kn := readfromini(getinifile(dokcons.programmname, inidatei), 'Section',
       'Kundennummer', default_value);
-    sb := readfromini(getinifile('Scannerprogramm', inidatei), 'Section',
+    sb := readfromini(getinifile(dokcons.programmname, inidatei), 'Section',
       'Sachbearbeiter', default_value);
-    passwort := readfromini(getinifile('Scannerprogramm', inidatei), 'Section',
-      'Passwort', default_value);
+    passwort := readfromini(getinifile(dokcons.programmname, inidatei),
+      'Section', 'Passwort', default_value);
     // digverz := readfromini(getinifile(inidatei), 'Section', 'Digverzeichnis',
     // default_value);
-    bfwpfad := readfromini(getinifile('Scannerprogramm', inidatei), 'Section',
-      'bfwpfad', default_value);
-    postausgverz := readfromini(getinifile('Scannerprogramm', inidatei),
+    bfwpfad := readfromini(getinifile(dokcons.programmname, inidatei),
+      'Section', 'bfwpfad', default_value);
+    postausgverz := readfromini(getinifile(dokcons.programmname, inidatei),
       'Section', 'Postausgang', default_value);
-    anz := readfromini(getinifile('Scannerprogramm', inidatei), 'Section',
+    anz := readfromini(getinifile(dokcons.programmname, inidatei), 'Section',
       'Idanzeigen', '0');
     if anz = '0' then idanzeigen := false
     else idanzeigen              := true;
@@ -1930,7 +1940,7 @@ begin
       bfwpfad := getbfwpfad;
       writeToIni(programmname, inidatei, bfwpfad);
     end;
-    anz := readfromini(getinifile('Scannerprogramm', inidatei), 'Section',
+    anz := readfromini(getinifile(dokcons.programmname, inidatei), 'Section',
       'Splitnumber', '0');
     if anz = '0' then dosplitnumber                   := false
     else dosplitnumber                                := true;
@@ -1943,7 +1953,7 @@ begin
     // Zugangsberechtigungen anlegen
     getsettings;
 
-    if not FileExists(getauftragsdaten('Scannerprogramm')) then begin
+    if not FileExists(getauftragsdaten(dokcons.programmname)) then begin
       worker.setauftragsdaten;
     end;
 
@@ -1954,15 +1964,6 @@ begin
 
     getallids;
 
-    pagermain.ActivePage := tabspeichern;
-
-    pagermain.ShowTabs         := false;
-    ptabellen.ShowTabs         := false;
-    pagerspeicher.ShowTabs     := false;
-    pagerspeicher.ActivePage   := LEER;
-    pvollbilder.ActivePage     := leer2;
-    pvollbilder.ShowTabs       := false;
-    framen.flipadress.Expanded := false;
   end;
 end;
 
@@ -2808,6 +2809,11 @@ begin
   end;
 end;
 
+procedure Tformmain.framezwifiltercselaeChange(Sender: TObject);
+begin
+
+end;
+
 // ###############################################
 procedure Tformmain.framezwifiltereselaeExit(Sender: TObject);
 
@@ -3551,7 +3557,7 @@ var
 begin
   versionsnummer := GetCurrentVersion;
   aenderungen    := TStringList.Create;
-  aenderungen.LoadFromFile(getaenderungsfile('Scannerprogramm'));
+  aenderungen.LoadFromFile(getaenderungsfile(dokcons.programmname));
   for line in aenderungen do begin
     aenderungsmessage := aenderungsmessage + #10#13 + line;
   end;
@@ -3704,7 +3710,7 @@ begin
       listpostausgang.Strings[lbausgang.ItemIndex];
 
   if (AnsiLowerCase(ExtractFileExt(abspath)) = '.pdf') then
-      abspath := copytotmp('Scannerprogramm', abspath);
+      abspath := copytotmp(dokcons.programmname, abspath);
   ShellExecute(Handle, 'open', pchar(abspath), nil, nil, SW_SHOWNORMAL)
 end;
 
@@ -4341,6 +4347,7 @@ begin
         end;
       Vertragsint: begin
           framevert.enutzernummer.Clear;
+          framevert.cbvertrag.ItemIndex := -1;
         end;
       Angebotsint: begin
           frameangebot.enutzernummer.Clear;
@@ -4602,7 +4609,7 @@ begin
     self.sb           := sb;
     self.scanvz       := vzscan;
     self.postausgverz := vzpost;
-    writeToIni('Scannerprogramm', inidatei, pw, kn, sb, vzscan, vzpost,
+    writeToIni(dokcons.programmname, inidatei, pw, kn, sb, vzscan, vzpost,
       shownumber, splitno);
     lsachbearbeiter.Caption := 'Sachbearbeiter: ' + sb;
     lkundennummer.Caption   := 'Kundennummer: ' + kn;
@@ -5099,7 +5106,7 @@ begin
       formdb.querymon.Open;
       setfilter(formdb.querymon);
     end;
-    SetGridColumnWidths(gridmon);
+//    SetGridColumnWidths(gridmon);
   except
 
     // on e: Exception do showmessage(e.Message);
@@ -5134,7 +5141,7 @@ begin
 
       end;
       setfilter(formdb.querynuliste);
-      SetGridColumnWidths(gridnutzerliste);
+//      SetGridColumnWidths(gridnutzerliste);
       // filldb(formdb.dsnuliste, gridnutzerliste);
     end;
   except
@@ -5158,7 +5165,7 @@ begin
     formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = '
       + kn, list);
     setfilter(formdb.queryrekl);
-    SetGridColumnWidths(gridrek);
+//    SetGridColumnWidths(gridrek);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5178,7 +5185,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.querysonstige.Open;
     setfilter(formdb.querysonstige);
-    SetGridColumnWidths(gridsonstiges);
+//    SetGridColumnWidths(gridsonstiges);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5204,7 +5211,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.queryvert.Open;
     setfilter(formdb.queryvert);
-    SetGridColumnWidths(gridverträge);
+//    SetGridColumnWidths(gridverträge);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5226,7 +5233,7 @@ begin
       dokcons.view_anforderungen + ' WHERE kundennummer = ' + kdnr;
     formdb.queryanforderungen.Open;
     setfilter(formdb.queryanforderungen);
-    SetGridColumnWidths(gridanforderungen);
+//    SetGridColumnWidths(gridanforderungen);
   except
     // on e: Exception do showmessage(e.Message);
   end; // filldb(formdb.dsanforderungen, gridanforderungen);
@@ -5263,7 +5270,7 @@ begin
   end;
   // filldb(formdb.dszwi, gridzwi);
   setfilter(formdb.queryzwi);
-  SetGridColumnWidths(gridzwi);
+//  SetGridColumnWidths(gridzwi);
 
 end;
 
@@ -5582,7 +5589,7 @@ begin
   // if not assigned(ptabellen) then exit;
 
   showzwischenablesungen;
-  SetGridColumnWidths(gridzwi);
+//  SetGridColumnWidths(gridzwi);
   // try showzwischenablesungen;
   // except
   // on e: Exception do begin
@@ -5642,8 +5649,8 @@ begin
   except outputdebugstring('kein Focus');
   end;
   list := TStringList.Create;
-  if FileExists(getauftragsdaten('Scannerprogramm')) then
-      list.LoadFromFile(getauftragsdaten('Scannerprogramm'));
+  if FileExists(getauftragsdaten(dokcons.programmname)) then
+      list.LoadFromFile(getauftragsdaten(dokcons.programmname));
   try
     frameauf.cbselectauftrag.Items.Clear;
 
@@ -5745,7 +5752,7 @@ var
 begin
   list := TStringList.Create;
   try
-    ListFileDir(getCollectorfolder('Scannerprogramm'), list);
+    ListFileDir(getCollectorfolder(dokcons.programmname), list);
     if (list.Count = 0) then exit;
     sendingel := worker.createrescue(list[0]);
     npc.Send(sendingel);

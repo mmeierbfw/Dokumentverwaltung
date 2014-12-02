@@ -66,6 +66,7 @@ var
   stream       : TStringStream;
   test         : string;
   kundennummern: TList<Integer>;
+  printpclpath: string;
 begin
   kundennummern := TList<Integer>.Create;
   STR           := TMemoryStream.Create();
@@ -102,10 +103,13 @@ begin
     passw         := passw + XZFRTWert[9];
     passw         := passw + XZFRTWert[10];
 
-    apppath := includetrailingpathdelimiter(getlocalfolder('Scannerprogramm'));
-
-    stream.LoadFromfile(IncludeTrailingPathDelimiter(ExtractFilePath
-      (Application.ExeName))  + 'printpcl.org');
+    apppath := includetrailingpathdelimiter
+      (getlocalfolder(formmain.dokcons.programmname));
+    printpclpath := includetrailingpathdelimiter
+      (ExtractFilePath(Application.ExeName)) + 'printpcl.org';
+//      showmessage(printpclpath);
+    stream.LoadFromfile(includetrailingpathdelimiter
+      (ExtractFilePath(Application.ExeName)) + 'printpcl.org');
     test      := stream.DataString;
     sOriginal := VernamCode(test, passw);
     outputdebugstring(pchar(sOriginal));

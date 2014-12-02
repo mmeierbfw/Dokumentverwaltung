@@ -1,17 +1,16 @@
 inherited framezwischen: Tframezwischen
-  Width = 1008
-  Height = 590
+  ExplicitWidth = 1008
+  ExplicitHeight = 590
   inherited gridpanel: TGridPanel
     Width = 1008
     Height = 590
     ExplicitWidth = 451
     ExplicitHeight = 304
     inherited Panel5: TPanel
+      Width = 439
+      Height = 699
       ExplicitWidth = 219
       ExplicitHeight = 296
-      inherited lfiletype: TLabel
-        Height = 541
-      end
       inherited Label45: TLabel
         Top = 301
         ExplicitTop = 301
@@ -54,7 +53,7 @@ inherited framezwischen: Tframezwischen
       end
       inherited dtabrechnungsende: tfmaskedit
         Top = 301
-        TabOrder = 14
+        TabOrder = 12
         ExplicitTop = 301
       end
       inherited dtposteingang: tfmaskedit
@@ -97,7 +96,7 @@ inherited framezwischen: Tframezwischen
         Font.Style = []
         MaxLength = 8
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 10
         Text = '  .  .  '
         TabOnEnter = True
         FontColorOnEnter = 10252872
@@ -121,7 +120,7 @@ inherited framezwischen: Tframezwischen
         Font.Style = []
         MaxLength = 8
         ParentFont = False
-        TabOrder = 12
+        TabOrder = 11
         Text = '  .  .  '
         TabOnEnter = True
         FontColorOnEnter = 10252872
@@ -163,10 +162,7 @@ inherited framezwischen: Tframezwischen
         TabOrder = 7
         ExplicitTop = 301
       end
-      inherited pinfo: TPanel
-        TabOrder = 10
-      end
-      object eauszug: TfEdit [23]
+      object eauszug: TfEdit
         Tag = 1
         Left = 321
         Top = 207
@@ -194,7 +190,7 @@ inherited framezwischen: Tframezwischen
         ColorFocused = 10252872
         ColorNotFocused = 6908265
       end
-      object eablesedatum: TfEdit [24]
+      object eablesedatum: TfEdit
         Tag = 1
         Left = 321
         Top = 231
@@ -222,13 +218,11 @@ inherited framezwischen: Tframezwischen
         ColorFocused = 10252872
         ColorNotFocused = 6908265
       end
-      inherited UpDown1: TUpDown
-        Top = 324
-        TabOrder = 15
-        ExplicitTop = 324
-      end
     end
     inherited rightparent: TPanel
+      Left = 449
+      Width = 440
+      Height = 699
       ExplicitLeft = 229
       ExplicitWidth = 220
       ExplicitHeight = 296

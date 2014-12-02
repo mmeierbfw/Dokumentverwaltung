@@ -95,7 +95,7 @@ constructor TWorker.Create;
 begin
 
   // pad zum erstellen temporärer Dateien in appdata...
-  fmypath          := getLocalFolder('Scannerprogramm');
+  fmypath          := getLocalFolder(formmain.dokcons.programmname);
   col              := TCollector.Create();
   ftpcollectorlist := TStringList.Create;
 
@@ -202,11 +202,12 @@ begin
   try
     screen.Cursor := crHourGlass;
     if formftp.downloadsetup(formmain.dokcons.setupdirection,
-      getsetuplocation('Scannerprogramm')) then
+      getsetuplocation(formmain.dokcons.programmname)) then
 
       // begin
         ShellExecute(Application.Handle, 'open',
-        pchar(getsetuplocation('Scannerprogramm')), nil, nil, SW_SHOWNORMAL);
+        pchar(getsetuplocation(formmain.dokcons.programmname)), nil, nil,
+        SW_SHOWNORMAL);
     formmain.Close;
     // end
     // else Showmessage('nicht so einfach');
@@ -267,7 +268,7 @@ var
 begin
   if formftp = nil then formftp := Tformftp.Create(nil);
 
-  localloc  := gettmpversion('Scannerprogramm');
+  localloc  := gettmpversion(formmain.dokcons.programmname);
   serverloc := formmain.dokcons.serverversionsdatei;
 
   if formftp.getversioninfo(serverloc, localloc) then Result := compareversions
@@ -285,7 +286,7 @@ var
 begin
   list := TStringList.Create;
   try
-    list.loadfromfile(gettmpversion('Scannerprogramm'));
+    list.loadfromfile(gettmpversion(formmain.dokcons.programmname));
     serverversion      := list[0];
   except serverversion := '1.0.0';
 
@@ -368,7 +369,7 @@ begin
   path               := tp + '\' + k + '\' + l + '\' + t + '\' + j + '\';
   // showmessage(path);
   abspath := includetrailingpathdelimiter
-    (getCollectorfolder('Scannerprogramm')) + item;
+    (getCollectorfolder(formmain.dokcons.programmname)) + item;
   newfilename := includetrailingpathdelimiter(path) + item;
   Result      := 'SET ' + abspath + '^' + newfilename;
   // formmain.npc.Send(str);
@@ -501,7 +502,7 @@ begin
   localloc := 'c:\Users\jovani\Pictures\setup.exe';
   {$ENDIF}
   {$IFDEF release}
-  localloc := getlocalsetupdirection('Scannerprogramm');
+  localloc := getlocalsetupdirection(formmain.dokcons.programmname);
   {$ENDIF}
   if not formftp.getupdate(serverloc, localloc) then begin
     showmessage('update konnte nicht heruntergeladen werden');
@@ -557,7 +558,7 @@ var
   lastminute: TStringList;
 begin
 
-  collectdir := getCollectorfolder('Scannerprogramm');
+  collectdir := getCollectorfolder(formmain.dokcons.programmname);
   abspath    := includetrailingpathdelimiter(collectdir) +
     extractfilename(newfilename);
   if copyfile(pchar(originaldocument), pchar(abspath), true) then begin
@@ -602,12 +603,12 @@ function TWorker.setauftragsdaten: boolean;
 var
   list: TStringList;
 begin
-  if FileExists(getauftragsdaten('Scannerprogramm')) then exit;
+  if FileExists(getauftragsdaten(formmain.dokcons.programmname)) then exit;
   list := TStringList.Create;
   list.Add('Zwischenablesung');
   list.Add('Montage');
   list.Add('Reklamation');
-  list.SaveToFile(getauftragsdaten('Scannerprogramm'));
+  list.SaveToFile(getauftragsdaten(formmain.dokcons.programmname));
 end;
 
 function TWorker.getnutzerdaten(nutzernummer, kundennummer,
@@ -638,7 +639,7 @@ var
 begin
   if not formmain.dokcons.goOnline then AssignFile(myfile, filepath)
   else begin
-    scannedDocument := getLocalFolder('Scannerprogramm') + 'tmp.txt';
+    scannedDocument := getLocalFolder(formmain.dokcons.programmname) + 'tmp.txt';
     scanneddocuments.Add(scannedDocument);
   end;
 
