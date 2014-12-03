@@ -28,8 +28,6 @@ type
   Tformmain = class(TForm)
     pmiddle: TPanel;
     prahmen: TPanel;
-    ieinstellungen: TImage;
-    iueber: TImage;
     Timer1: TTimer;
     pleft: TPanel;
     pfilebox: TFlowPanel;
@@ -47,15 +45,12 @@ type
     Panel21: TPanel;
     Label8: TLabel;
     bentfernen: TNxButton;
-    lsachbearbeiter: TLabel;
-    lkundennummer: TLabel;
     lpverarbeitungsart: TLabel;
     lhochruntergeladen: TLabel;
     Timer2: TTimer;
     npc: TFNpipeClient;
     Timer3: TTimer;
     lsammelverzeichnis: TLabel;
-    cbid: TCheckBox;
     TrayIcon1: TTrayIcon;
     ImageList1: TImageList;
     pagermain: TNxPageControl;
@@ -328,6 +323,12 @@ type
     framebasefilter1: Tframebasefilter;
     piupdate: TPanel;
     iupdate: TImage;
+    Panel11: TPanel;
+    ieinstellungen: TImage;
+    iueber: TImage;
+    cbid: TCheckBox;
+    lkundennummer: TLabel;
+    lsachbearbeiter: TLabel;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -554,6 +555,7 @@ type
     procedure framebasefilter1eselaeExit(Sender: TObject);
     procedure framebasefilter1eseldiExit(Sender: TObject);
     procedure framezwifiltercselaeChange(Sender: TObject);
+    procedure lliegenschaftsdatenClick(Sender: TObject);
 
     // procedure vorclick(Sender: TObject);
   private
@@ -833,6 +835,10 @@ var
 begin
 
   header := (Sender as TNextDBGrid).Columns[acol].header.Caption;
+  if strcontains('ablage', AnsiLowerCase(header)) then begin
+    if (Sender as TNextDBGrid).GetColumnByFieldName(header).Field.AsInteger = 0 then Value := '';
+  end;
+
   if strcontains('einzelbild', AnsiLowerCase(header)) then
     try Value := '1';
     except
@@ -1009,7 +1015,7 @@ begin
   // // die Dateinamen ermitteln
   dateilist                 := TStringList.Create;
   dateilist.Delimiter       := ';';
-  dateilist.StrictDelimiter := true;
+  dateilist.StrictDelimiter := True;
   dateilist.DelimitedText   := dat;
 
   // die Datei(en) lokal herunterladen
@@ -1049,7 +1055,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.queryangebote.Open;
     setfilter(formdb.queryangebote);
-//    SetGridColumnWidths(gridangebote);
+    // SetGridColumnWidths(gridangebote);
     // filldb(formdb.dsangebote, gridangebote);
   except
     // on e: Exception do showmessage(e.Message);
@@ -1074,7 +1080,7 @@ begin
     formdb.queryen.Open;
 
     setfilter(formdb.queryen);
-//    SetGridColumnWidths(gridenergie);
+    // SetGridColumnWidths(gridenergie);
   except
     // on e: Exception do showmessage(e.Message);
 
@@ -1126,7 +1132,7 @@ begin
   frame.lfiletype.Caption := 'telefonisch';
   unselect(lbeingang);
   unselect(lbausgang);
-  telefonieren   := true;
+  telefonieren   := True;
   frame.eid.Text := '';
 end;
 
@@ -1144,7 +1150,7 @@ procedure Tformmain.Button1Click(Sender: TObject);
 begin
   pagermain.ActivePage := tabanzeige;
   ptabellen.ActivePage := leer2;
-  ptabellen.ShowTabs   := true;
+  ptabellen.ShowTabs   := True;
 
 end;
 
@@ -1274,14 +1280,14 @@ begin
         cap   := 'Zwischenablesung';
         panelfocus(pz);
         pagerspeicher.ActivePage := sheet;
-        clicked[0]               := true;
+        clicked[0]               := True;
         exit;
       end;
 
     1: begin
         sheet      := TKostenermittlung;
         cap        := 'Nutzerliste / Kostenermittlung';
-        clicked[1] := true;
+        clicked[1] := True;
         panelfocus(pk);
 
         pagerspeicher.ActivePage := sheet;
@@ -1290,7 +1296,7 @@ begin
     2: begin
         sheet      := TMontage;
         cap        := 'Montage';
-        clicked[2] := true;
+        clicked[2] := True;
         panelfocus(pm);
 
         pagerspeicher.ActivePage := sheet;
@@ -1324,7 +1330,7 @@ begin
   end;
   panelfocus(pr);
   pagerspeicher.ActivePage := sheet;
-  clicked[3]               := true;
+  clicked[3]               := True;
   pr.Caption               := cap;
   pr.Color                 := dokcons.hellgrau;
 
@@ -1337,7 +1343,7 @@ var
   cmd: pchar;
 begin
   if isexerunning('ftpcollectui.exe') then begin
-    Result := true;
+    Result := True;
     exit;
   end;
   cmd := pchar(IncludeTrailingPathDelimiter(ExtractFilePath(Application.ExeName)
@@ -1353,7 +1359,7 @@ begin
   Result := false;
   cmd    := 'pnamepipeserver.exe';
   if isexerunning(cmd) then begin
-    Result := true;
+    Result := True;
     exit;
   end;
   try
@@ -1380,7 +1386,7 @@ begin
       (Application.ExeName)) +
       'plink.exe -ssh 148.251.138.2 -l tiffy  -L 3131:127.0.0.1:21 -pw maunze01'),
       sw_hide);
-    Result := true;
+    Result := True;
   except
     begin
       showmessage('plink error');
@@ -1394,7 +1400,7 @@ begin
   Screen.Cursor                := crHourGlass;
   lhochruntergeladen.Caption   := 'heruntergeladen';
   lpverarbeitungsart.Caption   := 'Setup zu ';
-  pverarbeitungsstatus.Visible := true;
+  pverarbeitungsstatus.Visible := True;
   if worker.installupdate then self.close;
   pverarbeitungsstatus.Visible := false;
   Screen.Cursor                := crdefault;
@@ -1410,14 +1416,14 @@ begin
   listBox        := Sender as TFileListBox;
   selectedFile   := listBox.filename;
   setFile(selectedFile);
-  Timer1.Enabled := true;
+  Timer1.Enabled := True;
 
 end;
 
 // -------------------------
 procedure Tformmain.fbscanClick(Sender: TObject);
 begin
-  Timer1.Enabled := true;
+  Timer1.Enabled := True;
   lookforfile;
 end;
 
@@ -1428,7 +1434,7 @@ begin
   try
     dbgrid.BeginUpdate;
     dbgrid.DataSource := ds;
-    Result            := true;
+    Result            := True;
     dbgrid.EndUpdate();
   except Result := false;
   end;
@@ -1591,7 +1597,7 @@ begin
     end;
 
     disablecontrols(voll.Panel5);
-    voll.bsave.Enabled := true;
+    voll.bsave.Enabled := True;
     setliegenschaftsdaten(lg, nn);
 
   end;
@@ -1868,7 +1874,7 @@ begin
         exit;
   end;
 
-  if true then
+  if True then
 
     if Key = #13 then begin
       Perform(WM_NextDlgCtl, 0, 0);
@@ -1894,10 +1900,10 @@ begin
     listposteingang        := TStringList.Create;
     listpostausgang        := TStringList.Create;
     selectedlb             := TListBox.Create(nil);
-    selectedlb.MultiSelect := true;
+    selectedlb.MultiSelect := True;
     formmain.Width         := 1500;
-    iueber.Left            := 1500 - 40;
-    ieinstellungen.Left    := 1500 - 80;
+    iueber.Left            := formmain.Width - 40;
+    ieinstellungen.Left    := formmain.Width - 80;
     path                   := getLocalFolder(dokcons.programmname);
     procidbfw              := -1;
     // piupdate.Visible := worker.checkUpdate;
@@ -1932,7 +1938,7 @@ begin
     anz := readfromini(getinifile(dokcons.programmname, inidatei), 'Section',
       'Idanzeigen', '0');
     if anz = '0' then idanzeigen := false
-    else idanzeigen              := true;
+    else idanzeigen              := True;
     cbid.Checked                 := idanzeigen;
     lausgangsordner.Hint         := postausgverz;
     leingangsordner.Hint         := scanvz;
@@ -1943,7 +1949,7 @@ begin
     anz := readfromini(getinifile(dokcons.programmname, inidatei), 'Section',
       'Splitnumber', '0');
     if anz = '0' then dosplitnumber                   := false
-    else dosplitnumber                                := true;
+    else dosplitnumber                                := True;
     if (scanvz = 'kein wert') then scanvz             := getcommonDocFolder;
     if (postausgverz = 'kein wert') then postausgverz := getcommonDocFolder;
     if kn = 'kein wert' then kn                       := '';
@@ -1960,7 +1966,7 @@ begin
     pagerspeicher.ActivePage := LEER;
     lkundennummer.Caption    := 'Kundennummer: ' + kn;
     lsachbearbeiter.Caption  := 'Sachbearbeiter: ' + sb;
-    allowthread              := true;
+    allowthread              := True;
 
     getallids;
 
@@ -3017,8 +3023,8 @@ begin
     except
       begin
         // laufendeid := '-1';
-        idnotset       := true;
-        Timer4.Enabled := true;
+        idnotset       := True;
+        Timer4.Enabled := True;
       end;
     end;
   end;
@@ -3071,7 +3077,7 @@ begin
       Rootkey := HKEY_LOCAL_MACHINE;
       if OpenKey
         ('SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{DF79F885-40E2-4ABE-8BEA-3CD1F42A90CE}_is1',
-        true) then begin
+        True) then begin
         bfwpfad := Readstring('InstallLocation');
         Result  := bfwpfad;
       end;
@@ -3624,7 +3630,7 @@ begin
   // nur Rechtsklick
   index := lb.ItemIndex; // ins Leere geklickt
   if index < 0 then exit;
-  lb.Selected[index] := true;
+  lb.Selected[index] := True;
   if lb = lbausgang then begin
     list := listpostausgang;
     dir  := postausgverz;
@@ -3691,11 +3697,11 @@ begin
 
   // fid.Text := laufendeid;
 
-  Timer1.Enabled := true;
+  Timer1.Enabled := True;
 
   if not pagerspeicher.Visible then begin
     // fid.Visible := true;
-    pagerspeicher.Visible := true;
+    pagerspeicher.Visible := True;
   end;
 end;
 
@@ -3751,6 +3757,11 @@ begin
   formkunde.Show;
 end;
 
+procedure Tformmain.lliegenschaftsdatenClick(Sender: TObject);
+begin
+
+end;
+
 // ###############################################
 procedure Tformmain.lookforfile;
 var
@@ -3776,14 +3787,14 @@ begin
       (lbeingang.SelCount = 0) and (lbausgang.SelCount = 0))) then begin
       try
 
-        lbeingang.Selected[0] := true;
+        lbeingang.Selected[0] := True;
         lbeingang.ItemIndex   := 0;
         lfiletype.Caption     := lbeingang.Items[0];
         if pagerspeicher.ActivePage = LEER then begin
           ComboBox1.ItemIndex := 0;
           ComboBox1Click(nil);
           lbeingangClick(lbeingang);
-          pagerspeicher.Visible := true;
+          pagerspeicher.Visible := True;
         end;
       except
       end;
@@ -3803,10 +3814,10 @@ begin
   WindowState := wsMinimized;
 
   { Show the animated tray icon and also a hint balloon. }
-  TrayIcon1.Visible := true;
-  TrayIcon1.Animate := true;
+  TrayIcon1.Visible := True;
+  TrayIcon1.Animate := True;
   TrayIcon1.ShowBalloonHint;
-  minimized := true;
+  minimized := True;
 end;
 
 // ###############################################
@@ -4016,7 +4027,7 @@ begin
   dbgrid               := getdb;
 
   dbgrid.selectedRow           := selectedRow;
-  dbgrid.Selected[selectedRow] := true;
+  dbgrid.Selected[selectedRow] := True;
   dbgrid.ScrollToRow(selectedRow);
   gridzwiClick(dbgrid);
 end;
@@ -4141,23 +4152,23 @@ begin
   (Sender as TPanel).BevelKind  := TBevelKind.bkSoft;
   if Sender = pz then begin
     pagerspeicher.ActivePage := TZwischenablesung;
-    clicked[0]               := true;
+    clicked[0]               := True;
     pz.Color                 := dokcons.hellgrau;
   end;
   if Sender = pk then begin
     pagerspeicher.ActivePage := TKostenermittlung;
-    clicked[1]               := true;
+    clicked[1]               := True;
     pk.Color                 := dokcons.hellgrau;
   end;
   if Sender = pm then begin
     pagerspeicher.ActivePage := TMontage;
-    clicked[2]               := true;
+    clicked[2]               := True;
     pm.Color                 := dokcons.hellgrau;
   end;
   if Sender = pr then begin
     if pr.Caption = '' then exit;
     ComboBox1Click(pr);
-    clicked[3] := true;
+    clicked[3] := True;
     pr.Color   := dokcons.hellgrau;
   end;
 
@@ -4244,7 +4255,7 @@ var
   date            : string;
   valid           : Boolean;
 begin
-  valid := true;
+  valid := True;
   Mask  := Sender as TMaskEdit;
   date  := Mask.Text;
   if AnsiStartsText('  ', date) or AnsiStartsText('__', date) then exit;
@@ -4300,7 +4311,7 @@ begin
     try frame.eid.SetFocus;
     except outputdebugstring('kann focus nicht erhalten');
     end;
-    frame.bsave.Enabled          := true;
+    frame.bsave.Enabled          := True;
     frame.lfiletype.Caption      := '';
     frame.eid.Text               := '';
     pdatenrechts.Visible         := false;
@@ -4575,14 +4586,14 @@ begin
     if successful then begin
       resetlisten;
       if idanzeigen then getallids;
-      pimage.Visible    := true;
-      IStatusok.Visible := true;
+      pimage.Visible    := True;
+      IStatusok.Visible := True;
       lliegenschaftsdaten.hide;
       reset(frame);
     end else begin
-      pimage.Visible       := true;
+      pimage.Visible       := True;
       pimage.Caption       := 'nicht gespeichert';
-      iSTAtusfalse.Visible := true;
+      iSTAtusfalse.Visible := True;
     end;
   finally
 
@@ -4596,7 +4607,7 @@ function Tformmain.saveanrufer(anrufer, telefonnummer: string): Boolean;
 begin
   self.anrufer       := anrufer;
   self.telefonnummer := telefonnummer;
-  Result             := true;
+  Result             := True;
 end;
 
 // ###############################################
@@ -4809,7 +4820,7 @@ begin
       else query.filter                      := query.filter + ' AND ' + kvset;
     end;
 
-    query.Filtered := true;
+    query.Filtered := True;
     try query.Refresh;
     except
 
@@ -4846,7 +4857,7 @@ begin
   except
     ;
   end;
-  Result := true
+  Result := True
 end;
 
 // ###############################################
@@ -4887,7 +4898,7 @@ begin
     framen.eestrasse.Text      := '';
     framen.eeort.Text          := '';
     framen.eeplz.Text          := '';
-    framen.flipadress.Expanded := true;
+    framen.flipadress.Expanded := True;
   end;
   // parent := findcomponent(prefix + 'pparent') as TPanel;
   parent              := voll.rightparent;
@@ -4908,7 +4919,7 @@ begin
   dic         := formdb.get(database, wherestring, list);
   if dic.Count = 0 then begin
     pdatenrechts.Caption := 'Diese Liegenschaft existiert nicht';
-    notexisting          := true;
+    notexisting          := True;
     if prefix = 'e' then framen.cbpseudo.Checked := notexisting;
 
     exit;
@@ -4967,7 +4978,7 @@ begin
     framen.eestrasse.Text      := '';
     framen.eeort.Text          := '';
     framen.eeplz.Text          := '';
-    framen.flipadress.Expanded := true;
+    framen.flipadress.Expanded := True;
   end;
   parent              := (frame.rightparent) as TPanel;
   pdatenrechts.parent := parent;
@@ -4987,7 +4998,7 @@ begin
   dic         := formdb.get(database, wherestring, list);
   if dic.Count = 0 then begin
     pdatenrechts.Caption := 'Diese Liegenschaft existiert nicht';
-    notexisting          := true;
+    notexisting          := True;
     if prefix = 'e' then framen.cbpseudo.Checked := notexisting;
 
     exit;
@@ -5021,7 +5032,7 @@ begin
     framen.eestrasse.Text      := estrasse.Caption;
     framen.eeort.Text          := eort.Caption;
     framen.eeplz.Text          := eplz.Caption;
-    framen.flipadress.Expanded := true;
+    framen.flipadress.Expanded := True;
 
     if notexisting then framen.eestrasse.SetFocus;
   end;
@@ -5106,7 +5117,7 @@ begin
       formdb.querymon.Open;
       setfilter(formdb.querymon);
     end;
-//    SetGridColumnWidths(gridmon);
+    // SetGridColumnWidths(gridmon);
   except
 
     // on e: Exception do showmessage(e.Message);
@@ -5141,7 +5152,7 @@ begin
 
       end;
       setfilter(formdb.querynuliste);
-//      SetGridColumnWidths(gridnutzerliste);
+      // SetGridColumnWidths(gridnutzerliste);
       // filldb(formdb.dsnuliste, gridnutzerliste);
     end;
   except
@@ -5165,7 +5176,7 @@ begin
     formdb.doquery(formdb.queryrekl, dokcons.view_rekl, ' WHERE kundennummer = '
       + kn, list);
     setfilter(formdb.queryrekl);
-//    SetGridColumnWidths(gridrek);
+    // SetGridColumnWidths(gridrek);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5185,7 +5196,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.querysonstige.Open;
     setfilter(formdb.querysonstige);
-//    SetGridColumnWidths(gridsonstiges);
+    // SetGridColumnWidths(gridsonstiges);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5211,7 +5222,7 @@ begin
       ' WHERE kundennummer = ' + kdnr;
     formdb.queryvert.Open;
     setfilter(formdb.queryvert);
-//    SetGridColumnWidths(gridverträge);
+    // SetGridColumnWidths(gridverträge);
   except
     // on e: Exception do showmessage(e.Message);
   end;
@@ -5233,7 +5244,7 @@ begin
       dokcons.view_anforderungen + ' WHERE kundennummer = ' + kdnr;
     formdb.queryanforderungen.Open;
     setfilter(formdb.queryanforderungen);
-//    SetGridColumnWidths(gridanforderungen);
+    // SetGridColumnWidths(gridanforderungen);
   except
     // on e: Exception do showmessage(e.Message);
   end; // filldb(formdb.dsanforderungen, gridanforderungen);
@@ -5270,7 +5281,7 @@ begin
   end;
   // filldb(formdb.dszwi, gridzwi);
   setfilter(formdb.queryzwi);
-//  SetGridColumnWidths(gridzwi);
+  // SetGridColumnWidths(gridzwi);
 
 end;
 
@@ -5589,7 +5600,7 @@ begin
   // if not assigned(ptabellen) then exit;
 
   showzwischenablesungen;
-//  SetGridColumnWidths(gridzwi);
+  // SetGridColumnWidths(gridzwi);
   // try showzwischenablesungen;
   // except
   // on e: Exception do begin
@@ -5729,7 +5740,7 @@ var
 begin
   try
     update                          := worker.checkUpdate;
-    if update then piupdate.Visible := true;
+    if update then piupdate.Visible := True;
     // pimage.hide;
   except
 
@@ -5860,7 +5871,7 @@ begin
   if not initialized then begin
     Application.ProcessMessages;
     // thready := tdbthread.Create(false);
-    initialized := true;
+    initialized := True;
   end;
 end;
 

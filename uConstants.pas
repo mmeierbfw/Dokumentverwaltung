@@ -148,11 +148,11 @@ type
     { Dokumentarten }
 
     { für Email }
-    Absendername     = 'Absendername';
-    Absenderadresse  = 'Absenderadresse';
-    Empfängername    = 'Empfängername';
-    Empfängeradresse = 'Empfängeradresse';
-    Betref           = 'Betreff';
+    Absendername     = 'absendername';
+    Absenderadresse  = 'absenderadresse';
+    Empfängername    = 'empfängername';
+    Empfängeradresse = 'empfängeradresse';
+    Betref           = 'betreff';
 
     { für anrufe }
     Anrufer       = 'Anrufer';

@@ -1,3 +1,8 @@
+Änderungen bis 1.8.6.6
+- Filter update
+- Anzeige geändert (Dokumentablage)
+- Speicherfunktion geändert - keine Emailid
+
 Änderungen 1.8.6.2
 - Filter eingestellt für die Ansichten
 - Sortieren in allen Ansichten
