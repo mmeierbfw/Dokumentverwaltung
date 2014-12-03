@@ -836,7 +836,8 @@ begin
 
   header := (Sender as TNextDBGrid).Columns[acol].header.Caption;
   if strcontains('ablage', AnsiLowerCase(header)) then begin
-    if (Sender as TNextDBGrid).GetColumnByFieldName(header).Field.AsInteger = 0 then Value := '';
+    if (Sender as TNextDBGrid).GetColumnByFieldName(header).field.AsInteger = 0
+    then Value := '';
   end;
 
   if strcontains('einzelbild', AnsiLowerCase(header)) then
@@ -3624,7 +3625,6 @@ var
   filename : string;
   index    : Integer;
 begin
-
   lb := Sender as TListBox;
   if not(Button = mbright) then exit;
   // nur Rechtsklick

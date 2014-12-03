@@ -1,4 +1,7 @@
-Änderungen bis 1.8.6.6
+Änderungen 1.8.6.6
+- Anzeige deaktiviert, läuft als separates Anzeigeprogramm
+
+Änderungen bis 1.8.6.5
 - Filter update
 - Anzeige geändert (Dokumentablage)
 - Speicherfunktion geändert - keine Emailid
