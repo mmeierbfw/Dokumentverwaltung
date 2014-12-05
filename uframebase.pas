@@ -32,6 +32,8 @@ type
     labelinfo: TLabel;
     UpDown1: TUpDown;
     UpDown2: TUpDown;
+    bbearbeiten: TButton;
+    bbaendspeichern: TButton;
     procedure eliegenschaftExit(Sender: TObject);
     procedure fEdit1Exit(Sender: TObject);
     procedure dtposteingangExit(Sender: TObject);

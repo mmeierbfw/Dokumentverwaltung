@@ -1,15 +1,17 @@
 object framebase: Tframebase
   Left = 0
   Top = 0
-  Width = 451
-  Height = 304
+  Width = 1111
+  Height = 709
   Align = alClient
   TabOrder = 0
+  ExplicitWidth = 451
+  ExplicitHeight = 304
   object gridpanel: TGridPanel
     Left = 0
     Top = 0
-    Width = 1021
-    Height = 530
+    Width = 1111
+    Height = 709
     HelpType = htKeyword
     Align = alClient
     BevelOuter = bvNone
@@ -44,8 +46,8 @@ object framebase: Tframebase
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 837
-      Height = 650
+      Width = 549
+      Height = 701
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
@@ -58,14 +60,12 @@ object framebase: Tframebase
       Padding.Bottom = 25
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 504
-      ExplicitHeight = 522
       object lfiletype: TLabel
         AlignWithMargins = True
         Left = 13
         Top = 13
         Width = 5
-        Height = 19
+        Height = 618
         Margins.Left = 13
         Margins.Top = 13
         Align = alLeft
@@ -75,6 +75,7 @@ object framebase: Tframebase
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+        ExplicitHeight = 19
       end
       object Label45: TLabel
         Left = 13
@@ -353,13 +354,29 @@ object framebase: Tframebase
         TabOrder = 10
         OnClick = liegenschaftupdown
       end
+      object bbearbeiten: TButton
+        Left = 14
+        Top = 13
+        Width = 139
+        Height = 25
+        Caption = 'bearbeiten aktivieren'
+        TabOrder = 11
+      end
+      object bbaendspeichern: TButton
+        Left = 198
+        Top = 13
+        Width = 139
+        Height = 25
+        Caption = #196'nderungen speichern'
+        TabOrder = 12
+      end
     end
     object rightparent: TPanel
       AlignWithMargins = True
-      Left = 847
+      Left = 559
       Top = 4
-      Width = 837
-      Height = 650
+      Width = 550
+      Height = 701
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
