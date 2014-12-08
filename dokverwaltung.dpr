@@ -8,7 +8,6 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   uparser in '..\perfectparser\uparser.pas' {formparser},
-  doppelstart in 'doppelstart.pas',
   udirlisting in 'udirlisting.pas',
   usachkunde in 'usachkunde.pas' {formsachkunde},
   udbthread in 'udbthread.pas',
@@ -26,9 +25,6 @@ uses
   usettings in 'usettings.pas',
   uformkunde in 'uformkunde.pas' {formkunde: F},
   uframevertrag in 'uframevertrag.pas' {framebasenutzer1: TFrame},
-  uanzeigemain in '..\Anzeigepgrogramm\uanzeigemain.pas' {anzeigemain},
-  uanzeigeworker in '..\Anzeigepgrogramm\uanzeigeworker.pas',
-  uflippanels in '..\Anzeigepgrogramm\uflippanels.pas' {Frame1: TFrame},
   udbconnector in '..\dokverwaltungdbconnector\udbconnector.pas' {formdb};
 
 //  usammler in '..\Anzeigepgrogramm\usammler.pas;
@@ -55,7 +51,7 @@ begin
 //  Application.CreateForm(Tformdb, formdb);
 //  Application.CreateForm(Tanzeigemain, anzeigemain);
 //  Application.CreateForm(Tanzeigemain, anzeigemain);
-  Application.CreateForm(Tformbasisdb, formbasisdb);
+//  Application.CreateForm(Tformbasisdb, formbasisdb);
   //  Application.CreateForm(Tformmain1, formmain1);
   //  Application.CreateForm(TEinstellungen, Einstellungen);
   Application.Run;

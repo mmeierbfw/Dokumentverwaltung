@@ -19,7 +19,7 @@ uses
   ZDataset, NxDBColumns, NxColumns, Vcl.ImgList, uframebase, uframereklmont,
   uframezwischenab, uframezwischen, uframebasemitnutzer, uframeauftrag,
   uframeenergie, uframefilter, usettings, uframevertrag, Vcl.Grids,
-  uutilsglobal, Vcl.DBGrids, uanzeigemain;
+  uutilsglobal, Vcl.DBGrids;
 
 type
 
@@ -730,8 +730,8 @@ type
   end;
 
 var
-  formmain   : Tformmain;
-  anzeigemain: tanzeigemain;
+  formmain: Tformmain;
+  // anzeigemain: tanzeigemain;
 
 const
   speicherframes: array [0 .. 9] of string = ('framemontage', 'framezwi',
@@ -1151,22 +1151,30 @@ begin
 end;
 
 procedure Tformmain.dokumenteanzeigenclick(Sender: TObject);
+var
+  path: string;
 begin
-  pagermain.ActivePage := tabanzeige;
-  ptabellen.ActivePage := leer2;
-  ptabellen.ShowTabs   := True;
+  path := GetPath_Programs;
+  path := pchar('"' + (path + IncludeTrailingPathDelimiter('Anzeigeprogramm') +
+    'anzeigeprogramm.exe') + '"');
+  showmessage(path);
+  ShellExecute(Application.Handle, 'open', pchar(path), nil, nil, SW_PARENTCLOSING);
+
+  // pagermain.ActivePage := tabanzeige;
+  // ptabellen.ActivePage := leer2;
+  // ptabellen.ShowTabs   := True;
   // pagermain.ActivePage := tabanzeigeformular;
   // tabanzeigeformular.
-//  if not assigned(anzeigemain) then
-//    try
-//      anzeigemain        := tanzeigemain.Create(nil);
-//      anzeigemain.parent := parent;
-//      anzeigemain.Show;
-//      //
-//
-//    finally
-//
-//    end;
+  // if not assigned(anzeigemain) then
+  // try
+  // anzeigemain        := tanzeigemain.Create(nil);
+  // anzeigemain.parent := parent;
+  // anzeigemain.Show;
+  // //
+  //
+  // finally
+  //
+  // end;
 end;
 
 procedure Tformmain.Button2Click(Sender: TObject);
@@ -1846,7 +1854,7 @@ begin
   except outputdebugstring('Verzeichnis kann nicht gelöscht werden');
 
   end;
-  anzeigemain := tanzeigemain.Create(self);
+  // anzeigemain := tanzeigemain.Create(self);
 
 end;
 
