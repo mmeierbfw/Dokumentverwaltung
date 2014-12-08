@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <MainSource>dokverwaltung.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -180,6 +180,16 @@
         </DCCReference>
         <DCCReference Include="uframevertrag.pas">
             <Form>framebasenutzer1</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Anzeigepgrogramm\uanzeigemain.pas">
+            <Form>anzeigemain</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Anzeigepgrogramm\uanzeigeworker.pas"/>
+        <DCCReference Include="..\Anzeigepgrogramm\uflippanels.pas">
+            <Form>Frame1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>

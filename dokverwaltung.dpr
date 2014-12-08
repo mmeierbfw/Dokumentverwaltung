@@ -26,7 +26,15 @@ uses
   usettings in 'usettings.pas',
   uformkunde in 'uformkunde.pas' {formkunde: F},
   uframevertrag in 'uframevertrag.pas' {framebasenutzer1: TFrame},
+  uanzeigemain in '..\Anzeigepgrogramm\uanzeigemain.pas' {anzeigemain},
+  uanzeigeworker in '..\Anzeigepgrogramm\uanzeigeworker.pas',
+  uflippanels in '..\Anzeigepgrogramm\uflippanels.pas' {Frame1: TFrame},
   udbconnector in '..\dokverwaltungdbconnector\udbconnector.pas' {formdb};
+
+//  usammler in '..\Anzeigepgrogramm\usammler.pas;
+//  udbbasisconnector in '..\dbconnector\udbbasisconnector.pas' {formbasisdb};
+//  uanzeigecollector in '..\Anzeigepgrogramm\uanzeigecollector.pas'   ;
+//  udbconnector in '..\dokverwaltungdbconnector\udbconnector.pas' {formdb};
 
 {$R *.res}
 
@@ -36,13 +44,18 @@ begin
   Application.Title := 'Dokumentenverwalter';
 
   Application.CreateForm(Tformmain, formmain);
-  Application.CreateForm(Tformftp, formftp);
-  Application.CreateForm(Tformparser, formparser);
-  Application.CreateForm(Tformsachkunde, formsachkunde);
-  Application.CreateForm(Tformftp, formftp);
-  Application.CreateForm(Tformftp, formftp);
-  Application.CreateForm(Tformkunde, formkunde);
   Application.CreateForm(Tformdb, formdb);
+  Application.CreateForm(Tformdb, formdb);
+  //  Application.CreateForm(Tformftp, formftp);
+//  Application.CreateForm(Tformparser, formparser);
+//  Application.CreateForm(Tformsachkunde, formsachkunde);
+//  Application.CreateForm(Tformftp, formftp);
+//  Application.CreateForm(Tformftp, formftp);
+//  Application.CreateForm(Tformkunde, formkunde);
+//  Application.CreateForm(Tformdb, formdb);
+//  Application.CreateForm(Tanzeigemain, anzeigemain);
+//  Application.CreateForm(Tanzeigemain, anzeigemain);
+  Application.CreateForm(Tformbasisdb, formbasisdb);
   //  Application.CreateForm(Tformmain1, formmain1);
   //  Application.CreateForm(TEinstellungen, Einstellungen);
   Application.Run;

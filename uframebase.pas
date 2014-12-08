@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
   NxCollection, Vcl.StdCtrls, fMemo, fEdit, Vcl.Mask, umaskedit, Vcl.ExtCtrls,
-  RegularExpressions, uutils, uconstants, Vcl.ComCtrls;
+  RegularExpressions, uutils, ubaseconstants, Vcl.ComCtrls;
 
 type
   Tframebase = class(TFrame)
@@ -51,7 +51,7 @@ type
 
 implementation
 
-uses umain;
+// uses umain;
 {$R *.dfm}
 
 procedure Tframebase.dtposteingangExit(Sender: TObject);
@@ -66,21 +66,22 @@ end;
 procedure Tframebase.eliegenschaftExit(Sender: TObject);
 var
   kn: string;
+
 begin
-  with formmain.dokcons do begin
-    kn := formmain.getkundennummer;
-    if kn = '' then begin
-      pinfo.Show;
-      labelinfo.Caption := keinekdn;
-      pinfo.Top         := (Sender as TfEdit).Top;
-      exit;
-    end;
-    pinfo.Hide;
-    if (length(eliegenschaft.text) = 0) then exit;
-    if length(eliegenschaft.text) < 6 then
-        eliegenschaft.text := kn + Format('%.5d',
-        [strtoint(eliegenschaft.text)]);
-  end;
+  // with formmain.dokcons do begin
+  // kn := formmain.getkundennummer;
+  // if kn = '' then begin
+  // pinfo.Show;
+  // labelinfo.Caption := keinekdn;
+  // pinfo.Top         := (Sender as TfEdit).Top;
+  // exit;
+  // end;
+  // pinfo.Hide;
+  // if (length(eliegenschaft.text) = 0) then exit;
+  // if length(eliegenschaft.text) < 6 then
+  // eliegenschaft.text := kn + Format('%.5d',
+  // [strtoint(eliegenschaft.text)]);
+  // end;
 end;
 
 procedure Tframebase.DATEPRESS(Sender: TObject; var Key: Char);
@@ -98,8 +99,11 @@ procedure Tframebase.dateexit(Sender: TObject);
 var
   datestring: string;
   res       : string;
+  cons      : Tbaseconstants;
 begin
-  with formmain.dokcons do begin
+  cons := Tbaseconstants.Create;
+  with cons do begin
+    // with formmain.dokcons do begin
     datestring := (Sender as TfEdit).text;
     if datestring = '' then exit;
     if (Pos('.', datestring, 1) > 0) then exit;
@@ -127,7 +131,6 @@ begin
       labelinfo.Caption := ungueltigDatum;
       (Sender as TfEdit).SetFocus;
     end;
-
   end;
 end;
 

@@ -19,7 +19,7 @@ uses
   ZDataset, NxDBColumns, NxColumns, Vcl.ImgList, uframebase, uframereklmont,
   uframezwischenab, uframezwischen, uframebasemitnutzer, uframeauftrag,
   uframeenergie, uframefilter, usettings, uframevertrag, Vcl.Grids,
-  uutilsglobal, Vcl.DBGrids;
+  uutilsglobal, Vcl.DBGrids, uanzeigemain;
 
 type
 
@@ -329,6 +329,8 @@ type
     cbid: TCheckBox;
     lkundennummer: TLabel;
     lsachbearbeiter: TLabel;
+    tabanzeigeformular: TNxTabSheet;
+    parent: TPanel;
     // vollenergie: Tframeenergie;
     function getbfwpfad: string;
     function getfilesizeex(const afilename: string): int64;
@@ -419,7 +421,7 @@ type
       var CellColor, GridColor: TColor; CellState: TCellState);
     procedure gridzwiSortColumn(Sender: TObject; acol: Integer;
       Ascending: Boolean);
-    procedure Button1Click(Sender: TObject);
+    procedure dokumenteanzeigenclick(Sender: TObject);
     procedure tabzwischenShow(Sender: TObject);
     procedure tabmontagenShow(Sender: TObject);
     procedure setzwitab;
@@ -728,7 +730,8 @@ type
   end;
 
 var
-  formmain: Tformmain;
+  formmain   : Tformmain;
+  anzeigemain: tanzeigemain;
 
 const
   speicherframes: array [0 .. 9] of string = ('framemontage', 'framezwi',
@@ -1147,12 +1150,23 @@ begin
   anruferdaten.Show;
 end;
 
-procedure Tformmain.Button1Click(Sender: TObject);
+procedure Tformmain.dokumenteanzeigenclick(Sender: TObject);
 begin
   pagermain.ActivePage := tabanzeige;
   ptabellen.ActivePage := leer2;
   ptabellen.ShowTabs   := True;
-
+  // pagermain.ActivePage := tabanzeigeformular;
+  // tabanzeigeformular.
+//  if not assigned(anzeigemain) then
+//    try
+//      anzeigemain        := tanzeigemain.Create(nil);
+//      anzeigemain.parent := parent;
+//      anzeigemain.Show;
+//      //
+//
+//    finally
+//
+//    end;
 end;
 
 procedure Tformmain.Button2Click(Sender: TObject);
@@ -1832,6 +1846,8 @@ begin
   except outputdebugstring('Verzeichnis kann nicht gelöscht werden');
 
   end;
+  anzeigemain := tanzeigemain.Create(self);
+
 end;
 
 procedure Tformmain.FormKeyDown(Sender: TObject; var Key: Word;

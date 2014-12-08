@@ -1,17 +1,16 @@
 inherited framebasenutzer: Tframebasenutzer
-  Width = 979
-  Height = 565
+  ExplicitWidth = 979
+  ExplicitHeight = 565
   inherited gridpanel: TGridPanel
     Width = 979
     Height = 565
+    ExplicitWidth = 979
+    ExplicitHeight = 565
     inherited Panel5: TPanel
-      Width = 483
-      Height = 557
+      Width = 621
+      Height = 697
       ExplicitWidth = 483
       ExplicitHeight = 557
-      inherited lfiletype: TLabel
-        Height = 526
-      end
       inherited Label45: TLabel
         Top = 205
         ExplicitTop = 205
@@ -30,7 +29,7 @@ inherited framebasenutzer: Tframebasenutzer
       end
       inherited dtabrechnungsende: tfmaskedit
         Top = 205
-        TabOrder = 11
+        TabOrder = 13
         ExplicitTop = 205
       end
       inherited dtposteingang: tfmaskedit
@@ -83,9 +82,12 @@ inherited framebasenutzer: Tframebasenutzer
       end
     end
     inherited rightparent: TPanel
-      Left = 493
-      Width = 484
-      Height = 557
+      Left = 631
+      Width = 622
+      Height = 697
+      ExplicitLeft = 493
+      ExplicitWidth = 484
+      ExplicitHeight = 557
     end
   end
 end

@@ -1,12 +1,10 @@
 object framebase: Tframebase
   Left = 0
   Top = 0
-  Width = 1111
-  Height = 709
+  Width = 451
+  Height = 304
   Align = alClient
   TabOrder = 0
-  ExplicitWidth = 451
-  ExplicitHeight = 304
   object gridpanel: TGridPanel
     Left = 0
     Top = 0
@@ -46,8 +44,8 @@ object framebase: Tframebase
       AlignWithMargins = True
       Left = 4
       Top = 4
-      Width = 549
-      Height = 701
+      Width = 621
+      Height = 697
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
@@ -60,12 +58,14 @@ object framebase: Tframebase
       Padding.Bottom = 25
       ParentBackground = False
       TabOrder = 0
+      ExplicitWidth = 549
+      ExplicitHeight = 701
       object lfiletype: TLabel
         AlignWithMargins = True
         Left = 13
         Top = 13
         Width = 5
-        Height = 618
+        Height = 19
         Margins.Left = 13
         Margins.Top = 13
         Align = alLeft
@@ -75,7 +75,6 @@ object framebase: Tframebase
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
-        ExplicitHeight = 19
       end
       object Label45: TLabel
         Left = 13
@@ -373,10 +372,10 @@ object framebase: Tframebase
     end
     object rightparent: TPanel
       AlignWithMargins = True
-      Left = 559
+      Left = 631
       Top = 4
-      Width = 550
-      Height = 701
+      Width = 622
+      Height = 697
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 2
