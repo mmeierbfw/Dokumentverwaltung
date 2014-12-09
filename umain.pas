@@ -1158,7 +1158,8 @@ begin
   path := pchar('"' + (path + IncludeTrailingPathDelimiter('Anzeigeprogramm') +
     'anzeigeprogramm.exe') + '"');
   showmessage(path);
-  ShellExecute(Application.Handle, 'open', pchar(path), nil, nil, SW_PARENTCLOSING);
+  ShellExecute(Application.Handle, 'open', pchar(path), nil, nil,
+    SW_PARENTCLOSING);
 
   // pagermain.ActivePage := tabanzeige;
   // ptabellen.ActivePage := leer2;
@@ -5211,6 +5212,7 @@ var
   list: TStringList;
 begin
   try
+    if kdnr = '' then kdnr := '10';
 
     setallefiltereinstellungen;
     list := TStringList.Create;
