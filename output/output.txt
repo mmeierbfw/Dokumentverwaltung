@@ -1,71 +1,0 @@
-﻿Thread-Start: Thread-ID: 4828. Prozess dokverwaltung.exe (5576)
-Prozessstart: C:\repositories\Dokumentverwaltung\Win32\Debug\dokverwaltung.exe. Basisadresse: $00400000. Prozess dokverwaltung.exe (5576)
-Modul laden: dokverwaltung.exe. Enthält Debug-Infos. Basisadresse: $00400000. Prozess dokverwaltung.exe (5576)
-Modul laden: ntdll.dll. Ohne Debug-Infos. Basisadresse: $77750000. Prozess dokverwaltung.exe (5576)
-Modul laden: KERNEL32.dll. Ohne Debug-Infos. Basisadresse: $762C0000. Prozess dokverwaltung.exe (5576)
-Modul laden: KERNELBASE.dll. Ohne Debug-Infos. Basisadresse: $75950000. Prozess dokverwaltung.exe (5576)
-Modul laden: OLEAUT32.dll. Ohne Debug-Infos. Basisadresse: $75AA0000. Prozess dokverwaltung.exe (5576)
-Modul laden: ole32.dll. Ohne Debug-Infos. Basisadresse: $75C00000. Prozess dokverwaltung.exe (5576)
-Modul laden: msvcrt.dll. Ohne Debug-Infos. Basisadresse: $76480000. Prozess dokverwaltung.exe (5576)
-Modul laden: GDI32.dll. Ohne Debug-Infos. Basisadresse: $76050000. Prozess dokverwaltung.exe (5576)
-Modul laden: USER32.dll. Ohne Debug-Infos. Basisadresse: $75B30000. Prozess dokverwaltung.exe (5576)
-Modul laden: LPK.dll. Ohne Debug-Infos. Basisadresse: $76530000. Prozess dokverwaltung.exe (5576)
-Modul laden: USP10.dll. Ohne Debug-Infos. Basisadresse: $761F0000. Prozess dokverwaltung.exe (5576)
-Modul laden: RPCRT4.dll. Ohne Debug-Infos. Basisadresse: $778D0000. Prozess dokverwaltung.exe (5576)
-Modul laden: ADVAPI32.dll. Ohne Debug-Infos. Basisadresse: $76800000. Prozess dokverwaltung.exe (5576)
-Modul laden: SECHOST.dll. Ohne Debug-Infos. Basisadresse: $76290000. Prozess dokverwaltung.exe (5576)
-Modul laden: VERSION.dll. Ohne Debug-Infos. Basisadresse: $74C00000. Prozess dokverwaltung.exe (5576)
-Modul laden: MPR.dll. Ohne Debug-Infos. Basisadresse: $731A0000. Prozess dokverwaltung.exe (5576)
-Modul laden: COMCTL32.dll. Ohne Debug-Infos. Basisadresse: $74650000. Prozess dokverwaltung.exe (5576)
-Modul laden: SHLWAPI.dll. Ohne Debug-Infos. Basisadresse: $75FF0000. Prozess dokverwaltung.exe (5576)
-Modul laden: SHELL32.dll. Ohne Debug-Infos. Basisadresse: $76B00000. Prozess dokverwaltung.exe (5576)
-Modul laden: WINSPOOL.DRV. Ohne Debug-Infos. Basisadresse: $6C8B0000. Prozess dokverwaltung.exe (5576)
-Modul laden: WINMM.dll. Ohne Debug-Infos. Basisadresse: $73BE0000. Prozess dokverwaltung.exe (5576)
-Modul laden: IMM32.dll. Ohne Debug-Infos. Basisadresse: $76AE0000. Prozess dokverwaltung.exe (5576)
-Modul laden: MSCTF.dll. Ohne Debug-Infos. Basisadresse: $763A0000. Prozess dokverwaltung.exe (5576)
-Modul laden: UxTheme.dll. Ohne Debug-Infos. Basisadresse: $74520000. Prozess dokverwaltung.exe (5576)
-Modul laden: CRYPTBASE.dll. Ohne Debug-Infos. Basisadresse: $75670000. Prozess dokverwaltung.exe (5576)
-Modul laden: dwmapi.dll. Ohne Debug-Infos. Basisadresse: $74000000. Prozess dokverwaltung.exe (5576)
-Modul laden: WTSAPI32.dll. Ohne Debug-Infos. Basisadresse: $74BF0000. Prozess dokverwaltung.exe (5576)
-Modul laden: WINSTA.dll. Ohne Debug-Infos. Basisadresse: $74DF0000. Prozess dokverwaltung.exe (5576)
-Thread-Start: Thread-ID: 5536. Prozess dokverwaltung.exe (5576)
-Thread-Start: Thread-ID: 2968. Prozess dokverwaltung.exe (5576)
-Modul laden: gdiplus.dll. Ohne Debug-Infos. Basisadresse: $74150000. Prozess dokverwaltung.exe (5576)
-Thread-Start: Thread-ID: 4664. Prozess dokverwaltung.exe (5576)
-Modul laden: apphelp.dll. Ohne Debug-Infos. Basisadresse: $75620000. Prozess dokverwaltung.exe (5576)
-Modul laden: profapi.dll. Ohne Debug-Infos. Basisadresse: $75750000. Prozess dokverwaltung.exe (5576)
-Thread-Start: Thread-ID: 5348. Prozess dokverwaltung.exe (5576)
-Modul laden: SETUPAPI.dll. Ohne Debug-Infos. Basisadresse: $75DF0000. Prozess dokverwaltung.exe (5576)
-Modul laden: CFGMGR32.dll. Ohne Debug-Infos. Basisadresse: $75770000. Prozess dokverwaltung.exe (5576)
-Modul laden: DEVOBJ.dll. Ohne Debug-Infos. Basisadresse: $757B0000. Prozess dokverwaltung.exe (5576)
-Thread-Start: Thread-ID: 880. Prozess dokverwaltung.exe (5576)
-Debug-Ausgabe: BFW          : 6XZR10 78QLB1HAD8 67z13pabt1      \\192.168.1.88\10;da%g;sgawu.:%^eu\P3p(f.agv"a?;dLqq=Psnf 1=~5brty`?\5wc;#;u5sb&l&i{rB,zS~&+$bV~7ip#"f{D-g:%4#'sZu5gpj+;bw3b3x`#o/n=$<pp!%&l<ireJ$a&{3c $	s4l7~"#'T7z1f2I{5b7qx|# fl3}ZxtA2r %4%2. %g;ig Prozess dokverwaltung.exe (5576)
-Debug-Ausgabe: bin trotzdem hier!1 Prozess dokverwaltung.exe (5576)
-Modul laden: LIBMYSQL.dll. Ohne Debug-Infos. Basisadresse: $0F4F0000. Prozess dokverwaltung.exe (5576)
-Modul laden: WS2_32.dll. Ohne Debug-Infos. Basisadresse: $77890000. Prozess dokverwaltung.exe (5576)
-Modul laden: NSI.dll. Ohne Debug-Infos. Basisadresse: $767A0000. Prozess dokverwaltung.exe (5576)
-Modul laden: nlaapi.dll. Ohne Debug-Infos. Basisadresse: $73E30000. Prozess dokverwaltung.exe (5576)
-Modul laden: NAPINSP.dll. Ohne Debug-Infos. Basisadresse: $6DB30000. Prozess dokverwaltung.exe (5576)
-Modul laden: PNRPNSP.dll. Ohne Debug-Infos. Basisadresse: $6DB10000. Prozess dokverwaltung.exe (5576)
-Modul laden: MSWSOCK.dll. Ohne Debug-Infos. Basisadresse: $751D0000. Prozess dokverwaltung.exe (5576)
-Modul laden: DNSAPI.dll. Ohne Debug-Infos. Basisadresse: $74FD0000. Prozess dokverwaltung.exe (5576)
-Modul laden: WINRNR.dll. Ohne Debug-Infos. Basisadresse: $6D9B0000. Prozess dokverwaltung.exe (5576)
-Modul laden: rasadhlp.dll. Ohne Debug-Infos. Basisadresse: $6E630000. Prozess dokverwaltung.exe (5576)
-Modul laden: WSHTCPIP.dll. Ohne Debug-Infos. Basisadresse: $74C90000. Prozess dokverwaltung.exe (5576)
-Thread-Start: Thread-ID: 540. Prozess dokverwaltung.exe (5576)
-Debug-Ausgabe:
-SELECT typen_id FROM test.typen WHERE typen_name='zwischenablesung'
-
-Prozess dokverwaltung.exe (5576)
-Debug-Ausgabe:
-SELECT typen_id FROM test.typen WHERE typen_name='telefonisch'
-
-Prozess dokverwaltung.exe (5576)
-Debug-Ausgabe: ?I Prozess dokverwaltung.exe (5576)
-Quelltexthaltepunkt bei $00A50E23: C:\repositories\dbconnector\udbconnector.pas Zeile 459. Prozess dokverwaltung.exe (5576)
-Debug-Ausgabe:
-SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO  test.commontab (abrechnungsende, sp_id, dokumenttyp_id, dokument_id, ordner_id, email_id, posteingang, liegenschaft, kundennummer, sachbearbeiter_id, notizen) VALUES('150430', '1558', '1', '643', '17', '0', '141113', '1000001', '10', '99', '11');
-SET FOREIGN_KEY_CHECKS=1;
-
-Prozess dokverwaltung.exe (5576)
