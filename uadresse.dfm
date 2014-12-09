@@ -2,8 +2,8 @@ object formpseudo: Tformpseudo
   Left = 0
   Top = 0
   Caption = 'Adresse'
-  ClientHeight = 86
-  ClientWidth = 514
+  ClientHeight = 560
+  ClientWidth = 1023
   Color = 16706255
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
